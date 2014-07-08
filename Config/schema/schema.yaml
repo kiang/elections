@@ -1,0 +1,273 @@
+---
+DOWN: 
+  drop_table: 
+    - acos
+    - aros
+    - aros_acos
+    - members
+    - groups
+    - areas_elections
+    - candidates
+    - elections
+    - areas
+UP: 
+  create_table: 
+    acos: 
+      id: 
+        type: integer
+        null: false
+        length: 11
+        key: primary
+        primary: id
+      parent_id: 
+        type: integer
+        null: false
+        length: 11
+      model: 
+        type: string
+        null: false
+        length: 64
+      foreign_key: 
+        type: integer
+        null: false
+        length: 11
+      alias: 
+        type: string
+        default: 
+        length: 128
+      lft: 
+        type: integer
+        null: false
+        length: 11
+      rght: 
+        type: integer
+        null: false
+        length: 11
+    aros: 
+      id: 
+        type: integer
+        null: false
+        length: 11
+        key: primary
+        primary: id
+      parent_id: 
+        type: integer
+        null: false
+        length: 11
+      model: 
+        type: string
+        default: 
+        length: 64
+      foreign_key: 
+        type: integer
+        null: false
+        length: 11
+      alias: 
+        type: string
+        default: 
+        length: 128
+      lft: 
+        type: integer
+        null: false
+        length: 11
+      rght: 
+        type: integer
+        null: false
+        length: 11
+    aros_acos: 
+      id: 
+        type: integer
+        null: false
+        length: 11
+        key: primary
+        primary: id
+      aro_id: 
+        type: integer
+        null: false
+        length: 11
+      aco_id: 
+        type: integer
+        null: false
+        length: 11
+      _create: 
+        type: integer
+        null: false
+        default: 0
+        length: 2
+      _read: 
+        type: integer
+        null: false
+        default: 0
+        length: 2
+      _update: 
+        type: integer
+        null: false
+        default: 0
+        length: 2
+      _delete: 
+        type: integer
+        null: false
+        default: 0
+        length: 2
+    members: 
+      id: 
+        type: integer
+        null: false
+        length: 11
+        key: primary
+        primary: id
+      group_id: 
+        type: integer
+        null: false
+        length: 11
+      username: 
+        type: string
+        null: false
+        length: 64
+      password: 
+        type: string
+        null: false
+        length: 48
+      user_status: 
+        type: string
+        null: false
+        default: N
+        length: 1
+      created: 
+        type: datetime
+        null: false
+      modified: 
+        type: datetime
+        null: false
+    groups: 
+      id: 
+        type: integer
+        null: false
+        length: 11
+        key: primary
+        primary: id
+      parent_id: 
+        type: integer
+        null: false
+        length: 11
+      name: 
+        type: string
+        null: false
+        length: 64
+    group_permissions: 
+      id: 
+        type: integer
+        null: false
+        length: 11
+        key: primary
+        primary: id
+      parent_id: 
+        type: integer
+        null: false
+        length: 11
+      order: 
+        type: integer
+        null: false
+        length: 11
+      name: 
+        type: string
+        null: false
+        length: 64
+      description: 
+        type: string
+        null: true
+        length: 255
+      acos: 
+        type: string
+        null: false
+        length: 255
+    areas_elections: 
+      id: 
+        type: integer
+        null: false
+        default: 
+        length: 11
+        key: primary
+        primary: id
+      Election_id: 
+        type: integer
+        null: false
+        default: 
+        length: 11
+        key: index
+      Area_id: 
+        type: integer
+        null: false
+        default: 
+        length: 11
+        key: index
+    candidates: 
+      id: 
+        type: integer
+        null: false
+        default: 
+        length: 11
+        key: primary
+        primary: id
+      Election_id: 
+        type: integer
+        null: false
+        default: 
+        length: 11
+        key: index
+      name: 
+        type: string
+        null: false
+        default: 
+    elections: 
+      id: 
+        type: integer
+        null: false
+        default: 
+        length: 11
+        key: primary
+        primary: id
+      parent_id: 
+        type: string
+        null: false
+        default: 
+      name: 
+        type: string
+        null: false
+        default: 
+      lft: 
+        type: string
+        null: false
+        default: 
+      rght: 
+        type: string
+        null: false
+        default: 
+    areas: 
+      id: 
+        type: integer
+        null: false
+        default: 
+        length: 11
+        key: primary
+        primary: id
+      parent_id: 
+        type: string
+        null: false
+        default: 
+      name: 
+        type: string
+        null: false
+        default: 
+      lft: 
+        type: string
+        null: false
+        default: 
+      rght: 
+        type: string
+        null: false
+        default: 
+      is_area: 
+        type: boolean
+        null: true
+        default: 
