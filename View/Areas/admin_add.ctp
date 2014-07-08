@@ -16,16 +16,6 @@
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
-            echo $this->Form->input('Area.lft', array(
-                'label' => 'Left',
-                'div' => 'form-group',
-                'class' => 'form-control',
-            ));
-            echo $this->Form->input('Area.rght', array(
-                'label' => 'Right',
-                'div' => 'form-group',
-                'class' => 'form-control',
-            ));
             echo $this->Form->input('Area.is_area', array(
                 'label' => 'Is Area?',
                 'div' => 'form-group',

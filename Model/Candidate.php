@@ -13,17 +13,11 @@ class Candidate extends AppModel {
             ),
         ),
     );
-    var $actsAs = array(
-    );
     var $belongsTo = array(
         'Election' => array(
             'foreignKey' => 'Election_id',
             'className' => 'Election',
         ),
     );
-
-    function afterSave($created, $options = array()) {
-        
-    }
 
 }

@@ -6,33 +6,14 @@ class Election extends AppModel {
 
     var $name = 'Election';
     var $validate = array(
-        'parent_id' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
-                'message' => 'This field is required',
-            ),
-        ),
         'name' => array(
             'notEmpty' => array(
                 'rule' => 'notEmpty',
                 'message' => 'This field is required',
             ),
         ),
-        'lft' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
-                'message' => 'This field is required',
-            ),
-        ),
-        'rght' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
-                'message' => 'This field is required',
-            ),
-        ),
     );
-    var $actsAs = array(
-    );
+    var $actsAs = array('Tree');
     var $hasAndBelongsToMany = array(
         'Area' => array(
             'joinTable' => 'areas_elections',
@@ -48,9 +29,5 @@ class Election extends AppModel {
             'className' => 'Candidate',
         ),
     );
-
-    function afterSave($created, $options = array()) {
-        
-    }
 
 }

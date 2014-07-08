@@ -8,59 +8,6 @@ class AreasController extends AppController {
     public $paginate = array();
     public $helpers = array();
 
-    function index($foreignModel = null, $foreignId = 0) {
-        $foreignId = intval($foreignId);
-        $foreignKeys = array();
-
-
-        $habtmKeys = array(
-            'Election' => 'Election_id',
-        );
-        $foreignKeys = array_merge($habtmKeys, $foreignKeys);
-
-        $scope = array();
-        if (array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
-            $scope['Area.' . $foreignKeys[$foreignModel]] = $foreignId;
-
-            $joins = array(
-                'Election' => array(
-                    0 => array(
-                        'table' => 'areas_elections',
-                        'alias' => 'AreasElection',
-                        'type' => 'inner',
-                        'conditions' => array('AreasElection.Area_id = Area.id'),
-                    ),
-                    1 => array(
-                        'table' => 'elections',
-                        'alias' => 'Election',
-                        'type' => 'inner',
-                        'conditions' => array('AreasElection.Election_id = Election.id'),
-                    ),
-                ),
-            );
-            if (array_key_exists($foreignModel, $habtmKeys)) {
-                unset($scope['Area.' . $foreignKeys[$foreignModel]]);
-                $scope[$joins[$foreignModel][0]['alias'] . '.' . $foreignKeys[$foreignModel]] = $foreignId;
-                $this->paginate['Area']['joins'] = $joins[$foreignModel];
-            }
-        } else {
-            $foreignModel = '';
-        }
-        $this->set('scope', $scope);
-        $this->paginate['Area']['limit'] = 20;
-        $items = $this->paginate($this->Area, $scope);
-        $this->set('items', $items);
-        $this->set('foreignId', $foreignId);
-        $this->set('foreignModel', $foreignModel);
-    }
-
-    function view($id = null) {
-        if (!$id || !$this->data = $this->Area->read(null, $id)) {
-            $this->Session->setFlash(__('Please do following links in the page', true));
-            $this->redirect(array('action' => 'index'));
-        }
-    }
-
     function admin_index($foreignModel = null, $foreignId = 0, $op = null) {
         $foreignId = intval($foreignId);
         $foreignKeys = array();

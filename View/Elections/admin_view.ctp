@@ -18,22 +18,6 @@
             }
 ?>&nbsp;
         </div>
-        <div class="col-md-2">Left</div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Election']['lft']) {
-
-                echo $this->data['Election']['lft'];
-            }
-?>&nbsp;
-        </div>
-        <div class="col-md-2">Right</div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Election']['rght']) {
-
-                echo $this->data['Election']['rght'];
-            }
-?>&nbsp;
-        </div>
     </div>
     <hr />
     <div class="actions">

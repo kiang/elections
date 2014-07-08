@@ -25,8 +25,6 @@ if (!isset($url)) {
 
                 <th><?php echo $this->Paginator->sort('Election.parent_id', 'Parent', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Election.name', 'Name', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Election.lft', 'Left', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Election.rght', 'Right', array('url' => $url)); ?></th>
                 <th class="actions"><?php echo __('Action', true); ?></th>
             </tr>
         </thead>
@@ -57,12 +55,6 @@ if (!isset($url)) {
                     ?></td>
                     <td><?php
                     echo $item['Election']['name'];
-                    ?></td>
-                    <td><?php
-                    echo $item['Election']['lft'];
-                    ?></td>
-                    <td><?php
-                    echo $item['Election']['rght'];
                     ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Election']['id']), array('class' => 'dialogControl')); ?>

@@ -25,8 +25,6 @@ if (!isset($url)) {
 
                 <th><?php echo $this->Paginator->sort('Area.parent_id', 'Parent', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Area.name', 'Name', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Area.lft', 'Left', array('url' => $url)); ?></th>
-                <th><?php echo $this->Paginator->sort('Area.rght', 'Right', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Area.is_area', 'Is Area?', array('url' => $url)); ?></th>
                 <th class="actions"><?php echo __('Action', true); ?></th>
             </tr>
@@ -58,12 +56,6 @@ if (!isset($url)) {
                     ?></td>
                     <td><?php
                     echo $item['Area']['name'];
-                    ?></td>
-                    <td><?php
-                    echo $item['Area']['lft'];
-                    ?></td>
-                    <td><?php
-                    echo $item['Area']['rght'];
                     ?></td>
                     <td><?php
                     echo $item['Area']['is_area'];

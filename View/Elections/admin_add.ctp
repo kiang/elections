@@ -16,16 +16,6 @@
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
-            echo $this->Form->input('Election.lft', array(
-                'label' => 'Left',
-                'div' => 'form-group',
-                'class' => 'form-control',
-            ));
-            echo $this->Form->input('Election.rght', array(
-                'label' => 'Right',
-                'div' => 'form-group',
-                'class' => 'form-control',
-            ));
             ?>
         </fieldset>
     </div>

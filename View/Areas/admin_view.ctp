@@ -18,22 +18,6 @@
             }
 ?>&nbsp;
         </div>
-        <div class="col-md-2">Left</div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Area']['lft']) {
-
-                echo $this->data['Area']['lft'];
-            }
-?>&nbsp;
-        </div>
-        <div class="col-md-2">Right</div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Area']['rght']) {
-
-                echo $this->data['Area']['rght'];
-            }
-?>&nbsp;
-        </div>
         <div class="col-md-2">Is Area?</div>
         <div class="col-md-9">&nbsp;<?php
             if ($this->data['Area']['is_area']) {
