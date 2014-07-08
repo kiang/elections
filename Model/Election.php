@@ -21,11 +21,10 @@ class Election extends AppModel {
             'associationForeignKey' => 'Area_id',
             'className' => 'Area',
         ),
-    );
-    var $hasMany = array(
         'Candidate' => array(
+            'joinTable' => 'candidates_elections',
             'foreignKey' => 'Election_id',
-            'dependent' => false,
+            'associationForeignKey' => 'Candidate_id',
             'className' => 'Candidate',
         ),
     );

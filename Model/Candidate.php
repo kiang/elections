@@ -13,9 +13,11 @@ class Candidate extends AppModel {
             ),
         ),
     );
-    var $belongsTo = array(
+    var $hasAndBelongsToMany = array(
         'Election' => array(
-            'foreignKey' => 'Election_id',
+            'joinTable' => 'candidates_elections',
+            'foreignKey' => 'Candidate_id',
+            'associationForeignKey' => 'Election_id',
             'className' => 'Election',
         ),
     );

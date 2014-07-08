@@ -15,6 +15,7 @@ class ElectionsController extends AppController {
 
         $habtmKeys = array(
             'Area' => 'Area_id',
+            'Candidate' => 'Candidate_id',
         );
         $foreignKeys = array_merge($habtmKeys, $foreignKeys);
 
@@ -35,6 +36,20 @@ class ElectionsController extends AppController {
                         'alias' => 'Area',
                         'type' => 'inner',
                         'conditions' => array('AreasElection.Area_id = Area.id'),
+                    ),
+                ),
+                'Candidate' => array(
+                    0 => array(
+                        'table' => 'candidates_elections',
+                        'alias' => 'CandidatesElection',
+                        'type' => 'inner',
+                        'conditions' => array('AreasElection.Election_id = Election.id'),
+                    ),
+                    1 => array(
+                        'table' => 'candidates',
+                        'alias' => 'Candidate',
+                        'type' => 'inner',
+                        'conditions' => array('AreasElection.Candidate_id = Candidate.id'),
                     ),
                 ),
             );
