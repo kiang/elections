@@ -1,12 +1,12 @@
 <div id="GroupsAdminIndex">
     <h2><?php echo __('Groups', true); ?></h2>
     <div class="btn-group">
-            <?php if ($parentId > 0): ?>
-                <?php echo $this->Html->link(__('Upper level', true), array('action' => 'index', $upperLevelId), array('class' => 'btn')); ?>
-            <?php endif; ?>
-            <?php echo $this->Html->link(__('New', true), array('action' => 'add', $parentId), array('class' => 'btn dialogControl')); ?>
-            <?php echo $this->Html->link(__('Members', true), array('controller' => 'members'), array('class' => 'btn')); ?>
-            <?php echo $this->Html->link(__('Group Permissions', true), array('controller' => 'group_permissions'), array('class' => 'btn')); ?>
+        <?php if ($parentId > 0): ?>
+            <?php echo $this->Html->link(__('Upper level', true), array('action' => 'index', $upperLevelId), array('class' => 'btn')); ?>
+        <?php endif; ?>
+        <?php echo $this->Html->link(__('New', true), array('action' => 'add', $parentId), array('class' => 'btn dialogControl')); ?>
+        <?php echo $this->Html->link(__('Members', true), array('controller' => 'members'), array('class' => 'btn')); ?>
+        <?php echo $this->Html->link(__('Group Permissions', true), array('controller' => 'group_permissions'), array('class' => 'btn')); ?>
     </div>
     <p>
         <?php

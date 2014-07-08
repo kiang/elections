@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is a part of UploadPack - a set of classes that makes file uploads in CakePHP as easy as possible.
  *
@@ -10,17 +11,15 @@
  * @link http://github.com/netguru/uploadbehavior
  * @version 0.1
  */
-class UploadHelper extends AppHelper
-{
+class UploadHelper extends AppHelper {
+
     public $helpers = array('Html');
 
-    public function image($data, $path, $style = 'original', $options = array())
-    {
+    public function image($data, $path, $style = 'original', $options = array()) {
         return $this->output($this->Html->image($this->url($data, $path, $style, false), $options));
     }
 
-    public function url($data, $field, $style = 'original', $urlize = true)
-    {
+    public function url($data, $field, $style = 'original', $urlize = true) {
         list ($model, $field) = explode('.', $field);
         if (is_array($data)) {
             if (isset($data[$model])) {
@@ -43,4 +42,5 @@ class UploadHelper extends AppHelper
 
         return $urlize ? $this->Html->url($url) : $url;
     }
+
 }

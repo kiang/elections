@@ -13,32 +13,32 @@
             if ($i++ % 2 == 0) {
                 $class = ' class="altrow"';
             }
-        ?>
+            ?>
             <tr<?php echo $class; ?>>
                 <td style="text-align:left;"><?php
-            echo $aco['Aco']['alias'];
-            if (!empty($aco['Aco']['Aco'])) {
-                echo '<input type="checkbox" name="ctrl' . $aco['Aco']['alias'] . '" class="acoController">';
-                echo '<hr /><div id="sub' . $aco['Aco']['alias'] . '">';
-                foreach ($aco['Aco']['Aco'] AS $actionAco) {
-                    echo '<div class="col-md-5"><input type="checkbox" name="' . $aco['Aco']['alias'] . '___' . $actionAco['alias'] . '"';
-                    if ($actionAco['permitted'] == 1) {
-                        echo ' checked="checked"';
+                    echo $aco['Aco']['alias'];
+                    if (!empty($aco['Aco']['Aco'])) {
+                        echo '<input type="checkbox" name="ctrl' . $aco['Aco']['alias'] . '" class="acoController">';
+                        echo '<hr /><div id="sub' . $aco['Aco']['alias'] . '">';
+                        foreach ($aco['Aco']['Aco'] AS $actionAco) {
+                            echo '<div class="col-md-5"><input type="checkbox" name="' . $aco['Aco']['alias'] . '___' . $actionAco['alias'] . '"';
+                            if ($actionAco['permitted'] == 1) {
+                                echo ' checked="checked"';
+                            }
+                            echo ' class="acoPermitted">';
+                            echo $actionAco['alias'] . '</div>';
+                        }
+                        echo '</div>';
                     }
-                    echo ' class="acoPermitted">';
-                    echo $actionAco['alias'] . '</div>';
-                }
-                echo '</div>';
-            }
-        ?></td>
-        </tr>
+                    ?></td>
+            </tr>
         <?php } // End of foreach ($acos as $aco) { ?>
     </table>
     <?php
-        echo $this->Form->create('Group', array('url' => array('action' => 'acos', $groupId)));
-        echo '<ul id="permissionStack"></ul>';
-        echo $this->Form->end(__('Update', true));
-        echo $this->Html->scriptBlock('
+    echo $this->Form->create('Group', array('url' => array('action' => 'acos', $groupId)));
+    echo '<ul id="permissionStack"></ul>';
+    echo $this->Form->end(__('Update', true));
+    echo $this->Html->scriptBlock('
 $(function() {
 	$(\'input.acoPermitted\').click(function() {
 		if($(\'#p\' + this.name).size() > 0) {
@@ -65,9 +65,9 @@ $(function() {
 });
 ');
     ?>
-        <div class="actions">
-            <ul>
-                <li><?php echo $this->Html->link(__('List', true), array('action' => 'index')); ?></li>
+    <div class="actions">
+        <ul>
+            <li><?php echo $this->Html->link(__('List', true), array('action' => 'index')); ?></li>
         </ul>
     </div>
 </div>

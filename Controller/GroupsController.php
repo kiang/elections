@@ -3,13 +3,12 @@
 /**
  * @property Group Group
  */
-class GroupsController extends AppController
-{
+class GroupsController extends AppController {
+
     public $name = 'Groups';
     public $paginate = array();
 
-    public function admin_index($parentId = 0)
-    {
+    public function admin_index($parentId = 0) {
         $this->paginate['Group'] = array(
             'contain' => array(),
         );
@@ -32,8 +31,7 @@ class GroupsController extends AppController
         }
     }
 
-    public function admin_add($parentId = 0)
-    {
+    public function admin_add($parentId = 0) {
         if (!empty($this->request->data)) {
             $this->Group->create();
             $this->request->data['Group']['parent_id'] = $parentId;
@@ -48,8 +46,7 @@ class GroupsController extends AppController
         $this->set('parentId', $parentId);
     }
 
-    public function admin_edit($id = null)
-    {
+    public function admin_edit($id = null) {
         if (!$id && empty($this->request->data)) {
             $this->Session->setFlash(__('Please select a group first!', true));
             $this->redirect($this->referer());
@@ -67,8 +64,7 @@ class GroupsController extends AppController
         }
     }
 
-    public function admin_delete($id = null)
-    {
+    public function admin_delete($id = null) {
         if (!$id) {
             $this->Session->setFlash(__('Please select a group first!', true));
             $this->redirect($this->referer());
@@ -80,13 +76,12 @@ class GroupsController extends AppController
         }
     }
 
-    public function admin_acos($groupId = 0)
-    {
+    public function admin_acos($groupId = 0) {
         if (empty($groupId) || !$aroGroup = $this->Group->find('first', array(
-                    'fields' => array('Group.id'),
-                    'conditions' => array(
-                        'Group.id' => $groupId,
-                    ),
+            'fields' => array('Group.id'),
+            'conditions' => array(
+                'Group.id' => $groupId,
+            ),
                 ))) {
             $this->Session->setFlash(__('Please select a group first!', true));
             $this->redirect(array('action' => 'index'));
@@ -117,14 +112,14 @@ class GroupsController extends AppController
         $acoRoot = $aco->node('app');
         if (!empty($acoRoot)) {
             $acos = $this->Acl->Aco->find('all', array(
-                        'conditions' => array('Aco.parent_id' => $acoRoot[0]['Aco']['id']),
-                    ));
+                'conditions' => array('Aco.parent_id' => $acoRoot[0]['Aco']['id']),
+            ));
             foreach ($acos AS $key => $controllerAco) {
                 $actionAcos = $this->Acl->Aco->find('all', array(
-                            'conditions' => array(
-                                'Aco.parent_id' => $controllerAco['Aco']['id'],
-                            ),
-                        ));
+                    'conditions' => array(
+                        'Aco.parent_id' => $controllerAco['Aco']['id'],
+                    ),
+                ));
                 if (!empty($actionAcos)) {
                     foreach ($actionAcos AS $actionAco) {
                         if (($actionAco['Aco']['rght'] - $actionAco['Aco']['lft']) != 1) {
@@ -132,16 +127,15 @@ class GroupsController extends AppController
                              * Controller in plugins
                              */
                             $pluginAcos = $this->Acl->Aco->find('all', array(
-                                        'conditions' => array(
-                                            'Aco.parent_id' => $actionAco['Aco']['id'],
-                                        ),
-                                    ));
+                                'conditions' => array(
+                                    'Aco.parent_id' => $actionAco['Aco']['id'],
+                                ),
+                            ));
                             foreach ($pluginAcos AS $pluginAco) {
                                 $pluginAco['Aco']['permitted'] = $this->Acl->check(
-                                                $aroGroup,
-                                                $controllerAco['Aco']['alias']
-                                                . '/' . $actionAco['Aco']['alias']
-                                                . '/' . $pluginAco['Aco']['alias']
+                                        $aroGroup, $controllerAco['Aco']['alias']
+                                        . '/' . $actionAco['Aco']['alias']
+                                        . '/' . $pluginAco['Aco']['alias']
                                 );
                                 $pluginAco['Aco']['alias'] = $actionAco['Aco']['alias']
                                         . '/' . $pluginAco['Aco']['alias'];
@@ -149,9 +143,8 @@ class GroupsController extends AppController
                             }
                         } else {
                             $actionAco['Aco']['permitted'] = $this->Acl->check(
-                                            $aroGroup,
-                                            $controllerAco['Aco']['alias']
-                                            . '/' . $actionAco['Aco']['alias']
+                                    $aroGroup, $controllerAco['Aco']['alias']
+                                    . '/' . $actionAco['Aco']['alias']
                             );
                             $acos[$key]['Aco']['Aco'][] = $actionAco['Aco'];
                         }

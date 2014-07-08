@@ -3,19 +3,19 @@
     <head>
         <?php echo $this->Html->charset(); ?>
         <title>
-Elections::
+            Elections::
             <?php echo $title_for_layout; ?>
         </title><?php
-            echo $this->Html->meta('icon');
-            echo $this->Html->css('jquery-ui');
-            echo $this->Html->css('bootstrap');
-            echo $this->Html->css('default');
-            echo $this->Html->script('bootstrap.min');
-            echo $this->Html->script('jquery');
-            echo $this->Html->script('jquery-ui');
-            echo $this->Html->script('olc');
-            echo $scripts_for_layout;
-            ?>
+        echo $this->Html->meta('icon');
+        echo $this->Html->css('jquery-ui');
+        echo $this->Html->css('bootstrap');
+        echo $this->Html->css('default');
+        echo $this->Html->script('bootstrap.min');
+        echo $this->Html->script('jquery');
+        echo $this->Html->script('jquery-ui');
+        echo $this->Html->script('olc');
+        echo $scripts_for_layout;
+        ?>
     </head>
     <body>
         <div class="container">

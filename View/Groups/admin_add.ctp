@@ -7,9 +7,9 @@
         ?>
     </fieldset>
     <?php echo $this->Form->end(__('Submit', true)); ?>
-    </div>
-    <div class="actions">
-        <ul>
-            <li><?php echo $this->Html->link(__('List', true), array('action' => 'index')); ?></li>
+</div>
+<div class="actions">
+    <ul>
+        <li><?php echo $this->Html->link(__('List', true), array('action' => 'index')); ?></li>
     </ul>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
-class Member extends AppModel
-{
+class Member extends AppModel {
+
     public $name = 'Member';
     public $actsAs = array('Acl' => array('requester'));
     public $belongsTo = array(
@@ -11,8 +11,7 @@ class Member extends AppModel
         ),
     );
 
-    public function parentNode()
-    {
+    public function parentNode() {
         if (!$this->id && empty($this->data)) {
             return null;
         }
@@ -27,8 +26,7 @@ class Member extends AppModel
         }
     }
 
-    public function beforeSave($options = array())
-    {
+    public function beforeSave($options = array()) {
         if (isset($this->data['Member']['password'])) {
             $this->data['Member']['password'] = trim($this->data['Member']['password']);
             if (!empty($this->data['Member']['password'])) {

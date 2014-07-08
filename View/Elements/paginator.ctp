@@ -1,5 +1,6 @@
 <?php
-if(!isset($url)) {
+
+if (!isset($url)) {
     $url = array();
 }
 echo $this->Paginator->first('<<', array('url' => $url));

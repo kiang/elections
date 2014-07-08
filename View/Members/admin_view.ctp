@@ -1,46 +1,59 @@
 <div class="members view">
     <h2><?php __('Member'); ?></h2>
     <dl><?php $i = 0;
-$class = ' class="altrow"'; ?>
+$class = ' class="altrow"';
+?>
         <dt<?php if ($i % 2 == 0)
-    echo $class; ?>><?php __('Id'); ?></dt>
+            echo $class;
+?>><?php __('Id'); ?></dt>
         <dd<?php if ($i++ % 2 == 0)
-                echo $class; ?>>
-<?php echo $member['Member']['id']; ?>
+                echo $class;
+?>>
+            <?php echo $member['Member']['id']; ?>
             &nbsp;
         </dd>
         <dt<?php if ($i % 2 == 0)
-                echo $class; ?>><?php __('Username'); ?></dt>
+                echo $class;
+            ?>><?php __('Username'); ?></dt>
         <dd<?php if ($i++ % 2 == 0)
-                echo $class; ?>>
+                    echo $class;
+            ?>>
             <?php echo $member['Member']['username']; ?>
             &nbsp;
         </dd>
         <dt<?php if ($i % 2 == 0)
-                echo $class; ?>><?php __('Password'); ?></dt>
+                echo $class;
+            ?>><?php __('Password'); ?></dt>
         <dd<?php if ($i++ % 2 == 0)
-                echo $class; ?>>
-<?php echo $member['Member']['password']; ?>
+                echo $class;
+            ?>>
+                <?php echo $member['Member']['password']; ?>
             &nbsp;
         </dd>
         <dt<?php if ($i % 2 == 0)
-                echo $class; ?>><?php __('User Status'); ?></dt>
+                    echo $class;
+                ?>><?php __('User Status'); ?></dt>
         <dd<?php if ($i++ % 2 == 0)
-                echo $class; ?>>
+                echo $class;
+                ?>>
 <?php echo $member['Member']['user_status']; ?>
             &nbsp;
         </dd>
         <dt<?php if ($i % 2 == 0)
-                echo $class; ?>><?php __('Created'); ?></dt>
+    echo $class;
+?>><?php __('Created'); ?></dt>
         <dd<?php if ($i++ % 2 == 0)
-                echo $class; ?>>
+                    echo $class;
+?>>
 <?php echo $member['Member']['created']; ?>
             &nbsp;
         </dd>
         <dt<?php if ($i % 2 == 0)
-                echo $class; ?>><?php __('Modified'); ?></dt>
+    echo $class;
+?>><?php __('Modified'); ?></dt>
         <dd<?php if ($i++ % 2 == 0)
-                echo $class; ?>>
+    echo $class;
+?>>
 <?php echo $member['Member']['modified']; ?>
             &nbsp;
         </dd>

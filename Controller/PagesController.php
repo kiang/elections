@@ -1,4 +1,5 @@
 <?php
+
 /* SVN FILE: $Id: pages_controller.php 7805 2008-10-30 17:30:26Z AD7six $ */
 /**
  * Static content controller.
@@ -24,6 +25,7 @@
  * @lastmodified  $Date: 2008-10-31 01:30:26 +0800 (五, 31 10月 2008) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
+
 /**
  * Static content controller
  *
@@ -32,46 +34,46 @@
  * @package       cake
  * @subpackage    cake.cake.libs.controller
  */
-class PagesController extends AppController
-{
-/**
- * Controller name
- *
- * @var string
- * @access public
- */
-    public $name = 'Pages';
-/**
- * Default helper
- *
- * @var array
- * @access public
- */
-    public $helpers = array('Html');
-/**
- * This controller does not use a model
- *
- * @var array
- * @access public
- */
-    public $uses = array();
-/**
- * Displays a view
- *
- * @param mixed What page to display
- * @access public
- */
+class PagesController extends AppController {
 
-    public function beforeFilter()
-    {
+    /**
+     * Controller name
+     *
+     * @var string
+     * @access public
+     */
+    public $name = 'Pages';
+
+    /**
+     * Default helper
+     *
+     * @var array
+     * @access public
+     */
+    public $helpers = array('Html');
+
+    /**
+     * This controller does not use a model
+     *
+     * @var array
+     * @access public
+     */
+    public $uses = array();
+
+    /**
+     * Displays a view
+     *
+     * @param mixed What page to display
+     * @access public
+     */
+    public function beforeFilter() {
         parent::beforeFilter();
-                if (isset($this->Auth)) {
-                    $this->Auth->allow('display');
-                }
+        if (isset($this->Auth)) {
+            $this->Auth->allow('display');
+        }
     }
 
-    public function display()
-    {
+    public function display() {
         $path = func_get_args();
 
         $count = count($path);
@@ -92,4 +94,5 @@ class PagesController extends AppController
         $this->set(compact('page', 'subpage', 'title'));
         $this->render(join('/', $path));
     }
+
 }

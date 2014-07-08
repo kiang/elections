@@ -1,7 +1,7 @@
 <?php
 
-class GroupPermission extends AppModel
-{
+class GroupPermission extends AppModel {
+
     public $name = 'GroupPermission';
     public $displayField = 'name';
     public $validate = array(
@@ -17,8 +17,7 @@ class GroupPermission extends AppModel
         ),
     );
 
-    public function  beforeSave($options = array())
-    {
+    public function beforeSave($options = array()) {
         if (!empty($this->data['GroupPermission']['acos'])) {
             $acos = explode(chr(10), $this->data['GroupPermission']['acos']);
             foreach ($acos AS $key => $aco) {

@@ -1,4 +1,5 @@
 <?php
+
 /* SVN FILE: $Id: default.ctp 7805 2008-10-30 17:30:26Z AD7six $ */
 /**
  *
@@ -23,9 +24,10 @@
  */
 ?>
 <?php
+
 $content = explode("\n", $content);
 
 foreach ($content as $line):
-	echo '<p> ' . $line . '</p>';
+    echo '<p> ' . $line . '</p>';
 endforeach;
 ?>
