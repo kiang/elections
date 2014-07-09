@@ -1,5 +1,5 @@
 <div id="AreasAdminAdd">
-        <?php echo $this->Form->create('Area', array('type' => 'file')); ?>
+    <?php echo $this->Form->create('Area', array('type' => 'file')); ?>
     <div class="Areas form">
         <fieldset>
             <legend><?php
@@ -16,10 +16,20 @@
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
+            echo $this->Form->input('Area.ivid', array(
+                'label' => 'Ivid',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
+            echo $this->Form->input('Area.code', array(
+                'label' => 'Code',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
             ?>
         </fieldset>
     </div>
-        <?php
+    <?php
     echo $this->Form->end(__('Submit', true));
     ?>
 </div>

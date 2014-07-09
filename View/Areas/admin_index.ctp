@@ -28,6 +28,8 @@ if (!isset($url)) {
                     echo '<th>&nbsp;</th>';
                 }
                 ?>
+                <th><?php echo $this->Paginator->sort('Area.ivid', 'Ivid', array('url' => $url)); ?></th>
+                <th><?php echo $this->Paginator->sort('Area.code', 'Code', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Area.name', 'Name', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Area.is_area', 'Is Area?', array('url' => $url)); ?></th>
                 <th class="actions"><?php echo __('Action', true); ?></th>
@@ -55,11 +57,17 @@ if (!isset($url)) {
                     }
                     ?>
                     <td><?php
-                    echo $this->Html->link($item['Area']['name'], array('action' => 'index', $item['Area']['id']));
-                    ?></td>
+                        echo $item['Area']['ivid'];
+                        ?></td>
                     <td><?php
-                    echo $item['Area']['is_area'];
-                    ?></td>
+                        echo $item['Area']['code'];
+                        ?></td>
+                    <td><?php
+                        echo $this->Html->link($item['Area']['name'], array('action' => 'index', $item['Area']['id']));
+                        ?></td>
+                    <td><?php
+                        echo $item['Area']['is_area'];
+                        ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Area']['id']), array('class' => 'dialogControl')); ?>
                         <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Area']['id']), array('class' => 'dialogControl')); ?>
@@ -89,12 +97,12 @@ if (!empty($op)) {
                     } else {
                         remoteUrl = remoteUrl + 'off';
                     }
-                    $('div#messageSet' + this.value) . load(remoteUrl);
+                    $('div#messageSet' + this.value).load(remoteUrl);
                 });
     <?php
 }
 ?>
-    });
-    //]]>
+        });
+        //]]>
     </script>
 </div>

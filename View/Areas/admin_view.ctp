@@ -4,27 +4,28 @@
 
         <div class="col-md-2">Parent</div>
         <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Area']['parent_id']) {
-
-                echo $this->data['Area']['parent_id'];
-            }
-?>&nbsp;
+            echo $this->data['Area']['parent_id'];
+            ?>&nbsp;
+        </div>
+        <div class="col-md-2">Ivid</div>
+        <div class="col-md-9">&nbsp;<?php
+            echo $this->data['Area']['ivid'];
+            ?>&nbsp;
+        </div>
+        <div class="col-md-2">Code</div>
+        <div class="col-md-9">&nbsp;<?php
+            echo $this->data['Area']['code'];
+            ?>&nbsp;
         </div>
         <div class="col-md-2">Name</div>
         <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Area']['name']) {
-
-                echo $this->data['Area']['name'];
-            }
-?>&nbsp;
+            echo $this->data['Area']['name'];
+            ?>&nbsp;
         </div>
         <div class="col-md-2">Is Area?</div>
         <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Area']['is_area']) {
-
-                echo $this->data['Area']['is_area'];
-            }
-?>&nbsp;
+            echo $this->data['Area']['is_area'];
+            ?>&nbsp;
         </div>
     </div>
     <hr />
@@ -37,11 +38,6 @@
         </ul>
     </div>
     <div id="AreasAdminViewPanel"></div>
-<?php
-echo $this->Html->scriptBlock('
-
-');
-?>
     <script type="text/javascript">
         //<![CDATA[
         $(function() {

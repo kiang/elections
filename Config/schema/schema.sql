@@ -48,7 +48,12 @@ CREATE TABLE `areas` (
   `lft` int(11) NOT NULL,
   `rght` int(11) NOT NULL,
   `is_area` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `ivid` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `code` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `code` (`code`),
+  KEY `ivid` (`ivid`),
+  KEY `parent_id` (`parent_id`,`lft`,`rght`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -212,4 +217,4 @@ CREATE TABLE `members` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-10  1:14:01
+-- Dump completed on 2014-07-10  1:58:57

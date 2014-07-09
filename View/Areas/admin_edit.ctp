@@ -22,10 +22,20 @@
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
+            echo $this->Form->input('Area.ivid', array(
+                'label' => 'Ivid',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
+            echo $this->Form->input('Area.code', array(
+                'label' => 'Code',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
             ?>
         </fieldset>
     </div>
-            <?php
-            echo $this->Form->end(__('Submit', true));
-            ?>
+    <?php
+    echo $this->Form->end(__('Submit', true));
+    ?>
 </div>
