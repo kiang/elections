@@ -6,13 +6,19 @@ if (!isset($url)) {
 <div id="AreasAdminIndex">
     <h2><?php echo __('Areas', true); ?></h2>
     <div class="btn-group">
-        <?php echo $this->Html->link(__('Add', true), array('action' => 'add'), array('class' => 'btn dialogControl')); ?>
+        <?php echo $this->Html->link(__('Add', true), array('action' => 'add', $parentId), array('class' => 'btn dialogControl')); ?>
     </div>
-    <div><?php
-        echo $this->Paginator->counter(array(
-            'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-        ));
-        ?></div>
+    <div class="clearfix"></div>
+    <?php
+    if (!empty($parents)) {
+        $this->Html->addCrumb('最上層', array('action' => 'index'));
+        foreach ($parents AS $parent) {
+            $this->Html->addCrumb($parent['Area']['name'], array('action' => 'index', $parent['Area']['id'])
+            );
+        }
+        echo $this->Html->getCrumbs();
+    }
+    ?>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
     <table class="table table-bordered" id="AreasAdminIndexTable">
         <thead>
@@ -22,8 +28,6 @@ if (!isset($url)) {
                     echo '<th>&nbsp;</th>';
                 }
                 ?>
-
-                <th><?php echo $this->Paginator->sort('Area.parent_id', 'Parent', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Area.name', 'Name', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Area.is_area', 'Is Area?', array('url' => $url)); ?></th>
                 <th class="actions"><?php echo __('Action', true); ?></th>
@@ -50,12 +54,8 @@ if (!isset($url)) {
                         echo '<div id="messageSet' . $item['Area']['id'] . '"></div></td>';
                     }
                     ?>
-
                     <td><?php
-                    echo $item['Area']['parent_id'];
-                    ?></td>
-                    <td><?php
-                    echo $item['Area']['name'];
+                    echo $this->Html->link($item['Area']['name'], array('action' => 'index', $item['Area']['id']));
                     ?></td>
                     <td><?php
                     echo $item['Area']['is_area'];

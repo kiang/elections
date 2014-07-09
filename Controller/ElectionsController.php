@@ -8,11 +8,8 @@ class ElectionsController extends AppController {
     public $paginate = array();
     public $helpers = array();
 
-    function admin_index($foreignModel = null, $foreignId = 0, $op = null) {
-        $foreignKeys = array(
-            ''
-        );
-
+    function admin_index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {
+        $foreignKeys = array();
 
         $habtmKeys = array(
             'Area' => 'Area_id',
@@ -20,8 +17,14 @@ class ElectionsController extends AppController {
         );
         $foreignKeys = array_merge($habtmKeys, $foreignKeys);
 
-        $scope = array();
-        if (array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
+        if (!empty($parentId)) {
+            $parentId = $this->Election->field('id', array('id' => $parentId));
+        }
+
+        $scope = array(
+            'Election.parent_id' => empty($parentId) ? NULL : $parentId,
+        );
+        if (array_key_exists($foreignModel, $foreignKeys) && !empty($foreignId)) {
             $scope['Election.' . $foreignKeys[$foreignModel]] = $foreignId;
 
             $joins = array(
@@ -87,6 +90,8 @@ class ElectionsController extends AppController {
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
+        $this->set('parentId', $parentId);
+        $this->set('parents', $this->Election->getPath($parentId, array('id', 'name')));
     }
 
     function admin_view($id = null) {
@@ -96,12 +101,17 @@ class ElectionsController extends AppController {
         }
     }
 
-    function admin_add() {
+    function admin_add($parentId = '') {
         if (!empty($this->data)) {
+            $dataToSave = $this->data;
+            if (!empty($parentId)) {
+                $dataToSave['Election']['parent_id'] = $this->Election->field('id', array('id' => $parentId));
+            }
+
             $this->Election->create();
-            if ($this->Election->save($this->data)) {
+            if ($this->Election->save($dataToSave)) {
                 $this->Session->setFlash(__('The data has been saved', true));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'index', $parentId));
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }

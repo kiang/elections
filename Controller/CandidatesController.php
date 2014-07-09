@@ -8,7 +8,7 @@ class CandidatesController extends AppController {
     public $paginate = array();
     public $helpers = array();
 
-    function admin_index($foreignModel = null, $foreignId = 0, $op = null) {
+    function admin_index($foreignModel = null, $foreignId = '', $op = null) {
         $foreignKeys = array();
 
         $foreignKeys = array(
@@ -17,7 +17,7 @@ class CandidatesController extends AppController {
 
 
         $scope = array();
-        if (array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
+        if (array_key_exists($foreignModel, $foreignKeys) && !empty($foreignId)) {
             $scope['Candidate.' . $foreignKeys[$foreignModel]] = $foreignId;
         } else {
             $foreignModel = '';
@@ -38,11 +38,11 @@ class CandidatesController extends AppController {
         }
     }
 
-    function admin_add($foreignModel = null, $foreignId = 0) {
+    function admin_add($foreignModel = null, $foreignId = '') {
         $foreignKeys = array(
             'Election' => 'Election_id',
         );
-        if (array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
+        if (array_key_exists($foreignModel, $foreignKeys) && !empty($foreignId)) {
             if (!empty($this->data)) {
                 $this->data['Candidate'][$foreignKeys[$foreignModel]] = $foreignId;
             }

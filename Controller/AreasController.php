@@ -8,7 +8,7 @@ class AreasController extends AppController {
     public $paginate = array();
     public $helpers = array();
 
-    function admin_index($foreignModel = null, $foreignId = 0, $op = null) {
+    function admin_index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {
         $foreignKeys = array();
 
 
@@ -16,9 +16,15 @@ class AreasController extends AppController {
             'Election' => 'Election_id',
         );
         $foreignKeys = array_merge($habtmKeys, $foreignKeys);
+        
+        if (!empty($parentId)) {
+            $parentId = $this->Area->field('id', array('id' => $parentId));
+        }
 
-        $scope = array();
-        if (array_key_exists($foreignModel, $foreignKeys) && $foreignId > 0) {
+        $scope = array(
+            'Area.parent_id' => empty($parentId) ? NULL : $parentId,
+        );
+        if (array_key_exists($foreignModel, $foreignKeys) && !empty($foreignId)) {
             $scope['Area.' . $foreignKeys[$foreignModel]] = $foreignId;
 
             $joins = array(
@@ -70,6 +76,8 @@ class AreasController extends AppController {
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
+        $this->set('parentId', $parentId);
+        $this->set('parents', $this->Area->getPath($parentId, array('id', 'name')));
     }
 
     function admin_view($id = null) {
@@ -79,12 +87,16 @@ class AreasController extends AppController {
         }
     }
 
-    function admin_add() {
+    function admin_add($parentId = '') {
         if (!empty($this->data)) {
+            $dataToSave = $this->data;
+            if (!empty($parentId)) {
+                $dataToSave['Area']['parent_id'] = $this->Area->field('id', array('id' => $parentId));
+            }
             $this->Area->create();
-            if ($this->Area->save($this->data)) {
+            if ($this->Area->save($dataToSave)) {
                 $this->Session->setFlash(__('The data has been saved', true));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'index', $parentId));
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }
