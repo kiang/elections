@@ -1,8 +1,3 @@
-<?php
-if (!isset($url)) {
-    $url = array();
-}
-?>
 <div id="AreasAdminIndex">
     <h2><?php echo __('Areas', true); ?></h2>
     <div class="btn-group">
@@ -82,10 +77,6 @@ if (!isset($url)) {
     <script type="text/javascript">
         //<![CDATA[
         $(function() {
-            $('#AreasAdminIndexTable th a, #AreasAdminIndex div.paging a').click(function() {
-                $('#AreasAdminIndex').parent().load(this.href);
-                return false;
-            });
 <?php
 if (!empty($op)) {
     $remoteUrl = $this->Html->url(array('action' => 'habtmSet', $foreignModel, $foreignId));

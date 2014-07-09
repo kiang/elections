@@ -76,6 +76,7 @@ class AreasController extends AppController {
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
+        $this->set('url', array($parentId, $foreignModel, $foreignId));
         $this->set('parentId', $parentId);
         $this->set('parents', $this->Area->getPath($parentId, array('id', 'name')));
     }
