@@ -9,7 +9,6 @@ class AreasController extends AppController {
     public $helpers = array();
 
     function admin_index($foreignModel = null, $foreignId = 0, $op = null) {
-        $foreignId = intval($foreignId);
         $foreignKeys = array();
 
 
@@ -127,8 +126,6 @@ class AreasController extends AppController {
             ),
         );
         $foreignModel = array_key_exists($foreignModel, $habtmKeys) ? $foreignModel : null;
-        $foreignId = intval($foreignId);
-        $id = intval($id);
         $switch = in_array($switch, array('on', 'off')) ? $switch : null;
         if (empty($foreignModel) || $foreignId <= 0 || $id <= 0 || empty($switch)) {
             $this->set('habtmMessage', __('Wrong Parameters'));

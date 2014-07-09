@@ -9,7 +9,6 @@ class CandidatesController extends AppController {
     public $helpers = array();
 
     function admin_index($foreignModel = null, $foreignId = 0, $op = null) {
-        $foreignId = intval($foreignId);
         $foreignKeys = array();
 
         $foreignKeys = array(
@@ -40,7 +39,6 @@ class CandidatesController extends AppController {
     }
 
     function admin_add($foreignModel = null, $foreignId = 0) {
-        $foreignId = intval($foreignId);
         $foreignKeys = array(
             'Election' => 'Election_id',
         );
