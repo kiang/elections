@@ -290,6 +290,7 @@ class ImportShell extends AppShell {
                         case 'TPQ':
                         case 'TXG':
                         case 'TNN':
+                        case 'TAO':
                             $this->areas['municipalities'][$dbArea['Area']['id']] = $dbArea['Area'];
                             break;
                         default:
