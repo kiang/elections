@@ -119,7 +119,19 @@ DROP TABLE IF EXISTS `candidates`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `candidates` (
   `id` binary(36) NOT NULL,
+  `active_id` binary(36) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `party` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contacts_phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contacts_fax` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contacts_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contacts_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `links` text COLLATE utf8_unicode_ci,
+  `gender` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `birth` date DEFAULT NULL,
+  `education` text COLLATE utf8_unicode_ci,
+  `experience` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -135,6 +147,7 @@ CREATE TABLE `candidates_elections` (
   `id` binary(36) NOT NULL,
   `Election_id` binary(36) NOT NULL,
   `Candidate_id` binary(36) NOT NULL,
+  `platform` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -217,4 +230,4 @@ CREATE TABLE `members` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-10  1:58:57
+-- Dump completed on 2014-07-11  2:14:52
