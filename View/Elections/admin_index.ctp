@@ -11,10 +11,18 @@ if (!isset($url)) {
     <div class="clearfix"></div>
     <?php
     if (!empty($parents)) {
-        $this->Html->addCrumb('最上層', array('action' => 'index'));
+        $this->Html->addCrumb('最上層', array('controller' => 'elections', 'action' => 'index'));
         foreach ($parents AS $parent) {
-            $this->Html->addCrumb($parent['Election']['name'], array('action' => 'index', $parent['Election']['id'])
-            );
+            if ($parent['Election']['rght'] - $parent['Election']['lft'] !== 1) {
+                $this->Html->addCrumb($parent['Election']['name'], array(
+                    'action' => 'index', $parent['Election']['id'])
+                );
+            } else {
+                $this->Html->addCrumb($parent['Election']['name'], array(
+                    'controller' => 'candidates',
+                    'action' => 'index', $parent['Election']['id'])
+                );
+            }
         }
         echo $this->Html->getCrumbs();
     }
@@ -57,9 +65,15 @@ if (!isset($url)) {
                         echo $this->Html->link($item['Election']['name'], array('action' => 'index', $item['Election']['id']));
                         ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Election']['id']), array('class' => 'dialogControl')); ?>
-                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Election']['id']), array('class' => 'dialogControl')); ?>
+                        <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Election']['id'])); ?>
+                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Election']['id'])); ?>
                         <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Election']['id']), null, __('Delete the item, sure?', true)); ?>
+                        <?php
+                        if($item['Election']['rght'] - $item['Election']['lft'] === 1) {
+                            echo ' ' . $this->Html->link('候選人', array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']));
+                            echo ' ' . $this->Html->link('新增候選人', array('controller' => 'candidates', 'action' => 'add', $item['Election']['id']));
+                        }
+                        ?>
                     </td>
                 </tr>
             <?php } // End of foreach ($items as $item) {  ?>

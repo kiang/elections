@@ -91,7 +91,7 @@ class ElectionsController extends AppController {
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
         $this->set('parentId', $parentId);
-        $this->set('parents', $this->Election->getPath($parentId, array('id', 'name')));
+        $this->set('parents', $this->Election->getPath($parentId));
     }
 
     function admin_view($id = null) {
