@@ -11,7 +11,7 @@ class CandidatesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'add');
+            $this->Auth->allow('index', 'add', 'view');
         }
     }
 
@@ -59,6 +59,19 @@ class CandidatesController extends AppController {
             $this->set('electionId', $electionId);
         } else {
             $this->redirect(array('controller' => 'areas'));
+        }
+    }
+
+    function view($id = null) {
+        $this->data = $this->Candidate->find('first', array(
+            'conditions' => array('Candidate.id' => $id),
+            'contain' => array('Election'),
+        ));
+        if (!empty($this->data)) {
+            $this->set('parents', $this->Candidate->Election->getPath($this->data['Election'][0]['id']));
+        } else {
+            $this->Session->setFlash(__('Please do following links in the page', true));
+            $this->redirect(array('action' => 'index'));
         }
     }
 

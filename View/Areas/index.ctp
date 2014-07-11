@@ -29,21 +29,23 @@
             if (!empty($election['Candidate'])) {
                 foreach ($election['Candidate'] AS $candidate) {
                     ?><div class="col-md-2" style="text-align: center;">
-                        <?php
-                        if (empty($candidate['Candidate']['image'])) {
-                            echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px;'));
-                        } else {
-                            echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px;'));
-                        }
-                        ?>
-                        <br /><?php echo $candidate['Candidate']['name']; ?>
+                        <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+                            <?php
+                            if (empty($candidate['Candidate']['image'])) {
+                                echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));
+                            } else {
+                                echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; border: 0px;'));
+                            }
+                            ?>
+                            <br /><?php echo $candidate['Candidate']['name']; ?>
+                        </a>
                     </div><?php
+                }
+            } else {
+                echo ' ~ 目前沒有候選人資料 ~ ';
             }
-        } else {
-            echo ' ~ 目前沒有候選人資料 ~ ';
+            echo '<div class="clearfix"></div>';
         }
-        echo '<div class="clearfix"></div>';
     }
-}
-        ?>
+    ?>
 </div>
