@@ -16,9 +16,9 @@
         foreach ($elections AS $election) {
             $c = array();
             foreach ($election['Election'] AS $e) {
-                if(empty($e['Election']['parent_id'])) {
+                if (empty($e['Election']['parent_id'])) {
                     $eParentId = $e['Election']['id'];
-                } elseif($e['Election']['parent_id'] === $eParentId) {
+                } elseif ($e['Election']['parent_id'] === $eParentId) {
                     $eType = $e['Election']['name'];
                 }
                 $c[] = $e['Election']['name'];
@@ -29,15 +29,21 @@
             if (!empty($election['Candidate'])) {
                 foreach ($election['Candidate'] AS $candidate) {
                     ?><div class="col-md-2" style="text-align: center;">
-                        <?php echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px;')); ?>
+                        <?php
+                        if (empty($candidate['Candidate']['image'])) {
+                            echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px;'));
+                        } else {
+                            echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px;'));
+                        }
+                        ?>
                         <br /><?php echo $candidate['Candidate']['name']; ?>
                     </div><?php
-                }
-            } else {
-                echo ' ~ 目前沒有候選人資料 ~ ';
             }
-            echo '<div class="clearfix"></div>';
+        } else {
+            echo ' ~ 目前沒有候選人資料 ~ ';
         }
+        echo '<div class="clearfix"></div>';
     }
-    ?>
+}
+        ?>
 </div>

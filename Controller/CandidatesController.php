@@ -43,7 +43,6 @@ class CandidatesController extends AppController {
         if (!empty($electionId)) {
             if (!empty($this->data)) {
                 $dataToSave = $this->data;
-                unset($dataToSave['Candidate']['image']);
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
                     $dataToSave['CandidatesElection']['Election_id'] = $electionId;
@@ -98,7 +97,6 @@ class CandidatesController extends AppController {
         if (!empty($electionId)) {
             if (!empty($this->data)) {
                 $dataToSave = $this->data;
-                unset($dataToSave['Candidate']['image']);
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
                     $dataToSave['CandidatesElection']['Election_id'] = $electionId;
