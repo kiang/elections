@@ -16,10 +16,15 @@
         foreach ($elections AS $election) {
             $c = array();
             foreach ($election['Election'] AS $e) {
+                if(empty($e['Election']['parent_id'])) {
+                    $eParentId = $e['Election']['id'];
+                } elseif($e['Election']['parent_id'] === $eParentId) {
+                    $eType = $e['Election']['name'];
+                }
                 $c[] = $e['Election']['name'];
             }
             echo '<h3>' . implode(' > ', $c);
-            echo $this->Html->link('新增候選人', array('controller' => 'candidates', 'action' => 'add', $election['AreasElection']['Election_id']), array('class' => 'btn btn-primary pull-right'));
+            echo $this->Html->link("新增 {$eType} 候選人", array('controller' => 'candidates', 'action' => 'add', $election['AreasElection']['Election_id']), array('class' => 'btn btn-primary pull-right col-md-2'));
             echo '</h3>';
             if (!empty($election['Candidate'])) {
                 foreach ($election['Candidate'] AS $candidate) {
