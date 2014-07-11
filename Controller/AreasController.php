@@ -8,6 +8,43 @@ class AreasController extends AppController {
     public $paginate = array();
     public $helpers = array();
 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        if (isset($this->Auth)) {
+            $this->Auth->allow('index');
+        }
+    }
+
+    function index($parentId = '') {
+        if (!empty($parentId)) {
+            $parentId = $this->Area->field('id', array('id' => $parentId));
+        } else {
+            $parentId = $this->Area->field('id', array('parent_id IS NULL'));
+        }
+
+        $items = $this->Area->find('all', array(
+            'conditions' => array(
+                'Area.parent_id' => $parentId,
+            )
+        ));
+
+        $parents = $this->Area->getPath($parentId, array('id', 'name'));
+        $elections = $this->Area->AreasElection->find('all', array(
+            'conditions' => array(
+                'AreasElection.Area_id' => Set::extract($parents, '{n}.Area.id'),
+            ),
+        ));
+        foreach ($elections AS $k => $election) {
+            $elections[$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name'));
+        }
+
+        $this->set('items', $items);
+        $this->set('url', array($parentId));
+        $this->set('parentId', $parentId);
+        $this->set('parents', $parents);
+        $this->set('elections', $elections);
+    }
+
     function admin_index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {
         $foreignKeys = array();
 
@@ -16,7 +53,7 @@ class AreasController extends AppController {
             'Election' => 'Election_id',
         );
         $foreignKeys = array_merge($habtmKeys, $foreignKeys);
-        
+
         if (!empty($parentId)) {
             $parentId = $this->Area->field('id', array('id' => $parentId));
         }
@@ -72,14 +109,14 @@ class AreasController extends AppController {
             }
             $this->set('op', $op);
         }
-        
+
         $parents = $this->Area->getPath($parentId, array('id', 'name'));
         $elections = $this->Area->AreasElection->find('all', array(
             'conditions' => array(
                 'AreasElection.Area_id' => Set::extract($parents, '{n}.Area.id'),
             ),
         ));
-        foreach($elections AS $k => $election) {
+        foreach ($elections AS $k => $election) {
             $elections[$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name'));
         }
 
