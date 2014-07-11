@@ -36,6 +36,21 @@ class AreasController extends AppController {
         ));
         foreach ($elections AS $k => $election) {
             $elections[$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name'));
+            $elections[$k]['Candidate'] = $this->Area->Election->Candidate->find('all', array(
+                'joins' => array(
+                    array(
+                        'table' => 'candidates_elections',
+                        'alias' => 'CandidatesElection',
+                        'type' => 'inner',
+                        'conditions' => array(
+                            'CandidatesElection.Candidate_id = Candidate.id',
+                        ),
+                    ),
+                ),
+                'conditions' => array(
+                    'CandidatesElection.Election_id' => $election['AreasElection']['Election_id'],
+                ),
+            ));
         }
 
         $this->set('items', $items);

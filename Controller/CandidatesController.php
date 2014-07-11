@@ -50,15 +50,16 @@ class CandidatesController extends AppController {
                     $dataToSave['CandidatesElection']['Candidate_id'] = $this->Candidate->getInsertID();
                     $this->Candidate->CandidatesElection->create();
                     $this->Candidate->CandidatesElection->save($dataToSave);
+                    $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $electionId));
                     $this->Session->setFlash(__('The data has been saved', true));
-                    $this->redirect(array('action' => 'index', $electionId));
+                    $this->redirect(array('controller' => 'areas', 'action' => 'index', $areaId));
                 } else {
                     $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
                 }
             }
             $this->set('electionId', $electionId);
         } else {
-            $this->redirect(array('controller' => 'elections'));
+            $this->redirect(array('controller' => 'areas'));
         }
     }
 
