@@ -360,7 +360,7 @@ class ImportShell extends AppShell {
             ),
         ));
 
-        $fh = fopen('/home/kiang/public_html/cunli/villages.csv', 'r');
+        $fh = fopen(__DIR__ . '/data/villages.csv', 'r');
         fgetcsv($fh, 2048);
         while ($line = fgetcsv($fh, 2048)) {
             $countyCode = substr($line[1], 0, -7);
