@@ -150,8 +150,66 @@ class ImportShell extends AppShell {
                     }
                     break;
                 case '鄉鎮市民代表':
+                    $cDbList = $this->Election->find('list', array(
+                        'conditions' => array(
+                            'parent_id' => $subTypesDb[$subType],
+                        ),
+                        'fields' => array('name', 'id'),
+                    ));
+                    foreach ($this->areas['counties'] AS $c) {
+                        if (!isset($cDbList[$c['name']])) {
+                            $this->Election->create();
+                            $this->Election->save(array('Election' => array(
+                                    'parent_id' => $subTypesDb[$subType],
+                                    'name' => $c['name'],
+                            )));
+                            $cDbList[$c['name']] = $this->Election->getInsertID();
+                        }
+                        $tDbList = $this->Election->find('list', array(
+                            'conditions' => array(
+                                'parent_id' => $cDbList[$c['name']],
+                            ),
+                            'fields' => array('name', 'id'),
+                        ));
+                        foreach ($this->areas['towns'][$c['id']] AS $t) {
+                            if (!isset($tDbList[$t['name']])) {
+                                $this->Election->create();
+                                if ($this->Election->save(array('Election' => array(
+                                                'parent_id' => $cDbList[$c['name']],
+                                                'name' => $t['name'],
+                                    )))) {
+                                    $this->Election->AreasElection->create();
+                                    $this->Election->AreasElection->save(array('AreasElection' => array(
+                                            'Election_id' => $this->Election->getInsertID(),
+                                            'Area_id' => $t['id'],
+                                    )));
+                                }
+                            }
+                        }
+                    }
                     break;
                 case '直轄市議員':
+                    $dbList = $this->Election->find('list', array(
+                        'conditions' => array(
+                            'parent_id' => $subTypesDb[$subType],
+                        ),
+                        'fields' => array('name', 'id'),
+                    ));
+                    foreach ($this->areas['municipalities'] AS $c) {
+                        if (!isset($dbList[$c['name']])) {
+                            $this->Election->create();
+                            if ($this->Election->save(array('Election' => array(
+                                            'parent_id' => $subTypesDb[$subType],
+                                            'name' => $c['name'],
+                                )))) {
+                                $this->Election->AreasElection->create();
+                                $this->Election->AreasElection->save(array('AreasElection' => array(
+                                        'Election_id' => $this->Election->getInsertID(),
+                                        'Area_id' => $c['id'],
+                                )));
+                            }
+                        }
+                    }
                     break;
                 case '直轄市山地原住民區長':
                     /*
@@ -197,6 +255,27 @@ class ImportShell extends AppShell {
                      */
                     break;
                 case '縣市議員':
+                    $dbList = $this->Election->find('list', array(
+                        'conditions' => array(
+                            'parent_id' => $subTypesDb[$subType],
+                        ),
+                        'fields' => array('name', 'id'),
+                    ));
+                    foreach ($this->areas['counties'] AS $c) {
+                        if (!isset($dbList[$c['name']])) {
+                            $this->Election->create();
+                            if ($this->Election->save(array('Election' => array(
+                                            'parent_id' => $subTypesDb[$subType],
+                                            'name' => $c['name'],
+                                )))) {
+                                $this->Election->AreasElection->create();
+                                $this->Election->AreasElection->save(array('AreasElection' => array(
+                                        'Election_id' => $this->Election->getInsertID(),
+                                        'Area_id' => $c['id'],
+                                )));
+                            }
+                        }
+                    }
                     break;
                 case '村里長':
                     $cDbList = $this->Election->find('list', array(
@@ -236,18 +315,20 @@ class ImportShell extends AppShell {
                                 ),
                                 'fields' => array('name', 'id'),
                             ));
-                            foreach ($this->areas['cunlis'][$t['id']] AS $l) {
-                                if (!isset($lDbList[$l['name']])) {
-                                    $this->Election->create();
-                                    if ($this->Election->save(array('Election' => array(
-                                                    'parent_id' => $tDbList[$t['name']],
-                                                    'name' => $l['name'],
-                                        )))) {
-                                        $this->Election->AreasElection->create();
-                                        $this->Election->AreasElection->save(array('AreasElection' => array(
-                                                'Election_id' => $this->Election->getInsertID(),
-                                                'Area_id' => $l['id'],
-                                        )));
+                            if (isset($this->areas['cunlis'][$t['id']])) {
+                                foreach ($this->areas['cunlis'][$t['id']] AS $l) {
+                                    if (!isset($lDbList[$l['name']])) {
+                                        $this->Election->create();
+                                        if ($this->Election->save(array('Election' => array(
+                                                        'parent_id' => $tDbList[$t['name']],
+                                                        'name' => $l['name'],
+                                            )))) {
+                                            $this->Election->AreasElection->create();
+                                            $this->Election->AreasElection->save(array('AreasElection' => array(
+                                                    'Election_id' => $this->Election->getInsertID(),
+                                                    'Area_id' => $l['id'],
+                                            )));
+                                        }
                                     }
                                 }
                             }
@@ -256,18 +337,6 @@ class ImportShell extends AppShell {
                     break;
             }
         }
-        return;
-
-
-
-        $accTypes = array();
-        $fh = fopen('/home/kiang/public_html/suncy/list_new.csv', 'r');
-        while ($line = fgetcsv($fh, 2048)) {
-            $a = explode('擬參選人', $line[1]);
-            $a[0] = substr($a[0], strpos($a[0], '年') + 3);
-            $accTypes[$a[0]] = true;
-        }
-        print_r($accTypes);
     }
 
     public function areas() {
@@ -338,7 +407,7 @@ class ImportShell extends AppShell {
                 'rght <' => $areaParent['Area']['rght'],
             ),
         ));
-
+        
         foreach ($dbAreas AS $dbArea) {
             switch (strlen($dbArea['Area']['ivid'])) {
                 case 3:
@@ -367,6 +436,40 @@ class ImportShell extends AppShell {
                         $this->areas['cunlis'][$dbArea['Area']['parent_id']] = array();
                     }
                     $this->areas['cunlis'][$dbArea['Area']['parent_id']][$dbArea['Area']['id']] = $dbArea['Area'];
+            }
+        }
+
+        foreach ($dbAreas AS $dbArea) {
+            if (strlen($dbArea['Area']['ivid']) === 3) {
+                switch ($dbArea['Area']['ivid']) {
+                    case 'TPE':
+                    case 'KHH':
+                    case 'TPQ':
+                    case 'TXG':
+                    case 'TNN':
+                    case 'TAO':
+                        $oStack = array('山地原住民' => true, '平地原住民' => true);
+                        foreach ($this->areas['towns'][$dbArea['Area']['id']] AS $t) {
+                            if (isset($oStack[$t['name']])) {
+                                unset($oStack[$t['name']]);
+                            }
+                        }
+                        if (!empty($oStack)) {
+                            foreach ($oStack AS $name => $o) {
+                                $this->Election->Area->create();
+                                $this->Election->Area->save(array('Area' => array(
+                                        'parent_id' => $dbArea['Area']['id'],
+                                        'name' => $name,
+                                        'is_area' => '1',
+                                        'ivid' => $dbArea['Area']['ivid'] . '-000',
+                                        'code' => '',
+                                )));
+                                $r = $this->Election->Area->read();
+                                $this->areas['towns'][$dbArea['Area']['id']][$this->Election->Area->getInsertID()] = $r['Area'];
+                            }
+                        }
+                        break;
+                }
             }
         }
     }
