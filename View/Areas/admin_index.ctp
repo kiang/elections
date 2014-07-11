@@ -8,10 +8,20 @@
     if (!empty($parents)) {
         $this->Html->addCrumb('最上層', array('action' => 'index'));
         foreach ($parents AS $parent) {
-            $this->Html->addCrumb($parent['Area']['name'], array('action' => 'index', $parent['Area']['id'])
-            );
+            $this->Html->addCrumb($parent['Area']['name'], array('action' => 'index', $parent['Area']['id']));
         }
         echo $this->Html->getCrumbs();
+    }
+    if (!empty($elections)) {
+        echo '<ul>';
+        foreach ($elections AS $election) {
+            $c = array();
+            foreach ($election['Election'] AS $parent) {
+                $c[] = $this->Html->link($parent['Election']['name'], array('controller' => 'elections', 'action' => 'index', $parent['Election']['id']));
+            }
+            echo '<li>' . implode(' > ', $c) . '</li>';
+        }
+        echo '</ul>';
     }
     ?>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
@@ -69,7 +79,7 @@
                         <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Area']['id']), null, __('Delete the item, sure?', true)); ?>
                     </td>
                 </tr>
-            <?php } // End of foreach ($items as $item) {  ?>
+            <?php } // End of foreach ($items as $item) {   ?>
         </tbody>
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>

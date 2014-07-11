@@ -28,5 +28,12 @@ class Election extends AppModel {
             'className' => 'Candidate',
         ),
     );
+    public $hasMany = array(
+        'AreasElection' => array(
+            'foreignKey' => 'Election_id',
+            'dependent' => false,
+            'className' => 'AreasElection',
+        ),
+    );
 
 }

@@ -72,13 +72,24 @@ class AreasController extends AppController {
             }
             $this->set('op', $op);
         }
+        
+        $parents = $this->Area->getPath($parentId, array('id', 'name'));
+        $elections = $this->Area->AreasElection->find('all', array(
+            'conditions' => array(
+                'AreasElection.Area_id' => Set::extract($parents, '{n}.Area.id'),
+            ),
+        ));
+        foreach($elections AS $k => $election) {
+            $elections[$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name'));
+        }
 
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
         $this->set('url', array($parentId, $foreignModel, $foreignId));
         $this->set('parentId', $parentId);
-        $this->set('parents', $this->Area->getPath($parentId, array('id', 'name')));
+        $this->set('parents', $parents);
+        $this->set('elections', $elections);
     }
 
     function admin_view($id = null) {

@@ -22,5 +22,12 @@ class Area extends AppModel {
             'className' => 'Election',
         ),
     );
+    public $hasMany = array(
+        'AreasElection' => array(
+            'foreignKey' => 'Area_id',
+            'dependent' => false,
+            'className' => 'AreasElection',
+        ),
+    );
 
 }
