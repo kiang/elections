@@ -5,7 +5,76 @@ class CandidateShell extends AppShell {
     public $uses = array('Candidate');
 
     public function main() {
+        $this->villmast();
         $this->suncy();
+    }
+
+    public function villmast() {
+        $baseNode = $this->Candidate->Election->children(null, true);
+        $cNode = $this->Candidate->Election->find('first', array(
+            'conditions' => array(
+                'parent_id' => $baseNode[0]['Election']['id'],
+                'name' => '村里長',
+            ),
+        ));
+        $nodes = $this->Candidate->Election->find('all', array(
+            'conditions' => array(
+                'lft >' => $cNode['Election']['lft'],
+                'rght <' => $cNode['Election']['rght'],
+            ),
+            'order' => array('Election.lft ASC'),
+        ));
+        $stack = array();
+        foreach ($nodes AS $node) {
+            if ($node['Election']['parent_id'] === $cNode['Election']['id']) {
+                $county = $node['Election'];
+                if (!isset($stack[$county['name']])) {
+                    $stack[$county['name']] = array();
+                }
+            } elseif ($node['Election']['parent_id'] === $county['id']) {
+                $town = $node['Election'];
+                if (!isset($stack[$county['name']][$town['name']])) {
+                    $stack[$county['name']][$town['name']] = array();
+                }
+            } else {
+                $stack[$county['name']][$town['name']][$node['Election']['name']] = $node['Election']['id'];
+            }
+        }
+        $fh = fopen(__DIR__ . '/data/villmast_excel.csv', 'r');
+        fgetcsv($fh, 2048);
+        fgetcsv($fh, 2048);
+        while ($line = fgetcsv($fh, 2048)) {
+            $line[4] = str_replace(array('　', ' '), array('', ''), $line[4]);
+            $line[1] = str_replace(array('台',), array('臺',), $line[1]);
+            if (isset($stack[$line[1]][$line[2]][$line[3]])) {
+                $candidates = $this->Candidate->find('list', array(
+                    'fields' => array('name', 'name'),
+                    'joins' => array(
+                        array(
+                            'table' => 'candidates_elections',
+                            'alias' => 'CandidatesElection',
+                            'type' => 'inner',
+                            'conditions' => array(
+                                'CandidatesElection.Candidate_id = Candidate.id',
+                                'CandidatesElection.Election_id' => $stack[$line[1]][$line[2]][$line[3]],
+                            ),
+                        ),
+                    ),
+                ));
+                if (!isset($candidates[$line[4]])) {
+                    $this->Candidate->create();
+                    if ($this->Candidate->save(array('Candidate' => array(
+                                    'name' => $line[4],
+                        )))) {
+                        $this->Candidate->CandidatesElection->create();
+                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
+                                'Election_id' => $stack[$line[1]][$line[2]][$line[3]],
+                                'Candidate_id' => $this->Candidate->getInsertID(),
+                        )));
+                    }
+                }
+            }
+        }
     }
 
     public function suncy() {
@@ -31,6 +100,7 @@ class CandidateShell extends AppShell {
                 case '臺北市':
                 case '高雄市':
                 case '新北市':
+                case '臺中市':
                 case '臺南市':
                     $electionName = '直轄市';
                     if ($eType === '市長') {
