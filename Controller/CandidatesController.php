@@ -9,28 +9,27 @@ class CandidatesController extends AppController {
     public $helpers = array();
 
     function admin_index($electionId = '') {
-        if (!empty($electionId)) {
-            $scope = array();
-            $this->paginate['Candidate']['joins'] = array(
-                array(
-                    'table' => 'candidates_elections',
-                    'alias' => 'CandidatesElection',
-                    'type' => 'inner',
-                    'conditions' => array(
-                        'CandidatesElection.Candidate_id = Candidate.id',
-                        'CandidatesElection.Election_id' => $electionId,
-                    ),
-                ),
-            );
-            $this->paginate['Candidate']['limit'] = 20;
-            $items = $this->paginate($this->Candidate);
-
-            $this->set('items', $items);
-            $this->set('electionId', $electionId);
-            $this->set('parents', $this->Candidate->Election->getPath($electionId));
-        } else {
-            $this->redirect(array('controller' => 'elections'));
+        $scope = array();
+        if(!empty($electionId)) {
+            $scope['CandidatesElection.Election_id'] = $electionId;
         }
+        $this->paginate['Candidate']['joins'] = array(
+            array(
+                'table' => 'candidates_elections',
+                'alias' => 'CandidatesElection',
+                'type' => 'inner',
+                'conditions' => array(
+                    'CandidatesElection.Candidate_id = Candidate.id',
+                ),
+            ),
+        );
+        $this->paginate['Candidate']['limit'] = 20;
+        $items = $this->paginate($this->Candidate, $scope);
+
+        $this->set('items', $items);
+        $this->set('electionId', $electionId);
+        $this->set('url', array($electionId));
+        $this->set('parents', $this->Candidate->Election->getPath($electionId));
     }
 
     function admin_view($id = null) {
@@ -78,19 +77,6 @@ class CandidatesController extends AppController {
         }
         $this->set('id', $id);
         $this->data = $this->Candidate->read(null, $id);
-
-        $belongsToModels = array(
-            'listElection' => array(
-                'label' => 'Elections',
-                'modelName' => 'Election',
-                'foreignKey' => 'Election_id',
-            ),
-        );
-
-        foreach ($belongsToModels AS $key => $model) {
-            $this->set($key, $this->Candidate->$model['modelName']->find('list'));
-        }
-        $this->set('belongsToModels', $belongsToModels);
     }
 
     function admin_delete($id = null) {

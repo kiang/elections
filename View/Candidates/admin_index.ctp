@@ -1,16 +1,11 @@
-<?php
-if (!isset($url)) {
-    $url = array();
-}
-
-if (!empty($foreignId) && !empty($foreignModel)) {
-    $url = array($foreignModel, $foreignId);
-}
-?>
 <div id="CandidatesAdminIndex">
     <h2><?php echo __('Candidates', true); ?></h2>
     <div class="btn-group">
-        <?php echo $this->Html->link(__('Add', true), array('action' => 'add', $electionId), array('class' => 'btn')); ?>
+        <?php
+        if (!empty($electionId)) {
+            echo $this->Html->link(__('Add', true), array('action' => 'add', $electionId), array('class' => 'btn'));
+        }
+        ?>
     </div>
     <div class="clearfix"></div>
     <?php
