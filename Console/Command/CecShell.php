@@ -6,6 +6,7 @@ class CecShell extends AppShell {
 
     public function main() {
         $this->v20101101TxB2();
+        $this->v20091201TxC2();
     }
 
     /*
@@ -72,36 +73,46 @@ class CecShell extends AppShell {
                             );
                         }
 
-                        $tmpSubPageFile = $tmpPath . '/' . md5($zone[0]);
-                        if (!file_exists($tmpSubPageFile)) {
-                            file_put_contents($tmpSubPageFile, file_get_contents('http://db.cec.gov.tw/' . $zone[0]));
-                        }
-                        $tmpSubPage = file_get_contents($tmpSubPageFile);
-
-                        $pos = strpos($tmpSubPage, '<tr class="data">');
-                        $tmpSubPage = substr($tmpSubPage, $pos, strpos($tmpSubPage, '</table', $pos) - $pos);
-                        $subBlocks = explode('</tr>', $tmpSubPage);
-                        foreach ($subBlocks AS $subBlock) {
-                            $subFields = explode('</td>', $subBlock);
-                            if (count($subFields) === 6) {
-                                $subAreas = explode('<a href="', $subFields[0]);
-                                $subAreas = explode('">', strip_tags($subAreas[1]));
-                                $subAreaPageFile = $tmpPath . '/' . md5($subAreas[0]);
-                                if (!file_exists($subAreaPageFile)) {
-                                    file_put_contents($subAreaPageFile, file_get_contents('http://db.cec.gov.tw/' . $subAreas[0]));
+                        switch ($vType) {
+                            case '20101101T1B2':
+                                $tmpSubPageFile = $tmpPath . '/' . md5($zone[0]);
+                                if (!file_exists($tmpSubPageFile)) {
+                                    file_put_contents($tmpSubPageFile, file_get_contents('http://db.cec.gov.tw/' . $zone[0]));
                                 }
-                                $subAreaPage = file_get_contents($subAreaPageFile);
-                                $pos = strpos($subAreaPage, '<tr class="data">');
-                                $subAreaPage = substr($subAreaPage, $pos, strpos($subAreaPage, '</table', $pos) - $pos);
-                                $subAreaPageBlocks = explode('</tr>', $subAreaPage);
-                                foreach ($subAreaPageBlocks AS $subAreaPageBlock) {
-                                    $subAreaPageBlockFields = explode('</td>', $subAreaPageBlock);
-                                    if (count($subAreaPageBlockFields) === 6) {
-                                        $cunli = explode('選區', trim(strip_tags($subAreaPageBlockFields[0])));
-                                        $result[$county][$zone[1]]['areas'][] = $cunli[1];
+                                $tmpSubPage = file_get_contents($tmpSubPageFile);
+
+                                $pos = strpos($tmpSubPage, '<tr class="data">');
+                                $tmpSubPage = substr($tmpSubPage, $pos, strpos($tmpSubPage, '</table', $pos) - $pos);
+                                $subBlocks = explode('</tr>', $tmpSubPage);
+                                foreach ($subBlocks AS $subBlock) {
+                                    $subFields = explode('</td>', $subBlock);
+                                    if (count($subFields) === 6) {
+                                        $subAreas = explode('<a href="', $subFields[0]);
+                                        $subAreas = explode('">', strip_tags($subAreas[1]));
+                                        $subAreaPageFile = $tmpPath . '/' . md5($subAreas[0]);
+                                        if (!file_exists($subAreaPageFile)) {
+                                            file_put_contents($subAreaPageFile, file_get_contents('http://db.cec.gov.tw/' . $subAreas[0]));
+                                        }
+                                        $subAreaPage = file_get_contents($subAreaPageFile);
+                                        $pos = strpos($subAreaPage, '<tr class="data">');
+                                        $subAreaPage = substr($subAreaPage, $pos, strpos($subAreaPage, '</table', $pos) - $pos);
+                                        $subAreaPageBlocks = explode('</tr>', $subAreaPage);
+                                        foreach ($subAreaPageBlocks AS $subAreaPageBlock) {
+                                            $subAreaPageBlockFields = explode('</td>', $subAreaPageBlock);
+                                            if (count($subAreaPageBlockFields) === 6) {
+                                                $cunli = explode('選區', trim(strip_tags($subAreaPageBlockFields[0])));
+                                                $result[$county][$zone[1]]['areas'][] = $cunli[1];
+                                            }
+                                        }
                                     }
                                 }
-                            }
+                                break;
+                            case '20101101T2B2':
+                                $result[$county][$zone[1]]['areas'][] = '平地原住民';
+                                break;
+                            case '20101101T3B2':
+                                $result[$county][$zone[1]]['areas'][] = '山地原住民';
+                                break;
                         }
 
                         unset($fields[0]);
@@ -184,36 +195,46 @@ class CecShell extends AppShell {
                             );
                         }
 
-                        $tmpSubPageFile = $tmpPath . '/' . md5($zone[0]);
-                        if (!file_exists($tmpSubPageFile)) {
-                            file_put_contents($tmpSubPageFile, file_get_contents('http://db.cec.gov.tw/' . $zone[0]));
-                        }
-                        $tmpSubPage = file_get_contents($tmpSubPageFile);
-
-                        $pos = strpos($tmpSubPage, '<tr class="data">');
-                        $tmpSubPage = substr($tmpSubPage, $pos, strpos($tmpSubPage, '</table', $pos) - $pos);
-                        $subBlocks = explode('</tr>', $tmpSubPage);
-                        foreach ($subBlocks AS $subBlock) {
-                            $subFields = explode('</td>', $subBlock);
-                            if (count($subFields) === 6) {
-                                $subAreas = explode('<a href="', $subFields[0]);
-                                $subAreas = explode('">', strip_tags($subAreas[1]));
-                                $subAreaPageFile = $tmpPath . '/' . md5($subAreas[0]);
-                                if (!file_exists($subAreaPageFile)) {
-                                    file_put_contents($subAreaPageFile, file_get_contents('http://db.cec.gov.tw/' . $subAreas[0]));
+                        switch ($vType) {
+                            case '20091201T1C2':
+                                $tmpSubPageFile = $tmpPath . '/' . md5($zone[0]);
+                                if (!file_exists($tmpSubPageFile)) {
+                                    file_put_contents($tmpSubPageFile, file_get_contents('http://db.cec.gov.tw/' . $zone[0]));
                                 }
-                                $subAreaPage = file_get_contents($subAreaPageFile);
-                                $pos = strpos($subAreaPage, '<tr class="data">');
-                                $subAreaPage = substr($subAreaPage, $pos, strpos($subAreaPage, '</table', $pos) - $pos);
-                                $subAreaPageBlocks = explode('</tr>', $subAreaPage);
-                                foreach ($subAreaPageBlocks AS $subAreaPageBlock) {
-                                    $subAreaPageBlockFields = explode('</td>', $subAreaPageBlock);
-                                    if (count($subAreaPageBlockFields) === 6) {
-                                        $cunli = explode('選區', trim(strip_tags($subAreaPageBlockFields[0])));
-                                        $result[$county][$zone[1]]['areas'][] = $cunli[1];
+                                $tmpSubPage = file_get_contents($tmpSubPageFile);
+
+                                $pos = strpos($tmpSubPage, '<tr class="data">');
+                                $tmpSubPage = substr($tmpSubPage, $pos, strpos($tmpSubPage, '</table', $pos) - $pos);
+                                $subBlocks = explode('</tr>', $tmpSubPage);
+                                foreach ($subBlocks AS $subBlock) {
+                                    $subFields = explode('</td>', $subBlock);
+                                    if (count($subFields) === 6) {
+                                        $subAreas = explode('<a href="', $subFields[0]);
+                                        $subAreas = explode('">', strip_tags($subAreas[1]));
+                                        $subAreaPageFile = $tmpPath . '/' . md5($subAreas[0]);
+                                        if (!file_exists($subAreaPageFile)) {
+                                            file_put_contents($subAreaPageFile, file_get_contents('http://db.cec.gov.tw/' . $subAreas[0]));
+                                        }
+                                        $subAreaPage = file_get_contents($subAreaPageFile);
+                                        $pos = strpos($subAreaPage, '<tr class="data">');
+                                        $subAreaPage = substr($subAreaPage, $pos, strpos($subAreaPage, '</table', $pos) - $pos);
+                                        $subAreaPageBlocks = explode('</tr>', $subAreaPage);
+                                        foreach ($subAreaPageBlocks AS $subAreaPageBlock) {
+                                            $subAreaPageBlockFields = explode('</td>', $subAreaPageBlock);
+                                            if (count($subAreaPageBlockFields) === 6) {
+                                                $cunli = explode('選區', trim(strip_tags($subAreaPageBlockFields[0])));
+                                                $result[$county][$zone[1]]['areas'][] = $cunli[1];
+                                            }
+                                        }
                                     }
                                 }
-                            }
+                                break;
+                            case '20091201T2C2':
+                                $result[$county][$zone[1]]['areas'][] = '平地原住民';
+                                break;
+                            case '20091201T3C2':
+                                $result[$county][$zone[1]]['areas'][] = '山地原住民';
+                                break;
                         }
 
                         unset($fields[0]);
