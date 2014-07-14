@@ -5,7 +5,7 @@ class CecShell extends AppShell {
     public $uses = array();
 
     public function main() {
-        $this->v20101101TxB2();
+        $this->v20091201TxC2();
     }
 
     /*
@@ -102,7 +102,6 @@ class CecShell extends AppShell {
                 }
             }
         }
-        print_r($result);
         file_put_contents(__DIR__ . '/data/v20101101TxC2.json', json_encode($result));
     }
 
@@ -182,8 +181,23 @@ class CecShell extends AppShell {
                         foreach ($subBlocks AS $subBlock) {
                             $subFields = explode('</td>', $subBlock);
                             if (count($subFields) === 6) {
-                                $subArea = explode('選區', trim(strip_tags($subFields[0])));
-                                $result[$county][$zone[1]]['areas'][] = $subArea[1];
+                                $subAreas = explode('<a href="', $subFields[0]);
+                                $subAreas = explode('">', strip_tags($subAreas[1]));
+                                $subAreaPageFile = $tmpPath . '/' . md5($subAreas[0]);
+                                if (!file_exists($subAreaPageFile)) {
+                                    file_put_contents($subAreaPageFile, file_get_contents('http://db.cec.gov.tw/' . $subAreas[0]));
+                                }
+                                $subAreaPage = file_get_contents($subAreaPageFile);
+                                $pos = strpos($subAreaPage, '<tr class="data">');
+                                $subAreaPage = substr($subAreaPage, $pos, strpos($subAreaPage, '</table', $pos) - $pos);
+                                $subAreaPageBlocks = explode('</tr>', $subAreaPage);
+                                foreach($subAreaPageBlocks AS $subAreaPageBlock) {
+                                    $subAreaPageBlockFields = explode('</td>', $subAreaPageBlock);
+                                    if(count($subAreaPageBlockFields) === 6) {
+                                        $cunli = explode('選區', trim(strip_tags($subAreaPageBlockFields[0])));
+                                        $result[$county][$zone[1]]['areas'][] = $cunli[1];
+                                    }
+                                }
                             }
                         }
 
