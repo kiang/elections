@@ -5,7 +5,7 @@ class CecShell extends AppShell {
     public $uses = array();
 
     public function main() {
-        $this->v20091201TxC2();
+        $this->v20100601C1D2();
     }
 
     /*
@@ -135,7 +135,6 @@ class CecShell extends AppShell {
                 }
             } else {
                 $fields[1] = explode('">', strip_tags($fields[1]));
-                //echo "{$fields[1][1]} - {$fields[1][0]}\n";
                 $town = $fields[1][1];
                 if (!isset($result[$county][$town])) {
                     $result[$county][$town] = array();
@@ -169,13 +168,16 @@ class CecShell extends AppShell {
                                 $subFields[$k] = trim(strip_tags($subField));
                             }
                             unset($subFields[9]);
-                            $result[$county][$town][$townArea][] = array_combine($labels, $subFields);
+                            $result[$county][$town][$townArea]['candidates'][] = array_combine($labels, $subFields);
                             break;
                         case 11:
                             $townArea = trim(strip_tags($subFields[0]));
+                            $townArea = substr($townArea, strpos($townArea, '第'));
                             unset($subFields[0]);
                             if (!isset($result[$county][$town][$townArea])) {
-                                $result[$county][$town][$townArea] = array();
+                                $result[$county][$town][$townArea] = array(
+                                    'candidates' => array(),
+                                );
                             }
                             foreach ($subFields AS $k => $subField) {
                                 $subFields[$k - 1] = trim(strip_tags($subField));
@@ -183,7 +185,7 @@ class CecShell extends AppShell {
                             unset($subFields[10]);
                             unset($subFields[9]);
                             ksort($subFields);
-                            $result[$county][$town][$townArea][] = array_combine($labels, $subFields);
+                            $result[$county][$town][$townArea]['candidates'][] = array_combine($labels, $subFields);
                             break;
                         default:
                     }
