@@ -129,7 +129,7 @@ class CecShell extends AppShell {
                 }
             }
         }
-        file_put_contents(__DIR__ . '/data/v20101101TxC2.json', json_encode($result));
+        file_put_contents(__DIR__ . '/data/v20101101TxB2.json', json_encode($result));
     }
 
     /*
