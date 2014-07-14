@@ -32,7 +32,11 @@ class CandidatesController extends AppController {
             ),
         );
         $this->paginate['Candidate']['limit'] = 20;
+        $this->paginate['Candidate']['fields'] = array('Candidate.*', 'CandidatesElection.Election_id');
         $items = $this->paginate($this->Candidate, $scope);
+        foreach($items AS $k => $v) {
+            $items[$k]['Election'] = $this->Candidate->Election->getPath($v['CandidatesElection']['Election_id']);
+        }
 
         $this->set('items', $items);
         $this->set('electionId', $electionId);

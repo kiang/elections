@@ -28,6 +28,9 @@
             </div>
             <div id="content">
                 <div class="btn-group">
+                    <?php echo $this->Html->link('行政區', '/areas', array('class' => 'btn')); ?>
+                    <?php echo $this->Html->link('選舉區', '/elections', array('class' => 'btn')); ?>
+                    <?php echo $this->Html->link('候選人', '/candidates', array('class' => 'btn')); ?>
                     <?php if ($this->Session->read('Auth.User.id')): ?>
                         <?php echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Areas', '/admin/areas', array('class' => 'btn')); ?>

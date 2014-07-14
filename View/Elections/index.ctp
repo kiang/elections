@@ -4,14 +4,10 @@ if (!isset($url)) {
 }
 ?>
 <div id="ElectionsAdminIndex">
-    <h2><?php echo __('Elections', true); ?></h2>
-    <div class="btn-group">
-        <?php echo $this->Html->link(__('Add', true), array('action' => 'add', $parentId), array('class' => 'btn dialogControl')); ?>
-    </div>
+    <h2>選舉區</h2>
     <div class="clearfix"></div>
     <?php
     if (!empty($parents)) {
-        $this->Html->addCrumb('最上層', array('controller' => 'elections', 'action' => 'index'));
         foreach ($parents AS $parent) {
             if ($parent['Election']['rght'] - $parent['Election']['lft'] !== 1) {
                 $this->Html->addCrumb($parent['Election']['name'], array(
@@ -31,13 +27,8 @@ if (!isset($url)) {
     <table class="table table-bordered" id="ElectionsAdminIndexTable">
         <thead>
             <tr>
-                <?php
-                if (!empty($op)) {
-                    echo '<th>&nbsp;</th>';
-                }
-                ?>
-                <th><?php echo $this->Paginator->sort('Election.name', 'Name', array('url' => $url)); ?></th>
-                <th class="actions"><?php echo __('Action', true); ?></th>
+                <th>選區名稱</th>
+                <th class="actions">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -50,28 +41,16 @@ if (!isset($url)) {
                 }
                 ?>
                 <tr<?php echo $class; ?>>
-                    <?php
-                    if (!empty($op)) {
-                        echo '<td>';
-                        $options = array('value' => $item['Election']['id'], 'class' => 'habtmSet');
-                        if ($item['option'] == 1) {
-                            $options['checked'] = 'checked';
-                        }
-                        echo $this->Form->checkbox('Set.' . $item['Election']['id'], $options);
-                        echo '<div id="messageSet' . $item['Election']['id'] . '"></div></td>';
-                    }
-                    ?>
                     <td><?php
-                        echo $this->Html->link($item['Election']['name'], array('action' => 'index', $item['Election']['id']));
+                        echo $item['Election']['name'];
                         ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Election']['id'])); ?>
-                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Election']['id'])); ?>
-                        <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Election']['id']), null, __('Delete the item, sure?', true)); ?>
                         <?php
-                        if($item['Election']['rght'] - $item['Election']['lft'] === 1) {
-                            echo ' ' . $this->Html->link('候選人', array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']));
+                        if ($item['Election']['rght'] - $item['Election']['lft'] === 1) {
+                            echo ' ' . $this->Html->link('候選人清單', array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']));
                             echo ' ' . $this->Html->link('新增候選人', array('controller' => 'candidates', 'action' => 'add', $item['Election']['id']));
+                        } else {
+                            echo ' ' . $this->Html->link('下一層', array('action' => 'index', $item['Election']['id']));
                         }
                         ?>
                     </td>

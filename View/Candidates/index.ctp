@@ -1,16 +1,8 @@
 <div id="CandidatesAdminIndex">
-    <h2><?php echo __('Candidates', true); ?></h2>
-    <div class="btn-group">
-        <?php
-        if (!empty($electionId)) {
-            echo $this->Html->link(__('Add', true), array('action' => 'add', $electionId), array('class' => 'btn'));
-        }
-        ?>
-    </div>
+    <h2>候選人</h2>
     <div class="clearfix"></div>
     <?php
     if (!empty($parents)) {
-        $this->Html->addCrumb('最上層', array('controller' => 'elections', 'action' => 'index'));
         foreach ($parents AS $parent) {
             if ($parent['Election']['rght'] - $parent['Election']['lft'] !== 1) {
                 $this->Html->addCrumb($parent['Election']['name'], array(
@@ -23,15 +15,21 @@
                 );
             }
         }
-        echo $this->Html->getCrumbs();
     }
+    if (!empty($electionId)) {
+        $this->Html->addCrumb('新增候選人', array(
+            'action' => 'add', $electionId)
+        );
+    }
+
+    echo $this->Html->getCrumbs();
     ?>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
     <table class="table table-bordered" id="CandidatesAdminIndexTable">
         <thead>
             <tr>
-                <th><?php echo $this->Paginator->sort('Candidate.name', 'Name', array('url' => $url)); ?></th>
-                <th class="actions"><?php echo __('Action', true); ?></th>
+                <th>選區</th>
+                <th>候選人</th>
             </tr>
         </thead>
         <tbody>
@@ -45,13 +43,17 @@
                 ?>
                 <tr<?php echo $class; ?>>
                     <td><?php
-                        echo $item['Candidate']['name'];
+                        $c = array();
+                        foreach ($item['Election'] AS $e) {
+                            $c[] = $e['Election']['name'];
+                            if ($e['Election']['rght'] - $e['Election']['lft'] === 1) {
+                                echo $this->Html->link(implode(' > ', $c), array('action' => 'index', $e['Election']['id']));
+                            }
+                        }
                         ?></td>
-                    <td class="actions">
-                        <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Candidate']['id']), array('class' => 'dialogControl')); ?>
-                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Candidate']['id']), array('class' => 'dialogControl')); ?>
-                        <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Candidate']['id']), null, __('Delete the item, sure?', true)); ?>
-                    </td>
+                    <td><?php
+                        echo $this->Html->link($item['Candidate']['name'], array('action' => 'view', $item['Candidate']['id']));
+                        ?></td>
                 </tr>
             <?php } // End of foreach ($items as $item) {   ?>
         </tbody>

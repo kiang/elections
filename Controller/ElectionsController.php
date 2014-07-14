@@ -95,6 +95,7 @@ class ElectionsController extends AppController {
         }
 
         $this->set('items', $items);
+        $this->set('url', array($parentId, $foreignModel, $foreignId, $op));
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
         $this->set('parentId', $parentId);
