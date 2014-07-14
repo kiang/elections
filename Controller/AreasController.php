@@ -27,6 +27,13 @@ class AreasController extends AppController {
                 'Area.parent_id' => $parentId,
             )
         ));
+        if (empty($items)) {
+            $items = $this->Area->find('all', array(
+                'conditions' => array(
+                    'Area.parent_id' => $this->Area->field('parent_id', array('id' => $parentId)),
+                )
+            ));
+        }
 
         $parents = $this->Area->getPath($parentId, array('id', 'name'));
         $elections = $this->Area->AreasElection->find('all', array(
@@ -63,7 +70,7 @@ class AreasController extends AppController {
 
         $desc_for_layout = '';
         $descElections = Set::extract('{n}.Election.1.Election.name', $elections);
-        if(!empty($descElections)) {
+        if (!empty($descElections)) {
             $desc_for_layout .= implode(', ', $descElections) . '等各種候選人的資訊。';
         }
         $this->set('title_for_layout', implode(' > ', Set::extract('{n}.Area.name', $parents)));
