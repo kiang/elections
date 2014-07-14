@@ -260,47 +260,175 @@ class ImportShell extends AppShell {
                     }
                     break;
                 case '直轄市山地原住民區長':
-                    /*
-                     * 新北市烏來區
-                     * 桃園市復興區
-                     * 臺中市和平區
-                     * 高雄市桃源區
-                     * 高雄市那瑪夏區
-                     * 高雄市茂林區
-                     */
+                    $stack = array(
+                        '新北市' => array('烏來區' => true),
+                        '桃園縣' => array('復興鄉' => true),
+                        '臺中市' => array('和平區' => true),
+                        '高雄市' => array('桃源區' => true, '那瑪夏區' => true, '茂林區' => true),
+                    );
+                    $dbList = $this->Election->find('all', array(
+                        'conditions' => array(
+                            'parent_id' => $subTypesDb[$subType],
+                        ),
+                    ));
+                    $dbList = Set::combine($dbList, '{n}.Election.name', '{n}');
+                    foreach ($this->areas['municipalities'] AS $c) {
+                        if (isset($stack[$c['name']])) {
+                            if (!isset($dbList[$c['name']])) {
+                                $this->Election->create();
+                                if ($this->Election->save(array('Election' => array(
+                                                'parent_id' => $subTypesDb[$subType],
+                                                'name' => $c['name'],
+                                    )))) {
+                                    $dbList[$c['name']] = $this->Election->read();
+                                }
+                            }
+
+                            foreach ($this->areas['towns'][$c['id']] AS $t) {
+                                if (isset($stack[$c['name']][$t['name']])) {
+                                    $subDbList = $this->Election->find('list', array(
+                                        'conditions' => array(
+                                            'parent_id' => $dbList[$c['name']]['Election']['id'],
+                                        ),
+                                        'fields' => array('name', 'id'),
+                                    ));
+                                    if (!isset($subDbList[$t['name']])) {
+                                        $this->Election->create();
+                                        if ($this->Election->save(array('Election' => array(
+                                                        'parent_id' => $dbList[$c['name']]['Election']['id'],
+                                                        'name' => $t['name'],
+                                            )))) {
+                                            $subDbList[$t['name']] = $this->Election->getInsertID();
+                                        }
+                                    }
+
+                                    if (empty($this->Election->AreasElection->field('id', array(
+                                                        'Area_id' => $t['id'],
+                                                        'Election_id' => $subDbList[$t['name']],
+                                            )))) {
+                                        $this->Election->AreasElection->create();
+                                        $this->Election->AreasElection->save(array('AreasElection' => array(
+                                                'Area_id' => $t['id'],
+                                                'Election_id' => $subDbList[$t['name']],
+                                        )));
+                                    }
+                                }
+                            }
+                        }
+                    }
                     break;
                 case '直轄市山地原住民區民代表':
-                    /*
-                     * 新北市烏來區民代表會
-                     * (一)第1選舉區：忠治里。
-                      (二)第2選舉區：烏來里、孝義里。
-                      (三)第3選舉區：信賢里。
-                      (四)第4選舉區：福山里。
-                     * 
-                     * 桃園市復興區民代表會第 1 屆區民代表選舉區劃
-                      分如下：
-                      一、 第 1 選舉區：三民里、澤仁里、霞雲里、義盛里。
-                      二、 第 2 選舉區：長興里、奎輝里、羅浮里。
-                      三、 第 3 選舉區：高義里、三光里、華陵里。
-                     * 
-                     * 臺中市和平區民代表會第1屆代表選舉區劃分如下：
-                      一、第1選舉區：南勢里、天輪里、博愛里。
-                      二、第2選舉區：中坑里、自由里、達觀里。
-                      三、第3選舉區：平等里、梨山里。
-                     * 
-                     * 高雄市桃源區、那瑪夏區、茂林區區民代表會第1屆代表選舉
-                      區劃分如下：
-                      一、桃源區
-                      (1) 第1選舉區：梅山里、拉芙蘭里、復興里、勤和里、
-                      桃源里、高中里。
-                      (2) 第2選舉區：建山里、寶山里。
-                      二、那瑪夏區
-                      (1) 第1選舉區： 達卡努瓦里。
-                      (2) 第2選舉區：瑪雅里、南沙魯里。
-                      三、茂林區
-                      (1) 第1選舉區：多納里、萬山里。
-                      (2) 第2選舉區：茂林里。
-                     */
+                    $stack = array(
+                        '新北市' => array(
+                            '烏來區' => array(
+                                '第01選舉區' => array('忠治里' => true),
+                                '第02選舉區' => array('烏來里' => true, '孝義里' => true),
+                                '第03選舉區' => array('信賢里' => true),
+                                '第04選舉區' => array('福山里' => true),
+                            ),
+                        ),
+                        '桃園縣' => array(
+                            '復興鄉' => array(
+                                '第01選舉區' => array('三民村' => true, '澤仁村' => true, '霞雲村' => true, '義盛村' => true),
+                                '第02選舉區' => array('長興村' => true, '奎輝村' => true, '羅浮村' => true),
+                                '第03選舉區' => array('高義村' => true, '三光村' => true, '華陵村' => true),
+                            ),
+                        ),
+                        '臺中市' => array(
+                            '和平區' => array(
+                                '第01選舉區' => array('南勢里' => true, '天輪里' => true, '博愛里' => true),
+                                '第02選舉區' => array('中坑里' => true, '自由里' => true, '達觀里' => true),
+                                '第03選舉區' => array('平等里' => true, '梨山里' => true),
+                            ),
+                        ),
+                        '高雄市' => array(
+                            '桃源區' => array(
+                                '第01選舉區' => array('梅山里' => true, '拉芙蘭里' => true, '復興里' => true, '勤和里' => true, '桃源里' => true, '高中里' => true),
+                                '第02選舉區' => array('建山里' => true, '寶山里' => true),
+                            ),
+                            '那瑪夏區' => array(
+                                '第01選舉區' => array('達卡努瓦里' => true),
+                                '第02選舉區' => array('瑪雅里' => true, '南沙魯里' => true),
+                            ),
+                            '茂林區' => array(
+                                '第01選舉區' => array('多納里' => true, '萬山里' => true),
+                                '第02選舉區' => array('茂林里' => true),
+                            ),
+                        ),
+                    );
+                    $dbList = $this->Election->find('all', array(
+                        'conditions' => array(
+                            'parent_id' => $subTypesDb[$subType],
+                        ),
+                    ));
+                    $dbList = Set::combine($dbList, '{n}.Election.name', '{n}');
+                    foreach ($this->areas['municipalities'] AS $c) {
+                        if (isset($stack[$c['name']])) {
+                            if (!isset($dbList[$c['name']])) {
+                                $this->Election->create();
+                                if ($this->Election->save(array('Election' => array(
+                                                'parent_id' => $subTypesDb[$subType],
+                                                'name' => $c['name'],
+                                    )))) {
+                                    $dbList[$c['name']] = $this->Election->read();
+                                }
+                            }
+
+                            foreach ($this->areas['towns'][$c['id']] AS $t) {
+                                if (isset($stack[$c['name']][$t['name']])) {
+                                    $subDbList = $this->Election->find('list', array(
+                                        'conditions' => array(
+                                            'parent_id' => $dbList[$c['name']]['Election']['id'],
+                                        ),
+                                        'fields' => array('name', 'id'),
+                                    ));
+                                    if (!isset($subDbList[$t['name']])) {
+                                        $this->Election->create();
+                                        if ($this->Election->save(array('Election' => array(
+                                                        'parent_id' => $dbList[$c['name']]['Election']['id'],
+                                                        'name' => $t['name'],
+                                            )))) {
+                                            $subDbList[$t['name']] = $this->Election->getInsertID();
+                                        }
+                                    }
+
+                                    $nextDbList = $this->Election->find('list', array(
+                                        'conditions' => array(
+                                            'parent_id' => $subDbList[$t['name']],
+                                        ),
+                                        'fields' => array('name', 'id'),
+                                    ));
+
+                                    foreach ($stack[$c['name']][$t['name']] AS $tZone => $tCunlis) {
+                                        if (!isset($nextDbList[$tZone])) {
+                                            $this->Election->create();
+                                            if ($this->Election->save(array('Election' => array(
+                                                            'parent_id' => $subDbList[$t['name']],
+                                                            'name' => $tZone,
+                                                )))) {
+                                                $nextDbList[$tZone] = $this->Election->getInsertID();
+                                            }
+                                        }
+
+                                        foreach ($this->areas['cunlis'][$t['id']] AS $l) {
+                                            if (isset($tCunlis[$l['name']])) {
+                                                if (empty($this->Election->AreasElection->field('id', array(
+                                                                    'Area_id' => $l['id'],
+                                                                    'Election_id' => $nextDbList[$tZone],
+                                                        )))) {
+                                                    $this->Election->AreasElection->create();
+                                                    $this->Election->AreasElection->save(array('AreasElection' => array(
+                                                            'Area_id' => $l['id'],
+                                                            'Election_id' => $nextDbList[$tZone],
+                                                    )));
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     break;
                 case '縣市議員':
                     $dbList = $this->Election->find('all', array(
@@ -342,7 +470,6 @@ class ImportShell extends AppShell {
                                 }
                                 foreach ($this->areas['towns'][$c['id']] AS $t) {
                                     foreach ($cityAreas['areas'] AS $areaLine) {
-                                        echo "{$areaLine}\n";
                                         if (false !== strpos($areaLine, $t['name'])) {
                                             //link with town
                                             if (empty($this->Election->AreasElection->field('id', array(
