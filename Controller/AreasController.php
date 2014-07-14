@@ -35,8 +35,8 @@ class AreasController extends AppController {
             ),
         ));
         $electionStack = array();
-        foreach($elections AS $eKey => $election) {
-            if(!isset($electionStack[$election['AreasElection']['Election_id']])) {
+        foreach ($elections AS $eKey => $election) {
+            if (!isset($electionStack[$election['AreasElection']['Election_id']])) {
                 $electionStack[$election['AreasElection']['Election_id']] = true;
             } else {
                 unset($elections[$eKey]);
@@ -60,6 +60,14 @@ class AreasController extends AppController {
                 ),
             ));
         }
+
+        $desc_for_layout = '';
+        $descElections = Set::extract('{n}.Election.1.Election.name', $elections);
+        if(!empty($descElections)) {
+            $desc_for_layout .= implode(', ', $descElections) . '等各種候選人的資訊。';
+        }
+        $this->set('title_for_layout', implode(' > ', Set::extract('{n}.Area.name', $parents)));
+        $this->set('desc_for_layout', $desc_for_layout);
 
         $this->set('items', $items);
         $this->set('url', array($parentId));

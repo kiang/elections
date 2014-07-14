@@ -8,6 +8,9 @@
             }
             echo implode(' > ', $c);
         }
+        if(false !== strpos($referer, $this->Html->url('/', true))) {
+            echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default pull-right'));
+        }
         ?></h1><hr />
     </div>
     <div class="row">

@@ -56,7 +56,16 @@ class CandidatesController extends AppController {
                     $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
                 }
             }
+            $parents = $this->Candidate->Election->getPath($electionId);
+            $c = array();
+            foreach ($parents AS $parent) {
+                $c[] = $parent['Election']['name'];
+            }
+            $c[] = '新增候選人';
+            $this->set('title_for_layout', implode(' > ', $c));
             $this->set('electionId', $electionId);
+            $this->set('referer', $this->request->referer());
+            $this->set('parents', $parents);
         } else {
             $this->redirect(array('controller' => 'areas'));
         }
@@ -68,7 +77,16 @@ class CandidatesController extends AppController {
             'contain' => array('Election'),
         ));
         if (!empty($this->data)) {
-            $this->set('parents', $this->Candidate->Election->getPath($this->data['Election'][0]['id']));
+            $parents = $this->Candidate->Election->getPath($this->data['Election'][0]['id']);
+            $desc_for_layout = '';
+            $descElections = Set::extract('{n}.Election.name', $parents);
+            if (!empty($descElections)) {
+                $desc_for_layout .= $this->data['Candidate']['name'] . '在' . implode(' > ', $descElections) . '的參選資訊。';
+            }
+            $this->set('referer', $this->request->referer());
+            $this->set('desc_for_layout', $desc_for_layout);
+            $this->set('title_for_layout', implode(' > ', $descElections));
+            $this->set('parents', $parents);
         } else {
             $this->Session->setFlash(__('Please do following links in the page', true));
             $this->redirect(array('action' => 'index'));
