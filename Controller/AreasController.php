@@ -34,6 +34,14 @@ class AreasController extends AppController {
                 'AreasElection.Area_id' => Set::extract($parents, '{n}.Area.id'),
             ),
         ));
+        $electionStack = array();
+        foreach($elections AS $eKey => $election) {
+            if(!isset($electionStack[$election['AreasElection']['Election_id']])) {
+                $electionStack[$election['AreasElection']['Election_id']] = true;
+            } else {
+                unset($elections[$eKey]);
+            }
+        }
         foreach ($elections AS $k => $election) {
             $elections[$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name', 'parent_id'));
             $elections[$k]['Candidate'] = $this->Area->Election->Candidate->find('all', array(
