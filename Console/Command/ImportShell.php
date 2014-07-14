@@ -177,7 +177,7 @@ class ImportShell extends AppShell {
                         ),
                     ));
                     $dbList = Set::combine($dbList, '{n}.Election.name', '{n}');
-                    $jsonData = json_decode(file_get_contents(__DIR__ . '/data/v20101101TxC2.json'), true);
+                    $jsonData = json_decode(file_get_contents(__DIR__ . '/data/v20101101TxB2.json'), true);
                     $tData = json_decode(file_get_contents(__DIR__ . '/data/v20091201TxC2.json'), true);
                     foreach ($this->areas['municipalities'] AS $c) {
                         if (!isset($dbList[$c['name']])) {
