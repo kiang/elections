@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('Sanitize', 'Utility');
 
 class CandidatesController extends AppController {
 
@@ -42,7 +43,7 @@ class CandidatesController extends AppController {
     function add($electionId = '') {
         if (!empty($electionId)) {
             if (!empty($this->data)) {
-                $dataToSave = $this->data;
+                $dataToSave = Sanitize::clean($this->data);
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
                     $dataToSave['CandidatesElection']['Election_id'] = $electionId;
