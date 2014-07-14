@@ -303,12 +303,13 @@ class ImportShell extends AppShell {
                      */
                     break;
                 case '縣市議員':
-                    $dbList = $this->Election->find('list', array(
+                    $dbList = $this->Election->find('all', array(
                         'conditions' => array(
                             'parent_id' => $subTypesDb[$subType],
                         ),
-                        'fields' => array('name', 'id'),
                     ));
+                    $dbList = Set::combine($dbList, '{n}.Election.name', '{n}');
+                    $tData = json_decode(file_get_contents(__DIR__ . '/data/v20091201TxC2.json'), true);
                     foreach ($this->areas['counties'] AS $c) {
                         if (!isset($dbList[$c['name']])) {
                             $this->Election->create();
@@ -316,11 +317,63 @@ class ImportShell extends AppShell {
                                             'parent_id' => $subTypesDb[$subType],
                                             'name' => $c['name'],
                                 )))) {
-                                $this->Election->AreasElection->create();
-                                $this->Election->AreasElection->save(array('AreasElection' => array(
-                                        'Election_id' => $this->Election->getInsertID(),
-                                        'Area_id' => $c['id'],
-                                )));
+                                $dbList[$c['name']] = $this->Election->read();
+                            }
+                        }
+
+                        $subDbList = $this->Election->find('all', array(
+                            'conditions' => array(
+                                'parent_id' => $dbList[$c['name']]['Election']['id'],
+                            ),
+                        ));
+                        $subDbList = Set::combine($subDbList, '{n}.Election.name', '{n}');
+
+                        if (isset($tData[$c['name']])) {
+                            foreach ($tData[$c['name']] AS $cityZone => $cityAreas) {
+                                $cityZoneName = "{$cityZone}[{$cityAreas['type']}]";
+                                if (!isset($subDbList[$cityZoneName])) {
+                                    $this->Election->create();
+                                    if ($this->Election->save(array('Election' => array(
+                                                    'parent_id' => $dbList[$c['name']]['Election']['id'],
+                                                    'name' => $cityZoneName,
+                                        )))) {
+                                        $subDbList[$cityZoneName] = $this->Election->read();
+                                    }
+                                }
+                                foreach ($this->areas['towns'][$c['id']] AS $t) {
+                                    foreach ($cityAreas['areas'] AS $areaLine) {
+                                        echo "{$areaLine}\n";
+                                        if (false !== strpos($areaLine, $t['name'])) {
+                                            //link with town
+                                            if (empty($this->Election->AreasElection->field('id', array(
+                                                                'Area_id' => $t['id'],
+                                                                'Election_id' => $subDbList[$cityZoneName]['Election']['id'],
+                                                    )))) {
+                                                $this->Election->AreasElection->create();
+                                                $this->Election->AreasElection->save(array('AreasElection' => array(
+                                                        'Area_id' => $t['id'],
+                                                        'Election_id' => $subDbList[$cityZoneName]['Election']['id'],
+                                                )));
+                                            }
+
+                                            foreach ($this->areas['cunlis'][$t['id']] AS $l) {
+                                                if (isset($l['name']) && false !== strpos($areaLine, $l['name'])) {
+                                                    //link with cunli
+                                                    if (empty($this->Election->AreasElection->field('id', array(
+                                                                        'Area_id' => $l['id'],
+                                                                        'Election_id' => $subDbList[$cityZoneName]['Election']['id'],
+                                                            )))) {
+                                                        $this->Election->AreasElection->create();
+                                                        $this->Election->AreasElection->save(array('AreasElection' => array(
+                                                                'Area_id' => $l['id'],
+                                                                'Election_id' => $subDbList[$cityZoneName]['Election']['id'],
+                                                        )));
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -484,40 +537,6 @@ class ImportShell extends AppShell {
                         $this->areas['cunlis'][$dbArea['Area']['parent_id']] = array();
                     }
                     $this->areas['cunlis'][$dbArea['Area']['parent_id']][$dbArea['Area']['id']] = $dbArea['Area'];
-            }
-        }
-
-        foreach ($dbAreas AS $dbArea) {
-            if (strlen($dbArea['Area']['ivid']) === 3) {
-                switch ($dbArea['Area']['ivid']) {
-                    case 'TPE':
-                    case 'KHH':
-                    case 'TPQ':
-                    case 'TXG':
-                    case 'TNN':
-                    case 'TAO':
-                        $oStack = array('山地原住民' => true, '平地原住民' => true);
-                        foreach ($this->areas['towns'][$dbArea['Area']['id']] AS $t) {
-                            if (isset($oStack[$t['name']])) {
-                                unset($oStack[$t['name']]);
-                            }
-                        }
-                        if (!empty($oStack)) {
-                            foreach ($oStack AS $name => $o) {
-                                $this->Election->Area->create();
-                                $this->Election->Area->save(array('Area' => array(
-                                        'parent_id' => $dbArea['Area']['id'],
-                                        'name' => $name,
-                                        'is_area' => '1',
-                                        'ivid' => $dbArea['Area']['ivid'] . '-000',
-                                        'code' => '',
-                                )));
-                                $r = $this->Election->Area->read();
-                                $this->areas['towns'][$dbArea['Area']['id']][$this->Election->Area->getInsertID()] = $r['Area'];
-                            }
-                        }
-                        break;
-                }
             }
         }
     }
