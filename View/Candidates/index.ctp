@@ -24,12 +24,25 @@
 
     echo $this->Html->getCrumbs();
     ?>
-    <div class="paging"><?php echo $this->element('paginator'); ?></div>
+    <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
+    <div class="col-md-4"><?php
+    echo $this->Form->create('Candidate', array('url' => $url, 'class' => 'form-inline'));
+    echo $this->Form->input('keyword', array(
+        'div' => 'form-group',
+        'value' => $keyword,
+        'label' => false,
+    ));
+    echo '<div class="btn-group">';
+    echo $this->Form->submit('搜尋', array('div' => false, 'class' => 'btn btn-primary'));
+    echo $this->Form->button('清除', array('div' => false, 'class' => 'btn btn-default btn-clean-form'));
+    echo '</div>';
+    echo $this->Form->end();
+    ?></div>
     <table class="table table-bordered" id="CandidatesAdminIndexTable">
         <thead>
             <tr>
-                <th>選區</th>
                 <th>候選人</th>
+                <th>選區</th>
             </tr>
         </thead>
         <tbody>
@@ -43,31 +56,30 @@
                 ?>
                 <tr<?php echo $class; ?>>
                     <td><?php
-                        $c = array();
-                        foreach ($item['Election'] AS $e) {
-                            $c[] = $e['Election']['name'];
-                            if ($e['Election']['rght'] - $e['Election']['lft'] === 1) {
-                                echo $this->Html->link(implode(' > ', $c), array('action' => 'index', $e['Election']['id']));
-                            }
-                        }
+                        echo $this->Html->link($item['Candidate']['name'], array('action' => 'view', $item['Candidate']['id']));
                         ?></td>
                     <td><?php
-                        echo $this->Html->link($item['Candidate']['name'], array('action' => 'view', $item['Candidate']['id']));
+                        $c = array();
+                        foreach ($item['Election'] AS $e) {
+                            if ($e['Election']['rght'] - $e['Election']['lft'] != 1) {
+                                $c[] = $this->Html->link($e['Election']['name'], array('controller' => 'elections', 'action' => 'index', $e['Election']['id']));
+                            } else {
+                                $c[] = $this->Html->link($e['Election']['name'], array('action' => 'index', $e['Election']['id']));
+                            }
+                        }
+                        echo implode(' > ', $c);
                         ?></td>
                 </tr>
             <?php } // End of foreach ($items as $item) {   ?>
         </tbody>
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
-    <div id="CandidatesAdminIndexPanel"></div>
-    <script type="text/javascript">
-        //<![CDATA[
+    <script>
         $(function() {
-            $('#CandidatesAdminIndexTable th a, #CandidatesAdminIndex div.paging a').click(function() {
-                $('#CandidatesAdminIndex').parent().load(this.href);
-                return false;
+            $('button.btn-clean-form').click(function() {
+                $('input#CandidateKeyword').val('');
+                $('form#CandidateIndexForm').submit();
             });
         });
-        //]]>
     </script>
 </div>

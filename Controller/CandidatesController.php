@@ -18,9 +18,20 @@ class CandidatesController extends AppController {
 
     function index($electionId = '') {
         $scope = array();
+        if (isset($this->data['Candidate']['keyword'])) {
+            $keyword = Sanitize::clean($this->data['Candidate']['keyword']);
+            $this->Session->write('Candidates.index.keyword', $keyword);
+        } else {
+            $keyword = $this->Session->read('Candidates.index.keyword');
+        }
+        if(!empty($keyword)) {
+            $scope['Candidate.name LIKE'] = "%{$keyword}%";
+        }
+        
         if (!empty($electionId)) {
             $scope['CandidatesElection.Election_id'] = $electionId;
         }
+
         $this->paginate['Candidate']['joins'] = array(
             array(
                 'table' => 'candidates_elections',
@@ -31,16 +42,18 @@ class CandidatesController extends AppController {
                 ),
             ),
         );
+        $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
         $this->paginate['Candidate']['limit'] = 20;
         $this->paginate['Candidate']['fields'] = array('Candidate.*', 'CandidatesElection.Election_id');
         $items = $this->paginate($this->Candidate, $scope);
-        foreach($items AS $k => $v) {
+        foreach ($items AS $k => $v) {
             $items[$k]['Election'] = $this->Candidate->Election->getPath($v['CandidatesElection']['Election_id']);
         }
 
         $this->set('items', $items);
         $this->set('electionId', $electionId);
         $this->set('url', array($electionId));
+        $this->set('keyword', $keyword);
         $this->set('parents', $this->Candidate->Election->getPath($electionId));
     }
 
