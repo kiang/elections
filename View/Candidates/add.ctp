@@ -1,7 +1,18 @@
 <div id="CandidatesAdminAdd">
     <div class="row">
         <h1><?php
-            echo $title_for_layout;
+            if (!empty($parents)) {
+                $c = array();
+                foreach ($parents AS $parent) {
+                    if($parent['Election']['rght'] - $parent['Election']['lft'] != 1) {
+                        $c[] = $this->Html->link($parent['Election']['name'], '/elections/index/' . $parent['Election']['id']);
+                    } else {
+                        $c[] = $this->Html->link($parent['Election']['name'], '/candidates/index/' . $parent['Election']['id']);
+                    }
+                }
+                $c[] = '新增候選人';
+                echo implode(' > ', $c);
+            }
             if (false !== strpos($referer, $this->Html->url('/', true))) {
                 echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default pull-right'));
             }

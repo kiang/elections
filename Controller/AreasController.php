@@ -73,7 +73,7 @@ class AreasController extends AppController {
         if (!empty($descElections)) {
             $desc_for_layout .= implode(', ', $descElections) . '等各種候選人的資訊。';
         }
-        $this->set('title_for_layout', implode(' > ', Set::extract('{n}.Area.name', $parents)));
+        $this->set('title_for_layout', implode(' > ', Set::extract('{n}.Area.name', $parents)) . '行政區 @ ');
         $this->set('desc_for_layout', $desc_for_layout);
 
         $this->set('items', $items);

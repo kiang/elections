@@ -24,10 +24,10 @@ class CandidatesController extends AppController {
         } else {
             $keyword = $this->Session->read('Candidates.index.keyword');
         }
-        if(!empty($keyword)) {
+        if (!empty($keyword)) {
             $scope['Candidate.name LIKE'] = "%{$keyword}%";
         }
-        
+
         if (!empty($electionId)) {
             $scope['CandidatesElection.Election_id'] = $electionId;
         }
@@ -49,12 +49,18 @@ class CandidatesController extends AppController {
         foreach ($items AS $k => $v) {
             $items[$k]['Election'] = $this->Candidate->Election->getPath($v['CandidatesElection']['Election_id']);
         }
+        $parents = $this->Candidate->Election->getPath($electionId);
+        $c = array();
+        if (!empty($parents)) {
+            $c = Set::extract('{n}.Election.name', $parents);
+        }
 
+        $this->set('title_for_layout', implode(' > ', $c) . '候選人 @ ');
         $this->set('items', $items);
         $this->set('electionId', $electionId);
         $this->set('url', array($electionId));
         $this->set('keyword', $keyword);
-        $this->set('parents', $this->Candidate->Election->getPath($electionId));
+        $this->set('parents', $parents);
     }
 
     function add($electionId = '') {
@@ -80,7 +86,7 @@ class CandidatesController extends AppController {
                 $c[] = $parent['Election']['name'];
             }
             $c[] = '新增候選人';
-            $this->set('title_for_layout', implode(' > ', $c));
+            $this->set('title_for_layout', implode(' > ', $c) . ' @ ');
             $this->set('electionId', $electionId);
             $this->set('referer', $this->request->referer());
             $this->set('parents', $parents);
@@ -101,9 +107,10 @@ class CandidatesController extends AppController {
             if (!empty($descElections)) {
                 $desc_for_layout .= $this->data['Candidate']['name'] . '在' . implode(' > ', $descElections) . '的參選資訊。';
             }
+            $descElections[] = $this->data['Candidate']['name'];
             $this->set('referer', $this->request->referer());
             $this->set('desc_for_layout', $desc_for_layout);
-            $this->set('title_for_layout', implode(' > ', $descElections));
+            $this->set('title_for_layout', implode(' > ', $descElections) . '候選人 @ ');
             $this->set('parents', $parents);
         } else {
             $this->Session->setFlash(__('Please do following links in the page', true));

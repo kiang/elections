@@ -16,6 +16,12 @@ class ElectionsController extends AppController {
     }
 
     function index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {
+        if (!empty($parentId)) {
+            $parentId = $this->Election->field('id', array('id' => $parentId));
+        }
+        if (empty($parentId)) {
+            $parentId = $this->Election->field('id', array('parent_id IS NULL'));
+        }
         $foreignKeys = array();
 
         $habtmKeys = array(
@@ -23,10 +29,6 @@ class ElectionsController extends AppController {
             'Candidate' => 'Candidate_id',
         );
         $foreignKeys = array_merge($habtmKeys, $foreignKeys);
-
-        if (!empty($parentId)) {
-            $parentId = $this->Election->field('id', array('id' => $parentId));
-        }
 
         $scope = array(
             'Election.parent_id' => empty($parentId) ? NULL : $parentId,
@@ -93,13 +95,16 @@ class ElectionsController extends AppController {
             }
             $this->set('op', $op);
         }
+        $parents = $this->Election->getPath($parentId);
+        $c = Set::extract('{n}.Election.name', $parents);
 
+        $this->set('title_for_layout', implode(' > ', $c) . '選舉區 @ ');
         $this->set('items', $items);
         $this->set('url', array($parentId, $foreignModel, $foreignId, $op));
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
         $this->set('parentId', $parentId);
-        $this->set('parents', $this->Election->getPath($parentId));
+        $this->set('parents', $parents);
     }
 
     function admin_index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {
