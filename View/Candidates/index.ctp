@@ -21,9 +21,8 @@
             'action' => 'add', $electionId)
         );
     }
-
-    echo $this->Html->getCrumbs();
     ?>
+    <div class="col-md-12"><?php echo $this->Html->getCrumbs(); ?></div>
     <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
     <div class="col-md-4"><?php
     echo $this->Form->create('Candidate', array('url' => $url, 'class' => 'form-inline'));
