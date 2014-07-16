@@ -5,6 +5,7 @@
         if (!empty($electionId)) {
             echo $this->Html->link(__('Add', true), array('action' => 'add', $electionId), array('class' => 'btn'));
         }
+        echo $this->Html->link('審核', array('action' => 'submits'), array('class' => 'btn'));
         ?>
     </div>
     <div class="clearfix"></div>

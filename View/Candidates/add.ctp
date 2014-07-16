@@ -1,4 +1,4 @@
-<div id="CandidatesAdminAdd">
+<div id="CandidatesAdd">
     <div class="row">
         <h1><?php
             if (!empty($parents)) {

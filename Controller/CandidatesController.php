@@ -246,4 +246,24 @@ class CandidatesController extends AppController {
         $this->redirect(array('action' => 'index'));
     }
 
+    public function admin_submits() {
+        $scope = array('Candidate.active_id IS NOT NULL');
+        $this->paginate['Candidate']['limit'] = 20;
+        $items = $this->paginate($this->Candidate, $scope);
+        $this->set('items', $items);
+    }
+
+    public function admin_review($candidateId = '') {
+        $submitted = $this->Candidate->find('first', array(
+            'conditions' => array('id' => $candidateId),
+            'contain' => array('Election'),
+        ));
+        $original = $this->Candidate->find('first', array(
+            'conditions' => array('id' => $submitted['Candidate']['active_id']),
+            'contain' => array('Election'),
+        ));
+        $this->set('submitted', $submitted);
+        $this->set('original', $original);
+    }
+
 }
