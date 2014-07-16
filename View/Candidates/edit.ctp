@@ -40,7 +40,6 @@
     echo $this->Form->input('Candidate.birth', array(
         'type' => 'text',
         'label' => '生日',
-        'value' => '1980-06-30',
         'div' => 'form-group col-md-2',
         'class' => 'form-control',
     ));
