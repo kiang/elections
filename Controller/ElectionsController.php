@@ -195,7 +195,7 @@ class ElectionsController extends AppController {
 
     function admin_view($id = null) {
         if (!$id || !$this->data = $this->Election->read(null, $id)) {
-            $this->Session->setFlash(__('Please do following links in the page', true));
+            $this->Session->setFlash('請依照網頁指示操作');
             $this->redirect(array('action' => 'index'));
         }
     }
@@ -209,25 +209,25 @@ class ElectionsController extends AppController {
 
             $this->Election->create();
             if ($this->Election->save($dataToSave)) {
-                $this->Session->setFlash(__('The data has been saved', true));
+                $this->Session->setFlash('資料已經儲存');
                 $this->redirect(array('action' => 'index', $parentId));
             } else {
-                $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
+                $this->Session->setFlash('資料儲存時發生錯誤，請重試');
             }
         }
     }
 
     function admin_edit($id = null) {
         if (!$id && empty($this->data)) {
-            $this->Session->setFlash(__('Please do following links in the page', true));
+            $this->Session->setFlash('請依照網頁指示操作');
             $this->redirect($this->referer());
         }
         if (!empty($this->data)) {
             if ($this->Election->save($this->data)) {
-                $this->Session->setFlash(__('The data has been saved', true));
+                $this->Session->setFlash('資料已經儲存');
                 $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
+                $this->Session->setFlash('資料儲存時發生錯誤，請重試');
             }
         }
         $this->set('id', $id);
@@ -236,9 +236,9 @@ class ElectionsController extends AppController {
 
     function admin_delete($id = null) {
         if (!$id) {
-            $this->Session->setFlash(__('Please do following links in the page', true));
+            $this->Session->setFlash('請依照網頁指示操作');
         } else if ($this->Election->delete($id)) {
-            $this->Session->setFlash(__('The data has been deleted', true));
+            $this->Session->setFlash('資料已經刪除');
         }
         $this->redirect(array('action' => 'index'));
     }

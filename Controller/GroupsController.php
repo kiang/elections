@@ -37,10 +37,10 @@ class GroupsController extends AppController {
             $this->request->data['Group']['parent_id'] = $parentId;
             if ($this->Group->save($this->request->data)) {
                 $this->Acl->Aro->saveField('alias', 'Group' . $this->Group->getInsertID());
-                $this->Session->setFlash(__('The data has been saved', true));
+                $this->Session->setFlash('資料已經儲存');
                 $this->redirect(array('action' => 'index', $parentId));
             } else {
-                $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
+                $this->Session->setFlash('資料儲存時發生錯誤，請重試');
             }
         }
         $this->set('parentId', $parentId);
@@ -53,10 +53,10 @@ class GroupsController extends AppController {
         }
         if (!empty($this->request->data)) {
             if ($this->Group->save($this->request->data)) {
-                $this->Session->setFlash(__('The data has been saved', true));
+                $this->Session->setFlash('資料已經儲存');
                 $this->redirect(array('action' => 'index', $this->Group->field('parent_id')));
             } else {
-                $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
+                $this->Session->setFlash('資料儲存時發生錯誤，請重試');
             }
         }
         if (empty($this->request->data)) {
