@@ -5,8 +5,92 @@ class CandidateShell extends AppShell {
     public $uses = array('Candidate');
 
     public function main() {
-        $this->villmast();
-        $this->suncy();
+        //$this->villmast();
+        //$this->suncy();
+        $this->moi();
+    }
+
+    public function moi() {
+        $srcFiles = array(
+            '縣市議員' => 'http://cand.moi.gov.tw/of/ap/cand_json.jsp?electkind=0200000',
+            '直轄市議員' => 'http://cand.moi.gov.tw/of/ap/cand_json.jsp?electkind=0100000'
+        );
+        $cachePath = TMP . 'moi';
+        if (!file_exists($cachePath)) {
+            mkdir($cachePath, 0777, true);
+        }
+        foreach ($srcFiles AS $eType => $srcFile) {
+            $eTypeDb[$eType] = $this->Candidate->Election->find('first', array(
+                'conditions' => array('name' => $eType),
+            ));
+        }
+        foreach ($srcFiles AS $eType => $srcFile) {
+            $cacheFile = $cachePath . '/' . md5($srcFile);
+            if (!file_exists($cacheFile)) {
+                file_put_contents($cacheFile, file_get_contents($srcFile));
+            }
+            $jsonContent = json_decode(file_get_contents($cacheFile), true);
+            $counties = array();
+            $zones = array();
+            foreach ($jsonContent AS $c) {
+                $c['cityname'] = str_replace('台', '臺', $c['cityname']);
+                if ($c['cityname'] === '桃園縣') {
+                    $ctype = '直轄市議員';
+                } else {
+                    $ctype = $eType;
+                }
+                if (!isset($counties[$c['cityname']])) {
+                    $e = $this->Candidate->Election->find('first', array(
+                        'conditions' => array(
+                            'Election.parent_id' => $eTypeDb[$ctype]['Election']['id'],
+                            'Election.name' => $c['cityname'],
+                        ),
+                    ));
+                    if (!empty($e)) {
+                        $counties[$c['cityname']] = $e;
+                    } else {
+                        echo "{$c['cityname']}\n";
+                    }
+                }
+                $c['idname'] = str_replace(array('　'), array(''), $c['idname']);
+                if (!isset($zones[$c['cityname']])) {
+                    $zones[$c['cityname']] = array();
+                }
+                $eareaname = str_replace(array('一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '1001', '1002', '1003', '1004', '1005', '1006', '1007', '1008'), array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18'), $c['eareaname']);
+                $eareaname = preg_replace('/[^0-9]/', '', $eareaname);
+                $eareaname = str_pad($eareaname, 2, '0', STR_PAD_LEFT);
+                if (!empty($eareaname) && !isset($zones[$c['cityname']][$eareaname])) {
+                    $z = $this->Candidate->Election->find('first', array(
+                        'conditions' => array(
+                            'Election.parent_id' => $counties[$c['cityname']]['Election']['id'],
+                            'Election.name LIKE' => "%{$eareaname}%",
+                        ),
+                    ));
+                    if (!empty($z)) {
+                        $zones[$c['cityname']][$eareaname] = $z;
+                    }
+                }
+
+                if (!empty($zones[$c['cityname']][$eareaname])) {
+                    $this->Candidate->create();
+                    if ($this->Candidate->save(array('Candidate' => array(
+                                    'name' => $c['idname'],
+                                    'gender' => ($c['sex'] === '男') ? 'M' : 'F',
+                                    'party' => $c['partymship'],
+                                    'contacts_address' => $c['officeadress'],
+                                    'contacts_phone' => $c['officetelphone'],
+                                    'education' => $c['education'],
+                                    'experience' => $c['profession'],
+                        )))) {
+                        $this->Candidate->CandidatesElection->create();
+                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
+                                'Election_id' => $zones[$c['cityname']][$eareaname]['Election']['id'],
+                                'Candidate_id' => $this->Candidate->getInsertID(),
+                        )));
+                    }
+                }
+            }
+        }
     }
 
     public function villmast() {
