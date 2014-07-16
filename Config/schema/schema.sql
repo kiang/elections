@@ -132,6 +132,8 @@ CREATE TABLE `candidates` (
   `birth` date DEFAULT NULL,
   `education` text COLLATE utf8_unicode_ci,
   `experience` text COLLATE utf8_unicode_ci,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -230,4 +232,4 @@ CREATE TABLE `members` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-11  2:14:52
+-- Dump completed on 2014-07-16 22:52:02
