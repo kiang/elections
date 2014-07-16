@@ -124,6 +124,10 @@ class CandidatesController extends AppController {
                     $this->Session->setFlash('資料儲存時發生錯誤，請重試');
                 }
             } else {
+                $candidate['CandidatesElection']['platform'] = str_replace('\\n', "\n", $candidate['Election'][0]['CandidatesElection']['platform']);
+                $candidate['Candidate']['links'] = str_replace('\\n', "\n", $candidate['Candidate']['links']);
+                $candidate['Candidate']['education'] = str_replace('\\n', "\n", $candidate['Candidate']['education']);
+                $candidate['Candidate']['experience'] = str_replace('\\n', "\n", $candidate['Candidate']['experience']);
                 $this->data = $candidate;
             }
             $parents = $this->Candidate->Election->getPath($candidate['Election'][0]['id']);
