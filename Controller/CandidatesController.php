@@ -183,6 +183,9 @@ class CandidatesController extends AppController {
             ),
         );
         $this->paginate['Candidate']['limit'] = 20;
+        $this->paginate['Candidate']['order'] = array(
+            'Candidate.modified' => 'DESC',
+        );
         $items = $this->paginate($this->Candidate, $scope);
 
         $this->set('items', $items);

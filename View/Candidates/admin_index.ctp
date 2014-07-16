@@ -31,7 +31,9 @@
     <table class="table table-bordered" id="CandidatesAdminIndexTable">
         <thead>
             <tr>
-                <th><?php echo $this->Paginator->sort('Candidate.name', 'Name', array('url' => $url)); ?></th>
+                <th><?php echo $this->Paginator->sort('Candidate.name', '姓名', array('url' => $url)); ?></th>
+                <th><?php echo $this->Paginator->sort('Candidate.created', '建立時間', array('url' => $url)); ?></th>
+                <th><?php echo $this->Paginator->sort('Candidate.modified', '更新時間', array('url' => $url)); ?></th>
                 <th class="actions"><?php echo __('Action', true); ?></th>
             </tr>
         </thead>
@@ -45,9 +47,9 @@
                 }
                 ?>
                 <tr<?php echo $class; ?>>
-                    <td><?php
-                        echo $item['Candidate']['name'];
-                        ?></td>
+                    <td><?php echo $item['Candidate']['name']; ?></td>
+                    <td><?php echo $item['Candidate']['created']; ?></td>
+                    <td><?php echo $item['Candidate']['modified']; ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Candidate']['id']), array('class' => 'dialogControl')); ?>
                         <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Candidate']['id']), array('class' => 'dialogControl')); ?>
