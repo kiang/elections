@@ -250,13 +250,16 @@ class CandidatesController extends AppController {
     }
 
     public function admin_submits() {
-        $scope = array('Candidate.active_id IS NOT NULL');
+        $scope = array(
+            'Candidate.active_id IS NOT NULL',
+            'Candidate.is_reviewed' => '0',
+        );
         $this->paginate['Candidate']['limit'] = 20;
         $items = $this->paginate($this->Candidate, $scope);
         $this->set('items', $items);
     }
 
-    public function admin_review($candidateId = '') {
+    public function admin_review($candidateId = '', $approved = '') {
         $submitted = $this->Candidate->find('first', array(
             'conditions' => array('id' => $candidateId),
             'contain' => array('Election'),
@@ -265,6 +268,37 @@ class CandidatesController extends AppController {
             'conditions' => array('id' => $submitted['Candidate']['active_id']),
             'contain' => array('Election'),
         ));
+        if ($approved === 'yes') {
+            $dataToSave = array(
+                'id' => $original['Candidate']['id'],
+            );
+            //update image
+            if (!empty($submitted['Candidate']['image'])) {
+                if (!empty($original['Candidate']['image']) && file_exists(WWW_ROOT . 'media/' . $original['Candidate']['image'])) {
+                    unlink(WWW_ROOT . 'media/' . $original['Candidate']['image']);
+                }
+                $dataToSave['image'] = $submitted['Candidate']['image'];
+            }
+
+            //update platform
+            $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
+                    'id' => $original['Election'][0]['CandidatesElection']['id'],
+                    'platform' => $submitted['Election'][0]['CandidatesElection']['platform'],
+            )));
+
+            //update candidate
+            $cFields = array('name', 'party', 'contacts_phone', 'contacts_fax',
+                'contacts_email', 'contacts_address', 'links', 'gender', 'birth',
+                'education', 'experience');
+
+            foreach ($cFields AS $cField) {
+                $dataToSave[$cField] = $submitted['Candidate'][$cField];
+            }
+            $this->Candidate->save($dataToSave);
+            $this->Candidate->id = $candidateId;
+            $this->Candidate->saveField('is_reviewed', '1');
+            $this->redirect('/admin/candidates/submits');
+        }
         $this->set('submitted', $submitted);
         $this->set('original', $original);
     }

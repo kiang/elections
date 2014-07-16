@@ -1,7 +1,11 @@
 <div id="CandidatesAdminReview">
     <div class="row">
-        <h1>審核提供資料</h1><hr />
+        <h1>審核提供資料</h1>
+        <div class="btn-group">
+            <?php echo $this->Html->link('通過', "/admin/candidates/review/{$submitted['Candidate']['id']}/yes", array('class' => 'btn btn-default')); ?>
+        </div>
     </div>
+    <hr />
     <div class="row">
         <div class="col-md-6">
             現有資料：
