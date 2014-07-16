@@ -11,6 +11,7 @@
         if(false !== strpos($referer, $this->Html->url('/', true))) {
             echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default pull-right'));
         }
+        echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default pull-right'));
         ?></h1><hr />
     </div>
     <div class="row">

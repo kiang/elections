@@ -12,12 +12,14 @@ class CandidatesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'add', 'view');
+            $this->Auth->allow('index', 'add', 'view', 'edit');
         }
     }
 
     function index($electionId = '') {
-        $scope = array();
+        $scope = array(
+            'Candidate.active_id IS NULL',
+        );
         if (isset($this->data['Candidate']['keyword'])) {
             $keyword = Sanitize::clean($this->data['Candidate']['keyword']);
             $this->Session->write('Candidates.index.keyword', $keyword);
@@ -95,9 +97,56 @@ class CandidatesController extends AppController {
         }
     }
 
+    function edit($candidateId = '') {
+        if (!empty($candidateId)) {
+            $candidate = $this->Candidate->find('first', array(
+                'conditions' => array(
+                    'Candidate.id' => $candidateId,
+                    'Candidate.active_id IS NULL',
+                ),
+                'contain' => array('Election'),
+            ));
+        }
+        if (!empty($candidate)) {
+            if (!empty($this->data)) {
+                $dataToSave = Sanitize::clean($this->data);
+                $dataToSave['Candidate']['active_id'] = $candidateId;
+                $this->Candidate->create();
+                if ($this->Candidate->save($dataToSave)) {
+                    $dataToSave['CandidatesElection']['Election_id'] = $candidate['Election'][0]['id'];
+                    $dataToSave['CandidatesElection']['Candidate_id'] = $this->Candidate->getInsertID();
+                    $this->Candidate->CandidatesElection->create();
+                    $this->Candidate->CandidatesElection->save($dataToSave);
+                    $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $candidate['Election'][0]['id']));
+                    $this->Session->setFlash('感謝您提供的資料，我們會盡快更新！');
+                    $this->redirect(array('controller' => 'areas', 'action' => 'index', $areaId));
+                } else {
+                    $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
+                }
+            } else {
+                $this->data = $candidate;
+            }
+            $parents = $this->Candidate->Election->getPath($candidate['Election'][0]['id']);
+            $c = array();
+            foreach ($parents AS $parent) {
+                $c[] = $parent['Election']['name'];
+            }
+            $c[] = '更新候選人';
+            $this->set('title_for_layout', implode(' > ', $c) . ' @ ');
+            $this->set('candidateId', $candidateId);
+            $this->set('referer', $this->request->referer());
+            $this->set('parents', $parents);
+        } else {
+            $this->redirect(array('controller' => 'areas'));
+        }
+    }
+
     function view($id = null) {
         $this->data = $this->Candidate->find('first', array(
-            'conditions' => array('Candidate.id' => $id),
+            'conditions' => array(
+                'Candidate.id' => $id,
+                'Candidate.active_id IS NULL',
+            ),
             'contain' => array('Election'),
         ));
         if (!empty($this->data)) {
