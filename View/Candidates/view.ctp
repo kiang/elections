@@ -1,18 +1,22 @@
 <div class="container">
     <div class="row">
         <h1><?php
-        if (!empty($parents)) {
-            $c = array();
-            foreach ($parents AS $parent) {
-                $c[] = $parent['Election']['name'];
+            if (!empty($parents)) {
+                $c = array();
+                foreach ($parents AS $parent) {
+                    if ($parent['Election']['rght'] - $parent['Election']['lft'] != 1) {
+                        $c[] = $this->Html->link($parent['Election']['name'], '/elections/index/' . $parent['Election']['id']);
+                    } else {
+                        $c[] = $this->Html->link($parent['Election']['name'], '/candidates/index/' . $parent['Election']['id']);
+                    }
+                }
+                echo implode(' > ', $c);
             }
-            echo implode(' > ', $c);
-        }
-        if(false !== strpos($referer, $this->Html->url('/', true))) {
-            echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default pull-right'));
-        }
-        echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default pull-right'));
-        ?></h1><hr />
+            if (false !== strpos($referer, $this->Html->url('/', true))) {
+                echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default pull-right'));
+            }
+            echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default pull-right'));
+            ?></h1><hr />
     </div>
     <div class="row">
         <div class="col-md-5">
