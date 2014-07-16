@@ -76,7 +76,7 @@
                 $title = $url;
             }
             if(!empty($url)) {
-                echo $this->Html->link($title, $url) . '<br />';
+                echo $this->Html->link($title, $url, array('target' => '_blank')) . '<br />';
             }
         }
         ?>
