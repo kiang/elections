@@ -13,7 +13,124 @@ class ImportShell extends AppShell {
 
     public function main() {
         $this->areas();
-        $this->elections();
+        //$this->elections();
+        $this->fix2014();
+    }
+
+    public function fix2014() {
+        $toFixStack = array('縣市議員' => array(
+                '臺東縣' => array(
+                    '第01選區[區域]' => array('臺東市', '蘭嶼鄉'),
+                    '第02選區[區域]' => array('卑南鄉', '延平鄉'),
+                    '第03選區[區域]' => array('東河鄉', '成功鎮', '長濱鄉'),
+                    '第04選區[區域]' => array('鹿野鄉', '關山鎮', '海端鄉', '池上鄉'),
+                    '第05選區[區域]' => array('太麻里鄉', '金峰鄉', '達仁鄉', '大武鄉'),
+                    '第06選區[區域]' => array('綠島鄉'),
+                    '第07選區[平地]' => array('臺東市'),
+                    '第08選區[平地]' => array('卑南鄉', '太麻里鄉', '金峰鄉', '達仁鄉', '大武鄉', '蘭嶼鄉'),
+                    '第09選區[平地]' => array('鹿野鄉', '延平鄉', '關山鎮', '海端鄉', '池上鄉'),
+                    '第10選區[平地]' => array('東河鄉', '綠島鄉', '成功鎮', '長濱鄉'),
+                    '第11選區[山地]' => array('延平鄉', '卑南鄉', '東河鄉', '成功鎮', '長濱鄉'),
+                    '第12選區[山地]' => array('海端鄉', '鹿野鄉', '關山鎮', '池上鄉'),
+                    '第13選區[山地]' => array('金峰鄉', '太麻里鄉', '臺東市', '綠島鄉'),
+                    '第14選區[山地]' => array('達仁鄉', '大武鄉'),
+                    '第15選區[山地]' => array('蘭嶼鄉'),
+                ),
+                '新竹市' => array(
+                    '第01選區[區域]' => array('東門里', '榮光里', '成功里', '育賢里', '中正里', '親仁里', '文華里', '復中里', '三民里', '公園里', '東園里', '東山里', '東勢里', '光復里', '前溪里', '水源里', '千甲里', '綠水里', '埔頂里', '仙宮里', '龍山里', '新莊里', '仙水里', '金山里', '建功里', '光明里', '立功里', '軍功里', '武功里', '豐功里', '科園里', '關東里', '建華里', '錦華里', '復興里'),
+                    '第02選區[區域]' => array('南門里', '關帝里', '南市里', '福德里', '振興里', '新興里', '竹蓮里', '南大里', '寺前里', '下竹里', '頂竹里', '光鎮里', '高峰里', '柴橋里', '新光里', '湖濱里', '明湖里'),
+                    '第03選區[區域]' => array('客雅里', '育英里', '曲溪里', '西雅里', '南勢里', '大鵬里', '西門里', '仁德里', '潛園里', '中央里', '崇禮里', '石坊里', '興南里', '台溪里'),
+                    '第04選區[區域]' => array('北門里', '中興里', '大同里', '中山里', '長和里', '新民里', '民富里', '水田里', '文雅里', '光田里', '士林里', '福林里', '古賢里', '湳雅里', '舊社里', '武陵里', '南寮里', '舊港里', '康樂里', '港北里', '中寮里', '海濱里', '磐石里', '新雅里', '光華里', '金華里', '境福里', '金竹里', '湳中里', '金雅里'),
+                    '第05選區[區域]' => array('頂埔里', '中埔里', '埔前里', '牛埔里', '樹下里', '浸水里', '虎林里', '虎山里', '港南里', '大庄里', '美山里', '朝山里', '東香里', '香山里', '香村里', '海山里', '鹽水里', '內湖里', '南港里', '中隘里', '南隘里', '大湖里', '茄苳里', '頂福里'),
+                    '第06選區[平地]' => array('新竹市'),
+                ),
+                '金門縣' => array(
+                    '第01選區[區域]' => array('金城鎮', '金寧鄉', '烏坵鄉'),
+                    '第02選區[區域]' => array('金湖鎮', '金沙鎮'),
+                    '第03選區[區域]' => array('烈嶼鄉'),
+                ),
+        ));
+        $this->Election->deleteAll(array(
+            'parent_id IS NULL', 'name IS NULL',
+        ));
+        foreach ($toFixStack AS $eType => $eStack) {
+            $election = $this->Election->find('first', array(
+                'conditions' => array(
+                    'Election.name' => $eType,
+                ),
+            ));
+            foreach ($eStack AS $county => $eAreas) {
+                $eCounty = $this->Election->find('first', array(
+                    'conditions' => array(
+                        'Election.parent_id' => $election['Election']['id'],
+                        'Election.name' => $county,
+                    ),
+                ));
+                $eCountyArea = $this->Election->Area->find('first', array(
+                    'conditions' => array(
+                        'Area.name' => $county,
+                    ),
+                ));
+                $areaList = $this->Election->Area->find('list', array(
+                    'conditions' => array(
+                        'Area.lft >=' => $eCountyArea['Area']['lft'],
+                        'Area.rght <=' => $eCountyArea['Area']['rght'],
+                    ),
+                    'fields' => array('name', 'id'),
+                ));
+                $eAreaDbList = $this->Election->find('all', array(
+                    'conditions' => array(
+                        'Election.parent_id' => $eCounty['Election']['id'],
+                    ),
+                ));
+                $eAreaDbList = Set::combine($eAreaDbList, '{n}.Election.name', '{n}.Election');
+                $eAreaDbNames = array_combine(array_keys($eAreaDbList), array_keys($eAreaDbList));
+
+                foreach ($eAreas AS $eArea => $targetAreas) {
+                    if (!isset($eAreaDbList[$eArea])) {
+                        echo "{$eArea}\n";
+                        $this->Election->create();
+                        if(!$this->Election->save(array('Election' => array(
+                                'parent_id' => $eCounty['Election']['id'],
+                                'name' => $eArea,
+                        )))) {
+                            print_r($eCounty); exit();
+                        }
+                        $savedArea = $this->Election->read();
+                        $eAreaDbList[$eArea] = $savedArea['Election'];
+                    }
+                    if (isset($eAreaDbNames[$eArea])) {
+                        unset($eAreaDbNames[$eArea]);
+                    }
+
+                    $links = $this->Election->AreasElection->find('list', array(
+                        'conditions' => array('Election_id' => $eAreaDbList[$eArea]['id']),
+                        'fields' => array('Area_id', 'id'),
+                    ));
+                    foreach ($targetAreas AS $targetArea) {
+                        if (isset($links[$areaList[$targetArea]])) {
+                            unset($links[$areaList[$targetArea]]);
+                        } elseif (isset($areaList[$targetArea])) {
+                            $this->Election->AreasElection->create();
+                            $this->Election->AreasElection->save(array('AreasElection' => array(
+                                    'Election_id' => $eAreaDbList[$eArea]['id'],
+                                    'Area_id' => $areaList[$targetArea],
+                            )));
+                        } else {
+                            echo "{$targetArea}\n";
+                        }
+                    }
+                    foreach ($links AS $linkId) {
+                        $this->Election->AreasElection->delete($linkId);
+                    }
+                }
+                if (!empty($eAreaDbNames)) {
+                    foreach ($eAreaDbNames AS $eAreaDbName) {
+                        $this->Election->delete($eAreaDbList[$eAreaDbName]['id']);
+                    }
+                }
+            }
+        }
     }
 
     public function elections() {
