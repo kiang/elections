@@ -63,6 +63,7 @@ class AreasController extends AppController {
                     ),
                 ),
                 'conditions' => array(
+                    'Candidate.active_id IS NULL',
                     'CandidatesElection.Election_id' => $election['AreasElection']['Election_id'],
                 ),
             ));
