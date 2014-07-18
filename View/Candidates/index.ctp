@@ -47,7 +47,7 @@
                     if (empty($candidate['Candidate']['image'])) {
                         echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));
                     } else {
-                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; border: 0px;'));
+                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; height: 100px; border: 0px;'));
                     }
                     ?>
                     <br /><?php echo $candidate['Candidate']['name']; ?>
