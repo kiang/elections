@@ -16,7 +16,14 @@
                 echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default pull-right'));
             }
             echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default pull-right'));
-            ?></h1><hr />
+            ?></h1>
+        行政區：
+        <?php
+        foreach ($this->data['Election'][0]['Area'] AS $area) {
+            echo $this->Html->link($area['name'], '/areas/index/' . $area['id'], array('class' => 'btn btn-default'));
+        }
+        ?>
+        <hr />
     </div>
     <div class="row">
         <div class="col-md-5">
@@ -72,10 +79,10 @@
             $pos = strrpos($line, 'http');
             $title = trim(substr($line, 0, $pos));
             $url = trim(substr($line, $pos));
-            if(empty($title)) {
+            if (empty($title)) {
                 $title = $url;
             }
-            if(!empty($url)) {
+            if (!empty($url)) {
                 echo $this->Html->link($title, $url, array('target' => '_blank')) . '<br />';
             }
         }

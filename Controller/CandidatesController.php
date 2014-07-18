@@ -151,7 +151,14 @@ class CandidatesController extends AppController {
                 'Candidate.id' => $id,
                 'Candidate.active_id IS NULL',
             ),
-            'contain' => array('Election'),
+            'contain' => array(
+                'Election' => array(
+                    'fields' => array('Election.id'),
+                    'Area' => array(
+                        'fields' => array('Area.id', 'Area.name'),
+                    ),
+                )
+            ),
         ));
         if (!empty($this->data)) {
             $parents = $this->Candidate->Election->getPath($this->data['Election'][0]['id']);
