@@ -32,7 +32,7 @@
             'label' => false,
         ));
         echo '<div class="btn-group">';
-        echo $this->Form->submit('搜尋', array('div' => false, 'class' => 'btn btn-primary'));
+        echo $this->Form->submit('搜尋(人名)', array('div' => false, 'class' => 'btn btn-primary'));
         echo $this->Form->button('清除', array('div' => false, 'class' => 'btn btn-default btn-clean-form'));
         echo '</div>';
         echo $this->Form->end();
