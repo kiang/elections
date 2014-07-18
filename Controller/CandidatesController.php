@@ -45,11 +45,15 @@ class CandidatesController extends AppController {
             ),
         );
         $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
-        $this->paginate['Candidate']['limit'] = 20;
-        $this->paginate['Candidate']['fields'] = array('Candidate.*', 'CandidatesElection.Election_id');
+        $this->paginate['Candidate']['limit'] = 30;
+        $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'CandidatesElection.Election_id');
         $items = $this->paginate($this->Candidate, $scope);
-        foreach ($items AS $k => $v) {
-            $items[$k]['Election'] = $this->Candidate->Election->getPath($v['CandidatesElection']['Election_id']);
+        $electionStack = array();
+        foreach ($items AS $k => $item) {
+            if (!isset($electionStack[$item['CandidatesElection']['Election_id']])) {
+                $electionStack[$item['CandidatesElection']['Election_id']] = $this->Candidate->Election->getPath($item['CandidatesElection']['Election_id'], array('id', 'name'));
+            }
+            $items[$k]['Election'] = $electionStack[$item['CandidatesElection']['Election_id']];
         }
         $parents = $this->Candidate->Election->getPath($electionId);
         $c = array();

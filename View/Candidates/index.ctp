@@ -25,53 +25,41 @@
     <div class="col-md-12"><?php echo $this->Html->getCrumbs(); ?></div>
     <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
     <div class="col-md-4"><?php
-    echo $this->Form->create('Candidate', array('url' => $url, 'class' => 'form-inline'));
-    echo $this->Form->input('keyword', array(
-        'div' => 'form-group',
-        'value' => $keyword,
-        'label' => false,
-    ));
-    echo '<div class="btn-group">';
-    echo $this->Form->submit('搜尋', array('div' => false, 'class' => 'btn btn-primary'));
-    echo $this->Form->button('清除', array('div' => false, 'class' => 'btn btn-default btn-clean-form'));
-    echo '</div>';
-    echo $this->Form->end();
-    ?></div>
-    <table class="table table-bordered" id="CandidatesAdminIndexTable">
-        <thead>
-            <tr>
-                <th>候選人</th>
-                <th>選區</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $i = 0;
-            foreach ($items as $item) {
-                $class = null;
-                if ($i++ % 2 == 0) {
-                    $class = ' class="altrow"';
-                }
-                ?>
-                <tr<?php echo $class; ?>>
-                    <td><?php
-                        echo $this->Html->link($item['Candidate']['name'], array('action' => 'view', $item['Candidate']['id']));
-                        ?></td>
-                    <td><?php
-                        $c = array();
-                        foreach ($item['Election'] AS $e) {
-                            if ($e['Election']['rght'] - $e['Election']['lft'] != 1) {
-                                $c[] = $this->Html->link($e['Election']['name'], array('controller' => 'elections', 'action' => 'index', $e['Election']['id']));
-                            } else {
-                                $c[] = $this->Html->link($e['Election']['name'], array('action' => 'index', $e['Election']['id']));
-                            }
-                        }
-                        echo implode(' > ', $c);
-                        ?></td>
-                </tr>
-            <?php } // End of foreach ($items as $item) {   ?>
-        </tbody>
-    </table>
+        echo $this->Form->create('Candidate', array('url' => $url, 'class' => 'form-inline'));
+        echo $this->Form->input('keyword', array(
+            'div' => 'form-group',
+            'value' => $keyword,
+            'label' => false,
+        ));
+        echo '<div class="btn-group">';
+        echo $this->Form->submit('搜尋', array('div' => false, 'class' => 'btn btn-primary'));
+        echo $this->Form->button('清除', array('div' => false, 'class' => 'btn btn-default btn-clean-form'));
+        echo '</div>';
+        echo $this->Form->end();
+        ?></div>
+    <div class="clearfix"></div>
+    <?php
+    if (!empty($items)) {
+        foreach ($items AS $candidate) {
+            ?><div class="col-md-2 btn btn-default" style="text-align: center;">
+                <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+                    <?php
+                    if (empty($candidate['Candidate']['image'])) {
+                        echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));
+                    } else {
+                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; border: 0px;'));
+                    }
+                    ?>
+                    <br /><?php echo $candidate['Candidate']['name']; ?>
+                    <br /><?php echo $candidate['Election'][1]['Election']['name']; ?>
+                </a>
+            </div><?php
+        }
+    } else {
+        echo ' ~ 目前沒有候選人資料 ~ ';
+    }
+    ?>
+    <div class="clearfix"></div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
     <script>
         $(function() {
