@@ -270,6 +270,9 @@ class CandidatesController extends AppController {
             'Candidate.is_reviewed' => '0',
         );
         $this->paginate['Candidate']['limit'] = 20;
+        $this->paginate['Candidate']['order'] = array(
+            'Candidate.created' => 'ASC',
+        );
         $items = $this->paginate($this->Candidate, $scope);
         $this->set('items', $items);
     }

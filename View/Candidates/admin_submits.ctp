@@ -10,6 +10,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Created</th>
                 <th class="actions"><?php echo __('Action', true); ?></th>
             </tr>
         </thead>
@@ -25,6 +26,9 @@
                 <tr<?php echo $class; ?>>
                     <td><?php
                         echo $item['Candidate']['name'];
+                        ?></td>
+                    <td><?php
+                        echo $item['Candidate']['created'];
                         ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link('審核', array('action' => 'review', $item['Candidate']['id'])); ?>
