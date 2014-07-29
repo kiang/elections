@@ -14,7 +14,129 @@ class ImportShell extends AppShell {
     public function main() {
         $this->areas();
         //$this->elections();
-        $this->fix2014();
+        //$this->fix2014();
+        $this->reps();
+    }
+
+    public function reps() {
+        $rNode = $this->Election->find('first', array(
+            'conditions' => array('name' => '鄉鎮市長'),
+        ));
+        $cNodes = $this->Election->find('list', array(
+            'conditions' => array(
+                'parent_id' => $rNode['Election']['id'],
+                'name' => array('基隆市', '新竹市', '嘉義市'),
+            ),
+            'fields' => array('id', 'id'),
+        ));
+        foreach ($cNodes AS $cNodeId) {
+            $this->Election->AreasElection->deleteAll(array(
+                'Election_id' => $cNodeId,
+            ));
+            $this->Election->delete($cNodeId);
+        }
+        $root = $this->Election->find('first', array(
+            'conditions' => array('name' => '鄉鎮市民代表'),
+        ));
+        $counties = $this->Election->find('list', array(
+            'conditions' => array(
+                'parent_id' => $root['Election']['id'],
+            ),
+            'fields' => array('name', 'id'),
+        ));
+        $towns = $townAreas = array();
+        foreach ($counties AS $cName => $cId) {
+            if (in_array($cName, array('基隆市', '新竹市', '嘉義市'))) {
+                $this->Election->deleteAll(array('parent_id' => $cId));
+                $this->Election->delete($cId);
+                continue;
+            }
+            $towns[$cName] = $this->Election->find('list', array(
+                'conditions' => array(
+                    'parent_id' => $cId,
+                ),
+                'fields' => array('name', 'id'),
+            ));
+            continue;
+            $this->Election->AreasElection->deleteAll(array(
+                'Election_id' => $towns[$cName],
+            ));
+        }
+        foreach ($this->areas['counties'] AS $c) {
+            if (in_array($c['name'], array('基隆市', '新竹市', '嘉義市'))) {
+                continue;
+            }
+            $townAreas[$c['name']] = array();
+            foreach ($this->areas['towns'][$c['id']] AS $t) {
+                $townAreas[$c['name']][$t['name']] = array();
+                $townAreas[$c['name']][$t['name']]['id'] = $t['id'];
+                $townAreas[$c['name']][$t['name']]['cunlis'] = array();
+                foreach ($this->areas['cunlis'][$t['id']] AS $l) {
+                    $townAreas[$c['name']][$t['name']]['cunlis'][$l['name']] = $l['id'];
+                }
+            }
+        }
+
+        $repsContent = file_get_contents(__DIR__ . '/data/reps.txt');
+        $blocks = explode("\n\n", $repsContent);
+        $checkStack = array();
+        foreach ($blocks AS $block) {
+            $lines = explode("\n", $block);
+            $firstLine = false;
+            $county = '';
+            foreach ($lines AS $line) {
+                $line = trim($line);
+                if (empty($line)) {
+                    continue;
+                }
+                $cols = explode('|', $line);
+                if (count($cols) !== 2) {
+                    print_r($cols);
+                    exit();
+                }
+                if (false === $firstLine) {
+                    $county = $cols[0];
+                    $town = $cols[1];
+                    $firstLine = true;
+                } else {
+                    $area = $cols[0];
+                    $maps = explode('、', $cols[1]);
+                    $data = array(
+                        'parent_id' => $towns[$county][$town],
+                        'name' => $area,
+                    );
+                    $pElectionId = $this->Election->field('id', $data);
+                    if (empty($pElectionId)) {
+                        $this->Election->create();
+                        $this->Election->save(array('Election' => $data));
+                        $pElectionId = $this->Election->getInsertID();
+                    }
+                    if (count($maps) === 1) {
+                        if (isset($townAreas[$county][$town])) {
+                            $this->Election->AreasElection->create();
+                            $this->Election->AreasElection->save(array(
+                                'AreasElection' => array(
+                                    'Area_id' => $townAreas[$county][$town]['id'],
+                                    'Election_id' => $pElectionId,
+                                )
+                            ));
+                        }
+                    } else {
+                        foreach ($maps AS $item) {
+                            if (isset($townAreas[$county][$town]['cunlis'][$item])) {
+                                $this->Election->AreasElection->create();
+                                $this->Election->AreasElection->save(array(
+                                    'AreasElection' => array(
+                                        'Area_id' => $townAreas[$county][$town]['cunlis'][$item],
+                                        'Election_id' => $pElectionId,
+                                    )
+                                ));
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public function fix2014() {
@@ -90,11 +212,12 @@ class ImportShell extends AppShell {
                     if (!isset($eAreaDbList[$eArea])) {
                         echo "{$eArea}\n";
                         $this->Election->create();
-                        if(!$this->Election->save(array('Election' => array(
-                                'parent_id' => $eCounty['Election']['id'],
-                                'name' => $eArea,
-                        )))) {
-                            print_r($eCounty); exit();
+                        if (!$this->Election->save(array('Election' => array(
+                                        'parent_id' => $eCounty['Election']['id'],
+                                        'name' => $eArea,
+                            )))) {
+                            print_r($eCounty);
+                            exit();
                         }
                         $savedArea = $this->Election->read();
                         $eAreaDbList[$eArea] = $savedArea['Election'];
