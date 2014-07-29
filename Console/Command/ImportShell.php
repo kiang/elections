@@ -111,7 +111,7 @@ class ImportShell extends AppShell {
                         $this->Election->save(array('Election' => $data));
                         $pElectionId = $this->Election->getInsertID();
                     }
-                    if (count($maps) === 1) {
+                    if ((count($maps) === 1) && ($maps[0] === $town)) {
                         if (isset($townAreas[$county][$town])) {
                             $this->Election->AreasElection->create();
                             $this->Election->AreasElection->save(array(
