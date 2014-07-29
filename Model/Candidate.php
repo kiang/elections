@@ -23,7 +23,7 @@ class Candidate extends AppModel {
     );
 
     public function beforeSave($options = array()) {
-        if (isset($this->data['Candidate']['image'])) {
+        if (isset($this->data['Candidate']['image']) && is_array($this->data['Candidate']['image'])) {
             if (!empty($this->data['Candidate']['image']['size'])) {
                 $im = new Imagick($this->data['Candidate']['image']['tmp_name']);
                 $im->resizeImage(512, 512, Imagick::FILTER_CATROM, 1, true);
