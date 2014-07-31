@@ -1,27 +1,32 @@
-<div id="AreasAdminIndex">
-    <h3>行政區</h3>
-    <?php
-    if (!empty($parents)) {
-        foreach ($parents AS $parent) {
-            $this->Html->addCrumb($parent['Area']['name'], array('action' => 'index', $parent['Area']['id']));
-        }
-        echo $this->Html->getCrumbs();
+<?php
+if (!empty($parents)) {
+    foreach ($parents AS $parent) {
+        $this->Html->addCrumb($parent['Area']['name'], array('action' => 'index', $parent['Area']['id']));
     }
-    ?>
+}
+?>
+
+<div id="AreasAdminIndex">
+    <h3><?php echo $this->Html->link('行政區', '/areas', array('class' => '')); ?></h3>
+    <hr>
+
     <div class="clearfix"></div>
     <div class="row">
-        <div class="col-md-2">
-            <ul class="nav nav-pills nav-stacked">
-                <?php foreach ($items as $item): ?>
-                    <li>
-                    <?php echo $this->Html->link($item['Area']['name'], array('action' => 'index', $item['Area']['id']), array('class' => ''));?>
-                    </li>
-                <?php endforeach ?>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <ul class="nav nav-pills">
+                    <?php foreach ($items as $item): ?>
+                        <li>
+                        <?php echo $this->Html->link($item['Area']['name'], array('action' => 'index', $item['Area']['id']), array('class' => ''));?>
+                        </li>
+                    <?php endforeach ?>
 
-            </ul>
+                </ul>
+
+            </div>
 
         </div>
-        <div class="col-md-10">
+        <div class="col-md-12">
 
             <?php
             if (!empty($elections)) {
@@ -36,9 +41,12 @@
                         $cLinkId = $e['Election']['id'];
                         $c[] = $e['Election']['name'];
                     }
-                    echo '<h3>' . $this->Html->link(implode(' > ', $c), '/candidates/index/' . $cLinkId);
+
+                    echo '<hr>';
+
+                    echo '<h4>' . $this->Html->link(implode(' > ', $c), '/candidates/index/' . $cLinkId);
                     echo $this->Html->link("新增 {$eType} 候選人", array('controller' => 'candidates', 'action' => 'add', $election['AreasElection']['Election_id']), array('class' => 'btn btn-primary pull-right col-md-2'));
-                    echo '</h3>';
+                    echo '</h4>';
                     if (!empty($election['Candidate'])) {
                         foreach ($election['Candidate'] AS $candidate) {
                             ?><div class="col-md-2" style="text-align: center;">

@@ -3,6 +3,7 @@
 if (!isset($url)) {
     $url = array();
 }
+
 echo $this->Paginator->first('<<', array('url' => $url));
 echo ' &nbsp; ' . $this->Paginator->prev('<', array('url' => $url));
 echo ' &nbsp; ' . $this->Paginator->numbers(array('url' => $url));

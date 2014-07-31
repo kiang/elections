@@ -38,9 +38,9 @@
         <div class="container">
             <div id="header">
 
-                <h1><?php echo $this->Html->link('選舉黃頁', '/'); ?></h1>
-
-
+                <div class="breadcrumb">
+                    <?php echo $this->Html->getCrumbs() ?>
+                </div>
             </div>
 
             <div id="content">
@@ -69,7 +69,7 @@
                 <div id="viewContent"><?php echo $content_for_layout; ?></div>
             </div>
             <div id="footer" class="container">
-                --<br />
+                <hr />
                 <?php echo $this->Html->link('江明宗 . 政 . 路過', 'http://k.olc.tw/', array('target' => '_blank')); ?>
                 / <?php echo $this->Html->link('關於選舉黃頁', '/pages/about'); ?>
                 <?php if (!$this->Session->read('Auth.User.id')): ?>
