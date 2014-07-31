@@ -30,6 +30,7 @@
             'div' => 'form-group',
             'value' => $keyword,
             'label' => false,
+            'class' => 'form-control'
         ));
         echo '<div class="btn-group">';
         echo $this->Form->submit('搜尋(人名)', array('div' => false, 'class' => 'btn btn-primary'));
@@ -41,8 +42,8 @@
     <?php
     if (!empty($items)) {
         foreach ($items AS $candidate) {
-            ?><div class="col-md-2 btn btn-default" style="text-align: center;">
-                <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+            ?><div class="col-md-2">
+                <a class="thumbnail text-center" href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
                     <?php
                     if (empty($candidate['Candidate']['image'])) {
                         echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));

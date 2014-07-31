@@ -14,6 +14,7 @@
         echo $this->Html->css('jquery-ui');
         echo $this->Html->css('bootstrap');
         echo $this->Html->css('default');
+        echo $this->Html->css('blocks');
         echo $this->Html->script('bootstrap.min');
         echo $this->Html->script('jquery');
         echo $this->Html->script('jquery-ui');
@@ -22,15 +23,31 @@
         ?>
     </head>
     <body>
+        <nav class="navbar navbar-static-top navbar-inverse">
+            <div class="navbar-inner">
+            <div class="container">
+                <?php echo $this->Html->link('選舉黃頁', '/', array('class' => 'navbar-brand')); ?>
+                <ul class="nav navbar-nav">
+                    <li><?php echo $this->Html->link('行政區', '/areas', array('class' => '')); ?></li>
+                    <li><?php echo $this->Html->link('選舉區', '/elections', array('class' => '')); ?></li>
+                    <li><?php echo $this->Html->link('候選人', '/candidates', array('class' => '')); ?></li>
+                </ul>
+            </div>
+            </div>
+        </nav>
         <div class="container">
             <div id="header">
-                <h1><?php echo $this->Html->link('選舉黃頁', '/'); ?></h1>
+
+                <div class="breadcrumb">
+                    <?php echo $this->Html->getCrumbs() ?>
+                </div>
             </div>
+
             <div id="content">
                 <div class="btn-group">
-                    <?php echo $this->Html->link('行政區', '/areas', array('class' => 'btn')); ?>
-                    <?php echo $this->Html->link('選舉區', '/elections', array('class' => 'btn')); ?>
-                    <?php echo $this->Html->link('候選人', '/candidates', array('class' => 'btn')); ?>
+
+
+
                     <?php if ($this->Session->read('Auth.User.id')): ?>
                         <?php echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Areas', '/admin/areas', array('class' => 'btn')); ?>
@@ -52,7 +69,7 @@
                 <div id="viewContent"><?php echo $content_for_layout; ?></div>
             </div>
             <div id="footer" class="container">
-                --<br />
+                <hr />
                 <?php echo $this->Html->link('江明宗 . 政 . 路過', 'http://k.olc.tw/', array('target' => '_blank')); ?>
                 / <?php echo $this->Html->link('關於選舉黃頁', '/pages/about'); ?>
                 <?php if (!$this->Session->read('Auth.User.id')): ?>
