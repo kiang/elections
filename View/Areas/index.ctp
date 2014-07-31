@@ -7,11 +7,19 @@
         }
         echo $this->Html->getCrumbs();
     }
-    echo '<div class="clearfix"></div>';
-    foreach ($items as $item) {
-        echo $this->Html->link($item['Area']['name'], array('action' => 'index', $item['Area']['id']), array('class' => 'btn btn-default'));
-    }
-    echo '<hr />';
+    ?>
+    <div class="clearfix"></div>
+
+    <ul class="nav nav-pills">
+        <?php foreach ($items as $item): ?>
+            <li>
+            <?php echo $this->Html->link($item['Area']['name'], array('action' => 'index', $item['Area']['id']), array('class' => ''));?>
+            </li>
+        <?php endforeach ?>
+
+    </ul>
+    <hr />
+    <?php
     if (!empty($elections)) {
         foreach ($elections AS $election) {
             $c = array();
