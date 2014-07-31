@@ -22,15 +22,31 @@
         ?>
     </head>
     <body>
+        <nav class="navbar navbar-static-top navbar-inverse">
+            <div class="navbar-inner">
+            <div class="container">
+                <?php echo $this->Html->link('選舉黃頁', '/', array('class' => 'navbar-brand')); ?>
+                <ul class="nav navbar-nav">
+                    <li><?php echo $this->Html->link('行政區', '/areas', array('class' => '')); ?></li>
+                    <li><?php echo $this->Html->link('選舉區', '/elections', array('class' => '')); ?></li>
+                    <li><?php echo $this->Html->link('候選人', '/candidates', array('class' => '')); ?></li>
+                </ul>
+            </div>
+            </div>
+        </nav>
         <div class="container">
             <div id="header">
+
                 <h1><?php echo $this->Html->link('選舉黃頁', '/'); ?></h1>
+
+
             </div>
+
             <div id="content">
                 <div class="btn-group">
-                    <?php echo $this->Html->link('行政區', '/areas', array('class' => 'btn')); ?>
-                    <?php echo $this->Html->link('選舉區', '/elections', array('class' => 'btn')); ?>
-                    <?php echo $this->Html->link('候選人', '/candidates', array('class' => 'btn')); ?>
+
+
+
                     <?php if ($this->Session->read('Auth.User.id')): ?>
                         <?php echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Areas', '/admin/areas', array('class' => 'btn')); ?>
