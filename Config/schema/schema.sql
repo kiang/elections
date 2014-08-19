@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.37, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.38, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: kiang_elections
 -- ------------------------------------------------------
--- Server version	5.5.37-0ubuntu0.14.04.1
+-- Server version	5.5.38-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -50,6 +50,7 @@ CREATE TABLE `areas` (
   `is_area` tinyint(1) DEFAULT NULL,
   `ivid` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `code` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `polygons` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `code` (`code`),
   KEY `ivid` (`ivid`),
@@ -233,4 +234,4 @@ CREATE TABLE `members` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-17  2:51:59
+-- Dump completed on 2014-08-20  2:25:25
