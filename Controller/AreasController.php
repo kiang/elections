@@ -11,17 +11,24 @@ class AreasController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'map');
+            $this->Auth->allow('index', 'map', 'json');
         }
     }
-    
-    public function map($areaId = '') {
-        if(empty($areaId)) {
+
+    public function json($areaId = '') {
+        if (empty($areaId)) {
             $areaId = $this->Area->field('id', array('name' => '2014'));
         }
         $this->set('areas', $this->Area->find('all', array(
-            'conditions' => array('parent_id' => $areaId),
+                    'conditions' => array('parent_id' => $areaId),
         )));
+    }
+
+    public function map($areaId = '') {
+        if (empty($areaId)) {
+            $areaId = $this->Area->field('id', array('name' => '2014'));
+        }
+        $this->set('areaId', $areaId);
     }
 
     function index($parentId = '') {

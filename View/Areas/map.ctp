@@ -1,14 +1,3 @@
-<?php
-$geoJson = new stdClass();
-$geoJson->type = 'FeatureCollection';
-$geoJson->features = array();
-foreach ($areas AS $area) {
-    $f = new stdClass();
-    $f->type = 'Feature';
-    $f->geometry = json_decode($area['Area']['polygons']);
-    $geoJson->features[] = $f;
-}
-?>
 <div id="map-canvas" style="width: 800px; height: 600px;"></div>
 <script>
     function initialize() {
@@ -19,7 +8,10 @@ foreach ($areas AS $area) {
 
         var map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
-        map.data.addGeoJson(<?php echo json_encode($geoJson); ?>);
+        $.getJSON('<?php echo $this->Html->url('/areas/json/' . $areaId); ?>', function(data) {
+            map.data.addGeoJson(data);
+        });
+
     }
 
     function zoom(map) {
