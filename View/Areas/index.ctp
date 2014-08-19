@@ -17,7 +17,7 @@ if (!empty($parents)) {
                 <ul class="nav nav-pills">
                     <?php foreach ($items as $item): ?>
                         <li>
-                        <?php echo $this->Html->link($item['Area']['name'], array('action' => $areaMethod, $item['Area']['id']), array('class' => ''));?>
+                        <?php echo $this->Html->link($item['Area']['name'], array('action' => $areaMethod, $item['Area']['id']), array('class' => 'code' . $item['Area']['code']));?>
                         </li>
                     <?php endforeach ?>
 

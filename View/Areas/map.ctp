@@ -6,7 +6,6 @@ if (!empty($parents)) {
 }
 ?>
 <div id="map-canvas" style="width: 100%; height: 400px;"></div>
-選擇的項目： <span class="mapHoverName"></span>
 <div class="clearfix"></div>
 <div id="mapAreaIndex"></div>
 <script>
@@ -20,6 +19,7 @@ if (!empty($parents)) {
                 mapOptions);
         $.getJSON('<?php echo $this->Html->url('/areas/json/' . $areaId); ?>', function(data) {
             map.data.addGeoJson(data);
+            zoom(map);
         });
         $('div#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/' . $areaId); ?>/map');
         map.data.setStyle({
@@ -36,22 +36,43 @@ if (!empty($parents)) {
                 $.get('<?php echo $this->Html->url('/areas/breadcrumb/'); ?>' + selectedId, function(block) {
                     $('#header .breadcrumb').html(block);
                 });
+                zoom(map);
             });
             $('div#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/'); ?>' + selectedId + '/map');
         });
         map.data.addListener('mouseover', function(event) {
+            $('a.code' + event.feature.getProperty('code')).addClass('navActive');
             map.data.overrideStyle(event.feature, {
                 fillColor: '#009900'
             });
-            $('span.mapHoverName').html(event.feature.getProperty('name'));
         });
         map.data.addListener('mouseout', function(event) {
+            $('a.code' + event.feature.getProperty('code')).removeClass('navActive');
             map.data.overrideStyle(event.feature, {
                 fillColor: '#ff99ff'
             });
-            $('span.mapHoverName').html('');
         });
 
+    }
+
+    function zoom(map) {
+        var bounds = new google.maps.LatLngBounds();
+        map.data.forEach(function(feature) {
+            processPoints(feature.getGeometry(), bounds.extend, bounds);
+        });
+        map.fitBounds(bounds);
+    }
+
+    function processPoints(geometry, callback, thisArg) {
+        if (geometry instanceof google.maps.LatLng) {
+            callback.call(thisArg, geometry);
+        } else if (geometry instanceof google.maps.Data.Point) {
+            callback.call(thisArg, geometry.get());
+        } else if(geometry !== null) {
+            geometry.getArray().forEach(function(g) {
+                processPoints(g, callback, thisArg);
+            });
+        }
     }
 
     function loadScript() {
