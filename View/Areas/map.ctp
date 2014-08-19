@@ -5,7 +5,8 @@ if (!empty($parents)) {
     }
 }
 ?>
-<div id="map-canvas" style="width: 800px; height: 600px;"></div>
+<div id="map-canvas" style="width: 100%; height: 400px;"></div>
+選擇的項目： <span class="mapHoverName"></span>
 <script>
     function initialize() {
         var mapOptions = {
@@ -23,8 +24,30 @@ if (!empty($parents)) {
             strokeWeight: 1
         });
         map.data.addListener('click', function(event) {
-            location.href = '<?php echo $this->Html->url('/areas/map/'); ?>' + event.feature.getProperty('id');
+            var selectedId = event.feature.getProperty('id');
+            map.data.forEach(function(f) {
+                map.data.remove(f);
+            });
+            $.getJSON('<?php echo $this->Html->url('/areas/json/'); ?>' + selectedId, function(data) {
+                map.data.addGeoJson(data);
+                $.get('<?php echo $this->Html->url('/areas/breadcrumb/'); ?>' + selectedId, function(block) {
+                    $('#header .breadcrumb').html(block);
+                });
+            });
         });
+        map.data.addListener('mouseover', function(event) {
+            map.data.overrideStyle(event.feature, {
+                fillColor: '#009900'
+            });
+            $('span.mapHoverName').html(event.feature.getProperty('name'));
+        });
+        map.data.addListener('mouseout', function(event) {
+            map.data.overrideStyle(event.feature, {
+                fillColor: '#ff99ff'
+            });
+            $('span.mapHoverName').html('');
+        });
+
     }
 
     function loadScript() {

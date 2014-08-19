@@ -11,17 +11,38 @@ class AreasController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'map', 'json');
+            $this->Auth->allow('index', 'map', 'json', 'breadcrumb');
+        }
+    }
+
+    public function breadcrumb($parentId = '') {
+        if (!empty($parentId)) {
+            $parents = $this->Area->getPath($parentId, array('id', 'name'));
+            $this->set('parents', $parents);
         }
     }
 
     public function json($areaId = '') {
-        if (empty($areaId)) {
-            $areaId = $this->Area->field('id', array('name' => '2014'));
+        if (!empty($areaId)) {
+            $area = $this->Area->find('first', array(
+                'conditions' => array('id' => $areaId)
+            ));
         }
-        $this->set('areas', $this->Area->find('all', array(
-                    'conditions' => array('parent_id' => $areaId),
-        )));
+        if (empty($area)) {
+            $area = $this->Area->find('first', array(
+                'conditions' => array('name' => '2014')
+            ));
+        }
+        if ($area['Area']['rght'] - $area['Area']['lft'] === 1) {
+            $areas = $this->Area->find('all', array(
+                'conditions' => array('parent_id' => $area['Area']['parent_id']),
+            ));
+        } else {
+            $areas = $this->Area->find('all', array(
+                'conditions' => array('parent_id' => $area['Area']['id']),
+            ));
+        }
+        $this->set('areas', $areas);
     }
 
     public function map($parentId = '') {
