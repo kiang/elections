@@ -24,11 +24,13 @@ class AreasController extends AppController {
         )));
     }
 
-    public function map($areaId = '') {
-        if (empty($areaId)) {
-            $areaId = $this->Area->field('id', array('name' => '2014'));
+    public function map($parentId = '') {
+        if (empty($parentId)) {
+            $parentId = $this->Area->field('id', array('name' => '2014'));
         }
-        $this->set('areaId', $areaId);
+        $parents = $this->Area->getPath($parentId, array('id', 'name'));
+        $this->set('areaId', $parentId);
+        $this->set('parents', $parents);
     }
 
     function index($parentId = '') {

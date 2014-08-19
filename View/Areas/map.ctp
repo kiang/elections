@@ -1,9 +1,16 @@
+<?php
+if (!empty($parents)) {
+    foreach ($parents AS $parent) {
+        $this->Html->addCrumb($parent['Area']['name'], array('action' => 'map', $parent['Area']['id']));
+    }
+}
+?>
 <div id="map-canvas" style="width: 800px; height: 600px;"></div>
 <script>
     function initialize() {
         var mapOptions = {
-            center: new google.maps.LatLng(0, 0),
-            zoom: 6
+            center: new google.maps.LatLng(23.958388030344, 120.70910282983),
+            zoom: 7
         };
 
         var map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -11,27 +18,13 @@
         $.getJSON('<?php echo $this->Html->url('/areas/json/' . $areaId); ?>', function(data) {
             map.data.addGeoJson(data);
         });
-
-    }
-
-    function zoom(map) {
-        var bounds = new google.maps.LatLngBounds();
-        map.data.forEach(function(feature) {
-            processPoints(feature.getGeometry(), bounds.extend, bounds);
+        map.data.setStyle({
+            fillColor: '#ff99ff',
+            strokeWeight: 1
         });
-        map.fitBounds(bounds);
-    }
-
-    function processPoints(geometry, callback, thisArg) {
-        if (geometry instanceof google.maps.LatLng) {
-            callback.call(thisArg, geometry);
-        } else if (geometry instanceof google.maps.Data.Point) {
-            callback.call(thisArg, geometry.get());
-        } else {
-            $.foreach(geometry, function(g) {
-                processPoints(g, callback, thisArg);
-            });
-        }
+        map.data.addListener('click', function(event) {
+            location.href = '<?php echo $this->Html->url('/areas/map/'); ?>' + event.feature.getProperty('id');
+        });
     }
 
     function loadScript() {
