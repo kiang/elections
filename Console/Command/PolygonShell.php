@@ -8,72 +8,61 @@ class PolygonShell extends AppShell {
     public $uses = array('Area');
 
     public function main() {
+        $files = array(
+            'twcounty2010.3.json',
+            'twtown2010.3.json',
+            'twvillage2010.3.json',
+        );
         $rootNode = $this->Area->find('first', array(
             'conditions' => array(
                 'name' => '2014'
             ),
         ));
-        $nodes = $this->Area->find('threaded', array(
-            'conditions' => array(
-                'lft >' => $rootNode['Area']['lft'],
-                'rght <' => $rootNode['Area']['rght'],
-            ),
-        ));
-        foreach ($nodes AS $countyNode) {
-            $countyPolygon = false;
-            foreach ($countyNode['children'] AS $townNode) {
-                $townPolygon = false;
-
-                $cunliCodes = array();
-                foreach ($townNode['children'] AS $cunliNode) {
-                    $cunliCodes[$cunliNode['Area']['code']] = $cunliNode['Area']['id'];
-                }
-
-                $topoJsonFile = TMP . "json/{$countyNode['Area']['code']}_{$townNode['Area']['code']}.json";
-                if (!file_exists($topoJsonFile)) {
-                    $jsonContent = file_get_contents("http://kiang.github.io/cunli/json/{$countyNode['Area']['code']}_{$townNode['Area']['code']}.json");
-                    if (empty($jsonContent)) {
-                        continue;
-                    }
-                    file_put_contents($topoJsonFile, $jsonContent);
-                }
-                $geoJson = GeoTopoJSON::toGeoJSONs(file_get_contents($topoJsonFile));
-                foreach ($geoJson['layer1']->features AS $feature) {
-                    $cunliPolygon = geoPHP::load(json_encode($feature), 'json');
-                    if (false === $townPolygon) {
-                        $townPolygon = $cunliPolygon;
-                    } else {
-                        try {
-                            $townPolygon = $townPolygon->union($cunliPolygon);
-                        } catch (Exception $e) {
-                            
-                        }
-                    }
-                    if (isset($cunliCodes[$feature->properties->V_ID])) {
+        foreach ($files AS $file) {
+            $jsonFile = TMP . "json/{$file}";
+            if (!file_exists($jsonFile)) {
+                file_put_contents($jsonFile, file_get_contents('https://github.com/ronnywang/twgeojson/raw/master/' . $file));
+            }
+            $json = json_decode(file_get_contents($jsonFile));
+            foreach ($json->features AS $feature) {
+                if (isset($feature->properties->v_id)) {
+                    $areaId = $this->Area->field('id', array(
+                        'code' => $feature->properties->v_id,
+                        'lft >' => $rootNode['Area']['lft'],
+                        'rght <' => $rootNode['Area']['rght'],
+                    ));
+                    if (!empty($areaId)) {
                         $this->Area->save(array('Area' => array(
-                                'id' => $cunliCodes[$feature->properties->V_ID],
-                                'polygons' => $cunliPolygon->out('json'),
+                                'id' => $areaId,
+                                'polygons' => json_encode($feature->geometry),
+                        )));
+                    }
+                } elseif (isset($feature->properties->town_id)) {
+                    $areaId = $this->Area->field('id', array(
+                        'code' => $feature->properties->town_id,
+                        'lft >' => $rootNode['Area']['lft'],
+                        'rght <' => $rootNode['Area']['rght'],
+                    ));
+                    if (!empty($areaId)) {
+                        $this->Area->save(array('Area' => array(
+                                'id' => $areaId,
+                                'polygons' => json_encode($feature->geometry),
+                        )));
+                    }
+                } else {
+                    $areaId = $this->Area->field('id', array(
+                        'code' => $feature->properties->county_id,
+                        'lft >' => $rootNode['Area']['lft'],
+                        'rght <' => $rootNode['Area']['rght'],
+                    ));
+                    if (!empty($areaId)) {
+                        $this->Area->save(array('Area' => array(
+                                'id' => $areaId,
+                                'polygons' => json_encode($feature->geometry),
                         )));
                     }
                 }
-                $this->Area->save(array('Area' => array(
-                        'id' => $townNode['Area']['id'],
-                        'polygons' => $townPolygon->out('json'),
-                )));
-                if (false === $countyPolygon) {
-                    $countyPolygon = $townPolygon;
-                } else {
-                    try {
-                        $countyPolygon = $countyPolygon->union($townPolygon);
-                    } catch (Exception $e) {
-                        
-                    }
-                }
             }
-            $this->Area->save(array('Area' => array(
-                    'id' => $countyNode['Area']['id'],
-                    'polygons' => $countyPolygon->out('json'),
-            )));
         }
     }
 
