@@ -11,8 +11,17 @@ class AreasController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index');
+            $this->Auth->allow('index', 'map');
         }
+    }
+    
+    public function map($areaId = '') {
+        if(empty($areaId)) {
+            $areaId = $this->Area->field('id', array('name' => '2014'));
+        }
+        $this->set('areas', $this->Area->find('all', array(
+            'conditions' => array('parent_id' => $areaId),
+        )));
     }
 
     function index($parentId = '') {

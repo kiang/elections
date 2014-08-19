@@ -15,9 +15,9 @@
         echo $this->Html->css('bootstrap');
         echo $this->Html->css('default');
         echo $this->Html->css('blocks');
-        echo $this->Html->script('bootstrap.min');
         echo $this->Html->script('jquery');
         echo $this->Html->script('jquery-ui');
+        echo $this->Html->script('bootstrap.min');
         echo $this->Html->script('olc');
         echo $scripts_for_layout;
         ?>
