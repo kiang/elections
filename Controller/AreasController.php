@@ -52,6 +52,8 @@ class AreasController extends AppController {
         $parents = $this->Area->getPath($parentId, array('id', 'name'));
         $this->set('areaId', $parentId);
         $this->set('parents', $parents);
+
+        $this->set('title_for_layout', implode(' > ', Set::extract('{n}.Area.name', $parents)) . '行政區 @ ');
     }
 
     function index($parentId = '', $areaMethod = 'index') {
