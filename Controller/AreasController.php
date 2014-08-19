@@ -54,7 +54,7 @@ class AreasController extends AppController {
         $this->set('parents', $parents);
     }
 
-    function index($parentId = '') {
+    function index($parentId = '', $areaMethod = 'index') {
         if (!empty($parentId)) {
             $parentId = $this->Area->field('id', array('id' => $parentId));
         } else {
@@ -121,6 +121,7 @@ class AreasController extends AppController {
         $this->set('parentId', $parentId);
         $this->set('parents', $parents);
         $this->set('elections', $elections);
+        $this->set('areaMethod', $areaMethod);
     }
 
     function admin_index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {

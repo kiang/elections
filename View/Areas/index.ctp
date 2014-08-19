@@ -7,7 +7,7 @@ if (!empty($parents)) {
 ?>
 
 <div id="AreasAdminIndex">
-    <h3><?php echo $this->Html->link('行政區', '/areas', array('class' => '')); ?></h3>
+    <h3><?php echo $this->Html->link('行政區', '/areas/' . $areaMethod, array('class' => '')); ?></h3>
     <hr>
 
     <div class="clearfix"></div>
@@ -17,7 +17,7 @@ if (!empty($parents)) {
                 <ul class="nav nav-pills">
                     <?php foreach ($items as $item): ?>
                         <li>
-                        <?php echo $this->Html->link($item['Area']['name'], array('action' => 'index', $item['Area']['id']), array('class' => ''));?>
+                        <?php echo $this->Html->link($item['Area']['name'], array('action' => $areaMethod, $item['Area']['id']), array('class' => ''));?>
                         </li>
                     <?php endforeach ?>
 

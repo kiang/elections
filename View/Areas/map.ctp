@@ -7,6 +7,8 @@ if (!empty($parents)) {
 ?>
 <div id="map-canvas" style="width: 100%; height: 400px;"></div>
 選擇的項目： <span class="mapHoverName"></span>
+<div class="clearfix"></div>
+<div id="mapAreaIndex"></div>
 <script>
     function initialize() {
         var mapOptions = {
@@ -19,6 +21,7 @@ if (!empty($parents)) {
         $.getJSON('<?php echo $this->Html->url('/areas/json/' . $areaId); ?>', function(data) {
             map.data.addGeoJson(data);
         });
+        $('div#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/' . $areaId); ?>/map');
         map.data.setStyle({
             fillColor: '#ff99ff',
             strokeWeight: 1
@@ -34,6 +37,7 @@ if (!empty($parents)) {
                     $('#header .breadcrumb').html(block);
                 });
             });
+            $('div#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/'); ?>' + selectedId + '/map');
         });
         map.data.addListener('mouseover', function(event) {
             map.data.overrideStyle(event.feature, {
