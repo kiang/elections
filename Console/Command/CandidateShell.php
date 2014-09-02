@@ -7,7 +7,101 @@ class CandidateShell extends AppShell {
     public function main() {
         //$this->villmast();
         //$this->suncy();
-        $this->moi();
+        $this->tsu();
+    }
+
+    public function tsu() {
+        $cachePath = TMP . 'tsu';
+        if (!file_exists($cachePath)) {
+            mkdir($cachePath, 0777, true);
+        }
+        if (!file_exists($cachePath . '/list')) {
+            file_put_contents($cachePath . '/list', file_get_contents('http://www.tsu.org.tw/?post_type=news&p=7208'));
+        }
+        $listContent = file_get_contents($cachePath . '/list');
+        $listContent = substr($listContent, strpos($listContent, '<table width="634" border="0" cellspacing="0" cellpadding="0">'));
+        $listContent = substr($listContent, 0, strpos($listContent, '</table>', strpos($listContent, '</table>') + 1));
+        $lines = explode('</tr>', $listContent);
+        foreach ($lines AS $line) {
+            $fields = explode('</td>', $line);
+            foreach ($fields AS $k => $v) {
+                $fields[$k] = trim(strip_tags(str_replace(array('<br />', "\n\n"), array("\n", "\n"), $v)));
+            }
+            if (!isset($fields[2]) || false === strpos($fields[2], '現職')) {
+                continue;
+            } else {
+                $area = substr($fields[1], 0, strpos($fields[1], '選區'));
+                if (!empty($area)) {
+                    $area = explode('第', $area);
+                    $area[0] = str_replace(array('台', '議員'), array('臺', ''), $area[0]);
+                    switch ($area[0]) {
+                        case '桃園市':
+                            $area[0] = '桃園縣';
+                            break;
+                    }
+                    $area[1] = str_pad($area[1], 2, '0', STR_PAD_LEFT);
+                    $e1 = $this->Candidate->Election->find('first', array(
+                        'conditions' => array(
+                            'parent_id' => array(
+                                '53c0202f-4f58-4419-8d07-5460acb5b862',
+                                '53c0202f-da0c-4e3e-bbb4-5460acb5b862',
+                            ),
+                            'name' => $area[0],
+                        ),
+                    ));
+                    if (!empty($e1)) {
+                        $e2 = $this->Candidate->Election->find('first', array(
+                            'conditions' => array(
+                                'parent_id' => $e1['Election']['id'],
+                                'name LIKE' => '第' . $area[1] . '%',
+                            ),
+                        ));
+                        if (!empty($e2)) {
+                            $fields[2] = explode('臉書：', $fields[2]);
+                            if ($this->Candidate->find('count', array(
+                                        'conditions' => array(
+                                            'name' => $fields[0],
+                                            'OR' => array(
+                                                'active_id IS NULL',
+                                                'active_id' => 0,
+                                            ),
+                                        ),
+                                    )) > 1) {
+                                //print_r($fields);
+                            } else {
+                                $candidateId = $this->Candidate->field('id', array(
+                                    'name' => $fields[0],
+                                    'OR' => array(
+                                        'active_id IS NULL',
+                                        'active_id' => 0,
+                                    ),
+                                ));
+                                if (empty($candidateId) || empty($this->Candidate->CandidatesElection->field('id', array(
+                                                    'Election_id' => $e2['Election']['id'],
+                                                    'Candidate_id' => $candidateId,
+                                        )))) {
+                                    $this->Candidate->create();
+                                    if ($this->Candidate->save(array('Candidate' => array(
+                                                    'name' => $fields[0],
+                                                    'party' => '台灣團結聯盟',
+                                                    'experience' => str_replace($fields[2][0], "\n", '\\n'),
+                                                    'links' => isset($fields[2][1]) ? '臉書 ' . $fields[2][1] : '',
+                                        )))) {
+                                        $this->Candidate->CandidatesElection->create();
+                                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
+                                                'Election_id' => $e2['Election']['id'],
+                                                'Candidate_id' => $this->Candidate->getInsertID(),
+                                        )));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    print_r($fields);
+                }
+            }
+        }
     }
 
     public function moi() {
