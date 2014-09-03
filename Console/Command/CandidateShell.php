@@ -7,7 +7,111 @@ class CandidateShell extends AppShell {
     public function main() {
         //$this->villmast();
         //$this->suncy();
-        $this->tsu();
+        $this->town();
+    }
+
+    public function town() {
+        $cec = json_decode(file_get_contents(__DIR__ . '/data/v20100601C1D2.json'), true);
+        $areaStack = array();
+        foreach ($cec AS $county => $c1) {
+            foreach ($c1 AS $town => $c2) {
+                foreach ($c2 AS $area => $c3) {
+                    foreach ($c3['candidates'] AS $candidate) {
+                        if (!isset($areaStack[$county . $town])) {
+                            $areaStack[$county . $town] = array();
+                        }
+                        $areaStack[$county . $town][$candidate['姓名']] = $area;
+                    }
+                }
+            }
+        }
+
+        $townElectionBase = $this->Candidate->Election->find('first', array(
+            'conditions' => array(
+                'name' => '鄉鎮市民代表',
+            ),
+        ));
+        $townElections = $this->Candidate->Election->find('threaded', array(
+            'conditions' => array(
+                'lft >' => $townElectionBase['Election']['lft'],
+                'rght <' => $townElectionBase['Election']['rght'],
+            ),
+        ));
+        $townElectionId = array();
+        foreach ($townElections AS $county) {
+            foreach ($county['children'] AS $city) {
+                foreach ($city['children'] AS $area) {
+                    $key = $county['Election']['name'] . $city['Election']['name'] . substr($area['Election']['name'], 0, strpos($area['Election']['name'], '['));
+                    $townElectionId[$key] = $area['Election']['id'];
+                }
+            }
+        }
+
+        $fh = fopen(__DIR__ . '/data/town.csv', 'r');
+        while ($line = fgetcsv($fh, 1024)) {
+            if (isset($areaStack[$line[1] . $line[2]][$line[4]])) {
+                $line[4] = str_replace(array('　', ' '), array('', ''), $line[4]);
+                $line[0] = $areaStack[$line[1] . $line[2]][$line[4]];
+                if (isset($townElectionId[$line[1] . $line[2] . $line[0]])) {
+                    $this->Candidate->create();
+                    if ($this->Candidate->save(array('Candidate' => array(
+                                    'name' => $line[4],
+                                    'party' => $line[7],
+                                    'gender' => ($line[6] === '男') ? 'm' : 'f',
+                                    'education' => $line[11],
+                                    'experience' => $line[12],
+                        )))) {
+                        $this->Candidate->CandidatesElection->create();
+                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
+                                'Election_id' => $townElectionId[$line[1] . $line[2] . $line[0]],
+                                'Candidate_id' => $this->Candidate->getInsertID(),
+                        )));
+                    }
+                }
+            }
+        }
+        fclose($fh);
+        //鄉鎮市長
+        $townmastElectionBase = $this->Candidate->Election->find('first', array(
+            'conditions' => array(
+                'name' => '鄉鎮市長',
+            ),
+        ));
+        $townmastElections = $this->Candidate->Election->find('threaded', array(
+            'conditions' => array(
+                'lft >' => $townmastElectionBase['Election']['lft'],
+                'rght <' => $townmastElectionBase['Election']['rght'],
+            ),
+        ));
+        $townmastElectionId = array();
+        foreach ($townmastElections AS $county) {
+            foreach ($county['children'] AS $city) {
+                $key = $county['Election']['name'] . $city['Election']['name'];
+                $townmastElectionId[$key] = $city['Election']['id'];
+            }
+        }
+        $fh = fopen(__DIR__ . '/data/townmast.csv', 'r');
+        while ($line = fgetcsv($fh, 1024)) {
+            $line[4] = str_replace(array('　', ' '), array('', ''), $line[4]);
+            $key = str_replace(array('台'), array('臺'), $line[1] . $line[2]);
+            if (isset($townmastElectionId[$key])) {
+                $this->Candidate->create();
+                if ($this->Candidate->save(array('Candidate' => array(
+                                'name' => $line[4],
+                                'party' => $line[7],
+                                'gender' => ($line[6] === '男') ? 'm' : 'f',
+                                'education' => $line[11],
+                                'experience' => $line[12],
+                    )))) {
+                    $this->Candidate->CandidatesElection->create();
+                    $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
+                            'Election_id' => $townmastElectionId[$key],
+                            'Candidate_id' => $this->Candidate->getInsertID(),
+                    )));
+                }
+            }
+        }
+        fclose($fh);
     }
 
     public function tsu() {
