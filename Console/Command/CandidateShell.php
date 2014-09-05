@@ -5,9 +5,408 @@ class CandidateShell extends AppShell {
     public $uses = array('Candidate');
 
     public function main() {
-        //$this->villmast();
-        //$this->suncy();
-        $this->town();
+        $this->cec_2014();
+    }
+
+    public function cec_2014() {
+        $tmpPath = TMP . 'cec/2014';
+        if (!file_exists($tmpPath)) {
+            mkdir($tmpPath, 0777, true);
+        }
+        $result = array();
+        $parties = array('中國國民黨' => 0, '新黨' => 0, '民主進步黨' => 0, '親民黨' => 0, '樹黨' => 0, '華聲黨' => 0, '綠黨' => 0, '人民最大黨' => 0, '臺灣建國黨' => 0, '台灣主義黨' => 0, '聯合黨' => 0, '勞動黨' => 0, '台灣民族黨' => 0, '大道人民黨' => 0, '台灣第一民族黨' => 0, '中華統一促進黨' => 0, '家庭黨' => 0, '三等國民公義人權自救黨' => 0, '無' => 0, '台灣團結聯盟' => 0, '人民民主陣線' => 0, '無黨團結聯盟' => 0, '中華民主向日葵憲政改革聯' => 0, '中華統一促進' => 0);
+        foreach (glob(__DIR__ . '/data/2014_candidates/*.pdf') AS $pdfFile) {
+            $pdfFileInfo = pathinfo($pdfFile);
+            $txtFile = $tmpPath . '/' . $pdfFileInfo['filename'] . '.txt';
+            if (!file_exists($txtFile)) {
+                exec("java -cp /usr/share/java/commons-logging.jar:/usr/share/java/fontbox.jar:/usr/share/java/pdfbox.jar org.apache.pdfbox.PDFBox ExtractText {$pdfFile} tmp.txt");
+                copy('tmp.txt', $txtFile);
+                unlink('tmp.txt');
+            }
+            $txtContent = file_get_contents($txtFile);
+            $lines = explode('103/09/', $txtContent);
+            foreach ($lines AS $line) {
+                $fields = preg_split('/[\\n ]/', $line);
+                $partyFound = false;
+                foreach ($fields AS $k => $v) {
+                    $v = trim($v);
+                    if (isset($parties[$v])) {
+                        $partyFound = $v;
+                    }
+                }
+                if (false !== $partyFound) {
+                    switch ($partyFound) {
+                        case '中華統一促進':
+                            $partyFound = '中華統一促進黨';
+                            break;
+                        case '家庭黨':
+                            $partyFound = '天宙和平統一家庭黨';
+                            break;
+                        case '中華民主向日葵憲政改革聯':
+                            $partyFound = '中華民主向日葵憲政改革聯盟';
+                            break;
+                    }
+                    switch ($pdfFileInfo['filename']) {
+                        case 'pta_19467_7952393_24126': //直轄市議員
+                            $type = '直轄市議員';
+                            switch (count($fields)) {
+                                case 4:
+                                    $name = '周鍾㴴';
+                                    break;
+                                case 5:
+                                    $name = $fields[2];
+                                    break;
+                                case 6:
+                                    if ($fields[4] !== '盟') {
+                                        $name = $fields[2] . $fields[3];
+                                    } else {
+                                        $name = $fields[2];
+                                    }
+                                    break;
+                                case 7:
+                                    if (empty($fields[6])) {
+                                        $name = $fields[2] . $fields[3] . '•' . $fields[4];
+                                    } else {
+                                        $name = $fields[2];
+                                    }
+                                    break;
+                                case 8:
+                                    $name = $fields[2];
+                                    break;
+                                case 9:
+                                    $name = $fields[2];
+                                    break;
+                                case 13:
+                                    $name = $fields[2];
+                                    break;
+                                case 15:
+                                    $name = $fields[2] . $fields[3] . '•' . $fields[4];
+                                    break;
+                                default:
+                                    echo count($fields) . "\n";
+                                    exit();
+                            }
+                            break;
+                        case 'pta_19470_7184777_24391': //縣市長
+                            $type = '縣市長';
+                            $name = $fields[2];
+                            break;
+                        case 'pta_19473_4748471_24456': //縣市議員
+                            $type = '縣市議員';
+                            switch (count($fields)) {
+                                case 5:
+                                    $name = $fields[2];
+                                    break;
+                                case 6:
+                                    $name = $fields[2] . $fields[3];
+                                    break;
+                                case 7:
+                                    $name = $fields[2];
+                                    break;
+                                case 13:
+                                    $name = $fields[2];
+                                    break;
+                                default:
+                                    echo count($fields) . "\n";
+                                    exit();
+                            }
+                            break;
+                        case 'pta_19479_4709973_24847': //鄉鎮市長
+                            $type = '鄉鎮市長';
+                            switch (count($fields)) {
+                                case 5:
+                                    $name = $fields[2];
+                                    break;
+                                case 6:
+                                    $name = $fields[2] . $fields[3];
+                                    break;
+                                case 7:
+                                    if (empty($fields[6])) {
+                                        $name = $fields[2] . $fields[3] . '•' . $fields[4];
+                                    } else {
+                                        $name = $fields[2];
+                                    }
+                                    break;
+                                case 8:
+                                    $name = $fields[2] . $fields[3] . $fields[4] . '•' . $fields[5];
+                                    break;
+                                case 13:
+                                    $name = $fields[2];
+                                    break;
+                                default:
+                                    print_r($fields);
+                                    echo count($fields) . "\n";
+                                    exit();
+                            }
+                            break;
+                        case 'pta_19481_3406822_24896': //鄉鎮市民代表
+                            $type = '鄉鎮市民代表';
+                            switch (count($fields)) {
+                                case 4:
+                                    switch ($fields[1]) {
+                                        case '彰化縣社頭鄉第1選舉區':
+                                            $name = '蕭圳';
+                                            break;
+                                        case '南投縣魚池鄉第3選舉區':
+                                            $name = '劉𦰡行';
+                                            break;
+                                        case '雲林縣斗南鎮第2選舉區':
+                                            $name = '𦰡永福';
+                                            break;
+                                        case '雲林縣褒忠鄉第2選舉區':
+                                            $name = '張峻瑝';
+                                            break;
+                                        case '雲林縣臺西鄉第4選舉區':
+                                            $name = '丁秋';
+                                            break;
+                                        case '嘉義縣太保市第3選舉區':
+                                            $name = '葉啓泰';
+                                            break;
+                                    }
+                                    break;
+                                case 5:
+                                    $name = $fields[2];
+                                    break;
+                                case 6:
+                                    $name = $fields[2] . $fields[3];
+                                    break;
+                                case 7:
+                                    if (empty($fields[6])) {
+                                        $name = $fields[2] . $fields[3] . '•' . $fields[4];
+                                    } else {
+                                        $name = $fields[2];
+                                    }
+                                    break;
+                                case 13:
+                                    $name = $fields[2];
+                                    break;
+                                default:
+                                    echo count($fields) . "\n";
+                                    exit();
+                            }
+                            break;
+                        case 'pta_19483_1653047_24937': //村里長
+                            $type = '村里長';
+                            switch (count($fields)) {
+                                case 4:
+                                    switch ($fields[1]) {
+                                        case '新北市樹林區東陽里':
+                                            $name = '徐木';
+                                            break;
+                                        case '新北市土城區學士里':
+                                            $name = '陳鍈聖';
+                                            break;
+                                        case '張秀霞':
+                                            $name = $fields[1];
+                                            $fields[1] = '新北市坪林區石𥕢里';
+                                            break;
+                                        case '陳進益':
+                                            $name = $fields[1];
+                                            $fields[1] = '新北市坪林區石𥕢里';
+                                            break;
+                                        case '新北市貢寮區貢寮里':
+                                            $name = '楊石';
+                                            break;
+                                        case '臺中市北區頂厝里':
+                                            $name = '呂陳麗艸錦';
+                                            break;
+                                        case '臺中市東勢區中寧里':
+                                            $name = '廖秀峰';
+                                            break;
+                                        case '臺中市沙鹿區斗抵里':
+                                            $name = '何㳵杏';
+                                            break;
+                                        case '李瑞雄':
+                                            $name = $fields[1];
+                                            $fields[1] = '臺南市新化區𦰡拔里';
+                                            break;
+                                        case '臺南市仁德區上崙里':
+                                            $name = '李月眞';
+                                            break;
+                                        case '戴石柱':
+                                            $name = $fields[1];
+                                            $fields[1] = '臺南市龍崎區石𥕢里';
+                                            break;
+                                        case '鄭晚福':
+                                            $name = $fields[1];
+                                            $fields[1] = '臺南市龍崎區石𥕢里';
+                                            break;
+                                        case '臺南市東區富強里':
+                                            $name = '洪瑋';
+                                            break;
+                                        case '林同寳':
+                                            $name = $fields[1];
+                                            $fields[1] = '臺南市安南區塭南里';
+                                            break;
+                                        case '尤泰榮':
+                                            $name = $fields[1];
+                                            $fields[1] = '臺南市安南區塭南里';
+                                            break;
+                                        case '黃清由':
+                                            $name = $fields[1];
+                                            $fields[1] = '臺南市安南區公塭里';
+                                            break;
+                                        case '黃銘堂':
+                                            $name = $fields[1];
+                                            $fields[1] = '臺南市安南區公塭里';
+                                            break;
+                                        case '高雄市鳳山區善美里':
+                                            $name = '蔡瑞勲';
+                                            break;
+                                        case '高雄市鳳山區福祥里':
+                                            $name = '李登緄';
+                                            break;
+                                        case '彭照夫':
+                                            $name = $fields[1];
+                                            $fields[1] = '新竹縣竹東鎮上舘里';
+                                            break;
+                                        case '徐璋龍':
+                                            $name = $fields[1];
+                                            $fields[1] = '新竹縣竹東鎮上舘里';
+                                            break;
+                                        case '彭誠吉':
+                                            $name = $fields[1];
+                                            $fields[1] = '新竹縣竹東鎮上舘里';
+                                            break;
+                                        case '蔡家陞':
+                                            $name = $fields[1];
+                                            $fields[1] = '新竹縣竹東鎮上舘里';
+                                            break;
+                                        case '陳月生':
+                                            $name = $fields[1];
+                                            $fields[1] = '新竹縣竹東鎮上舘里';
+                                            break;
+                                        case '彰化縣埔心鄉埤霞村':
+                                            $name = '林艸錦良';
+                                            break;
+                                        case '南投縣草屯鎮御史里':
+                                            $name = '洪智𦰡𥕢';
+                                            break;
+                                        case '宜蘭縣壯圍鄉古亭村':
+                                            $name = '修一';
+                                            break;
+                                        case '宜蘭縣大同鄉樂水村':
+                                            $name = '簡進';
+                                            break;
+                                        case '新竹市北區中興里':
+                                            $name = '洪熒𤎌';
+                                            break;
+                                    }
+                                    break;
+                                case 5:
+                                    $name = $fields[2];
+                                    break;
+                                case 6:
+                                    if (empty($fields[2])) {
+                                        $name = $fields[3];
+                                    } else {
+                                        switch ($fields[4]) {
+                                            case '家庭黨':
+                                                $name = $fields[2];
+                                                break;
+                                            case '黨':
+                                                $name = $fields[2];
+                                                break;
+                                            case '無':
+                                                if ($fields[2] !== '里') {
+                                                    $name = $fields[2] . $fields[3];
+                                                } else {
+                                                    $name = $fields[3];
+                                                }
+                                                break;
+                                            case '中國國民黨':
+                                                $name = $fields[2] . $fields[3];
+                                                break;
+                                        }
+                                    }
+
+                                    break;
+                                case 7:
+                                    if (empty($fields[6])) {
+                                        $name = $fields[2] . $fields[3] . '•' . $fields[4];
+                                    } else {
+                                        $name = $fields[2];
+                                    }
+                                    break;
+                                case 13:
+                                    $name = $fields[2];
+                                    break;
+                                case 14:
+                                    $name = $fields[3];
+                                    break;
+                                default:
+                                    echo count($fields) . "\n";
+                                    exit();
+                            }
+                            break;
+                        case 'pta_19484_8916638_25020': //直轄市長
+                            $type = '直轄市長';
+                            switch (count($fields)) {
+                                case 5:
+                                    $name = $fields[2];
+                                    break;
+                                case 7:
+                                    $name = $fields[2];
+                                    break;
+                                default:
+                                    echo count($fields) . "\n";
+                                    exit();
+                            }
+                            break;
+                        case 'pta_19488_4749350_25890': //直轄市山地原住民區長
+                            $type = '直轄市山地原住民區長';
+                            switch (count($fields)) {
+                                case 5:
+                                    $name = $fields[2];
+                                    break;
+                                case 7:
+                                    $name = $fields[2];
+                                    break;
+                                default:
+                                    echo count($fields) . "\n";
+                                    exit();
+                            }
+                            break;
+                        case 'pta_19490_6653137_26083': //直轄市山地原住民區民代表
+                            $type = '直轄市山地原住民區民代表';
+                            switch (count($fields)) {
+                                case 5:
+                                    $name = $fields[2];
+                                    break;
+                                case 6:
+                                    $name = $fields[2] . $fields[3];
+                                    break;
+                                case 7:
+                                    $name = $fields[2];
+                                    break;
+                                default:
+                                    echo count($fields) . "\n";
+                                    exit();
+                            }
+                            break;
+                        default:
+                            echo $pdfFileInfo['filename'] . "\n";
+                            exit();
+                    }
+                    if (!isset($result[$type])) {
+                        $result[$type] = array();
+                    }
+                    $result[$type][] = array(
+                        $fields[1], //選區
+                        $name,
+                        $partyFound,
+                        $fields[0], //登記日期
+                    );
+                }
+            }
+        }
+        foreach ($result AS $key => $val) {
+            $fh = fopen(__DIR__ . "/data/2014_candidates/{$key}.csv", 'w');
+            foreach ($val AS $line) {
+                fputcsv($fh, $line);
+            }
+            fclose($fh);
+        }
     }
 
     public function town() {
