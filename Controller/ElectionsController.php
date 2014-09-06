@@ -191,6 +191,7 @@ class ElectionsController extends AppController {
         $this->set('foreignModel', $foreignModel);
         $this->set('parentId', $parentId);
         $this->set('parents', $this->Election->getPath($parentId));
+        $this->set('url', array($parentId, $foreignModel, $foreignId, $op));
     }
 
     function admin_view($id = null) {
@@ -225,7 +226,7 @@ class ElectionsController extends AppController {
         if (!empty($this->data)) {
             if ($this->Election->save($this->data)) {
                 $this->Session->setFlash('資料已經儲存');
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'index', $this->Election->field('parent_id')));
             } else {
                 $this->Session->setFlash('資料儲存時發生錯誤，請重試');
             }

@@ -1,8 +1,3 @@
-<?php
-if (!isset($url)) {
-    $url = array();
-}
-?>
 <div id="ElectionsAdminIndex">
     <h2><?php echo __('Elections', true); ?></h2>
     <div class="btn-group">

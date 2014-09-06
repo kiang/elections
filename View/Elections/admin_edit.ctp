@@ -7,11 +7,6 @@
                 ?></legend>
             <?php
             echo $this->Form->input('Election.id');
-            echo $this->Form->input('Election.parent_id', array(
-                'label' => 'Parent',
-                'div' => 'form-group',
-                'class' => 'form-control',
-            ));
             echo $this->Form->input('Election.name', array(
                 'label' => 'Name',
                 'div' => 'form-group',

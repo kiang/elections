@@ -241,7 +241,7 @@ class AreasController extends AppController {
         if (!empty($this->data)) {
             if ($this->Area->save($this->data)) {
                 $this->Session->setFlash('資料已經儲存');
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'index', $this->Area->field('parent_id')));
             } else {
                 $this->Session->setFlash('資料儲存時發生錯誤，請重試');
             }
