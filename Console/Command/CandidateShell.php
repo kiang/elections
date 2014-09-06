@@ -3,9 +3,140 @@
 class CandidateShell extends AppShell {
 
     public $uses = array('Candidate');
+    public $cec2014Stack = array();
 
     public function main() {
-        $this->cec_2014();
+        $this->cec_2014_import();
+    }
+
+    public function cec_2014_import() {
+        foreach (glob(__DIR__ . '/data/2014_candidates/*.csv') AS $csvFile) {
+            $csvInfo = pathinfo($csvFile);
+            $parentNode = $this->Candidate->Election->find('first', array(
+                'conditions' => array(
+                    'name' => $csvInfo['filename'],
+                ),
+            ));
+            $tree = $this->Candidate->Election->find('threaded', array(
+                'conditions' => array(
+                    'lft >' => $parentNode['Election']['lft'],
+                    'rght <' => $parentNode['Election']['rght'],
+                ),
+            ));
+            $electionNodes = $this->cec_2014_import_recursive('', $tree);
+
+            echo "{$csvInfo['filename']}\n";
+
+            $fh = fopen($csvFile, 'r');
+            while ($line = fgetcsv($fh, 1024)) {
+                $electionId = '';
+                switch ($csvInfo['filename']) {
+                    case '村里長':
+                        switch ($line[0]) {
+                            case '高雄市那瑪夏區達卡努瓦':
+                                $line[0] .= '里';
+                                break;
+                            case '彰化縣彰化市下廍里':
+                                $electionId = '53c02162-cf28-4334-b5d7-5c5aacb5b862';
+                                break;
+                            case '彰化縣彰化市磚磘里':
+                                $electionId = '53c02167-1d2c-40fd-81f4-5c5aacb5b862';
+                                break;
+                            case '彰化縣彰化市寶廍里':
+                                $electionId = '53c0216a-bed8-4262-afe8-5c5aacb5b862';
+                                break;
+                        }
+                        break;
+                    case '直轄市山地原住民區民代表':
+                        $parts = explode('選舉區', $line[0]);
+                        $parts = explode('第', $parts[0]);
+                        $parts[1] = str_pad($parts[1], 2, '0', STR_PAD_LEFT);
+                        $line[0] = "{$parts[0]}第{$parts[1]}選舉區";
+                        break;
+                    case '直轄市議員':
+                    case '縣市議員':
+                        $parts = explode('選舉區', $line[0]);
+                        $parts = explode('第', $parts[0]);
+                        $parts[1] = str_pad($parts[1], 2, '0', STR_PAD_LEFT);
+                        $line[0] = "{$parts[0]}第{$parts[1]}選區";
+                        break;
+                    case '鄉鎮市民代表':
+                        $parts = explode('選舉區', $line[0]);
+                        $parts = explode('第', $parts[0]);
+                        switch ($parts[0]) {
+                            case '連江縣北竿鄉':
+                            case '連江縣莒光鄉':
+                            case '連江縣東引鄉':
+                                $parts[1] = '01';
+                                break;
+                            default:
+                                $parts[1] = str_pad($parts[1], 2, '0', STR_PAD_LEFT);
+                        }
+                        $line[0] = "{$parts[0]}第{$parts[1]}選舉區";
+                        break;
+                }
+                if (isset($electionNodes[$line[0]])) {
+                    $electionId = $electionNodes[$line[0]];
+                }
+                if (!empty($electionId)) {
+                    $candidate = $this->Candidate->find('first', array(
+                        'fields' => array('Candidate.id', 'Candidate.party'),
+                        'conditions' => array(
+                            'CandidatesElection.Election_id' => $electionId,
+                            'Candidate.name' => $line[1],
+                        ),
+                        'joins' => array(
+                            array(
+                                'table' => 'candidates_elections',
+                                'alias' => 'CandidatesElection',
+                                'type' => 'inner',
+                                'conditions' => array(
+                                    'CandidatesElection.Candidate_id = Candidate.id',
+                                ),
+                            ),
+                        ),
+                    ));
+                    if (!empty($candidate['Candidate']['id'])) {
+                        if ($candidate['Candidate']['party'] !== $line[2]) {
+                            $candidate['Candidate']['party'] = $line[2];
+                            $this->Candidate->save($candidate);
+                        }
+                    } else {
+                        $this->Candidate->create();
+                        if ($this->Candidate->save(array('Candidate' => array(
+                                        'name' => $line[1],
+                                        'party' => $line[2],
+                            )))) {
+                            $this->Candidate->CandidatesElection->create();
+                            $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
+                                    'Candidate_id' => $this->Candidate->getInsertID(),
+                                    'Election_id' => $electionId,
+                            )));
+                        }
+                    }
+                } else {
+                    print_r($line);
+                }
+            }
+        }
+    }
+
+    public function cec_2014_import_recursive($prefix = '', $data = array()) {
+        $result = array();
+        if (!empty($data)) {
+            foreach ($data AS $item) {
+                $pos = strpos($item['Election']['name'], '[');
+                if (false !== $pos) {
+                    $item['Election']['name'] = substr($item['Election']['name'], 0, $pos);
+                }
+                if (!empty($item['children'])) {
+                    $result = array_merge($result, $this->cec_2014_import_recursive($prefix . $item['Election']['name'], $item['children']));
+                } else {
+                    $result[$prefix . $item['Election']['name']] = $item['Election']['id'];
+                }
+            }
+        }
+        return $result;
     }
 
     public function cec_2014() {
@@ -420,7 +551,7 @@ class CandidateShell extends AppShell {
         foreach ($partyResult AS $p => $d) {
             if ($d['count'] < 60) {
                 echo "{$p}:\n";
-                foreach($d['data'] AS $c) {
+                foreach ($d['data'] AS $c) {
                     echo "* {$c[0]}{$c[1]} - {$c[2]}\n";
                 }
                 echo "\n\n";
