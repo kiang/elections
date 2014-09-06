@@ -14,6 +14,7 @@ class CandidateShell extends AppShell {
             mkdir($tmpPath, 0777, true);
         }
         $result = array();
+        $partyResult = array();
         $parties = array('中國國民黨' => 0, '新黨' => 0, '民主進步黨' => 0, '親民黨' => 0, '樹黨' => 0, '華聲黨' => 0, '綠黨' => 0, '人民最大黨' => 0, '臺灣建國黨' => 0, '台灣主義黨' => 0, '聯合黨' => 0, '勞動黨' => 0, '台灣民族黨' => 0, '大道人民黨' => 0, '台灣第一民族黨' => 0, '中華統一促進黨' => 0, '家庭黨' => 0, '三等國民公義人權自救黨' => 0, '無' => 0, '台灣團結聯盟' => 0, '人民民主陣線' => 0, '無黨團結聯盟' => 0, '中華民主向日葵憲政改革聯' => 0, '中華統一促進' => 0);
         foreach (glob(__DIR__ . '/data/2014_candidates/*.pdf') AS $pdfFile) {
             $pdfFileInfo = pathinfo($pdfFile);
@@ -397,9 +398,35 @@ class CandidateShell extends AppShell {
                         $partyFound,
                         $fields[0], //登記日期
                     );
+                    if (!isset($partyResult[$partyFound])) {
+                        $partyResult[$partyFound] = array(
+                            'count' => 0,
+                            'data' => array(),
+                        );
+                    }
+                    ++$partyResult[$partyFound]['count'];
+                    $partyResult[$partyFound]['data'][] = array(
+                        $type,
+                        $fields[1], //選區
+                        $name,
+                        $fields[0], //登記日期
+                    );
                 }
             }
         }
+        foreach ($partyResult AS $p => $d) {
+            echo "{$p}: {$d['count']}\n";
+        }
+        foreach ($partyResult AS $p => $d) {
+            if ($d['count'] < 60) {
+                echo "{$p}:\n";
+                foreach($d['data'] AS $c) {
+                    echo "* {$c[0]}{$c[1]} - {$c[2]}\n";
+                }
+                echo "\n\n";
+            }
+        }
+        return;
         foreach ($result AS $key => $val) {
             $fh = fopen(__DIR__ . "/data/2014_candidates/{$key}.csv", 'w');
             foreach ($val AS $line) {
