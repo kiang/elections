@@ -30,4 +30,22 @@ class Area extends AppModel {
         ),
     );
 
+    public function beforeSave($options = array()) {
+        if (!empty($this->id)) {
+            $oldName = $this->field('name');
+            if ($oldName !== $this->data['Area']['name']) {
+                $electionIds = $this->AreasElection->find('list', array(
+                    'fields' => array('Election_id', 'Election_id'),
+                    'conditions' => array(
+                        'AreasElection.Area_id' => $this->id,
+                    ),
+                ));
+                $this->Election->updateAll(array('Election.name' => "'{$this->data['Area']['name']}'"), array(
+                    'Election.id' => $electionIds,
+                    'Election.name' => $oldName,
+                ));
+            }
+        }
+    }
+
 }

@@ -7,11 +7,6 @@
                 ?></legend>
             <?php
             echo $this->Form->input('Area.id');
-            echo $this->Form->input('Area.parent_id', array(
-                'label' => 'Parent',
-                'div' => 'form-group',
-                'class' => 'form-control',
-            ));
             echo $this->Form->input('Area.name', array(
                 'label' => 'Name',
                 'div' => 'form-group',
