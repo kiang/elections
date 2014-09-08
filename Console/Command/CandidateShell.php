@@ -6,7 +6,48 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->cec_2014_import();
+        $this->cec_2014_fun();
+    }
+
+    public function cec_2014_fun() {
+        $nameCount = array();
+        foreach (glob(__DIR__ . '/data/2014_candidates/*.csv') AS $csvFile) {
+            $csvInfo = pathinfo($csvFile);
+            $candidates = array();
+            $fh = fopen($csvFile, 'r');
+            while ($line = fgetcsv($fh, 1024)) {
+                if (!isset($candidates[$line[0]])) {
+                    $candidates[$line[0]] = array();
+                }
+                if(!isset($nameCount[$line[1]])) {
+                    $nameCount[$line[1]] = array();
+                }
+                $nameCount[$line[1]][] = "[{$csvInfo['filename']}]{$line[0]}";
+                $candidates[$line[0]][] = $line[1] . " ({$line[2]})";
+            }
+            fclose($fh);
+
+            $maxCount = 0;
+
+            foreach ($candidates AS $aCandidates) {
+                $cnt = count($aCandidates);
+                if ($cnt > $maxCount) {
+                    $maxCount = $cnt;
+                }
+                
+            }
+            foreach ($candidates AS $area => $aCandidates) {
+                $cnt = count($aCandidates);
+                if ($cnt === 1) {
+                    echo "[{$csvInfo['filename']}]{$area} - " . implode(', ', $aCandidates) . "\n";
+                }
+            }
+        }
+        foreach($nameCount AS $name => $areas) {
+            if(count($areas) > 1) {
+                //echo "{$name}: " . implode(', ', $areas) . "\n";
+            }
+        }
     }
 
     public function cec_2014_import() {
