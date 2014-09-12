@@ -2,9 +2,8 @@
 <div class="container">
     <?php
     foreach ($tags AS $tag) {
-        echo '<div class="col-md-2">';
         echo $this->Html->link("{$tag['Tag']['name']} ({$tag['Tag']['count']})", '/candidates/tag/' . $tag['Tag']['id'], array('class' => 'btn btn-default'));
-        echo '</div>';
     }
     ?>
 </div>
+<div class="paging"><?php echo $this->element('paginator'); ?></div>
