@@ -24,20 +24,6 @@
     ?>
     <div class="col-md-12"><?php echo $this->Html->getCrumbs(); ?></div>
     <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
-    <div class="col-md-4"><?php
-        echo $this->Form->create('Candidate', array('url' => $url, 'class' => 'form-inline'));
-        echo $this->Form->input('keyword', array(
-            'div' => 'form-group',
-            'value' => $keyword,
-            'label' => false,
-            'class' => 'form-control'
-        ));
-        echo '<div class="btn-group">';
-        echo $this->Form->submit('搜尋(人名)', array('div' => false, 'class' => 'btn btn-primary'));
-        echo $this->Form->button('清除', array('div' => false, 'class' => 'btn btn-default btn-clean-form'));
-        echo '</div>';
-        echo $this->Form->end();
-        ?></div>
     <div class="clearfix"></div>
     <?php
     if (!empty($items)) {

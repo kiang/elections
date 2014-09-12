@@ -12,8 +12,43 @@ class CandidatesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'add', 'view', 'edit');
+            $this->Auth->allow('index', 'add', 'view', 'edit', 's');
         }
+    }
+
+    public function s() {
+        $result = array();
+        if (isset($this->request->query['term'])) {
+            $keyword = Sanitize::clean($this->request->query['term']);
+        }
+        if (!empty($keyword)) {
+            $result = $this->Candidate->find('all', array(
+                'fields' => array('Candidate.id', 'Candidate.name', 'CandidatesElection.Election_id'),
+                'conditions' => array(
+                    'Candidate.active_id IS NULL',
+                    'Candidate.name LIKE' => "%{$keyword}%",
+                ),
+                'limit' => 20,
+                'joins' => array(
+                    array(
+                        'table' => 'candidates_elections',
+                        'alias' => 'CandidatesElection',
+                        'type' => 'inner',
+                        'conditions' => array(
+                            'CandidatesElection.Candidate_id = Candidate.id',
+                        ),
+                    ),
+                ),
+            ));
+            foreach ($result AS $k => $v) {
+                $result[$k]['jobTitle'] = '';
+                $parents = $this->Candidate->Election->getPath($v['CandidatesElection']['Election_id'], array('name'));
+                foreach ($parents AS $parent) {
+                    $result[$k]['jobTitle'] .= $parent['Election']['name'];
+                }
+            }
+        }
+        $this->set('result', $result);
     }
 
     function index($electionId = '') {

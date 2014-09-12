@@ -4,7 +4,7 @@
         <?php echo $this->Html->charset(); ?>
         <title><?php echo $title_for_layout; ?>選舉黃頁</title><?php
         $trailDesc = '選舉黃頁提供了各種發生在中華民國的選舉資訊，主要聚焦在各種候選人';
-        if(!isset($desc_for_layout)) {
+        if (!isset($desc_for_layout)) {
             $desc_for_layout = $trailDesc;
         } else {
             $desc_for_layout .= $trailDesc;
@@ -25,17 +25,27 @@
     <body>
         <nav class="navbar navbar-static-top navbar-inverse">
             <div class="navbar-inner">
-            <div class="container">
-                <?php echo $this->Html->link('選舉黃頁', '/', array('class' => 'navbar-brand')); ?>
-                <ul class="nav navbar-nav">
-                    <li><?php echo $this->Html->link('行政區', '/areas', array('class' => '')); ?></li>
-                    <li><?php echo $this->Html->link('選舉區', '/elections', array('class' => '')); ?></li>
-                    <li><?php echo $this->Html->link('候選人', '/candidates', array('class' => '')); ?></li>
-                </ul>
-            </div>
+                <div class="container">
+                    <?php echo $this->Html->link('選舉黃頁', '/', array('class' => 'navbar-brand')); ?>
+                    <ul class="nav navbar-nav">
+                        <li><?php echo $this->Html->link('行政區', '/areas', array('class' => '')); ?></li>
+                        <li><?php echo $this->Html->link('選舉區', '/elections', array('class' => '')); ?></li>
+                        <li><?php echo $this->Html->link('候選人', '/candidates', array('class' => '')); ?></li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="container">
+            <div class="pull-right">
+                <?php
+                echo $this->Form->input('Candidate.keyword', array(
+                    'div' => 'form-group',
+                    'label' => false,
+                    'placeholder' => '候選人姓名搜尋',
+                    'class' => 'form-control col-md-4'
+                ));
+                ?>
+            </div>
             <div id="header">
 
                 <div class="breadcrumb">
@@ -45,9 +55,6 @@
 
             <div id="content">
                 <div class="btn-group">
-
-
-
                     <?php if ($this->Session->read('Auth.User.id')): ?>
                         <?php echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Areas', '/admin/areas', array('class' => 'btn')); ?>
@@ -86,6 +93,12 @@
                 $('a.dialogControl').click(function() {
                     dialogFull(this);
                     return false;
+                });
+                $('input#CandidateKeyword').autocomplete({
+                    source: '<?php echo $this->Html->url('/candidates/s/'); ?>',
+                    select: function(event, ui) {
+                        location.href = '<?php echo $this->Html->url('/candidates/view/'); ?>' + ui.item.id;
+                    }
                 });
             });
             //]]>
