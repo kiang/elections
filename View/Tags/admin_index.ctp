@@ -1,12 +1,10 @@
 <div id="TagsAdminIndex">
     <h2><?php echo __('Tags', true); ?></h2>
-    <p>
+    <div class="btn-group">
         <?php
-        echo $this->Paginator->counter(array(
-            'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-        ));
+        echo $this->Html->link(__('Add', true), array('action' => 'add'), array('class' => 'btn'));
         ?>
-    </p>
+    </div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
     <table class="table table-bordered" id="TagsAdminIndexTable">
         <tr>
@@ -30,6 +28,7 @@
                     <?php echo $tag['Tag']['name']; ?>
                 </td>
                 <td class="actions">
+                    <?php echo $this->Html->link(__('Links', true), array('action' => 'links', $tag['Tag']['id'])); ?>
                     <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $tag['Tag']['id']), array('class' => 'dialogControl')); ?>
                     <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $tag['Tag']['id']), null, __('Delete the item, sure?', true)); ?>
                 </td>

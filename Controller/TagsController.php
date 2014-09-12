@@ -57,4 +57,48 @@ class TagsController extends AppController {
         }
     }
 
+    public function admin_links($tagId = '') {
+        if (!empty($tagId)) {
+            $tag = $this->Tag->find('first', array(
+                'conditions' => array(
+                    'Tag.id' => $tagId,
+                ),
+                'contain' => array('Candidate'),
+            ));
+        }
+        if (!empty($tag)) {
+            $this->set('tag', $tag);
+        } else {
+            $this->Session->setFlash(__('Please select a tag first!', true));
+            $this->redirect($this->referer());
+        }
+    }
+
+    public function admin_link_add($tagId = '', $candidateId = '') {
+        $linkId = $this->Tag->CandidatesTag->field('id', array(
+            'Candidate_id' => $candidateId,
+            'Tag_id' => $tagId,
+        ));
+        if (empty($linkId)) {
+            $this->Tag->CandidatesTag->create();
+            $this->Tag->CandidatesTag->save(array('CandidatesTag' => array(
+                    'Candidate_id' => $candidateId,
+                    'Tag_id' => $tagId,
+            )));
+            $this->Tag->updateAll(array('Tag.count' => 'Tag.count + 1'), array("Tag.id = '{$tagId}'"));
+        }
+        echo 'ok';
+        exit();
+    }
+
+    public function admin_link_delete($linkId = '') {
+        $tagId = $this->Tag->CandidatesTag->field('Tag_id', array('id' => $linkId));
+        $this->Tag->CandidatesTag->delete($linkId);
+        if (!empty($tagId)) {
+            $this->Tag->updateAll(array('Tag.count' => 'Tag.count - 1'), array("Tag.id = '{$tagId}'"));
+        }
+        echo 'ok';
+        exit();
+    }
+
 }

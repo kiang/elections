@@ -1,5 +1,5 @@
 <div class="tags form">
-    <?php echo $this->Form->create('Tag', array('url' => array($parentId))); ?>
+    <?php echo $this->Form->create('Tag'); ?>
     <fieldset>
         <legend><?php echo __('Add tag', true); ?></legend>
         <?php

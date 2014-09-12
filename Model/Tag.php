@@ -22,4 +22,9 @@ class Tag extends AppModel {
         ),
     );
 
+    public function beforeDelete($cascade = true) {
+        $this->CandidatesTag->deleteAll(array('Tag_id' => $this->id));
+        return true;
+    }
+
 }
