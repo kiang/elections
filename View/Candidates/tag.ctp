@@ -1,27 +1,6 @@
 <div id="CandidatesAdminIndex">
-    <h2>候選人</h2>
+    <h2><?php echo $tag['Tag']['name']; ?> :: 候選人</h2>
     <div class="clearfix"></div>
-    <?php
-    if (!empty($parents)) {
-        foreach ($parents AS $parent) {
-            if ($parent['Election']['rght'] - $parent['Election']['lft'] !== 1) {
-                $this->Html->addCrumb($parent['Election']['name'], array(
-                    'controller' => 'elections',
-                    'action' => 'index', $parent['Election']['id'])
-                );
-            } else {
-                $this->Html->addCrumb($parent['Election']['name'], array(
-                    'action' => 'index', $parent['Election']['id'])
-                );
-            }
-        }
-    }
-    if (!empty($electionId)) {
-        $this->Html->addCrumb('新增候選人', array(
-            'action' => 'add', $electionId)
-        );
-    }
-    ?>
     <div class="col-md-12"><?php echo $this->Html->getCrumbs(); ?></div>
     <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
     <div class="clearfix"></div>

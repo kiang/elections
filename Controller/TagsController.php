@@ -8,10 +8,14 @@ class TagsController extends AppController {
     public $name = 'Tags';
     public $paginate = array();
 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        if (isset($this->Auth)) {
+            $this->Auth->allow('index');
+        }
+    }
+
     public function admin_index() {
-        $this->paginate['Tag'] = array(
-            'contain' => array(),
-        );
         $tags = $this->paginate($this->Tag);
         $this->set('tags', $tags);
     }
@@ -99,6 +103,11 @@ class TagsController extends AppController {
         }
         echo 'ok';
         exit();
+    }
+    
+    public function index() {
+        $tags = $this->paginate($this->Tag);
+        $this->set('tags', $tags);
     }
 
 }

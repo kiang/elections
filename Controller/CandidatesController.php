@@ -12,7 +12,7 @@ class CandidatesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'add', 'view', 'edit', 's');
+            $this->Auth->allow('index', 'add', 'view', 'edit', 's', 'tag');
         }
     }
 
@@ -51,19 +51,59 @@ class CandidatesController extends AppController {
         $this->set('result', $result);
     }
 
+    public function tag($tagId = '') {
+        $tag = $this->Candidate->Tag->find('first', array(
+            'conditions' => array('Tag.id' => $tagId,)
+        ));
+        if (!empty($tag)) {
+            $scope = array(
+                'Candidate.active_id IS NULL',
+                'CandidatesTag.Tag_id' => $tagId,
+            );
+
+            $this->paginate['Candidate']['joins'] = array(
+                array(
+                    'table' => 'candidates_elections',
+                    'alias' => 'CandidatesElection',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'CandidatesElection.Candidate_id = Candidate.id',
+                    ),
+                ),
+                array(
+                    'table' => 'candidates_tags',
+                    'alias' => 'CandidatesTag',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'CandidatesTag.Candidate_id = Candidate.id',
+                    ),
+                ),
+            );
+            $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
+            $this->paginate['Candidate']['limit'] = 30;
+            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.image', 'CandidatesElection.Election_id');
+            $items = $this->paginate($this->Candidate, $scope);
+            $electionStack = array();
+            foreach ($items AS $k => $item) {
+                if (!isset($electionStack[$item['CandidatesElection']['Election_id']])) {
+                    $electionStack[$item['CandidatesElection']['Election_id']] = $this->Candidate->Election->getPath($item['CandidatesElection']['Election_id'], array('id', 'name'));
+                }
+                $items[$k]['Election'] = $electionStack[$item['CandidatesElection']['Election_id']];
+            }
+
+            $this->set('title_for_layout', $tag['Tag']['name'] . ' 候選人');
+            $this->set('items', $items);
+            $this->set('url', array($tagId));
+            $this->set('tag', $tag);
+        } else {
+            $this->redirect(array('controller' => 'areas'));
+        }
+    }
+
     function index($electionId = '') {
         $scope = array(
             'Candidate.active_id IS NULL',
         );
-        if (isset($this->data['Candidate']['keyword'])) {
-            $keyword = Sanitize::clean($this->data['Candidate']['keyword']);
-            $this->Session->write('Candidates.index.keyword', $keyword);
-        } else {
-            $keyword = $this->Session->read('Candidates.index.keyword');
-        }
-        if (!empty($keyword)) {
-            $scope['Candidate.name LIKE'] = "%{$keyword}%";
-        }
 
         if (!empty($electionId)) {
             $scope['CandidatesElection.Election_id'] = $electionId;
@@ -100,7 +140,6 @@ class CandidatesController extends AppController {
         $this->set('items', $items);
         $this->set('electionId', $electionId);
         $this->set('url', array($electionId));
-        $this->set('keyword', $keyword);
         $this->set('parents', $parents);
     }
 
