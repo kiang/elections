@@ -31,7 +31,7 @@ CREATE TABLE `acos` (
   `lft` int(11) DEFAULT NULL,
   `rght` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `areas`;
 CREATE TABLE `areas` (
   `id` binary(36) NOT NULL,
   `parent_id` binary(36) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lft` int(11) NOT NULL,
   `rght` int(11) NOT NULL,
   `is_area` tinyint(1) DEFAULT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE `candidates` (
   `id` binary(36) NOT NULL,
   `is_reviewed` tinyint(1) NOT NULL DEFAULT '0',
   `active_id` binary(36) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `party` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `contacts_phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -157,6 +157,22 @@ CREATE TABLE `candidates_elections` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `candidates_tags`
+--
+
+DROP TABLE IF EXISTS `candidates_tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `candidates_tags` (
+  `id` binary(36) NOT NULL,
+  `Candidate_id` binary(36) NOT NULL,
+  `Tag_id` binary(36) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Candidate_id` (`Candidate_id`,`Tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `elections`
 --
 
@@ -166,7 +182,7 @@ DROP TABLE IF EXISTS `elections`;
 CREATE TABLE `elections` (
   `id` binary(36) NOT NULL,
   `parent_id` binary(36) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lft` int(11) NOT NULL,
   `rght` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -224,6 +240,21 @@ CREATE TABLE `members` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tags`
+--
+
+DROP TABLE IF EXISTS `tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tags` (
+  `id` binary(36) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `count` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -234,4 +265,4 @@ CREATE TABLE `members` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-20  2:25:25
+-- Dump completed on 2014-09-12 21:13:33

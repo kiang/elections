@@ -20,6 +20,12 @@ class Candidate extends AppModel {
             'associationForeignKey' => 'Election_id',
             'className' => 'Election',
         ),
+        'Tag' => array(
+            'joinTable' => 'candidates_tags',
+            'foreignKey' => 'Candidate_id',
+            'associationForeignKey' => 'Tag_id',
+            'className' => 'Tag',
+        ),
     );
 
     public function beforeSave($options = array()) {
