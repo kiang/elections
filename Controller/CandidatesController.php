@@ -352,13 +352,20 @@ class CandidatesController extends AppController {
     }
 
     public function admin_review($candidateId = '', $approved = '') {
+        $fields = array('Candidate.id', 'Candidate.active_id', 'Candidate.name',
+            'Candidate.image', 'Candidate.party', 'Candidate.contacts_phone',
+            'Candidate.contacts_fax', 'Candidate.contacts_email',
+            'Candidate.contacts_address', 'Candidate.links', 'Candidate.gender',
+            'Candidate.birth', 'Candidate.education', 'Candidate.experience');
         $submitted = $this->Candidate->find('first', array(
+            'fields' => $fields,
             'conditions' => array('id' => $candidateId),
-            'contain' => array('Election'),
+            'contain' => array('Election' => array('fields' => array('Election.name'))),
         ));
         $original = $this->Candidate->find('first', array(
+            'fields' => $fields,
             'conditions' => array('id' => $submitted['Candidate']['active_id']),
-            'contain' => array('Election'),
+            'contain' => array('Election' => array('fields' => array('Election.name'))),
         ));
         if ($approved === 'yes') {
             $dataToSave = array(
@@ -390,9 +397,21 @@ class CandidatesController extends AppController {
             $this->Candidate->id = $candidateId;
             $this->Candidate->saveField('is_reviewed', '1');
             $this->redirect('/admin/candidates/submits');
+        } else {
+            unset($submitted['Candidate']['id']);
+            unset($original['Candidate']['id']);
+            unset($submitted['Candidate']['active_id']);
+            unset($original['Candidate']['active_id']);
+            unset($submitted['Election'][0]['CandidatesElection']['id']);
+            unset($original['Election'][0]['CandidatesElection']['id']);
+            unset($submitted['Election'][0]['CandidatesElection']['Candidate_id']);
+            unset($original['Election'][0]['CandidatesElection']['Candidate_id']);
+            unset($submitted['Election'][0]['CandidatesElection']['Election_id']);
+            unset($original['Election'][0]['CandidatesElection']['Election_id']);
         }
         $this->set('submitted', $submitted);
         $this->set('original', $original);
+        $this->set('submittedId', $candidateId);
     }
 
 }
