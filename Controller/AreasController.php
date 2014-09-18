@@ -81,6 +81,9 @@ class AreasController extends AppController {
             'conditions' => array(
                 'AreasElection.Area_id' => Set::extract($parents, '{n}.Area.id'),
             ),
+            'contain' => array(
+                'Election' => array('fields' => array('population', 'population_electors')),
+            ),
         ));
         $electionStack = array();
         foreach ($elections AS $eKey => $election) {
@@ -91,6 +94,8 @@ class AreasController extends AppController {
             }
         }
         foreach ($elections AS $k => $election) {
+            $elections[$k]['AreasElection']['population'] = $election['Election']['population'];
+            $elections[$k]['AreasElection']['population_electors'] = $election['Election']['population_electors'];
             $elections[$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name', 'parent_id'));
             $elections[$k]['Candidate'] = $this->Area->Election->Candidate->find('all', array(
                 'joins' => array(

@@ -42,11 +42,13 @@ if (!empty($parents)) {
                         $c[] = $e['Election']['name'];
                     }
 
-                    echo '<hr>';
-
-                    echo '<h4>' . $this->Html->link(implode(' > ', $c), '/candidates/index/' . $cLinkId);
+                    echo '<hr />';
+                    echo '<div class="col-md-8">';
+                    echo $this->Html->link(implode(' > ', $c), '/candidates/index/' . $cLinkId);
+                    echo " &nbsp; &nbsp; ( 選舉人： {$election['AreasElection']['population_electors']} / 人口： {$election['AreasElection']['population']} )";
+                    echo '</div>';
                     echo $this->Html->link("新增 {$eType} 候選人", array('controller' => 'candidates', 'action' => 'add', $election['AreasElection']['Election_id']), array('class' => 'btn btn-primary pull-right col-md-2'));
-                    echo '</h4>';
+                    echo '<div class="clearfix"></div>';
                     if (!empty($election['Candidate'])) {
                         foreach ($election['Candidate'] AS $candidate) {
                             ?><div class="col-md-2" style="text-align: center;">
