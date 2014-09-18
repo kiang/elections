@@ -235,6 +235,9 @@ class CandidatesController extends AppController {
                     'Area' => array(
                         'fields' => array('Area.id', 'Area.name'),
                     ),
+                ),
+                'Tag' => array(
+                    'fields' => array('Tag.id', 'Tag.name'),
                 )
             ),
         ));

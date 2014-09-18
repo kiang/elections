@@ -17,12 +17,25 @@
             }
             echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default pull-right'));
             ?></h1>
-        行政區：
-        <?php
-        foreach ($this->data['Election'][0]['Area'] AS $area) {
-            echo $this->Html->link($area['name'], '/areas/index/' . $area['id'], array('class' => 'btn btn-default'));
-        }
-        ?>
+        <div class="col-md-6">
+            行政區：
+            <?php
+            foreach ($this->data['Election'][0]['Area'] AS $area) {
+                echo $this->Html->link($area['name'], '/areas/index/' . $area['id'], array('class' => 'btn btn-default'));
+            }
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?php if (!empty($this->data['Tag'])) { ?>
+                分類：
+                <?php
+                foreach ($this->data['Tag'] AS $tag) {
+                    echo $this->Html->link($tag['name'], '/candidates/tag/' . $tag['id'], array('class' => 'btn btn-default'));
+                }
+            }
+            ?>
+        </div>
+        <div class="clearfix"></div>
         <hr />
     </div>
     <div class="row">
