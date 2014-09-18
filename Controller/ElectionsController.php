@@ -15,7 +15,7 @@ class ElectionsController extends AppController {
             $this->Auth->allow('index', 's');
         }
     }
-    
+
     public function s() {
         $result = array();
         if (isset($this->request->query['term'])) {
@@ -38,94 +38,25 @@ class ElectionsController extends AppController {
         $this->set('result', $result);
     }
 
-    function index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {
+    function index($parentId = '') {
         if (!empty($parentId)) {
             $parentId = $this->Election->field('id', array('id' => $parentId));
         }
         if (empty($parentId)) {
             $parentId = $this->Election->field('id', array('parent_id IS NULL'));
         }
-        $foreignKeys = array();
+        $items = $this->Election->find('all', array(
+            'conditions' => array(
+                'Election.parent_id' => empty($parentId) ? NULL : $parentId,
+            ),
+        ));
 
-        $habtmKeys = array(
-            'Area' => 'Area_id',
-            'Candidate' => 'Candidate_id',
-        );
-        $foreignKeys = array_merge($habtmKeys, $foreignKeys);
-
-        $scope = array(
-            'Election.parent_id' => empty($parentId) ? NULL : $parentId,
-        );
-        if (array_key_exists($foreignModel, $foreignKeys) && !empty($foreignId)) {
-            $scope['Election.' . $foreignKeys[$foreignModel]] = $foreignId;
-
-            $joins = array(
-                'Area' => array(
-                    0 => array(
-                        'table' => 'areas_elections',
-                        'alias' => 'AreasElection',
-                        'type' => 'inner',
-                        'conditions' => array('AreasElection.Election_id = Election.id'),
-                    ),
-                    1 => array(
-                        'table' => 'areas',
-                        'alias' => 'Area',
-                        'type' => 'inner',
-                        'conditions' => array('AreasElection.Area_id = Area.id'),
-                    ),
-                ),
-                'Candidate' => array(
-                    0 => array(
-                        'table' => 'candidates_elections',
-                        'alias' => 'CandidatesElection',
-                        'type' => 'inner',
-                        'conditions' => array('AreasElection.Election_id = Election.id'),
-                    ),
-                    1 => array(
-                        'table' => 'candidates',
-                        'alias' => 'Candidate',
-                        'type' => 'inner',
-                        'conditions' => array('AreasElection.Candidate_id = Candidate.id'),
-                    ),
-                ),
-            );
-            if (array_key_exists($foreignModel, $habtmKeys)) {
-                unset($scope['Election.' . $foreignKeys[$foreignModel]]);
-                if ($op != 'set') {
-                    $scope[$joins[$foreignModel][0]['alias'] . '.' . $foreignKeys[$foreignModel]] = $foreignId;
-                    $this->paginate['Election']['joins'] = $joins[$foreignModel];
-                }
-            }
-        } else {
-            $foreignModel = '';
-        }
-        $this->set('scope', $scope);
-        $this->paginate['Election']['limit'] = 20;
-        $items = $this->paginate($this->Election, $scope);
-
-        if ($op == 'set' && !empty($joins[$foreignModel]) && !empty($foreignModel) && !empty($foreignId) && !empty($items)) {
-            foreach ($items AS $key => $item) {
-                $items[$key]['option'] = $this->Election->find('count', array(
-                    'joins' => $joins[$foreignModel],
-                    'conditions' => array(
-                        'Election.id' => $item['Election']['id'],
-                        $foreignModel . '.id' => $foreignId,
-                    ),
-                ));
-                if ($items[$key]['option'] > 0) {
-                    $items[$key]['option'] = 1;
-                }
-            }
-            $this->set('op', $op);
-        }
         $parents = $this->Election->getPath($parentId);
         $c = Set::extract('{n}.Election.name', $parents);
 
         $this->set('title_for_layout', implode(' > ', $c) . '選舉區 @ ');
         $this->set('items', $items);
-        $this->set('url', array($parentId, $foreignModel, $foreignId, $op));
-        $this->set('foreignId', $foreignId);
-        $this->set('foreignModel', $foreignModel);
+        $this->set('url', array($parentId));
         $this->set('parentId', $parentId);
         $this->set('parents', $parents);
     }
