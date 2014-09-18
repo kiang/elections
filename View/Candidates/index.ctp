@@ -26,8 +26,12 @@
     ?>
     <div class="col-md-12"><?php echo $this->Html->getCrumbs(); ?></div>
     <div class="col-md-8">
-            <?php echo " &nbsp; &nbsp; ( 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )"; ?>
-        </div>
+        <?php
+        if (!empty($currentElection['population_electors'])) {
+            echo " &nbsp; &nbsp; ( 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )";
+        }
+        ?>
+    </div>
     <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
     <div class="clearfix"></div>
     <?php
