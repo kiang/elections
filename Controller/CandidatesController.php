@@ -231,7 +231,7 @@ class CandidatesController extends AppController {
             ),
             'contain' => array(
                 'Election' => array(
-                    'fields' => array('Election.id'),
+                    'fields' => array('Election.id', 'Election.population_electors', 'Election.population'),
                     'Area' => array(
                         'fields' => array('Area.id', 'Area.name'),
                     ),

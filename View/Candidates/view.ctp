@@ -17,6 +17,9 @@
             }
             echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default pull-right'));
             ?></h1>
+        <div class="col-md-12">
+            <?php echo " &nbsp; &nbsp; ( 選舉人： {$this->data['Election'][0]['population_electors']} / 人口： {$this->data['Election'][0]['population']} )"; ?>
+        </div>
         <div class="col-md-6">
             行政區：
             <?php

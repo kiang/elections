@@ -2,6 +2,7 @@
     <h2>候選人</h2>
     <div class="clearfix"></div>
     <?php
+    $currentElection = array();
     if (!empty($parents)) {
         foreach ($parents AS $parent) {
             if ($parent['Election']['rght'] - $parent['Election']['lft'] !== 1) {
@@ -10,6 +11,7 @@
                     'action' => 'index', $parent['Election']['id'])
                 );
             } else {
+                $currentElection = $parent['Election'];
                 $this->Html->addCrumb($parent['Election']['name'], array(
                     'action' => 'index', $parent['Election']['id'])
                 );
@@ -23,6 +25,9 @@
     }
     ?>
     <div class="col-md-12"><?php echo $this->Html->getCrumbs(); ?></div>
+    <div class="col-md-8">
+            <?php echo " &nbsp; &nbsp; ( 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )"; ?>
+        </div>
     <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
     <div class="clearfix"></div>
     <?php
