@@ -31,7 +31,7 @@ class Area extends AppModel {
     );
 
     public function beforeSave($options = array()) {
-        if (!empty($this->id)) {
+        if (!empty($this->id) && isset($this->data['Area']['name'])) {
             $oldName = $this->field('name');
             if ($oldName !== $this->data['Area']['name']) {
                 $electionIds = $this->AreasElection->find('list', array(
