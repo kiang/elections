@@ -47,8 +47,17 @@
                 ));
                 ?>
             </div>
+            <div class="pull-right">
+                <?php
+                echo $this->Form->input('Election.keyword', array(
+                    'div' => 'form-group',
+                    'label' => false,
+                    'placeholder' => '選舉區搜尋',
+                    'class' => 'form-control col-md-4'
+                ));
+                ?>
+            </div>
             <div id="header">
-
                 <div class="breadcrumb">
                     <?php echo $this->Html->getCrumbs() ?>
                 </div>
@@ -91,15 +100,26 @@
         ?>
         <script type="text/javascript">
             //<![CDATA[
-            $(function() {
-                $('a.dialogControl').click(function() {
+            $(function () {
+                $('a.dialogControl').click(function () {
                     dialogFull(this);
                     return false;
                 });
                 $('input#CandidateKeyword').autocomplete({
                     source: '<?php echo $this->Html->url('/candidates/s/'); ?>',
-                    select: function(event, ui) {
+                    select: function (event, ui) {
                         location.href = '<?php echo $this->Html->url('/candidates/view/'); ?>' + ui.item.id;
+                    }
+                });
+                $('input#ElectionKeyword').autocomplete({
+                    source: '<?php echo $this->Html->url('/elections/s/'); ?>',
+                    select: function (event, ui) {
+                        if (ui.item.rght - ui.item.lft === 1) {
+                            location.href = '<?php echo $this->Html->url('/candidates/index/'); ?>' + ui.item.id;
+                        } else {
+                            location.href = '<?php echo $this->Html->url('/elections/index/'); ?>' + ui.item.id;
+                        }
+
                     }
                 });
             });

@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('Sanitize', 'Utility');
 
 class ElectionsController extends AppController {
 
@@ -11,8 +12,30 @@ class ElectionsController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index');
+            $this->Auth->allow('index', 's');
         }
+    }
+    
+    public function s() {
+        $result = array();
+        if (isset($this->request->query['term'])) {
+            $keyword = Sanitize::clean($this->request->query['term']);
+        }
+        if (!empty($keyword)) {
+            $result = $this->Election->find('all', array(
+                'fields' => array('Election.id', 'Election.name', 'Election.lft', 'Election.rght'),
+                'conditions' => array(
+                    'Election.parent_id IS NOT NULL',
+                    'Election.name LIKE' => "%{$keyword}%",
+                ),
+                'limit' => 20,
+            ));
+            foreach ($result AS $k => $v) {
+                $parents = $this->Election->getPath($v['Election']['id'], array('name'));
+                $result[$k]['Election']['name'] = implode(' > ', Set::extract($parents, '{n}.Election.name'));
+            }
+        }
+        $this->set('result', $result);
     }
 
     function index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {
