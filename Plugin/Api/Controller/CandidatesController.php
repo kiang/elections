@@ -41,28 +41,32 @@ class CandidatesController extends ApiAppController {
     }
 
     public function view($id = '') {
-        $this->jsonData = $this->Candidate->find('first', array(
-            'conditions' => array(
-                'Candidate.id' => $id,
-                'Candidate.active_id IS NULL',
-            ),
-            'fields' => array('Candidate.*', 'CandidatesElection.platform'),
-            'joins' => array(
-                array(
-                    'table' => 'candidates_elections',
-                    'alias' => 'CandidatesElection',
-                    'type' => 'inner',
-                    'conditions' => array(
-                        'CandidatesElection.Candidate_id = Candidate.id',
+        if (!empty($id)) {
+            $this->jsonData = $this->Candidate->find('first', array(
+                'conditions' => array(
+                    'Candidate.id' => $id,
+                    'Candidate.active_id IS NULL',
+                ),
+                'fields' => array('Candidate.*', 'CandidatesElection.platform'),
+                'joins' => array(
+                    array(
+                        'table' => 'candidates_elections',
+                        'alias' => 'CandidatesElection',
+                        'type' => 'inner',
+                        'conditions' => array(
+                            'CandidatesElection.Candidate_id = Candidate.id',
+                        ),
                     ),
                 ),
-            ),
-        ));
-        if (!empty($this->jsonData['Candidate']['image'])) {
-            $this->jsonData['Candidate']['image'] = Router::url('/img/' . $this->jsonData['Candidate']['image'], true);
+            ));
+            if (!empty($this->jsonData['Candidate']['image'])) {
+                $this->jsonData['Candidate']['image'] = Router::url('/img/' . $this->jsonData['Candidate']['image'], true);
+            }
+            if (isset($this->jsonData['CandidatesElection'])) {
+                $this->jsonData['Candidate']['platform'] = $this->jsonData['CandidatesElection']['platform'];
+                unset($this->jsonData['CandidatesElection']);
+            }
         }
-        $this->jsonData['Candidate']['platform'] = $this->jsonData['CandidatesElection']['platform'];
-        unset($this->jsonData['CandidatesElection']);
     }
 
 }
