@@ -306,16 +306,16 @@ class CandidatesController extends AppController {
             $this->Session->setFlash('請依照網頁指示操作');
             $this->redirect(array('action' => 'index'));
         } else {
-            if(!empty($this->data['Candidate']['active_id'])) {
+            if (!empty($this->data['Candidate']['active_id'])) {
                 $targetId = $this->data['Candidate']['active_id'];
             } else {
                 $targetId = $this->data['Candidate']['id'];
             }
             $versions = $this->Candidate->find('all', array(
                 'conditions' => array('OR' => array(
-                    'Candidate.id' => $targetId,
-                    'Candidate.active_id' => $targetId,
-                )),
+                        'Candidate.id' => $targetId,
+                        'Candidate.active_id' => $targetId,
+                    )),
                 'order' => array('Candidate.created DESC'),
             ));
             $this->set('versions', $versions);
@@ -345,20 +345,38 @@ class CandidatesController extends AppController {
     }
 
     function admin_edit($id = null) {
-        if (!$id && empty($this->data)) {
+        if (!empty($id)) {
+            $candidate = $this->Candidate->find('first', array(
+                'conditions' => array(
+                    'Candidate.id' => $id,
+                ),
+                'contain' => array('Election'),
+            ));
+        }
+        if (!empty($candidate)) {
+            if (!empty($this->data)) {
+                $dataToSave = $this->data;
+                if(!empty($dataToSave['Candidate']['image_upload']['size'])) {
+                    $dataToSave['Candidate']['image'] = $dataToSave['Candidate']['image_upload'];
+                }
+                if ($this->Candidate->save($dataToSave)) {
+                    $this->Session->setFlash('資料已經儲存');
+                    $this->redirect(array('action' => 'index'));
+                } else {
+                    $this->Session->setFlash('資料儲存時發生錯誤，請重試');
+                }
+            } else {
+                $candidate['CandidatesElection']['platform'] = str_replace('\\n', "\n", $candidate['Election'][0]['CandidatesElection']['platform']);
+                $candidate['Candidate']['links'] = str_replace('\\n', "\n", $candidate['Candidate']['links']);
+                $candidate['Candidate']['education'] = str_replace('\\n', "\n", $candidate['Candidate']['education']);
+                $candidate['Candidate']['experience'] = str_replace('\\n', "\n", $candidate['Candidate']['experience']);
+                $this->set('id', $id);
+                $this->data = $candidate;
+            }
+        } else {
             $this->Session->setFlash('請依照網頁指示操作');
             $this->redirect($this->referer());
         }
-        if (!empty($this->data)) {
-            if ($this->Candidate->save($this->data)) {
-                $this->Session->setFlash('資料已經儲存');
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash('資料儲存時發生錯誤，請重試');
-            }
-        }
-        $this->set('id', $id);
-        $this->data = $this->Candidate->read(null, $id);
     }
 
     function admin_delete($id = null) {

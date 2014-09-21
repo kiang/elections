@@ -42,10 +42,10 @@ class Candidate extends AppModel {
                 if (file_exists($path . '/' . $fileName)) {
                     $this->data['Candidate']['image'] = $fileName;
                 } else {
-                    $this->data['Candidate']['image'] = '';
+                    unset($this->data['Candidate']['image']);
                 }
             } else {
-                $this->data['Candidate']['image'] = '';
+                unset($this->data['Candidate']['image']);
             }
         }
         return parent::beforeSave($options);

@@ -29,6 +29,12 @@
                 'class' => 'form-control',
             ));
             echo $this->Form->input('Candidate.image', array(
+                'type' => 'text',
+                'label' => '照片',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
+            echo $this->Form->input('Candidate.image_upload', array(
                 'type' => 'file',
                 'label' => '照片',
                 'div' => 'form-group',

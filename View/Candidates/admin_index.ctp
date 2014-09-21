@@ -52,7 +52,7 @@
                     <td><?php echo $item['Candidate']['modified']; ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Candidate']['id'])); ?>
-                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Candidate']['id']), array('class' => 'dialogControl')); ?>
+                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Candidate']['id'])); ?>
                         <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Candidate']['id']), null, __('Delete the item, sure?', true)); ?>
                     </td>
                 </tr>
