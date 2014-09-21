@@ -261,7 +261,7 @@ class CandidatesController extends AppController {
 
     function admin_index($electionId = '') {
         $scope = array(
-            'Candidate.active_id IS NOT NULL',
+            'Candidate.active_id IS NULL',
         );
         if (!empty($electionId)) {
             $scope['CandidatesElection.Election_id'] = $electionId;
