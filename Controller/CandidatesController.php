@@ -260,7 +260,9 @@ class CandidatesController extends AppController {
     }
 
     function admin_index($electionId = '') {
-        $scope = array();
+        $scope = array(
+            'Candidate.active_id IS NOT NULL',
+        );
         if (!empty($electionId)) {
             $scope['CandidatesElection.Election_id'] = $electionId;
         }
@@ -287,9 +289,36 @@ class CandidatesController extends AppController {
     }
 
     function admin_view($id = null) {
-        if (!$id || !$this->data = $this->Candidate->read(null, $id)) {
+        if (!empty($id)) {
+            $this->data = $this->Candidate->find('first', array(
+                'conditions' => array(
+                    'Candidate.id' => $id,
+                ),
+                'contain' => array(
+                    'Election' => array(
+                        'fields' => array('Election.id', 'Election.population_electors', 'Election.population'),
+                    ),
+                ),
+            ));
+        }
+
+        if (empty($this->data)) {
             $this->Session->setFlash('請依照網頁指示操作');
             $this->redirect(array('action' => 'index'));
+        } else {
+            if(!empty($this->data['Candidate']['active_id'])) {
+                $targetId = $this->data['Candidate']['active_id'];
+            } else {
+                $targetId = $this->data['Candidate']['id'];
+            }
+            $versions = $this->Candidate->find('all', array(
+                'conditions' => array('OR' => array(
+                    'Candidate.id' => $targetId,
+                    'Candidate.active_id' => $targetId,
+                )),
+                'order' => array('Candidate.created DESC'),
+            ));
+            $this->set('versions', $versions);
         }
     }
 
