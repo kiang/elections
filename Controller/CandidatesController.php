@@ -405,9 +405,6 @@ class CandidatesController extends AppController {
             );
             //update image
             if (!empty($submitted['Candidate']['image'])) {
-                if (!empty($original['Candidate']['image']) && file_exists(WWW_ROOT . 'media/' . $original['Candidate']['image'])) {
-                    unlink(WWW_ROOT . 'media/' . $original['Candidate']['image']);
-                }
                 $dataToSave['image'] = $submitted['Candidate']['image'];
             }
 
