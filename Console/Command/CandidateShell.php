@@ -6,7 +6,7 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->cec_2014();
+        $this->cec_2014_import();
     }
 
     public function cec_2014_fun() {
@@ -104,9 +104,7 @@ class CandidateShell extends AppShell {
                         $parts = explode('選舉區', $line[0]);
                         $parts = explode('第', $parts[0]);
                         switch ($parts[0]) {
-                            case '連江縣北竿鄉':
-                            case '連江縣莒光鄉':
-                            case '連江縣東引鄉':
+                            case '嘉義縣新港鄉':
                                 $parts[1] = '01';
                                 break;
                             default:
