@@ -6,7 +6,7 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->cec_2014_fun();
+        $this->cec_2014();
     }
 
     public function cec_2014_fun() {
@@ -19,7 +19,7 @@ class CandidateShell extends AppShell {
                 if (!isset($candidates[$line[0]])) {
                     $candidates[$line[0]] = array();
                 }
-                if(!isset($nameCount[$line[1]])) {
+                if (!isset($nameCount[$line[1]])) {
                     $nameCount[$line[1]] = array();
                 }
                 $nameCount[$line[1]][] = "[{$csvInfo['filename']}]{$line[0]}";
@@ -34,7 +34,6 @@ class CandidateShell extends AppShell {
                 if ($cnt > $maxCount) {
                     $maxCount = $cnt;
                 }
-                
             }
             foreach ($candidates AS $area => $aCandidates) {
                 $cnt = count($aCandidates);
@@ -43,8 +42,8 @@ class CandidateShell extends AppShell {
                 }
             }
         }
-        foreach($nameCount AS $name => $areas) {
-            if(count($areas) > 1) {
+        foreach ($nameCount AS $name => $areas) {
+            if (count($areas) > 1) {
                 //echo "{$name}: " . implode(', ', $areas) . "\n";
             }
         }
@@ -190,6 +189,7 @@ class CandidateShell extends AppShell {
         $parties = array('中國國民黨' => 0, '新黨' => 0, '民主進步黨' => 0, '親民黨' => 0, '樹黨' => 0, '華聲黨' => 0, '綠黨' => 0, '人民最大黨' => 0, '臺灣建國黨' => 0, '台灣主義黨' => 0, '聯合黨' => 0, '勞動黨' => 0, '台灣民族黨' => 0, '大道人民黨' => 0, '台灣第一民族黨' => 0, '中華統一促進黨' => 0, '家庭黨' => 0, '三等國民公義人權自救黨' => 0, '無' => 0, '台灣團結聯盟' => 0, '人民民主陣線' => 0, '無黨團結聯盟' => 0, '中華民主向日葵憲政改革聯' => 0, '中華統一促進' => 0);
         foreach (glob(__DIR__ . '/data/2014_candidates/*.pdf') AS $pdfFile) {
             $pdfFileInfo = pathinfo($pdfFile);
+            echo "processing {$pdfFileInfo['filename']}\n";
             $txtFile = $tmpPath . '/' . $pdfFileInfo['filename'] . '.txt';
             if (!file_exists($txtFile)) {
                 exec("java -cp /usr/share/java/commons-logging.jar:/usr/share/java/fontbox.jar:/usr/share/java/pdfbox.jar org.apache.pdfbox.PDFBox ExtractText {$pdfFile} tmp.txt");
@@ -220,7 +220,7 @@ class CandidateShell extends AppShell {
                             break;
                     }
                     switch ($pdfFileInfo['filename']) {
-                        case 'pta_19467_7952393_24126': //直轄市議員
+                        case '103年直轄市議員選舉候選人登記彙總表':
                             $type = '直轄市議員';
                             switch (count($fields)) {
                                 case 4:
@@ -249,6 +249,7 @@ class CandidateShell extends AppShell {
                                 case 9:
                                     $name = $fields[2];
                                     break;
+                                case 12:
                                 case 13:
                                     $name = $fields[2];
                                     break;
@@ -260,11 +261,11 @@ class CandidateShell extends AppShell {
                                     exit();
                             }
                             break;
-                        case 'pta_19470_7184777_24391': //縣市長
+                        case '103年縣市長選舉候選人登記彙總表':
                             $type = '縣市長';
                             $name = $fields[2];
                             break;
-                        case 'pta_19473_4748471_24456': //縣市議員
+                        case '103年縣市議員選舉候選人登記彙總表':
                             $type = '縣市議員';
                             switch (count($fields)) {
                                 case 5:
@@ -276,6 +277,7 @@ class CandidateShell extends AppShell {
                                 case 7:
                                     $name = $fields[2];
                                     break;
+                                case 12:
                                 case 13:
                                     $name = $fields[2];
                                     break;
@@ -284,7 +286,7 @@ class CandidateShell extends AppShell {
                                     exit();
                             }
                             break;
-                        case 'pta_19479_4709973_24847': //鄉鎮市長
+                        case '103年鄉鎮市長選舉候選人登記彙總表':
                             $type = '鄉鎮市長';
                             switch (count($fields)) {
                                 case 5:
@@ -303,16 +305,16 @@ class CandidateShell extends AppShell {
                                 case 8:
                                     $name = $fields[2] . $fields[3] . $fields[4] . '•' . $fields[5];
                                     break;
+                                case 12:
                                 case 13:
                                     $name = $fields[2];
                                     break;
                                 default:
-                                    print_r($fields);
                                     echo count($fields) . "\n";
                                     exit();
                             }
                             break;
-                        case 'pta_19481_3406822_24896': //鄉鎮市民代表
+                        case '103年鄉鎮市民代表選舉候選人登記彙總表':
                             $type = '鄉鎮市民代表';
                             switch (count($fields)) {
                                 case 4:
@@ -350,6 +352,7 @@ class CandidateShell extends AppShell {
                                         $name = $fields[2];
                                     }
                                     break;
+                                case 12:
                                 case 13:
                                     $name = $fields[2];
                                     break;
@@ -358,10 +361,11 @@ class CandidateShell extends AppShell {
                                     exit();
                             }
                             break;
-                        case 'pta_19483_1653047_24937': //村里長
+                        case '103年村里長選舉候選人登記彙總表': //村里長
                             $type = '村里長';
                             switch (count($fields)) {
                                 case 4:
+                                case 11:
                                     switch ($fields[1]) {
                                         case '新北市樹林區東陽里':
                                             $name = '徐木';
@@ -501,6 +505,7 @@ class CandidateShell extends AppShell {
                                         $name = $fields[2];
                                     }
                                     break;
+                                case 12:
                                 case 13:
                                     $name = $fields[2];
                                     break;
@@ -512,7 +517,7 @@ class CandidateShell extends AppShell {
                                     exit();
                             }
                             break;
-                        case 'pta_19484_8916638_25020': //直轄市長
+                        case '103年直轄市長選舉候選人登記彙總表': //直轄市長
                             $type = '直轄市長';
                             switch (count($fields)) {
                                 case 5:
@@ -526,7 +531,7 @@ class CandidateShell extends AppShell {
                                     exit();
                             }
                             break;
-                        case 'pta_19488_4749350_25890': //直轄市山地原住民區長
+                        case '103年直轄市山地原住民區長選舉候選人登記彙總表':
                             $type = '直轄市山地原住民區長';
                             switch (count($fields)) {
                                 case 5:
@@ -540,7 +545,7 @@ class CandidateShell extends AppShell {
                                     exit();
                             }
                             break;
-                        case 'pta_19490_6653137_26083': //直轄市山地原住民區民代表
+                        case '103年直轄市山地原住民區民代表選舉候選人登記彙總表':
                             $type = '直轄市山地原住民區民代表';
                             switch (count($fields)) {
                                 case 5:
@@ -586,6 +591,14 @@ class CandidateShell extends AppShell {
                 }
             }
         }
+        foreach ($result AS $key => $val) {
+            $fh = fopen(__DIR__ . "/data/2014_candidates/{$key}.csv", 'w');
+            foreach ($val AS $line) {
+                fputcsv($fh, $line);
+            }
+            fclose($fh);
+        }
+        return;
         foreach ($partyResult AS $p => $d) {
             echo "{$p}: {$d['count']}\n";
         }
@@ -597,14 +610,6 @@ class CandidateShell extends AppShell {
                 }
                 echo "\n\n";
             }
-        }
-        return;
-        foreach ($result AS $key => $val) {
-            $fh = fopen(__DIR__ . "/data/2014_candidates/{$key}.csv", 'w');
-            foreach ($val AS $line) {
-                fputcsv($fh, $line);
-            }
-            fclose($fh);
         }
     }
 
