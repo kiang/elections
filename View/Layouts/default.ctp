@@ -33,6 +33,7 @@
                         <li><?php echo $this->Html->link('候選人', '/candidates', array('class' => '')); ?></li>
                         <li><?php echo $this->Html->link('分類', '/tags', array('class' => '')); ?></li>
                     </ul>
+                    <div class="pull-right submitCount" style="color: #f2f2f2"></div>
                 </div>
             </div>
         </nav>
@@ -65,7 +66,7 @@
 
             <div id="content">
                 <div class="btn-group">
-                    <?php if ($this->Session->read('Auth.User.id')): ?>
+                    <?php if (Configure::read('loginMember.group_id') === '1') { ?>
                         <?php echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Areas', '/admin/areas', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Candidates', '/admin/candidates', array('class' => 'btn')); ?>
@@ -73,7 +74,7 @@
                         <?php echo $this->Html->link('Members', '/admin/members', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Groups', '/admin/groups', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn')); ?>
-                    <?php endif; ?>
+                    <?php } ?>
                     <?php
                     if (!empty($actions_for_layout)) {
                         foreach ($actions_for_layout as $title => $url) {
@@ -101,29 +102,30 @@
         ?>
         <script type="text/javascript">
             //<![CDATA[
-            $(function () {
-                $('a.dialogControl').click(function () {
+                $(function () {
+                    $('a.dialogControl').click(function () {
                     dialogFull(this);
-                    return false;
+                return false;
                 });
-                $('input#CandidateKeyword').autocomplete({
+                    $('input#CandidateKeyword').autocomplete({
                     source: '<?php echo $this->Html->url('/candidates/s/'); ?>',
-                    select: function (event, ui) {
-                        location.href = '<?php echo $this->Html->url('/candidates/view/'); ?>' + ui.item.id;
-                    }
-                });
-                $('input#ElectionKeyword').autocomplete({
+                                    select: function (event, ui) {
+                                    location.href = '<?php echo $this->Html->url('/candidates/view/'); ?>' + ui.item.id;
+                                }
+                                });
+                                    $('input#ElectionKeyword').autocomplete({
                     source: '<?php echo $this->Html->url('/elections/s/'); ?>',
-                    select: function (event, ui) {
-                        if (ui.item.rght - ui.item.lft === 1) {
-                            location.href = '<?php echo $this->Html->url('/candidates/index/'); ?>' + ui.item.id;
-                        } else {
-                            location.href = '<?php echo $this->Html->url('/elections/index/'); ?>' + ui.item.id;
-                        }
+                                    select: function (event, ui) {
+                                        if (ui.item.rght - ui.item.lft === 1) {
+                                            location.href = '<?php echo $this->Html->url('/candidates/index/'); ?>' + ui.item.id;
+                                                } else {
+                                            location.href = '<?php echo $this->Html->url('/elections/index/'); ?>' + ui.item.id;
+                                        }
 
-                    }
-                });
-            });
+                                    }
+                                    });
+                $('div.submitCount').load('<?php echo $this->Html->url('/candidates/submits'); ?>');
+                    });
             //]]>
         </script>
     </body>

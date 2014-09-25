@@ -12,8 +12,17 @@ class CandidatesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'add', 'view', 'edit', 's', 'tag');
+            $this->Auth->allow('index', 'add', 'view', 'edit', 's', 'tag', 'submits');
         }
+    }
+
+    public function submits() {
+        $this->set('count', $this->Candidate->find('count', array(
+                    'conditions' => array(
+                        'Candidate.active_id IS NOT NULL',
+                        'Candidate.is_reviewed' => '0',
+                    ),
+        )));
     }
 
     public function s() {
@@ -356,7 +365,7 @@ class CandidatesController extends AppController {
         if (!empty($candidate)) {
             if (!empty($this->data)) {
                 $dataToSave = $this->data;
-                if(!empty($dataToSave['Candidate']['image_upload']['size'])) {
+                if (!empty($dataToSave['Candidate']['image_upload']['size'])) {
                     $dataToSave['Candidate']['image'] = $dataToSave['Candidate']['image_upload'];
                 }
                 if ($this->Candidate->save($dataToSave)) {
