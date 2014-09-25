@@ -353,7 +353,7 @@ class CandidatesController extends AppController {
         }
     }
 
-    function admin_edit($id = null) {
+    function admin_edit($id = null, $after = '') {
         if (!empty($id)) {
             $candidate = $this->Candidate->find('first', array(
                 'conditions' => array(
@@ -370,7 +370,11 @@ class CandidatesController extends AppController {
                 }
                 if ($this->Candidate->save($dataToSave)) {
                     $this->Session->setFlash('資料已經儲存');
-                    $this->redirect(array('action' => 'index'));
+                    if($after !== 'submits') {
+                        $this->redirect(array('action' => 'index'));
+                    } else {
+                        $this->redirect(array('action' => 'submits'));
+                    }
                 } else {
                     $this->Session->setFlash('資料儲存時發生錯誤，請重試');
                 }
@@ -388,13 +392,17 @@ class CandidatesController extends AppController {
         }
     }
 
-    function admin_delete($id = null) {
+    function admin_delete($id = null, $after = '') {
         if (!$id) {
             $this->Session->setFlash('請依照網頁指示操作');
         } else if ($this->Candidate->delete($id)) {
             $this->Session->setFlash('資料已經刪除');
         }
-        $this->redirect(array('action' => 'index'));
+        if($after !== 'submits') {
+            $this->redirect(array('action' => 'index'));
+        } else {
+            $this->redirect(array('action' => 'submits'));
+        }
     }
 
     public function admin_submits() {
@@ -426,6 +434,7 @@ class CandidatesController extends AppController {
             'conditions' => array('id' => $submitted['Candidate']['active_id']),
             'contain' => array('Election' => array('fields' => array('Election.name'))),
         ));
+        $originalId = $original['Candidate']['id'];
         if ($approved === 'yes') {
             $dataToSave = array(
                 'id' => $original['Candidate']['id'],
@@ -468,6 +477,7 @@ class CandidatesController extends AppController {
         $this->set('submitted', $submitted);
         $this->set('original', $original);
         $this->set('submittedId', $candidateId);
+        $this->set('originalId', $originalId);
     }
 
 }
