@@ -27,4 +27,5 @@
     ?>
     <div class="clearfix"></div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
+    <script type="text/javascript" src="<?php echo $this->Html->url('/talk/plugins/embedvanilla/remote.js'); ?>"></script>
 </div>

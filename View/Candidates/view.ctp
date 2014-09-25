@@ -113,4 +113,5 @@
         <div class="success">經歷</div><?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['experience'])); ?>
         <div class="success">學歷</div><?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['education'])); ?>
     </div><!--/row-->
+    <script type="text/javascript" src="<?php echo $this->Html->url('/talk/plugins/embedvanilla/remote.js'); ?>"></script>
 </div><!--/container-->
