@@ -12,12 +12,19 @@
                 }
                 echo implode(' > ', $c);
             }
-            if (false !== strpos($referer, $this->Html->url('/', true))) {
-                echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default pull-right'));
-            }
-            echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default pull-right'));
             ?></h1>
         <div class="col-md-12">
+            <div class="pull-right btn-group">
+                <?php
+                echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default'));
+                if (Configure::read('loginMember.group_id') === '1') {
+                    echo $this->Html->link('管理', array('action' => 'edit', $this->data['Candidate']['id'], 'admin' => true), array('class' => 'btn btn-default'));
+                }
+                if (false !== strpos($referer, $this->Html->url('/', true))) {
+                    echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default'));
+                }
+                ?>
+            </div>
             <?php echo " &nbsp; &nbsp; ( 選舉人： {$this->data['Election'][0]['population_electors']} / 人口： {$this->data['Election'][0]['population']} )"; ?>
         </div>
         <div class="col-md-6">
@@ -69,18 +76,18 @@
                             <li>政黨：<?php echo $this->data['Candidate']['party']; ?></li>
                             <li>生日：<?php echo $this->data['Candidate']['birth']; ?></li>
                             <li>性別：<?php
-                                $gender = strtolower($this->data['Candidate']['gender']);
-                                switch ($gender) {
-                                    case 'f':
-                                        echo '女';
-                                        break;
-                                    case 'm':
-                                        echo '男';
-                                        break;
-                                    default:
-                                        echo '未設定';
-                                }
-                                ?></li>
+                $gender = strtolower($this->data['Candidate']['gender']);
+                switch ($gender) {
+                    case 'f':
+                        echo '女';
+                        break;
+                    case 'm':
+                        echo '男';
+                        break;
+                    default:
+                        echo '未設定';
+                }
+                ?></li>
                         </ul>
                     </div>
                 </div>
@@ -90,19 +97,19 @@
     <div class="row">
         <div class="success">政見</div><?php echo str_replace('\\n', '<br />', $this->data['Election'][0]['CandidatesElection']['platform']); ?>
         <div class="success">相關連結</div><?php
-        $lines = explode('\\n', $this->data['Candidate']['links']);
-        foreach ($lines AS $line) {
-            $pos = strrpos($line, 'http');
-            $title = trim(substr($line, 0, $pos));
-            $url = trim(substr($line, $pos));
-            if (empty($title)) {
-                $title = $url;
-            }
-            if (!empty($url)) {
-                echo $this->Html->link($title, $url, array('target' => '_blank')) . '<br />';
-            }
-        }
-        ?>
+                                $lines = explode('\\n', $this->data['Candidate']['links']);
+                                foreach ($lines AS $line) {
+                                    $pos = strrpos($line, 'http');
+                                    $title = trim(substr($line, 0, $pos));
+                                    $url = trim(substr($line, $pos));
+                                    if (empty($title)) {
+                                        $title = $url;
+                                    }
+                                    if (!empty($url)) {
+                                        echo $this->Html->link($title, $url, array('target' => '_blank')) . '<br />';
+                                    }
+                                }
+                ?>
         <div class="success">經歷</div><?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['experience'])); ?>
         <div class="success">學歷</div><?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['education'])); ?>
     </div><!--/row-->
