@@ -103,7 +103,7 @@
             }
         }
         ?>
-        <div class="success">經歷</div><?php echo str_replace('\\n', '<br />', $this->data['Candidate']['experience']); ?>
-        <div class="success">學歷</div><?php echo str_replace('\\n', '<br />', $this->data['Candidate']['education']); ?>
+        <div class="success">經歷</div><?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['experience'])); ?>
+        <div class="success">學歷</div><?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['education'])); ?>
     </div><!--/row-->
 </div><!--/container-->
