@@ -76,18 +76,18 @@
                             <li>政黨：<?php echo $this->data['Candidate']['party']; ?></li>
                             <li>生日：<?php echo $this->data['Candidate']['birth']; ?></li>
                             <li>性別：<?php
-                $gender = strtolower($this->data['Candidate']['gender']);
-                switch ($gender) {
-                    case 'f':
-                        echo '女';
-                        break;
-                    case 'm':
-                        echo '男';
-                        break;
-                    default:
-                        echo '未設定';
-                }
-                ?></li>
+                                $gender = strtolower($this->data['Candidate']['gender']);
+                                switch ($gender) {
+                                    case 'f':
+                                        echo '女';
+                                        break;
+                                    case 'm':
+                                        echo '男';
+                                        break;
+                                    default:
+                                        echo '未設定';
+                                }
+                                ?></li>
                         </ul>
                     </div>
                 </div>
@@ -97,21 +97,33 @@
     <div class="row">
         <div class="success">政見</div><?php echo str_replace('\\n', '<br />', $this->data['Election'][0]['CandidatesElection']['platform']); ?>
         <div class="success">相關連結</div><?php
-                                $lines = explode('\\n', $this->data['Candidate']['links']);
-                                foreach ($lines AS $line) {
-                                    $pos = strrpos($line, 'http');
-                                    $title = trim(substr($line, 0, $pos));
-                                    $url = trim(substr($line, $pos));
-                                    if (empty($title)) {
-                                        $title = $url;
-                                    }
-                                    if (!empty($url)) {
-                                        echo $this->Html->link($title, $url, array('target' => '_blank')) . '<br />';
-                                    }
-                                }
-                ?>
+        $lines = explode('\\n', $this->data['Candidate']['links']);
+        foreach ($lines AS $line) {
+            $pos = strrpos($line, 'http');
+            $title = trim(substr($line, 0, $pos));
+            $url = trim(substr($line, $pos));
+            if (empty($title)) {
+                $title = $url;
+            }
+            if (!empty($url)) {
+                echo $this->Html->link($title, $url, array('target' => '_blank')) . '<br />';
+            }
+        }
+        ?>
         <div class="success">經歷</div><?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['experience'])); ?>
         <div class="success">學歷</div><?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['education'])); ?>
     </div><!--/row-->
-    <script type="text/javascript" src="<?php echo $this->Html->url('/../talk/plugins/embedvanilla/remote.js'); ?>"></script>
+    <div id="vanilla-comments"></div>
+    <script type="text/javascript">
+        var vanilla_forum_url = '<?php echo $this->Html->url('/../talk'); ?>'; // Required: the full http url & path to your vanilla forum
+        var vanilla_identifier = '<?php echo $this->data['Candidate']['id']; ?>'; // Required: your unique identifier for the content being commented on
+        var vanilla_url = '<?php echo $this->Html->url('/candidates/view/' . $this->data['Candidate']['id'], true); ?>'; // Current page's url
+        (function () {
+            var vanilla = document.createElement('script');
+            vanilla.type = 'text/javascript';
+            var timestamp = new Date().getTime();
+            vanilla.src = vanilla_forum_url + '/js/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(vanilla);
+        })();
+    </script>
 </div><!--/container-->

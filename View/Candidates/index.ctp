@@ -57,5 +57,19 @@
     ?>
     <div class="clearfix"></div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
-    <script type="text/javascript" src="<?php echo $this->Html->url('/../talk/plugins/embedvanilla/remote.js'); ?>"></script>
+    <?php if (!empty($electionId)) { ?>
+        <div id="vanilla-comments"></div>
+        <script type="text/javascript">
+            var vanilla_forum_url = '<?php echo $this->Html->url('/../talk'); ?>'; // Required: the full http url & path to your vanilla forum
+            var vanilla_identifier = '<?php echo $electionId; ?>'; // Required: your unique identifier for the content being commented on
+            var vanilla_url = '<?php echo $this->Html->url('/candidates/index/' . $electionId, true); ?>'; // Current page's url
+            (function () {
+                var vanilla = document.createElement('script');
+                vanilla.type = 'text/javascript';
+                var timestamp = new Date().getTime();
+                vanilla.src = vanilla_forum_url + '/js/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(vanilla);
+            })();
+        </script>
+    <?php } ?>
 </div>
