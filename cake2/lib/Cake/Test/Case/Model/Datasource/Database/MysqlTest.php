@@ -33,7 +33,7 @@ class MysqlTest extends CakeTestCase {
 /**
  * autoFixtures property
  *
- * @var boolean
+ * @var bool
  */
 	public $autoFixtures = false;
 
@@ -196,7 +196,6 @@ class MysqlTest extends CakeTestCase {
 /**
  * testTinyintCasting method
  *
- *
  * @return void
  */
 	public function testTinyintCasting() {
@@ -235,7 +234,6 @@ class MysqlTest extends CakeTestCase {
 
 /**
  * testLastAffected method
- *
  *
  * @return void
  */
@@ -884,6 +882,32 @@ class MysqlTest extends CakeTestCase {
 
 		$this->assertTrue(isset($result['id']));
 		$this->assertTrue(isset($result['color']));
+	}
+
+/**
+ * Test that describe() ignores `default current_timestamp` in timestamp columns.
+ *
+ * @return void
+ */
+	public function testDescribeHandleCurrentTimestamp() {
+		$name = $this->Dbo->fullTableName('timestamp_default_values');
+		$sql = <<<SQL
+CREATE TABLE $name (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	phone VARCHAR(10),
+	limit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id)
+);
+SQL;
+		$this->Dbo->execute($sql);
+		$model = new Model(array(
+			'table' => 'timestamp_default_values',
+			'ds' => 'test',
+			'alias' => 'TimestampDefaultValue'
+		));
+		$result = $this->Dbo->describe($model);
+		$this->assertEquals('', $result['limit_date']['default']);
+		$this->Dbo->execute('DROP TABLE ' . $name);
 	}
 
 /**

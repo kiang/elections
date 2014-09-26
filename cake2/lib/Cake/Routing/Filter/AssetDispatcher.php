@@ -28,7 +28,7 @@ class AssetDispatcher extends DispatcherFilter {
  * Default priority for all methods in this filter
  * This filter should run before the request gets parsed by router
  *
- * @var integer
+ * @var int
  */
 	public $priority = 9;
 
@@ -108,7 +108,7 @@ class AssetDispatcher extends DispatcherFilter {
 /**
  * Builds asset file path based off url
  *
- * @param string $url
+ * @param string $url URL
  * @return string Absolute path for asset file
  */
 	protected function _getAssetFile($url) {

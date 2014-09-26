@@ -93,7 +93,7 @@ class TestHttpSocket extends HttpSocket {
  * Convenience method for testing protected method
  *
  * @param string|array $uri URI to parse
- * @param boolean|array $base If true use default URI config, otherwise indexed array to set 'scheme', 'host', 'port', etc.
+ * @param bool|array $base If true use default URI config, otherwise indexed array to set 'scheme', 'host', 'port', etc.
  * @return array Parsed URI
  */
 	public function parseUri($uri = null, $base = array()) {
@@ -145,7 +145,7 @@ class TestHttpSocket extends HttpSocket {
 /**
  * Convenience method for testing protected method
  *
- * @param boolean $hex true to get them as HEX values, false otherwise
+ * @param bool $hex true to get them as HEX values, false otherwise
  * @return array Escape chars
  */
 	public function tokenEscapeChars($hex = true, $chars = null) {
@@ -174,14 +174,14 @@ class HttpSocketTest extends CakeTestCase {
 /**
  * Socket property
  *
- * @var mixed null
+ * @var mixed
  */
 	public $Socket = null;
 
 /**
  * RequestSocket property
  *
- * @var mixed null
+ * @var mixed
  */
 	public $RequestSocket = null;
 
@@ -1074,6 +1074,16 @@ class HttpSocketTest extends CakeTestCase {
 		));
 		$this->assertEquals($this->Socket->request['auth'], array('Basic' => array('user' => 'joel', 'pass' => 'hunter2')));
 		$this->assertTrue(strpos($this->Socket->request['header'], 'Authorization: Basic am9lbDpodW50ZXIy') !== false);
+
+		$this->Socket->configAuth('Basic', 'mark', 'password');
+		$this->Socket->request(array(
+			'method' => 'GET',
+			'uri' => 'http://example.com/test',
+			'header' => array(
+				'Authorization' => 'OtherAuth Hi.There'
+			)
+		));
+		$this->assertPattern('/Authorization: OtherAuth Hi\.There/m', $this->Socket->request['header']);
 	}
 
 /**
@@ -1089,6 +1099,15 @@ class HttpSocketTest extends CakeTestCase {
 
 		$this->Socket->get('/test2');
 		$this->assertTrue(strpos($this->Socket->request['header'], 'Authorization: Basic bWFyazpzZWNyZXQ=') !== false);
+
+		$this->Socket->request(array(
+			'method' => 'GET',
+			'uri' => 'http://example.com/test',
+			'header' => array(
+				'Authorization' => 'OtherAuth Hi.There'
+			)
+		));
+		$this->assertPattern('/Authorization: OtherAuth Hi\.There/m', $this->Socket->request['header']);
 
 		$this->Socket->get('/test3');
 		$this->assertTrue(strpos($this->Socket->request['header'], 'Authorization: Basic bWFyazpzZWNyZXQ=') !== false);
@@ -1745,7 +1764,7 @@ class HttpSocketTest extends CakeTestCase {
 		$this->skipIf(!extension_loaded('openssl'), 'OpenSSL is not enabled cannot test SSL.');
 		$socket = new HttpSocket();
 		try {
-			$socket->get('https://typography.com');
+			$socket->get('https://tv.eurosport.com/');
 			$this->markTestSkipped('Found valid certificate, was expecting invalid certificate.');
 		} catch (SocketException $e) {
 			$message = $e->getMessage();
@@ -1762,10 +1781,12 @@ class HttpSocketTest extends CakeTestCase {
  */
 	public function statusProvider() {
 		return array(
-			array('HTTP/1.1 200 '),
-			array('HTTP/1.1 200    '),
-			array('HTTP/1.1 200'),
-			array('HTTP/1.1 200  OK', 'OK'),
+			array('HTTP/1.1 200 ', '200'),
+			array('HTTP/1.1 200    ', '200'),
+			array('HTTP/1.1 200', '200'),
+			array('HTTP/1.1 200  OK', '200', 'OK'),
+			array('HTTP/1.1 404 Not Found', '404', 'Not Found'),
+			array('HTTP/1.1 404    Not Found', '404', 'Not Found'),
 		);
 	}
 
@@ -1775,7 +1796,7 @@ class HttpSocketTest extends CakeTestCase {
  * @dataProvider statusProvider
  * @return void
  */
-	public function testResponseStatusParsing($status, $msg = '') {
+	public function testResponseStatusParsing($status, $code, $msg = '') {
 		$this->Socket->connected = true;
 		$serverResponse = $status . "\r\nDate: Mon, 16 Apr 2007 04:14:16 GMT\r\nServer: CakeHttp Server\r\n\r\n<h1>This is a test!</h1>";
 		$this->Socket->expects($this->at(1))->method('read')->will($this->returnValue($serverResponse));
@@ -1785,7 +1806,7 @@ class HttpSocketTest extends CakeTestCase {
 		$this->assertInstanceOf('HttpSocketResponse', $response);
 		$expected = array(
 			'http-version' => 'HTTP/1.1',
-			'code' => '200',
+			'code' => $code,
 			'reason-phrase' => $msg
 		);
 		$this->assertEquals($expected, $response['status']);

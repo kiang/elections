@@ -48,8 +48,8 @@ class SessionHelper extends AppHelper {
  *
  * In your view: `$this->Session->check('Controller.sessKey');`
  *
- * @param string $name
- * @return boolean
+ * @param string $name Session key to check.
+ * @return bool
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/session.html#SessionHelper::check
  */
 	public function check($name) {
@@ -120,6 +120,7 @@ class SessionHelper extends AppHelper {
 
 		if (CakeSession::check('Message.' . $key)) {
 			$flash = CakeSession::read('Message.' . $key);
+			CakeSession::delete('Message.' . $key);
 			$message = $flash['message'];
 			unset($flash['message']);
 
@@ -144,7 +145,6 @@ class SessionHelper extends AppHelper {
 				$tmpVars['message'] = $message;
 				$out = $this->_View->element($flash['element'], $tmpVars, $options);
 			}
-			CakeSession::delete('Message.' . $key);
 		}
 		return $out;
 	}
@@ -152,7 +152,7 @@ class SessionHelper extends AppHelper {
 /**
  * Used to check is a session is valid in a view
  *
- * @return boolean
+ * @return bool
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/session.html#SessionHelper::valid
  */
 	public function valid() {

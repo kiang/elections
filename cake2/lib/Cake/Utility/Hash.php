@@ -159,7 +159,7 @@ class Hash {
  *
  * @param string $key The key in the array being searched.
  * @param string $token The token being matched.
- * @return boolean
+ * @return bool
  */
 	protected static function _matchToken($key, $token) {
 		if ($token === '{n}') {
@@ -179,7 +179,7 @@ class Hash {
  *
  * @param array $data Array of data to match.
  * @param string $selector The patterns to match.
- * @return boolean Fitness of expression.
+ * @return bool Fitness of expression.
  */
 	protected static function _matches(array $data, $selector) {
 		preg_match_all(
@@ -208,7 +208,10 @@ class Hash {
 			if (isset($data[$attr])) {
 				$prop = $data[$attr];
 			}
-			if ($prop === true || $prop === false) {
+			$isBool = is_bool($prop);
+			if ($isBool && is_numeric($val)) {
+				$prop = $prop ? '1' : '0';
+			} elseif ($isBool) {
 				$prop = $prop ? 'true' : 'false';
 			}
 
@@ -279,7 +282,7 @@ class Hash {
  * @param array $data The data to operate on.
  * @param array $path The path to work on.
  * @param mixed $values The values to insert when doing inserts.
- * @return array $data.
+ * @return array data.
  */
 	protected static function _simpleOp($op, $data, $path, $values = null) {
 		$_list =& $data;
@@ -481,7 +484,7 @@ class Hash {
  *
  * @param array $data The data to search through.
  * @param array $needle The values to file in $data
- * @return boolean true if $data contains $needle, false otherwise
+ * @return bool true if $data contains $needle, false otherwise
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::contains
  */
 	public static function contains(array $data, array $needle) {
@@ -522,7 +525,7 @@ class Hash {
  *
  * @param array $data The data to check.
  * @param string $path The path to check for.
- * @return boolean Existence of path.
+ * @return bool Existence of path.
  * @see Hash::extract()
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::check
  */
@@ -556,7 +559,7 @@ class Hash {
  * Callback function for filtering.
  *
  * @param array $var Array to filter.
- * @return boolean
+ * @return bool
  */
 	protected static function _filter($var) {
 		if ($var === 0 || $var === '0' || !empty($var)) {
@@ -671,8 +674,8 @@ class Hash {
 /**
  * Checks to see if all the values in the array are numeric
  *
- * @param array $array The array to check.
- * @return boolean true if values are numeric, false otherwise
+ * @param array $data The array to check.
+ * @return bool true if values are numeric, false otherwise
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::numeric
  */
 	public static function numeric(array $data) {
@@ -689,8 +692,8 @@ class Hash {
  * If you have an un-even or heterogenous array, consider using Hash::maxDimensions()
  * to get the dimensions of the array.
  *
- * @param array $array Array to count dimensions on
- * @return integer The number of dimensions in $data
+ * @param array $data Array to count dimensions on
+ * @return int The number of dimensions in $data
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::dimensions
  */
 	public static function dimensions(array $data) {
@@ -715,7 +718,7 @@ class Hash {
  * number of dimensions in a mixed array.
  *
  * @param array $data Array to count dimensions on
- * @return integer The maximum number of dimensions in $data
+ * @return int The maximum number of dimensions in $data
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::maxDimensions
  */
 	public static function maxDimensions(array $data) {
@@ -800,12 +803,12 @@ class Hash {
  *
  * @param array $data An array of data to sort
  * @param string $path A Set-compatible path to the array value
- * @param string $dir See directions above.
+ * @param string $dir See directions above. Defaults to 'asc'.
  * @param string $type See direction types above. Defaults to 'regular'.
  * @return array Sorted array of data
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::sort
  */
-	public static function sort(array $data, $path, $dir, $type = 'regular') {
+	public static function sort(array $data, $path, $dir = 'asc', $type = 'regular') {
 		if (empty($data)) {
 			return array();
 		}
@@ -946,7 +949,7 @@ class Hash {
  * Normalizes an array, and converts it to a standard format.
  *
  * @param array $data List to normalize
- * @param boolean $assoc If true, $data will be converted to an associative array.
+ * @param bool $assoc If true, $data will be converted to an associative array.
  * @return array
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::normalize
  */

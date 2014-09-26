@@ -31,14 +31,14 @@ class TestAuthComponent extends AuthComponent {
 /**
  * testStop property
  *
- * @var boolean
+ * @var bool
  */
 	public $testStop = false;
 
 /**
  * Helper method to add/set an authenticate object instance
  *
- * @param integer $index The index at which to add/set the object
+ * @param int $index The index at which to add/set the object
  * @param Object $object The object to add/set
  * @return void
  */
@@ -49,7 +49,7 @@ class TestAuthComponent extends AuthComponent {
 /**
  * Helper method to add/set an authorize object instance
  *
- * @param integer $index The index at which to add/set the object
+ * @param int $index The index at which to add/set the object
  * @param Object $object The object to add/set
  * @return void
  */
@@ -112,7 +112,7 @@ class AuthTestController extends Controller {
 /**
  * testUrl property
  *
- * @var mixed null
+ * @var mixed
  */
 	public $testUrl = null;
 
@@ -225,7 +225,7 @@ class AjaxAuthController extends Controller {
 /**
  * testUrl property
  *
- * @var mixed null
+ * @var mixed
  */
 	public $testUrl = null;
 
@@ -290,7 +290,7 @@ class AuthComponentTest extends CakeTestCase {
 /**
  * initialized property
  *
- * @var boolean
+ * @var bool
  */
 	public $initialized = false;
 
@@ -1152,6 +1152,38 @@ class AuthComponentTest extends CakeTestCase {
 
 		$this->assertEquals(403, $Response->statusCode());
 		$this->assertEquals("Ajax!\nthis is the test element", str_replace("\r\n", "\n", $result));
+		unset($_SERVER['HTTP_X_REQUESTED_WITH']);
+	}
+
+/**
+ * testAjaxLoginResponseCode
+ *
+ * @return void
+ */
+	public function testAjaxLoginResponseCode() {
+		App::build(array(
+			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View' . DS)
+		));
+		$_SERVER['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
+
+		$url = '/ajax_auth/add';
+		$this->Auth->request->addParams(Router::parse($url));
+		$this->Auth->request->query['url'] = ltrim($url, '/');
+		$this->Auth->request->base = '';
+		$this->Auth->ajaxLogin = 'test_element';
+
+		Router::setRequestInfo($this->Auth->request);
+
+		$this->Controller->response = $this->getMock('CakeResponse', array('_sendHeader'));
+		$this->Controller->response->expects($this->at(0))
+		->method('_sendHeader')
+		->with('HTTP/1.1 403 Forbidden', null);
+		$this->Auth->initialize($this->Controller);
+
+		$result = $this->Auth->startup($this->Controller);
+
+		$this->assertFalse($result);
+		$this->assertEquals('this is the test element', $this->Controller->response->body());
 		unset($_SERVER['HTTP_X_REQUESTED_WITH']);
 	}
 

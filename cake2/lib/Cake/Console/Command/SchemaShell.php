@@ -39,7 +39,7 @@ class SchemaShell extends AppShell {
 /**
  * is this a dry run?
  *
- * @var boolean
+ * @var bool
  */
 	protected $_dry = null;
 
@@ -66,13 +66,10 @@ class SchemaShell extends AppShell {
 			list($this->params['plugin'], $splitName) = pluginSplit($name);
 			$name = $this->params['name'] = $splitName;
 		}
-
-		$defaultFile = 'schema.php';
-		if (empty($this->params['file'])) {
-			$this->params['file'] = $defaultFile;
-		}
-		if ($name && $this->params['file'] === $defaultFile) {
+		if ($name && empty($this->params['file'])) {
 			$this->params['file'] = Inflector::underscore($name);
+		} elseif (empty($this->params['file'])) {
+			$this->params['file'] = 'schema.php';
 		}
 		if (strpos($this->params['file'], '.php') === false) {
 			$this->params['file'] .= '.php';
@@ -311,8 +308,8 @@ class SchemaShell extends AppShell {
  * Create database from Schema object
  * Should be called via the run method
  *
- * @param CakeSchema $Schema
- * @param string $table
+ * @param CakeSchema $Schema The schema instance to create.
+ * @param string $table The table name.
  * @return void
  */
 	protected function _create(CakeSchema $Schema, $table = null) {
@@ -362,8 +359,8 @@ class SchemaShell extends AppShell {
  * Update database with Schema object
  * Should be called via the run method
  *
- * @param CakeSchema $Schema
- * @param string $table
+ * @param CakeSchema &$Schema The schema instance
+ * @param string $table The table name.
  * @return void
  */
 	protected function _update(&$Schema, $table = null) {
@@ -417,9 +414,9 @@ class SchemaShell extends AppShell {
 /**
  * Runs sql from _create() or _update()
  *
- * @param array $contents
- * @param string $event
- * @param CakeSchema $Schema
+ * @param array $contents The contents to execute.
+ * @param string $event The event to fire
+ * @param CakeSchema $Schema The schema instance.
  * @return void
  */
 	protected function _run($contents, $event, CakeSchema $Schema) {
@@ -483,7 +480,6 @@ class SchemaShell extends AppShell {
 		);
 		$file = array(
 			'help' => __d('cake_console', 'File name to read and write.'),
-			'default' => 'schema.php'
 		);
 		$name = array(
 			'help' => __d('cake_console',

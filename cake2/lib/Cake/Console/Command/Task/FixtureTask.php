@@ -316,7 +316,7 @@ class FixtureTask extends BakeTask {
  * Generate String representation of Records
  *
  * @param array $tableInfo Table schema array
- * @param integer $recordCount
+ * @param int $recordCount The number of records to generate.
  * @return array Array of records to use in the fixture.
  */
 	protected function _generateRecords($tableInfo, $recordCount = 1) {
@@ -381,7 +381,7 @@ class FixtureTask extends BakeTask {
 	}
 
 /**
- * Convert a $records array into a a string.
+ * Convert a $records array into a string.
  *
  * @param array $records Array of records to be converted to string
  * @return string A string value of the $records array.

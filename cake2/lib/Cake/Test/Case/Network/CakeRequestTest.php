@@ -31,7 +31,7 @@ class TestCakeRequest extends CakeRequest {
  * reConstruct method
  *
  * @param string $url
- * @param boolean $parseEnvironment
+ * @param bool $parseEnvironment
  * @return void
  */
 	public function reConstruct($url = 'some/path', $parseEnvironment = true) {
@@ -1057,7 +1057,7 @@ class CakeRequestTest extends CakeTestCase {
  * Helper function for testing callbacks.
  *
  * @param $request
- * @return boolean
+ * @return bool
  */
 	public function detectCallback($request) {
 		return (bool)$request->return;
@@ -2142,6 +2142,20 @@ class CakeRequestTest extends CakeTestCase {
 
 		$result = $request->here(false);
 		$this->assertEquals('/posts/base_path/1/name:value?test=value', $result);
+	}
+
+/**
+ * Test the here() with space in URL
+ *
+ * @return void
+ */
+	public function testHereWithSpaceInUrl() {
+		Configure::write('App.base', '');
+		$_GET = array('/admin/settings/settings/prefix/Access_Control' => '');
+		$request = new CakeRequest('/admin/settings/settings/prefix/Access%20Control');
+
+		$result = $request->here();
+		$this->assertEquals('/admin/settings/settings/prefix/Access%20Control', $result);
 	}
 
 /**
