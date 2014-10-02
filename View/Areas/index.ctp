@@ -8,8 +8,13 @@ if (!empty($parents)) {
 
 <div id="AreasAdminIndex">
     <h3><?php echo $this->Html->link('行政區', '/areas/' . $areaMethod, array('class' => '')); ?></h3>
-    <hr>
-
+    <div class="col-md-12">
+        <div class="pull-right btn-group">
+            <?php
+            echo $this->Html->link('本頁 API', '/api/elections/index/' . $parentId, array('class' => 'btn btn-default', 'target' => '_blank'));
+            ?>
+        </div>
+    </div>
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12">

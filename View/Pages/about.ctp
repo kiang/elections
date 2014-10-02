@@ -8,6 +8,7 @@
     <li><?php echo $this->Html->link('選舉區', '/elections'); ?> 功能則是依據個別選舉類型的不同列出相關的子分區或候選人資訊</li>
     <li><?php echo $this->Html->link('候選人', '/candidates'); ?> 功能可以直接透過人名進行搜尋</li>
     <li><?php echo $this->Html->link('分類', '/tags'); ?> 功能蒐集了一些小黨與特別政治團體推出的候選人名單</li>
+    <li><?php echo $this->Html->link('API', 'https://g0v.hackpad.com/-API-alpha-y3IHgVIYYSY', array('target' => '_blank')); ?> 功能可以直接取得特定頁面的原始資料，不需要額外處理</li>
 </ul>
 相關介紹：
 <ul>

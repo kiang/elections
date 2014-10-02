@@ -17,6 +17,7 @@
             <div class="pull-right btn-group">
                 <?php
                 echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default'));
+                echo $this->Html->link('本頁 API', '/api/candidates/view/' . $this->data['Candidate']['id'], array('class' => 'btn btn-default', 'target' => '_blank'));
                 if (Configure::read('loginMember.group_id') === '1') {
                     echo $this->Html->link('管理', array('action' => 'edit', $this->data['Candidate']['id'], 'admin' => true), array('class' => 'btn btn-default'));
                 }
