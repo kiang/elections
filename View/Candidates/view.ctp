@@ -101,12 +101,12 @@
         foreach ($lines AS $line) {
             $pos = strrpos($line, 'http');
             $title = trim(substr($line, 0, $pos));
-            $url = trim(substr($line, $pos));
+            $url = html_entity_decode(trim(substr($line, $pos)));
             if (empty($title)) {
                 $title = $url;
             }
             if (!empty($url)) {
-                echo $this->Html->link($title, $url, array('target' => '_blank')) . '<br />';
+                echo '<a href="' . $url . '" target="_blank">' . $title . '</a><br />';
             }
         }
         ?>
