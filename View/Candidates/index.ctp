@@ -3,7 +3,9 @@
     <div class="col-md-12">
         <div class="pull-right btn-group">
             <?php
-            echo $this->Html->link('本頁 API', '/api/elections/candidates/' . $electionId, array('class' => 'btn btn-default', 'target' => '_blank'));
+            if (!empty($electionId)) {
+                echo $this->Html->link('本頁 API', '/api/elections/candidates/' . $electionId, array('class' => 'btn btn-default', 'target' => '_blank'));
+            }
             ?>
         </div>
     </div>
