@@ -5,7 +5,41 @@ class ExportShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->candidates();
+        $this->facebook();
+    }
+
+    public function facebook() {
+        $candidates = $this->Election->Candidate->find('all', array(
+            'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.links'),
+            'conditions' => array(
+                'Candidate.links LIKE' => '%facebook.com%',
+                'Candidate.active_id IS NULL',
+                ),
+            'contain' => array('Election'),
+        ));
+        $fh = fopen(__DIR__ . '/data/facebook_candidates.csv', 'w');
+        fputcsv($fh, array('選舉類型', '選區', '姓名', '連結'));
+        foreach ($candidates AS $candidate) {
+            if (!empty($candidate['Election'][0]['id'])) {
+                $parents = $this->Election->getPath($candidate['Election'][0]['id'], array('id', 'name'));
+                $links = array();
+                $lines = explode('\\n', $candidate['Candidate']['links']);
+                foreach ($lines AS $line) {
+                    $pos = strpos($line, 'facebook.com');
+                    if (false !== $pos) {
+                        $links[] = urldecode(trim('http://www.' . substr($line, $pos)));
+                    }
+                }
+                $electionType = $parents[1];
+                unset($parents[0]);
+                unset($parents[1]);
+                fputcsv($fh, array(
+                    $electionType['Election']['name'],
+                    implode(' > ', Set::extract($parents, '{n}.Election.name')),
+                    $candidate['Candidate']['name'],
+                    implode(' | ', $links)));
+            }
+        }
     }
 
     public function candidates() {
