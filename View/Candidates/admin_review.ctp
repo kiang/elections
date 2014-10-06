@@ -120,6 +120,11 @@ $renderer = new Diff_Renderer_Html_Inline;
     </div>
     <hr />
     <div class="row">
-        <?php echo $diff->render($renderer); ?>
+        <?php
+        if(!empty($submitted['Candidate']['image'])) {
+            echo $this->Html->image('../media/' . $submitted['Candidate']['image'], array('style' => 'width: 200px; border: 0px;')) . '<hr />';
+        }
+        echo $diff->render($renderer);
+        ?>
     </div>
 </div>
