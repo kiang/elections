@@ -9,19 +9,26 @@
 =========
 
 下載：
-1. `cd /var/www`
-2. `git clone https://github.com/kiang/elections.git`
-3. `cd elections`
+
+```
+$ cd /var/www
+$ git clone https://github.com/kiang/elections.git
+$ cd elections
+```
 
 環境設定：
-1. `cp -R tmp_default/ tmp`
-2. `cp .htaccess.default .htaccess`
-3. `cp webroot/.htaccess.default webroot/.htaccess`
-4. `cp webroot/index.php.default webroot/index.php`
-5. `cp Config/core.php.default Config/core.php`
-6. `cp Config/database.php.default Config/database.php`
+
+```
+$ cp -R tmp_default/ tmp
+$ cp .htaccess.default .htaccess
+$ cp webroot/.htaccess.default webroot/.htaccess
+$ cp webroot/index.php.default webroot/index.php
+$ cp Config/core.php.default Config/core.php
+$ cp Config/database.php.default Config/database.php
+```
 
 資料庫處理：
+
 1. 在 MySQL 建立資料庫
 2. 將資料庫的設定寫入 Config/database.php
 3. 匯入 Config/sql/db_*.sql.gz 資料（需要解壓縮），例如：
