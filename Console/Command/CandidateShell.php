@@ -6,7 +6,7 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->cec_2014_import();
+        $this->cec_2014_pdf();
     }
 
     public function cec_2014_fun() {
@@ -176,6 +176,42 @@ class CandidateShell extends AppShell {
         }
         return $result;
     }
+
+    public function cec_2014_pdf() {
+        $tmpPath = TMP . 'cec/2014';
+        if (!file_exists($tmpPath)) {
+            mkdir($tmpPath, 0777, true);
+        }
+        $listUrl = 'http://web.cec.gov.tw/files/11-1000-5364.php';
+        $listFile = $tmpPath . '/list';
+        if (!file_exists($listFile)) {
+            file_put_contents($listFile, file_get_contents($listUrl));
+        }
+        $list = file_get_contents($listFile);
+        $pos = strpos($list, '<div id="Dyn_2_2"');
+        $posEnd = strpos($list, '<!-- Box Table End -->', $pos);
+        $list = substr($list, $pos, $posEnd - $pos);
+        $links = $this->extractLinks($list);
+        foreach ($links AS $link) {
+            $linkFile = $tmpPath . '/' . md5($link['url']);
+            if (!file_exists($linkFile)) {
+                file_put_contents($linkFile, file_get_contents($link['url']));
+            }
+            $linkText = file_get_contents($linkFile);
+            $pos = strpos($linkText, 'module-ptattach');
+            $linkText = substr($linkText, $pos, strpos($linkText, 'md_bottom', $pos) - $pos);
+            $fileLinks = $this->extractLinks($linkText);
+            foreach ($fileLinks AS $fileLink) {
+                if (false !== strpos($fileLink['url'], '.pdf')) {
+                    file_put_contents(__DIR__ . '/data/2014_candidates/' . $fileLink['title'], file_get_contents('http://web.cec.gov.tw' . $fileLink['url']));
+                }
+            }
+        }
+    }
+
+    /*
+     * pdf source coming from http://web.cec.gov.tw/files/11-1000-5364.php
+     */
 
     public function cec_2014() {
         $tmpPath = TMP . 'cec/2014';
@@ -1036,6 +1072,23 @@ class CandidateShell extends AppShell {
                 }
             }
         }
+    }
+
+    public function extractLinks($text = '') {
+        $links = array();
+        $pos = strpos($text, 'href="');
+        while (false !== $pos) {
+            $link = array();
+            $pos += 6;
+            $posEnd = strpos($text, '"', $pos);
+            $link['url'] = substr($text, $pos, $posEnd - $pos);
+            $pos = strpos($text, '>', $posEnd) + 1;
+            $posEnd = strpos($text, '<', $pos);
+            $link['title'] = trim(substr($text, $pos, $posEnd - $pos));
+            $links[] = $link;
+            $pos = strpos($text, 'href="', $posEnd);
+        }
+        return $links;
     }
 
 }
