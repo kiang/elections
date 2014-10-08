@@ -34,5 +34,12 @@ $ cp Config/database.php.default Config/database.php
 3. 匯入 Config/sql/db_*.sql.gz 資料（需要解壓縮），例如：
   1. `gzip -d db_20140731.sql.gz`
   2. `mysql -uroot -p your_db < db_20140731.sql`
-4. 完成後預設帳號、密碼都是 kiang
-5. 如果只需要一個空的資料庫，可以匯入 Config/schema/schema.sql ，透過瀏覽器開啟時會自動提示建立管理者帳號
+4. 匯入的資料庫會需要重設管理者帳號，請先清空下面幾個資料表
+  1. `TRUNCATE acos;`
+  2. `TRUNCATE aros;`
+  3. `TRUNCATE aros_acos;`
+  4. `TRUNCATE groups;`
+  5. `TRUNCATE group_permissions;`
+  6. `TRUNCATE members;`
+5. 如果只需要一個空的資料庫，可以匯入 Config/schema/schema.sql
+6. 透過瀏覽器開啟網頁，進入登入畫面時會引導建立新的帳號、密碼
