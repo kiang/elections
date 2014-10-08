@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `acos`;
 CREATE TABLE `acos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT NULL,
-  `model` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `model` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `foreign_key` int(11) DEFAULT NULL,
-  `alias` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alias` varchar(128) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `lft` int(11) DEFAULT NULL,
   `rght` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,9 +48,11 @@ CREATE TABLE `areas` (
   `lft` int(11) NOT NULL,
   `rght` int(11) NOT NULL,
   `is_area` tinyint(1) DEFAULT NULL,
-  `ivid` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `code` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `polygons` text COLLATE utf8_unicode_ci,
+  `ivid` varchar(16) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `code` varchar(16) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `polygons` text CHARACTER SET latin1 COLLATE latin1_general_ci,
+  `population` int(11) unsigned NOT NULL,
+  `population_electors` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `code` (`code`),
   KEY `ivid` (`ivid`),
@@ -83,9 +85,9 @@ DROP TABLE IF EXISTS `aros`;
 CREATE TABLE `aros` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT NULL,
-  `model` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `model` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `foreign_key` int(11) DEFAULT NULL,
-  `alias` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alias` varchar(128) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `lft` int(11) DEFAULT NULL,
   `rght` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -122,15 +124,16 @@ CREATE TABLE `candidates` (
   `id` binary(36) NOT NULL,
   `is_reviewed` tinyint(1) NOT NULL DEFAULT '0',
   `active_id` binary(36) DEFAULT NULL,
+  `stage` int(2) NOT NULL DEFAULT '0',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `party` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `contacts_phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `contacts_fax` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `contacts_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `contacts_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `links` text COLLATE utf8_unicode_ci,
-  `gender` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gender` char(1) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `birth` date DEFAULT NULL,
   `education` text COLLATE utf8_unicode_ci,
   `experience` text COLLATE utf8_unicode_ci,
@@ -185,6 +188,8 @@ CREATE TABLE `elections` (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lft` int(11) NOT NULL,
   `rght` int(11) NOT NULL,
+  `population` int(11) unsigned NOT NULL,
+  `population_electors` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -265,4 +270,4 @@ CREATE TABLE `tags` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-12 21:13:33
+-- Dump completed on 2014-10-09  1:29:43
