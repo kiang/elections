@@ -20,11 +20,7 @@
     ));
     echo $this->Form->input('Candidate.stage', array(
         'type' => 'select',
-        'options' => array(
-            '0' => '未登記',
-            '1' => '已登記',
-            '2' => '已當選',
-        ),
+        'options' => $this->Olc->stages,
         'label' => '狀態',
         'div' => 'form-group col-md-2',
         'class' => 'form-control',

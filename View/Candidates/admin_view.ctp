@@ -28,7 +28,10 @@
                 }
                 ?>
             </div>
-            <div class="col-md-6"><h2><?php echo $this->data['Candidate']['name']; ?></h2></div>
+            <div class="col-md-6">
+                <h2><?php echo $this->data['Candidate']['name']; ?></h2>
+                <?php echo $this->Olc->stages[$this->data['Candidate']['stage']]; ?>
+            </div>
         </div>
         <div class="col-md-7">
             <div class="well well-lg"> 

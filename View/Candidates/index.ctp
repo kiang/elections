@@ -47,7 +47,7 @@
     if (!empty($items)) {
         foreach ($items AS $candidate) {
             ?><div class="col-md-2">
-                <a class="thumbnail text-center" href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+                <a class="thumbnail text-center candidate-<?php echo $candidate['Candidate']['stage']; ?>" href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
                     <?php
                     if (empty($candidate['Candidate']['image'])) {
                         echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));

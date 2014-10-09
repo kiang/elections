@@ -203,3 +203,13 @@ div.code-coverage-results span.result-good {
     text-decoration: none;
     background-color: #eee;
 }
+
+.candidate-0 {
+    background-color: #ccf;
+}
+.candidate-1 {
+    background-color: #cfc;
+}
+.candidate-2 {
+    background-color: #fcc;
+}

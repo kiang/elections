@@ -56,7 +56,7 @@ if (!empty($parents)) {
                     echo '<div class="clearfix"></div>';
                     if (!empty($election['Candidate'])) {
                         foreach ($election['Candidate'] AS $candidate) {
-                            ?><div class="col-md-2" style="text-align: center;">
+                            ?><div class="col-md-2 candidate-<?php echo $candidate['Candidate']['stage']; ?>" style="text-align: center;">
                                 <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
                                     <?php
                                     if (empty($candidate['Candidate']['image'])) {

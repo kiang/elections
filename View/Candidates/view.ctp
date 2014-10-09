@@ -49,7 +49,7 @@
         <div class="clearfix"></div>
         <hr />
     </div>
-    <div class="row">
+    <div class="row candidate-<?php echo $this->data['Candidate']['stage']; ?>">
         <div class="col-md-5">
             <div class="col-md-6">
                 <?php
@@ -60,7 +60,10 @@
                 }
                 ?>
             </div>
-            <div class="col-md-6"><h2><?php echo $this->data['Candidate']['name']; ?></h2></div>
+            <div class="col-md-6">
+                <h2><?php echo $this->data['Candidate']['name']; ?></h2>
+                <?php echo $this->Olc->stages[$this->data['Candidate']['stage']]; ?>
+            </div>
         </div>
         <div class="col-md-7">
             <div class="well well-lg"> 
