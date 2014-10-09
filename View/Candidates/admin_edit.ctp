@@ -18,6 +18,17 @@
         'div' => 'form-group col-md-1',
         'class' => 'form-control',
     ));
+    echo $this->Form->input('Candidate.stage', array(
+        'type' => 'select',
+        'options' => array(
+            '0' => '未登記',
+            '1' => '已登記',
+            '2' => '已當選',
+        ),
+        'label' => '狀態',
+        'div' => 'form-group col-md-2',
+        'class' => 'form-control',
+    ));
     echo $this->Form->input('Candidate.birth', array(
         'type' => 'text',
         'label' => '生日',
@@ -27,7 +38,7 @@
     echo $this->Form->input('Candidate.image', array(
         'type' => 'text',
         'label' => '照片',
-        'div' => 'form-group col-md-7',
+        'div' => 'form-group col-md-5',
         'class' => 'form-control',
     ));
     echo $this->Form->input('Candidate.party', array(

@@ -6,7 +6,7 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->cec_2014_pdf();
+        $this->cec_2014_import();
     }
 
     public function cec_2014_fun() {
@@ -85,6 +85,12 @@ class CandidateShell extends AppShell {
                             case '彰化縣彰化市寶廍里':
                                 $electionId = '53c0216a-bed8-4262-afe8-5c5aacb5b862';
                                 break;
+                            case '苗栗縣三義鄉双湖村':
+                                $line[0] = '苗栗縣三義鄉雙湖村';
+                                break;
+                            case '雲林縣口湖鄉台子村':
+                                $line[0] = '雲林縣口湖鄉臺子村';
+                                break;
                         }
                         break;
                     case '直轄市山地原住民區民代表':
@@ -104,9 +110,6 @@ class CandidateShell extends AppShell {
                         $parts = explode('選舉區', $line[0]);
                         $parts = explode('第', $parts[0]);
                         switch ($parts[0]) {
-                            case '嘉義縣新港鄉':
-                                $parts[1] = '01';
-                                break;
                             default:
                                 $parts[1] = str_pad($parts[1], 2, '0', STR_PAD_LEFT);
                         }
@@ -118,10 +121,11 @@ class CandidateShell extends AppShell {
                 }
                 if (!empty($electionId)) {
                     $candidate = $this->Candidate->find('first', array(
-                        'fields' => array('Candidate.id', 'Candidate.party'),
+                        'fields' => array('Candidate.id', 'Candidate.party', 'Candidate.stage'),
                         'conditions' => array(
                             'CandidatesElection.Election_id' => $electionId,
                             'Candidate.name' => $line[1],
+                            'Candidate.active_id IS NULL',
                         ),
                         'joins' => array(
                             array(
@@ -135,13 +139,15 @@ class CandidateShell extends AppShell {
                         ),
                     ));
                     if (!empty($candidate['Candidate']['id'])) {
-                        if ($candidate['Candidate']['party'] !== $line[2]) {
+                        if ($candidate['Candidate']['party'] !== $line[2] || $candidate['Candidate']['stage'] != 1) {
+                            $candidate['Candidate']['stage'] = 1;
                             $candidate['Candidate']['party'] = $line[2];
                             $this->Candidate->save($candidate);
                         }
                     } else {
                         $this->Candidate->create();
                         if ($this->Candidate->save(array('Candidate' => array(
+                                        'stage' => 1,
                                         'name' => $line[1],
                                         'party' => $line[2],
                             )))) {
