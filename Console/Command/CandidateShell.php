@@ -6,7 +6,93 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->cec_2014_import();
+        $this->google_data();
+    }
+
+    public function google_data() {
+        $dataTypes = array(
+            'mayor1' => '直轄市長',
+            'mayor2' => '縣市長',
+            'council1' => '直轄市議員',
+            'council2' => '縣市議員',
+            'town_leader' => '鄉鎮市長',
+            'town_representative' => '鄉鎮市民代表',
+            'aboriginal_leader' => '直轄市山地原住民區長',
+            'aboriginal_representative' => '直轄市山地原住民區民代表',
+            'villige_leader' => '村里長',
+        );
+        $elections = $this->Candidate->Election->find('all', array(
+            'conditions' => array(
+                'Election.parent_id' => '53c0202e-79d4-44a1-99d3-5460acb5b862',
+            ),
+        ));
+        $elections = Set::combine($elections, '{n}.Election.name', '{n}.Election');
+        $oFh = fopen(__DIR__ . '/data/google_fb.csv', 'w');
+        fputcsv($oFh, array('臉書連結', '候選人', '類型', '選區', '選舉黃頁連結'));
+        foreach ($dataTypes AS $key => $election) {
+            $dataTypes[$key] = $elections[$election];
+        }
+        foreach (glob(TMP . 'data/*/*.csv') AS $csvFile) {
+            if (filesize($csvFile) > 0) {
+                $pathParts = explode('/data/', $csvFile);
+                $pos = strpos($pathParts[1], '/');
+                $posEnd = strpos($pathParts[1], '.', $pos);
+                $dataType = substr($pathParts[1], 0, $pos);
+                $candidateName = substr($pathParts[1], $pos + 1, $posEnd - $pos - 1);
+                $fbLinks = array();
+                $fh = fopen($csvFile, 'r');
+                fgets($fh, 512);
+                while ($link = fgetcsv($fh, 2048)) {
+                    if (false !== strpos($link[0], 'facebook.com') && false !== strpos($link[2], $candidateName) && false === strpos($link[0], 'permalink.php') && false === strpos($link[0], '/posts/')) {
+                        $fbLinks[] = $link[0];
+                    }
+                }
+                fclose($fh);
+                if (!empty($fbLinks)) {
+                    $candidate = $this->Candidate->find('first', array(
+                        'fields' => array('Candidate.id', 'Candidate.links', 'CandidatesElection.Election_id'),
+                        'conditions' => array(
+                            'Election.lft >' => $dataTypes[$dataType]['lft'],
+                            'Election.rght <' => $dataTypes[$dataType]['rght'],
+                            'Candidate.name' => $candidateName,
+                            'Candidate.active_id IS NULL',
+                        ),
+                        'joins' => array(
+                            array(
+                                'table' => 'candidates_elections',
+                                'alias' => 'CandidatesElection',
+                                'type' => 'inner',
+                                'conditions' => array(
+                                    'CandidatesElection.Candidate_id = Candidate.id',
+                                ),
+                            ),
+                            array(
+                                'table' => 'elections',
+                                'alias' => 'Election',
+                                'type' => 'inner',
+                                'conditions' => array(
+                                    'CandidatesElection.Election_id = Election.id',
+                                ),
+                            ),
+                        ),
+                    ));
+                    if (!empty($candidate)) {
+                        $parents = $this->Candidate->Election->getPath($candidate['CandidatesElection']['Election_id'], array('name'));
+                        $record = array();
+                        $record[] = $candidateName;
+                        $record[] = $parents[1]['Election']['name'];
+                        unset($parents[0]);
+                        unset($parents[1]);
+                        $record[] = implode(' > ', Set::extract('{n}.Election.name', $parents));
+                        $record[] = 'http://k.olc.tw/elections/candidates/view/' . $candidate['Candidate']['id'];
+                        foreach ($fbLinks AS $fbLink) {
+                            fputcsv($oFh, array_merge(array($fbLink), $record));
+                        }
+                    }
+                }
+            }
+        }
+        fclose($oFh);
     }
 
     public function cec_2014_fun() {
