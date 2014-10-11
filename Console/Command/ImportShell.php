@@ -12,11 +12,48 @@ class ImportShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->areas();
-        //$this->elections();
-        //$this->fix2014();
-        $this->reps_fix();
-        //$this->reps();
+        $this->fb_links();
+    }
+
+    public function fb_links() {
+        $fh = fopen(TMP . 'fb_links', 'r');
+        $tasks = array();
+        while ($line = fgetcsv($fh, 2048, "\t")) {
+            $line[0] = trim($line[0]);
+            $pos = strpos($line[0], '?');
+            if (false !== $pos && false === strpos($line[0], 'profile.php')) {
+                $line[0] = substr($line[0], 0, $pos);
+            }
+            $pos = strpos($line[0], '/photos/');
+            if (false !== $pos) {
+                $line[0] = substr($line[0], 0, $pos);
+            }
+            if (!empty($line[0])) {
+                $line[0] = 'http://www' . substr($line[0], strpos($line[0], '.'));
+                $candidateId = substr($line[4], strrpos($line[4], '/') + 1);
+                if (!isset($tasks[$candidateId])) {
+                    $tasks[$candidateId] = array();
+                }
+                $tasks[$candidateId][$line[0]] = true;
+            }
+        }
+        fclose($fh);
+        foreach ($tasks AS $candidateId => $links) {
+            $candidate = $this->Election->Candidate->read(array('id', 'links'), $candidateId);
+            $toSave = false;
+            foreach ($links AS $link => $b) {
+                if (false === strpos($candidate['Candidate']['links'], $link)) {
+                    $toSave = true;
+                    $candidate['Candidate']['links'] .= '\\n臉書 ' . $link;
+                }
+            }
+            if ($toSave) {
+                $this->Election->Candidate->save(array('Candidate' => array(
+                        'id' => $candidate['Candidate']['id'],
+                        'links' => $candidate['Candidate']['links'],
+                )));
+            }
+        }
     }
 
     public function reps_fix() {
