@@ -5,7 +5,18 @@ class KeywordShell extends AppShell {
     public $uses = array('Keyword');
 
     public function main() {
-        $this->generateKeywords();
+        $this->dumpKeywords();
+    }
+
+    public function dumpKeywords() {
+        $keywords = $this->Keyword->find('list', array(
+            'fields' => array('Keyword.keyword', 'Keyword.id'),
+        ));
+        $targetFile = TMP . 'keywords.csv';
+        $fh = fopen($targetFile, 'w');
+        foreach($keywords AS $keyword => $keywordId) {
+            fputcsv($fh, array($keywordId, $keyword));
+        }
     }
 
     public function generateKeywords() {
