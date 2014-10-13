@@ -26,6 +26,12 @@ class Candidate extends AppModel {
             'associationForeignKey' => 'Tag_id',
             'className' => 'Tag',
         ),
+        'Keyword' => array(
+            'joinTable' => 'candidates_keyword',
+            'foreignKey' => 'Candidate_id',
+            'associationForeignKey' => 'Keyword_id',
+            'className' => 'Keyword',
+        ),
     );
 
     public function beforeSave($options = array()) {
