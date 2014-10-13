@@ -370,8 +370,14 @@ class CandidatesController extends AppController {
                     $dataToSave['Candidate']['image'] = $dataToSave['Candidate']['image_upload'];
                 }
                 if ($this->Candidate->save($dataToSave)) {
+                    if (!empty($candidate['Election'][0]['CandidatesElection']['id'])) {
+                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
+                                'id' => $candidate['Election'][0]['CandidatesElection']['id'],
+                                'platform' => $dataToSave['CandidatesElection']['platform'],
+                        )));
+                    }
                     $this->Session->setFlash('資料已經儲存');
-                    if($after !== 'submits') {
+                    if ($after !== 'submits') {
                         $this->redirect(array('action' => 'index'));
                     } else {
                         $this->redirect(array('action' => 'submits'));
@@ -399,7 +405,7 @@ class CandidatesController extends AppController {
         } else if ($this->Candidate->delete($id)) {
             $this->Session->setFlash('資料已經刪除');
         }
-        if($after !== 'submits') {
+        if ($after !== 'submits') {
             $this->redirect(array('action' => 'index'));
         } else {
             $this->redirect(array('action' => 'submits'));
