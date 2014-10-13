@@ -1,19 +1,31 @@
 <div class="container">
     <div class="row">
-        <h1><?php
-            if (!empty($parents)) {
-                $c = array();
-                foreach ($parents AS $parent) {
-                    if ($parent['Election']['rght'] - $parent['Election']['lft'] != 1) {
-                        $c[] = $this->Html->link($parent['Election']['name'], '/elections/index/' . $parent['Election']['id']);
-                    } else {
-                        $c[] = $this->Html->link($parent['Election']['name'], '/candidates/index/' . $parent['Election']['id']);
-                    }
-                }
-                echo implode(' > ', $c);
-            }
+        <div class="col-md-3 btn-group">
+            <?php
             echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default'));
-            ?></h1>
+            ?>
+        </div>
+        <div class="col-md-9">
+            <div style="float: left;">
+                keywords:    
+            </div>
+            <?php
+            foreach ($this->data['Keyword'] AS $keyword) {
+                echo ' <div class="btn-group col-md-2">';
+                echo $this->Html->link($keyword['keyword'], array('action' => 'view', $this->data['Candidate']['id']), array('class' => 'btn btn-default'));
+                echo $this->Html->link('x', array('action' => 'keyword_delete', $keyword['CandidatesKeyword']['id']), array('class' => 'btn btn-default'));
+                echo '</div> ';
+            }
+            ?>
+            <div style="float: left;">
+                <form id="keywordForm" class="form-inline" method="post">
+                    <div class="form-group">
+                        <input type="text" name="keyword" />
+                        <input type="submit" value="新增" />
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="clearfix"></div>
         <hr />
     </div>
@@ -85,14 +97,26 @@
         <div class="success">經歷</div><?php echo str_replace('\\n', '<br />', $this->data['Candidate']['experience']); ?>
         <div class="success">學歷</div><?php echo str_replace('\\n', '<br />', $this->data['Candidate']['education']); ?>
         <div class="success">版本</div><ul><?php
-        foreach($versions AS $version) {
-            echo '<li>';
-            if($version['Candidate']['id'] === $this->data['Candidate']['id']) {
-                echo '* ';
+            foreach ($versions AS $version) {
+                echo '<li>';
+                if ($version['Candidate']['id'] === $this->data['Candidate']['id']) {
+                    echo '* ';
+                }
+                echo $this->Html->link($version['Candidate']['created'], array('action' => 'view', $version['Candidate']['id']));
+                echo '</li>';
             }
-            echo $this->Html->link($version['Candidate']['created'], array('action' => 'view', $version['Candidate']['id']));
-            echo '</li>';
-        }
-        ?></ul>
+            ?></ul>
     </div><!--/row-->
 </div><!--/container-->
+<script>
+    $(function () {
+        $('form#keywordForm').submit(function () {
+            $.post('<?php echo $this->Html->url('/admin/candidates/keyword_add/' . $this->data['Candidate']['id']); ?>', $(this).serializeArray(), function (postResult) {
+                if (postResult === 'ok') {
+                    $('div#viewContent').load('<?php echo $this->Html->url('/admin/candidates/view/' . $this->data['Candidate']['id']); ?>');
+                }
+            });
+            return false;
+        });
+    })
+</script>

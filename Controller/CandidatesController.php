@@ -307,6 +307,7 @@ class CandidatesController extends AppController {
                     'Election' => array(
                         'fields' => array('Election.id', 'Election.population_electors', 'Election.population'),
                     ),
+                    'Keyword',
                 ),
             ));
         }
@@ -485,6 +486,60 @@ class CandidatesController extends AppController {
         $this->set('original', $original);
         $this->set('submittedId', $candidateId);
         $this->set('originalId', $originalId);
+    }
+
+    public function admin_keyword_add($candidateId = '') {
+        if (!empty($candidateId)) {
+            $candidate = $this->Candidate->find('first', array(
+                'conditions' => array(
+                    'Candidate.active_id IS NULL',
+                    'Candidate.id' => $candidateId,
+                ),
+                'contain' => array('Keyword'),
+            ));
+        }
+        if (!empty($candidate) && !empty($this->data['keyword'])) {
+            $keywordId = $this->Candidate->Keyword->field('id', array('keyword' => $this->data['keyword']));
+            if (!empty($keywordId)) {
+                $keywordLinked = false;
+                foreach ($candidate['Keyword'] AS $keyword) {
+                    if ($keyword['keyword'] === $this->data['keyword']) {
+                        $keywordLinked = true;
+                    }
+                }
+                if (false === $keywordLinked) {
+                    $this->Candidate->CandidatesKeyword->create();
+                    $this->Candidate->CandidatesKeyword->save(array('CandidatesKeyword' => array(
+                            'Candidate_id' => $candidateId,
+                            'Keyword_id' => $keywordId,
+                    )));
+                }
+            } else {
+                $this->Candidate->Keyword->create();
+                if ($this->Candidate->Keyword->save(array('Keyword' => array(
+                                'keyword' => $this->data['keyword'],
+                    )))) {
+                    $keywordId = $this->Candidate->Keyword->getInsertID();
+                    $this->Candidate->CandidatesKeyword->create();
+                    $this->Candidate->CandidatesKeyword->save(array('CandidatesKeyword' => array(
+                            'Candidate_id' => $candidateId,
+                            'Keyword_id' => $keywordId,
+                    )));
+                }
+            }
+        }
+        die('ok');
+    }
+
+    public function admin_keyword_delete($keywordCandidateId = '') {
+        $this->Candidate->CandidatesKeyword->id = $keywordCandidateId;
+        $candidateId = $this->Candidate->CandidatesKeyword->field('Candidate_id');
+        $this->Candidate->CandidatesKeyword->delete($keywordCandidateId);
+        if (!empty($candidateId)) {
+            $this->redirect(array('action' => 'view', $candidateId));
+        } else {
+            $this->redirect(array('action' => 'index'));
+        }
     }
 
 }

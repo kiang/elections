@@ -27,7 +27,7 @@ class Candidate extends AppModel {
             'className' => 'Tag',
         ),
         'Keyword' => array(
-            'joinTable' => 'candidates_keyword',
+            'joinTable' => 'candidates_keywords',
             'foreignKey' => 'Candidate_id',
             'associationForeignKey' => 'Keyword_id',
             'className' => 'Keyword',
