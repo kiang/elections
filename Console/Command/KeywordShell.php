@@ -12,10 +12,17 @@ class KeywordShell extends AppShell {
         $keywords = $this->Keyword->find('list', array(
             'fields' => array('Keyword.keyword', 'Keyword.id'),
         ));
-        $targetFile = TMP . 'keywords.csv';
-        $fh = fopen($targetFile, 'w');
-        foreach($keywords AS $keyword => $keywordId) {
+        $lineCount = 0;
+        $fileNumber = 1;
+        $fh = fopen(TMP . 'keywords_' . str_pad($fileNumber, 4, '0', STR_PAD_LEFT) . '.csv', 'w');
+        foreach ($keywords AS $keyword => $keywordId) {
             fputcsv($fh, array($keywordId, $keyword));
+            if (++$lineCount > 100) {
+                fclose($fh);
+                ++$fileNumber;
+                $fh = fopen(TMP . 'keywords_' . str_pad($fileNumber, 4, '0', STR_PAD_LEFT) . '.csv', 'w');
+                $lineCount = 0;
+            }
         }
     }
 
