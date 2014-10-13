@@ -267,7 +267,8 @@ DROP TABLE IF EXISTS `links`;
 CREATE TABLE `links` (
   `id` binary(36) NOT NULL,
   `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `summary` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL
+  `url` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -282,6 +283,7 @@ CREATE TABLE `links_keywords` (
   `id` binary(36) NOT NULL,
   `Link_id` binary(36) NOT NULL,
   `Keyword_id` binary(36) NOT NULL,
+  `summary` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `Link_id` (`Link_id`,`Keyword_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -330,4 +332,4 @@ CREATE TABLE `tags` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-13 16:16:08
+-- Dump completed on 2014-10-14  1:12:09
