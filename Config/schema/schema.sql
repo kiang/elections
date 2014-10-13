@@ -31,7 +31,7 @@ CREATE TABLE `acos` (
   `lft` int(11) DEFAULT NULL,
   `rght` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,6 +160,22 @@ CREATE TABLE `candidates_elections` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `candidates_keywords`
+--
+
+DROP TABLE IF EXISTS `candidates_keywords`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `candidates_keywords` (
+  `id` binary(36) NOT NULL,
+  `Candidate_id` binary(36) NOT NULL,
+  `Keyword_id` binary(36) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Candidate_id` (`Candidate_id`,`Keyword_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `candidates_tags`
 --
 
@@ -228,6 +244,50 @@ CREATE TABLE `groups` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `keywords`
+--
+
+DROP TABLE IF EXISTS `keywords`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `keywords` (
+  `id` binary(36) NOT NULL,
+  `keyword` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  UNIQUE KEY `keyword` (`keyword`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `links`
+--
+
+DROP TABLE IF EXISTS `links`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `links` (
+  `id` binary(36) NOT NULL,
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `summary` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `links_keywords`
+--
+
+DROP TABLE IF EXISTS `links_keywords`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `links_keywords` (
+  `id` binary(36) NOT NULL,
+  `Link_id` binary(36) NOT NULL,
+  `Keyword_id` binary(36) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Link_id` (`Link_id`,`Keyword_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `members`
 --
 
@@ -270,4 +330,4 @@ CREATE TABLE `tags` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-09  1:29:43
+-- Dump completed on 2014-10-13 16:16:08
