@@ -247,10 +247,34 @@ class CandidatesController extends AppController {
                 ),
                 'Tag' => array(
                     'fields' => array('Tag.id', 'Tag.name'),
-                )
+                ),
+                'Keyword',
             ),
         ));
         if (!empty($this->data)) {
+            $keywords = Set::combine($this->data['Keyword'], '{n}.id', '{n}.keyword');
+            $newsLinks = $this->Candidate->Keyword->Link->find('all', array(
+                'fields' => array(
+                    'Link.*', 'LinksKeyword.summary', 'LinksKeyword.Keyword_id'
+                ),
+                'conditions' => array(
+                    'LinksKeyword.Keyword_id' => Set::extract($this->data['Keyword'], '{n}.id'),
+                ),
+                'limit' => 30,
+                'order' => array(
+                    'Link.created DESC',
+                ),
+                'joins' => array(
+                    array(
+                        'table' => 'links_keywords',
+                        'alias' => 'LinksKeyword',
+                        'type' => 'inner',
+                        'conditions' => array(
+                            'LinksKeyword.Link_id = Link.id',
+                        ),
+                    ),
+                ),
+            ));
             $parents = $this->Candidate->Election->getPath($this->data['Election'][0]['id']);
             $desc_for_layout = '';
             $descElections = Set::extract('{n}.Election.name', $parents);
@@ -258,6 +282,8 @@ class CandidatesController extends AppController {
                 $desc_for_layout .= $this->data['Candidate']['name'] . '在' . implode(' > ', $descElections) . '的參選資訊。';
             }
             $descElections[] = $this->data['Candidate']['name'];
+            $this->set('linkKeywords', $keywords);
+            $this->set('newsLinks', $newsLinks);
             $this->set('referer', $this->request->referer());
             $this->set('desc_for_layout', $desc_for_layout);
             $this->set('title_for_layout', implode(' > ', $descElections) . '候選人 @ ');

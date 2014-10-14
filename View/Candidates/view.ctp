@@ -158,6 +158,20 @@
         <?php if (!empty($newsLinks)) { ?>
             <div class="col-md-7">
                 <h3>新聞集錦</h3>
+                <hr />
+                <ul>
+                    <?php
+                    foreach ($newsLinks AS $newsLink) {
+                        $linkKeyword = $linkKeywords[$newsLink['LinksKeyword']['Keyword_id']];
+                        $newsLink['LinksKeyword']['summary'] = str_replace($linkKeyword, " <span style=\"color: #cc00cc; font-weight: 900;\">{$linkKeyword}</span> ", $newsLink['LinksKeyword']['summary']);
+                        echo '<li>';
+                        echo '<h4>' . $this->Html->link($newsLink['Link']['title'], $newsLink['Link']['url'], array('target' => '_blank')) . '</h4>';
+                        echo '<span class="pull-right">' . $newsLink['Link']['created'] . '</span>';
+                        echo '<br />' . $newsLink['LinksKeyword']['summary'];
+                        echo '</li>';
+                    }
+                    ?>
+                </ul>
             </div>
         <?php } ?>
     </div>
