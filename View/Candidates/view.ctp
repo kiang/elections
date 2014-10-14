@@ -50,7 +50,7 @@
         <hr />
     </div>
     <div class="row">
-        <div class="col-md-<?php echo empty($newsLinks) ? '12' : '5'; ?>">
+        <div class="col-md-12 candidateMainBlock">
             <div class="col-md-12 candidate-<?php echo $this->data['Candidate']['stage']; ?>">
                 <div class="col-md-6">
                     <?php
@@ -155,25 +155,8 @@
                 </div>
             <?php } ?>
         </div>
-        <?php if (!empty($newsLinks)) { ?>
-            <div class="col-md-7">
-                <h3>新聞集錦</h3>
-                <hr />
-                <ul>
-                    <?php
-                    foreach ($newsLinks AS $newsLink) {
-                        $linkKeyword = $linkKeywords[$newsLink['LinksKeyword']['Keyword_id']];
-                        $newsLink['LinksKeyword']['summary'] = str_replace($linkKeyword, " <span style=\"color: #cc00cc; font-weight: 900;\">{$linkKeyword}</span> ", $newsLink['LinksKeyword']['summary']);
-                        echo '<li>';
-                        echo '<h4>' . $this->Html->link($newsLink['Link']['title'], $newsLink['Link']['url'], array('target' => '_blank')) . '</h4>';
-                        echo '<span class="pull-right">' . $newsLink['Link']['created'] . '</span>';
-                        echo '<br />' . $newsLink['LinksKeyword']['summary'];
-                        echo '</li>';
-                    }
-                    ?>
-                </ul>
-            </div>
-        <?php } ?>
+        <div class="col-md-7 candidateNewsBlock" style="display: none;">
+        </div>
     </div>
     <div id="vanilla-comments"></div>
     <script type="text/javascript">
@@ -187,5 +170,13 @@
             vanilla.src = vanilla_forum_url + '/js/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(vanilla);
         })();
+        $(function() {
+            $.get('<?php echo $this->Html->url('/candidates/links/' . $this->data['Candidate']['id']); ?>', {}, function(pageBlock) {
+                if(pageBlock !== '') {
+                    $('div.candidateNewsBlock').html(pageBlock).show();
+                    $('div.candidateMainBlock').removeClass('col-md-12').addClass('col-md-5');
+                }
+            });
+        })
     </script>
 </div><!--/container-->

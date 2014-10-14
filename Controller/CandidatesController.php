@@ -12,7 +12,44 @@ class CandidatesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'add', 'view', 'edit', 's', 'tag', 'submits');
+            $this->Auth->allow('index', 'add', 'view', 'edit', 's', 'tag', 'submits', 'links');
+        }
+    }
+
+    public function links($candidateId = '') {
+        if (!empty($candidateId)) {
+            $candidate = $this->Candidate->find('first', array(
+                'conditions' => array(
+                    'Candidate.id' => $candidateId,
+                    'Candidate.active_id IS NULL',
+                ),
+                'contain' => array(
+                    'Keyword',
+                ),
+            ));
+        }
+        if (!empty($candidate)) {
+            $keywords = Set::combine($candidate['Keyword'], '{n}.id', '{n}.keyword');
+            $scope = array(
+                'LinksKeyword.Keyword_id' => array_keys($keywords),
+            );
+
+            $this->paginate['Link']['joins'] = array(
+                array(
+                    'table' => 'links_keywords',
+                    'alias' => 'LinksKeyword',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'LinksKeyword.Link_id = Link.id',
+                    ),
+                ),
+            );
+            $this->paginate['Link']['order'] = array('Link.created' => 'desc');
+            $this->paginate['Link']['limit'] = 30;
+            $this->paginate['Link']['fields'] = array('Link.*', 'LinksKeyword.summary', 'LinksKeyword.Keyword_id');
+            $this->set('url', array($candidateId));
+            $this->set('linkKeywords', $keywords);
+            $this->set('newsLinks', $this->paginate($this->Candidate->Keyword->Link, $scope));
         }
     }
 
@@ -248,33 +285,9 @@ class CandidatesController extends AppController {
                 'Tag' => array(
                     'fields' => array('Tag.id', 'Tag.name'),
                 ),
-                'Keyword',
             ),
         ));
         if (!empty($this->data)) {
-            $keywords = Set::combine($this->data['Keyword'], '{n}.id', '{n}.keyword');
-            $newsLinks = $this->Candidate->Keyword->Link->find('all', array(
-                'fields' => array(
-                    'Link.*', 'LinksKeyword.summary', 'LinksKeyword.Keyword_id'
-                ),
-                'conditions' => array(
-                    'LinksKeyword.Keyword_id' => Set::extract($this->data['Keyword'], '{n}.id'),
-                ),
-                'limit' => 30,
-                'order' => array(
-                    'Link.created DESC',
-                ),
-                'joins' => array(
-                    array(
-                        'table' => 'links_keywords',
-                        'alias' => 'LinksKeyword',
-                        'type' => 'inner',
-                        'conditions' => array(
-                            'LinksKeyword.Link_id = Link.id',
-                        ),
-                    ),
-                ),
-            ));
             $parents = $this->Candidate->Election->getPath($this->data['Election'][0]['id']);
             $desc_for_layout = '';
             $descElections = Set::extract('{n}.Election.name', $parents);
@@ -282,8 +295,6 @@ class CandidatesController extends AppController {
                 $desc_for_layout .= $this->data['Candidate']['name'] . '在' . implode(' > ', $descElections) . '的參選資訊。';
             }
             $descElections[] = $this->data['Candidate']['name'];
-            $this->set('linkKeywords', $keywords);
-            $this->set('newsLinks', $newsLinks);
             $this->set('referer', $this->request->referer());
             $this->set('desc_for_layout', $desc_for_layout);
             $this->set('title_for_layout', implode(' > ', $descElections) . '候選人 @ ');
