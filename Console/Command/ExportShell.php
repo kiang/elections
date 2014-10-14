@@ -23,7 +23,8 @@ class ExportShell extends AppShell {
             if (!empty($candidate['Election'][0]['id'])) {
                 $parents = $this->Election->getPath($candidate['Election'][0]['id'], array('id', 'name'));
                 $links = array();
-                $lines = explode('\\n', $candidate['Candidate']['links']);
+                $candidate['Candidate']['links'] = str_replace(array('\\n', '&amp;'), array("\n", '&'), $candidate['Candidate']['links']);
+                $lines = explode("\n", $candidate['Candidate']['links']);
                 foreach ($lines AS $line) {
                     $pos = strpos($line, 'facebook.com');
                     if (false !== $pos) {
