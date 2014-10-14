@@ -5,7 +5,29 @@ class KeywordShell extends AppShell {
     public $uses = array('Keyword');
 
     public function main() {
-        $this->dumpKeywords();
+        $this->importKeywords();
+    }
+
+    public function importKeywords() {
+        foreach (glob('/home/kiang/public_html/news/output/*.json') AS $jsonFile) {
+            $json = json_decode(file_get_contents($jsonFile), true);
+            $this->Keyword->Link->create();
+            if ($this->Keyword->Link->save(array('Link' => array(
+                            'title' => trim($json['title']),
+                            'url' => $json['url'],
+                            'created' => date('Y-m-d H:i:s', $json['created_at']),
+                )))) {
+                $linkId = $this->Keyword->Link->getInsertID();
+                foreach ($json['keywords'] AS $keywordId => $summary) {
+                    $this->Keyword->LinksKeyword->create();
+                    $this->Keyword->LinksKeyword->save(array('LinksKeyword' => array(
+                            'Link_id' => $linkId,
+                            'Keyword_id' => $keywordId,
+                            'summary' => trim($summary),
+                    )));
+                }
+            }
+        }
     }
 
     public function dumpKeywords() {
