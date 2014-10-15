@@ -27,5 +27,12 @@ class Keyword extends AppModel {
             'className' => 'Candidate',
         ),
     );
+    
+    public function beforeSave($options = array()) {
+        if(isset($this->data['Keyword']['keyword'])) {
+            $this->data['Keyword']['keyword'] = str_replace(array('&amp;bull;', '&bull;', '‧', '.', '•', '．．'), '．', $this->data['Keyword']['keyword']);
+        }
+        return parent::beforeSave($options);
+    }
 
 }

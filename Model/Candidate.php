@@ -54,6 +54,9 @@ class Candidate extends AppModel {
                 unset($this->data['Candidate']['image']);
             }
         }
+        if(isset($this->data['Candidate']['name'])) {
+            $this->data['Candidate']['name'] = str_replace(array('&amp;bull;', '&bull;', '‧', '.', '•', '．．'), '．', $this->data['Candidate']['name']);
+        }
         return parent::beforeSave($options);
     }
 
