@@ -9,24 +9,30 @@ class KeywordShell extends AppShell {
     }
 
     public function importKeywords() {
-        foreach (glob('/home/kiang/public_html/news/output/*.json') AS $jsonFile) {
+        $db = ConnectionManager::getDataSource('default');
+        $mysqli = new mysqli($db->config['host'], $db->config['login'], $db->config['password'], $db->config['database']);
+        $sql = array(
+            'links',
+            'links_keywords',
+        );
+        foreach (glob('/home/kiang/public_html/news/cache/output/*.json') AS $jsonFile) {
             $json = json_decode(file_get_contents($jsonFile), true);
-            $this->Keyword->Link->create();
-            if ($this->Keyword->Link->save(array('Link' => array(
-                            'title' => trim($json['title']),
-                            'url' => $json['url'],
-                            'created' => date('Y-m-d H:i:s', $json['created_at']),
-                )))) {
-                $linkId = $this->Keyword->Link->getInsertID();
-                foreach ($json['keywords'] AS $keywordId => $summary) {
-                    $this->Keyword->LinksKeyword->create();
-                    $this->Keyword->LinksKeyword->save(array('LinksKeyword' => array(
-                            'Link_id' => $linkId,
-                            'Keyword_id' => $keywordId,
-                            'summary' => trim($summary),
-                    )));
-                }
+            $newLinkId = String::uuid();
+            $json['title'] = $mysqli->real_escape_string(trim($json['title']));
+            $json['url'] = $mysqli->real_escape_string($json['url']);
+            $json['created'] = date('Y-m-d H:i:s', $json['created_at']);
+            $sql['links'][] = "('{$newLinkId}', '{$json['title']}', '{$json['url']}', '{$json['created']}')";
+            foreach ($json['keywords'] AS $keywordId => $summary) {
+                $lkId = String::uuid();
+                $summary = $mysqli->real_escape_string(trim($summary));
+                $sql['links_keywords'][] = "('{$lkId}', '{$newLinkId}', '{$keywordId}', '{$summary}')";
             }
+            unlink($jsonFile);
+        }
+        if (!empty($sql['links'])) {
+            $linksSql = 'INSERT INTO links VALUES ' . implode(',', $sql['links']) . ";\n";
+            $lkSql = 'INSERT INTO links_keywords VALUES ' . implode(',', $sql['links_keywords']) . ';';
+            file_put_contents(TMP . 'keywords.sql', $linksSql . $lkSql);
         }
     }
 
