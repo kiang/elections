@@ -248,6 +248,17 @@ class CandidatesController extends AppController {
                     $this->Session->setFlash('資料儲存時發生錯誤，請重試');
                 }
             } else {
+                $latestUnRevied = $this->Candidate->find('first', array(
+                    'conditions' => array(
+                        'Candidate.active_id' => $candidateId,
+                        'Candidate.is_reviewed' => '0',
+                    ),
+                    'order' => array('Candidate.created' => 'DESC'),
+                    'contain' => array('Election'),
+                ));
+                if(!empty($latestUnRevied)) {
+                    $candidate = $latestUnRevied;
+                }
                 $candidate['CandidatesElection']['platform'] = str_replace('\\n', "\n", $candidate['Election'][0]['CandidatesElection']['platform']);
                 $candidate['Candidate']['links'] = str_replace('\\n', "\n", $candidate['Candidate']['links']);
                 $candidate['Candidate']['education'] = str_replace('\\n', "\n", $candidate['Candidate']['education']);
