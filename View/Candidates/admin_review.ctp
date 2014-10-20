@@ -121,9 +121,17 @@ $renderer = new Diff_Renderer_Html_Inline;
     <hr />
     <div class="row">
         <?php
-        if(!empty($submitted['Candidate']['image'])) {
-            echo $this->Html->image('../media/' . $submitted['Candidate']['image'], array('style' => 'width: 200px; border: 0px;')) . '<hr />';
+        if(!empty($original['Candidate']['image'])) {
+            echo '<div class="col-md-3">Before: <br />';
+            echo $this->Html->image('../media/' . $original['Candidate']['image'], array('class' => 'img-thumbnail'));
+            echo '</div>';
         }
+        if(!empty($submitted['Candidate']['image'])) {
+            echo '<div class="col-md-3">After: <br />';
+            echo $this->Html->image('../media/' . $submitted['Candidate']['image'], array('class' => 'img-thumbnail'));
+            echo '</div>';
+        }
+        echo '<div class="clearfix"></div><br />';
         echo $diff->render($renderer);
         ?>
     </div>
