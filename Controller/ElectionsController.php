@@ -100,13 +100,13 @@ class ElectionsController extends AppController {
                         'table' => 'candidates_elections',
                         'alias' => 'CandidatesElection',
                         'type' => 'inner',
-                        'conditions' => array('AreasElection.Election_id = Election.id'),
+                        'conditions' => array('CandidatesElection.Election_id = Election.id'),
                     ),
                     1 => array(
                         'table' => 'candidates',
                         'alias' => 'Candidate',
                         'type' => 'inner',
-                        'conditions' => array('AreasElection.Candidate_id = Candidate.id'),
+                        'conditions' => array('CandidatesElection.Candidate_id = Candidate.id'),
                     ),
                 ),
             );

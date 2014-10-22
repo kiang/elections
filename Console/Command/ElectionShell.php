@@ -61,7 +61,56 @@ class ElectionShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->quota_import();
+        $this->quota_match();
+    }
+
+    /*
+     * 計算 同額競選 名單
+     */
+
+    public function quota_match() {
+        $elections = $this->Election->find('all', array(
+            'fields' => array(
+                'Election.id', 'Election.quota',
+                '(SELECT COUNT(*) FROM candidates_elections CE INNER JOIN candidates C ON C.id = CE.Candidate_id WHERE CE.Election_id = Election.id AND C.stage = 1 AND C.active_id IS NULL) AS n'
+            ),
+            'conditions' => array(
+                'Election.rght - Election.lft = 1',
+            ),
+        ));
+        $fh = fopen(__DIR__ . '/data/2014_quota_match.csv', 'w');
+        fputcsv($fh, array('選區', '姓名', '政黨', '候選人網址', '選區網址'));
+        foreach ($elections AS $election) {
+            if ($election['Election']['quota'] === $election[0]['n']) {
+                $path = implode(' > ', Set::extract('{n}.Election.name', $this->Election->getPath($election['Election']['id'], array('name'))));
+                $candidates = $this->Election->Candidate->find('all', array(
+                    'joins' => array(
+                        array(
+                            'table' => 'candidates_elections',
+                            'alias' => 'CandidatesElection',
+                            'type' => 'inner',
+                            'conditions' => array('CandidatesElection.Candidate_id = Candidate.id'),
+                        ),
+                    ),
+                    'conditions' => array(
+                        'Candidate.active_id IS NULL',
+                        'Candidate.stage' => '1',
+                        'CandidatesElection.Election_id' => $election['Election']['id'],
+                    ),
+                    'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party'),
+                ));
+                foreach ($candidates AS $candidate) {
+                    fputcsv($fh, array(
+                        $path,
+                        $candidate['Candidate']['name'],
+                        $candidate['Candidate']['party'],
+                        'http://k.olc.tw/elections/candidates/view/' . $candidate['Candidate']['id'],
+                        'http://k.olc.tw/elections/candidates/index/' . $election['Election']['id'],
+                    ));
+                }
+            }
+        }
+        fclose($fh);
     }
 
     public function quota_export() {
