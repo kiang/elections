@@ -61,7 +61,7 @@ class ElectionShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->quota_export();
+        $this->quota_import();
     }
 
     public function quota_export() {
@@ -114,6 +114,9 @@ class ElectionShell extends AppShell {
     public function quota_import() {
         $targets = array('縣市議員', '直轄市議員', '鄉鎮市民代表', '直轄市山地原住民區民代表');
         $importPath = __DIR__ . '/data/2014_quota';
+        $sql = array(
+            'UPDATE elections SET quota = 1;'
+        );
         foreach ($targets AS $target) {
             $importFile = "{$importPath}/{$target}.csv";
             if (file_exists($importFile)) {
@@ -121,12 +124,13 @@ class ElectionShell extends AppShell {
                 fgetcsv($fh, 512);
                 while ($line = fgetcsv($fh, 2048)) {
                     if (!empty($line[3])) {
-                        $this->Election->query("UPDATE elections SET quota = {$line[1]}, quota_women = {$line[2]} WHERE id = '{$line[3]}'");
+                        $sql[] = "UPDATE elections SET quota = {$line[1]}, quota_women = {$line[2]} WHERE id = '{$line[3]}';";
                     }
                 }
                 fclose($fh);
             }
         }
+        file_put_contents(TMP . 'quota.sql', implode("\n", $sql));
     }
 
 }
