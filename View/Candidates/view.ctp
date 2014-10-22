@@ -26,7 +26,13 @@
                 }
                 ?>
             </div>
-            <?php echo " &nbsp; &nbsp; ( 選舉人： {$this->data['Election'][0]['population_electors']} / 人口： {$this->data['Election'][0]['population']} )"; ?>
+            <?php
+            $quota = "名額： {$this->data['Election'][0]['quota']}";
+            if (!empty($this->data['Election'][0]['quota_women'])) {
+                $quota .= " / 婦女保障： {$this->data['Election'][0]['quota_women']}";
+            }
+            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$this->data['Election'][0]['population_electors']} / 人口： {$this->data['Election'][0]['population']} )";
+            ?>
         </div>
         <div class="col-md-6">
             行政區：
@@ -63,7 +69,7 @@
                 </div>
                 <div class="col-md-6">
                     <h2><?php echo $this->data['Candidate']['name']; ?></h2>
-                    <?php echo $this->Olc->stages[$this->data['Candidate']['stage']]; ?>
+<?php echo $this->Olc->stages[$this->data['Candidate']['stage']]; ?>
                 </div>
             </div>
             <div class="col-md-12">
@@ -99,17 +105,17 @@
                     </div>
                 </div>
             </div>
-            <?php if (!empty($this->data['Election'][0]['CandidatesElection']['platform'])) { ?>
+<?php if (!empty($this->data['Election'][0]['CandidatesElection']['platform'])) { ?>
                 <div class="col-md-12">
                     <div class="well well-lg"> 
                         <div class="row">
                             <strong>政見</strong> <hr />
-                            <?php echo str_replace('\\n', '<br />', $this->data['Election'][0]['CandidatesElection']['platform']); ?>
+    <?php echo str_replace('\\n', '<br />', $this->data['Election'][0]['CandidatesElection']['platform']); ?>
                         </div>
                     </div>
                 </div>
             <?php } ?>
-            <?php if (!empty($this->data['Candidate']['links'])) { ?>
+<?php if (!empty($this->data['Candidate']['links'])) { ?>
                 <div class="col-md-12">
                     <div class="well well-lg"> 
                         <div class="row">
@@ -134,26 +140,26 @@
                     </div>
                 </div>
             <?php } ?>
-            <?php if (!empty($this->data['Candidate']['education'])) { ?>
+<?php if (!empty($this->data['Candidate']['education'])) { ?>
                 <div class="col-md-12">
                     <div class="well well-lg"> 
                         <div class="row">
                             <strong>經歷</strong> <hr />
-                            <?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['experience'])); ?>
+    <?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['experience'])); ?>
                         </div>
                     </div>
                 </div>
             <?php } ?>
-            <?php if (!empty($this->data['Candidate']['education'])) { ?>
+<?php if (!empty($this->data['Candidate']['education'])) { ?>
                 <div class="col-md-12">
                     <div class="well well-lg"> 
                         <div class="row">
                             <strong>學歷</strong> <hr />
-                            <?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['education'])); ?>
+    <?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['education'])); ?>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+<?php } ?>
         </div>
         <div class="col-md-7 candidateNewsBlock" style="display: none;">
         </div>
@@ -170,9 +176,9 @@
             vanilla.src = vanilla_forum_url + '/js/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(vanilla);
         })();
-        $(function() {
-            $.get('<?php echo $this->Html->url('/candidates/links/' . $this->data['Candidate']['id']); ?>', {}, function(pageBlock) {
-                if(pageBlock !== '') {
+        $(function () {
+            $.get('<?php echo $this->Html->url('/candidates/links/' . $this->data['Candidate']['id']); ?>', {}, function (pageBlock) {
+                if (pageBlock !== '') {
                     $('div.candidateNewsBlock').html(pageBlock).show();
                     $('div.candidateMainBlock').removeClass('col-md-12').addClass('col-md-5');
                 }

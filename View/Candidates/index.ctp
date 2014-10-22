@@ -37,7 +37,11 @@
     <div class="col-md-8">
         <?php
         if (!empty($currentElection['population_electors'])) {
-            echo " &nbsp; &nbsp; ( 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )";
+            $quota = "名額： {$currentElection['quota']}";
+            if (!empty($currentElection['quota_women'])) {
+                $quota .= " / 婦女保障： {$currentElection['quota_women']}";
+            }
+            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )";
         }
         ?>
     </div>

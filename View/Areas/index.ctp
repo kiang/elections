@@ -50,7 +50,11 @@ if (!empty($parents)) {
                     echo '<hr />';
                     echo '<div class="col-md-8">';
                     echo $this->Html->link(implode(' > ', $c), '/candidates/index/' . $cLinkId);
-                    echo " &nbsp; &nbsp; ( 選舉人： {$election['AreasElection']['population_electors']} / 人口： {$election['AreasElection']['population']} )";
+                    $quota = "名額： {$election['AreasElection']['quota']}";
+                    if(!empty($election['AreasElection']['quota_women'])) {
+                        $quota .= " / 婦女保障： {$election['AreasElection']['quota_women']}";
+                    }
+                    echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$election['AreasElection']['population_electors']} / 人口： {$election['AreasElection']['population']} )";
                     echo '</div>';
                     echo $this->Html->link("新增 {$eType} 候選人", array('controller' => 'candidates', 'action' => 'add', $election['AreasElection']['Election_id']), array('class' => 'btn btn-primary pull-right col-md-2'));
                     echo '<div class="clearfix"></div>';
