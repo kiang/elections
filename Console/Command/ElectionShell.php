@@ -77,6 +77,7 @@ class ElectionShell extends AppShell {
             'conditions' => array(
                 'Election.rght - Election.lft = 1',
             ),
+            'order' => array('Election.lft' => 'ASC'),
         ));
         $fh = fopen(__DIR__ . '/data/2014_quota_match.csv', 'w');
         fputcsv($fh, array('選區', '姓名', '政黨', '候選人網址', '選區網址'));
