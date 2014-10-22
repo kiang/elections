@@ -114,6 +114,51 @@ class ElectionShell extends AppShell {
         fclose($fh);
     }
 
+    public function quota_match_links() {
+        $elections = $this->Election->find('all', array(
+            'fields' => array(
+                'Election.id', 'Election.quota',
+                '(SELECT COUNT(*) FROM candidates_elections CE INNER JOIN candidates C ON C.id = CE.Candidate_id WHERE CE.Election_id = Election.id AND C.stage = 1 AND C.active_id IS NULL) AS n'
+            ),
+            'conditions' => array(
+                'Election.rght - Election.lft = 1',
+            ),
+            'order' => array('Election.lft' => 'ASC'),
+        ));
+        $fh = fopen(TMP . '2014_quota_match.txt', 'w');
+        foreach ($elections AS $election) {
+            if ($election['Election']['quota'] === $election[0]['n']) {
+                $path = implode(' > ', Set::extract('{n}.Election.name', $this->Election->getPath($election['Election']['id'], array('name'))));
+                if (false === strpos($path, '村里')) {
+                    $candidates = $this->Election->Candidate->find('all', array(
+                        'joins' => array(
+                            array(
+                                'table' => 'candidates_elections',
+                                'alias' => 'CandidatesElection',
+                                'type' => 'inner',
+                                'conditions' => array('CandidatesElection.Candidate_id = Candidate.id'),
+                            ),
+                        ),
+                        'conditions' => array(
+                            'Candidate.active_id IS NULL',
+                            'Candidate.stage' => '1',
+                            'CandidatesElection.Election_id' => $election['Election']['id'],
+                        ),
+                        'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party'),
+                    ));
+                    $line = "<li><a href=\"http://k.olc.tw/elections/candidates/index/{$election['Election']['id']}\" target=\"_blank\">{$path}</a>： ";
+                    $cLinks = array();
+                    foreach ($candidates AS $candidate) {
+                        $cLinks[] = "<a href=\"'http://k.olc.tw/elections/candidates/view/{$candidate['Candidate']['id']}\" target=\"_blank\">{$candidate['Candidate']['name']}({$candidate['Candidate']['party']})</a>";
+                    }
+                    $line .= implode(', ', $cLinks) . "</li>\n";
+                    fputs($fh, $line);
+                }
+            }
+        }
+        fclose($fh);
+    }
+
     public function quota_export() {
         $root = $this->Election->find('first', array(
             'conditions' => array(
