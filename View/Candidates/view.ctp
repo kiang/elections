@@ -18,6 +18,8 @@
                 <?php
                 echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default'));
                 echo $this->Html->link('本頁 API', '/api/candidates/view/' . $this->data['Candidate']['id'], array('class' => 'btn btn-default', 'target' => '_blank'));
+                echo $this->Html->link('相關公司', 'http://gcis.nat.g0v.tw/name/' . $this->data['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
+                echo $this->Html->link('相關法人', 'http://foundations.olc.tw/directors/index/' . $this->data['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
                 if (Configure::read('loginMember.group_id') === '1') {
                     echo $this->Html->link('管理', array('action' => 'edit', $this->data['Candidate']['id'], 'admin' => true), array('class' => 'btn btn-default'));
                 }
