@@ -17,6 +17,7 @@
                 echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default pull-right'));
             }
             ?></h1><hr />
+            <div class="pull-right"><?php echo $this->Html->link('(免責聲明)', '/pages/notice'); ?></div>
     </div>
     <?php
     $url = array();
