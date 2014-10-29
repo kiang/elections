@@ -1,8 +1,7 @@
 <?php if (!empty($newsLinks)) { ?>
     <div class="col-md-12 newsLinksBlock">
-        <h3>新聞集錦</h3>
+        <div class="pull-right">* 以下新聞係以候選人姓名作為關鍵字搜尋網路資料產生結果，僅供參考！ <?php echo $this->Html->link('(免責聲明)', '/pages/notice'); ?></div>
         <hr />
-        <div class="paging"><?php echo $this->element('paginator'); ?></div>
         <ul>
             <?php
             foreach ($newsLinks AS $newsLink) {
