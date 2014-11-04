@@ -5,10 +5,12 @@ class AreaShell extends AppShell {
     public $uses = array('Area');
 
     public function main() {
-        $this->dump_2014_areas();
+        $this->areas_population();
+        $this->elections_population();
     }
 
     public function elections_population() {
+        $queryCount = 0;
         $areas = $this->Area->find('all', array(
             'fields' => array('Area.id', 'Area.population', 'Area.population_electors'),
         ));
@@ -20,6 +22,9 @@ class AreaShell extends AppShell {
         ));
         foreach ($links AS $link) {
             $this->Area->query("UPDATE elections E SET E.population = E.population + {$population[$link['AreasElection']['Area_id']]}, E.population_electors = E.population_electors + {$population_electors[$link['AreasElection']['Area_id']]} WHERE E.id = '{$link['AreasElection']['Election_id']}'");
+            if (++$queryCount % 500 == 0) {
+                echo "finished elections queries: {$queryCount}\n";
+            }
         }
     }
 
@@ -34,7 +39,8 @@ class AreaShell extends AppShell {
         $areaCodes = $this->Area->find('list', array(
             'fields' => array('Area.code', 'Area.id'),
         ));
-        $fh = fopen(__DIR__ . '/data/10304_age.csv', 'r');
+        $queryCount = 0;
+        $fh = fopen(__DIR__ . '/data/10309_age.csv', 'r');
         fgetcsv($fh, 2048);
         while ($line = fgetcsv($fh, 2048)) {
             if (!empty($areaCodes[$line[1]])) {
@@ -42,11 +48,10 @@ class AreaShell extends AppShell {
                 for ($i = 7; $i <= 46; $i++) {
                     $populationElectors -= $line[$i];
                 }
-                $this->Area->save(array('Area' => array(
-                        'id' => $areaCodes[$line[1]],
-                        'population' => $line[4],
-                        'population_electors' => $populationElectors,
-                )));
+                $this->Area->query("UPDATE areas SET population = {$line[4]}, population_electors = {$populationElectors} WHERE id = '{$areaCodes[$line[1]]}';");
+                if (++$queryCount % 500 == 0) {
+                    echo "finished areas queries: {$queryCount}\n";
+                }
             }
         }
         fclose($fh);
@@ -62,6 +67,9 @@ class AreaShell extends AppShell {
                         'population' => $result[0][0]['p1'],
                         'population_electors' => $result[0][0]['p2'],
                 )));
+                if (++$queryCount % 500 == 0) {
+                    echo "finished areas queries: {$queryCount}\n";
+                }
             }
         }
     }
