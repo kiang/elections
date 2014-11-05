@@ -256,7 +256,7 @@ class CandidatesController extends AppController {
                     'order' => array('Candidate.created' => 'DESC'),
                     'contain' => array('Election'),
                 ));
-                if(!empty($latestUnRevied)) {
+                if (!empty($latestUnRevied)) {
                     $candidate = $latestUnRevied;
                 }
                 $candidate['CandidatesElection']['platform'] = str_replace('\\n', "\n", $candidate['Election'][0]['CandidatesElection']['platform']);
@@ -517,7 +517,15 @@ class CandidatesController extends AppController {
             $this->Candidate->save($dataToSave);
             $this->Candidate->id = $candidateId;
             $this->Candidate->saveField('is_reviewed', '1');
-            $this->redirect('/admin/candidates/submits');
+            $unReviewId = $this->Candidate->field('id', array(
+                'Candidate.active_id IS NOT NULL',
+                'Candidate.is_reviewed' => '0',
+            ));
+            if(!empty($unReviewId)) {
+                $this->redirect('/admin/candidates/review/' . $unReviewId);
+            } else {
+                $this->redirect('/admin/candidates/submits');
+            }
         } else {
             unset($submitted['Candidate']['id']);
             unset($original['Candidate']['id']);
