@@ -110,7 +110,7 @@ $renderer = new Diff_Renderer_Html_Inline;
 <div id="CandidatesAdminReview">
     <div class="row">
         <h1>審核提供資料 - <?php echo $original['Candidate']['name']; ?></h1>
-        <div class="btn-group">
+        <div class="btn-group pull-right">
             <?php echo $this->Html->link('回列表', "/admin/candidates/submits", array('class' => 'btn btn-default')); ?>
             <?php echo $this->Html->link('通過', "/admin/candidates/review/{$submittedId}/yes", array('class' => 'btn btn-primary')); ?>
             <?php echo $this->Html->link('前台資料', "/candidates/view/{$originalId}", array('class' => 'btn btn-default', 'target' => '_blank')); ?>
