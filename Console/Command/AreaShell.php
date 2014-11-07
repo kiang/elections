@@ -5,8 +5,7 @@ class AreaShell extends AppShell {
     public $uses = array('Area');
 
     public function main() {
-        $this->areas_population();
-        $this->elections_population();
+        $this->dump_2014_areas();
     }
 
     public function elections_population() {
@@ -119,7 +118,7 @@ class AreaShell extends AppShell {
                     $electionAreas,
                 );
             }
-            file_put_contents(__DIR__ . "/data/2014_areas/{$electionType['Election']['name']}.json", json_encode($result, JSON_PRETTY_PRINT));
+            file_put_contents(__DIR__ . "/data/2014_areas/{$electionType['Election']['name']}.json", json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
         }
     }
 
