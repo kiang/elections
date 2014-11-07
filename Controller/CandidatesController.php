@@ -520,7 +520,7 @@ class CandidatesController extends AppController {
             $unReviewId = $this->Candidate->field('id', array(
                 'Candidate.active_id IS NOT NULL',
                 'Candidate.is_reviewed' => '0',
-            ));
+            ), array('Candidate.created' => 'DESC'));
             if(!empty($unReviewId)) {
                 $this->redirect('/admin/candidates/review/' . $unReviewId);
             } else {
