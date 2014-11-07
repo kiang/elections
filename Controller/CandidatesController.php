@@ -192,7 +192,7 @@ class CandidatesController extends AppController {
     function add($electionId = '') {
         if (!empty($electionId)) {
             if (!empty($this->data)) {
-                $dataToSave = Sanitize::clean($this->data);
+                $dataToSave = Sanitize::clean($this->data, array('encode' => false));
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
                     $dataToSave['CandidatesElection']['Election_id'] = $electionId;
@@ -233,7 +233,7 @@ class CandidatesController extends AppController {
         }
         if (!empty($candidate)) {
             if (!empty($this->data)) {
-                $dataToSave = Sanitize::clean($this->data);
+                $dataToSave = Sanitize::clean($this->data, array('encode' => false));
                 $dataToSave['Candidate']['active_id'] = $candidateId;
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
