@@ -12,7 +12,8 @@ class CandidatesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'add', 'view', 'edit', 's', 'tag', 'submits', 'links');
+            $this->Auth->allow('index', 'add', 'view', 'edit', 's',
+                    'tag', 'tag_list', 'submits', 'links');
         }
     }
 
@@ -135,6 +136,55 @@ class CandidatesController extends AppController {
                     $electionStack[$item['CandidatesElection']['Election_id']] = $this->Candidate->Election->getPath($item['CandidatesElection']['Election_id'], array('id', 'name'));
                 }
                 $items[$k]['Election'] = $electionStack[$item['CandidatesElection']['Election_id']];
+            }
+
+            $this->set('title_for_layout', $tag['Tag']['name'] . ' 候選人');
+            $this->set('items', $items);
+            $this->set('url', array($tagId));
+            $this->set('tag', $tag);
+        } else {
+            $this->redirect(array('controller' => 'areas'));
+        }
+    }
+    
+    public function tag_list($tagId = '') {
+        $tag = $this->Candidate->Tag->find('first', array(
+            'conditions' => array('Tag.id' => $tagId,)
+        ));
+        if (!empty($tag)) {
+            $scope = array(
+                'Candidate.active_id IS NULL',
+                'CandidatesTag.Tag_id' => $tagId,
+            );
+
+            $this->paginate['Candidate']['joins'] = array(
+                array(
+                    'table' => 'candidates_elections',
+                    'alias' => 'CandidatesElection',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'CandidatesElection.Candidate_id = Candidate.id',
+                    ),
+                ),
+                array(
+                    'table' => 'candidates_tags',
+                    'alias' => 'CandidatesTag',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'CandidatesTag.Candidate_id = Candidate.id',
+                    ),
+                ),
+            );
+            $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
+            $this->paginate['Candidate']['limit'] = 30;
+            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.stage', 'Candidate.image', 'CandidatesElection.Election_id');
+            $items = $this->paginate($this->Candidate, $scope);
+            $electionStack = array();
+            foreach ($items AS $k => $item) {
+                if (!isset($electionStack[$item['CandidatesElection']['Election_id']])) {
+                    $electionStack[$item['CandidatesElection']['Election_id']] = $this->Candidate->Election->getPath($item['CandidatesElection']['Election_id'], array('id', 'name'));
+                }
+                $items[$k]['Election'] = Set::extract('{n}.Election.name', $electionStack[$item['CandidatesElection']['Election_id']]);
             }
 
             $this->set('title_for_layout', $tag['Tag']['name'] . ' 候選人');

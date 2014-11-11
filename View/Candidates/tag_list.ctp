@@ -4,27 +4,37 @@
     <div class="col-md-12"><?php echo $this->Html->getCrumbs(); ?></div>
     <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
     <div class="pull-right btn-group">
-        <?php echo $this->Html->link('照片', '/candidates/tag/' . $tag['Tag']['id'], array('class' => 'btn btn-primary')); ?>
-        <?php echo $this->Html->link('清單', '/candidates/tag_list/' . $tag['Tag']['id'], array('class' => 'btn btn-default')); ?>
+        <?php echo $this->Html->link('照片', '/candidates/tag/' . $tag['Tag']['id'], array('class' => 'btn btn-default')); ?>
+        <?php echo $this->Html->link('清單', '/candidates/tag_list/' . $tag['Tag']['id'], array('class' => 'btn btn-primary')); ?>
     </div>
     <div class="clearfix"></div>
     <?php
     if (!empty($items)) {
+        ?>        <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>候選人</th>
+                <th>選區</th>
+            </tr>
+        </thead>
+        <tbody>
+<?php
         foreach ($items AS $candidate) {
-            ?><div class="col-md-2">
-                <a class="thumbnail text-center candidate-<?php echo $candidate['Candidate']['stage']; ?>" href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
-                    <?php
-                    if (empty($candidate['Candidate']['image'])) {
-                        echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));
-                    } else {
-                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; height: 100px; border: 0px;'));
-                    }
-                    ?>
-                    <br /><?php echo $candidate['Candidate']['name']; ?>
-                    <br /><?php echo $candidate['Election'][1]['Election']['name']; ?>
-                </a>
-            </div><?php
+            ?>
+            <tr>
+                <td class="candidate-<?php echo $candidate['Candidate']['stage']; ?>">
+                    <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>"><?php
+                    echo $candidate['Candidate']['name'];
+                    ?></a></td>
+                <td><?php echo implode(' > ', $candidate['Election']); ?></td>
+            </tr>
+        <?php
         }
+        ?>
+
+        </tbody>
+    </table>
+<?php
     } else {
         echo ' ~ 目前沒有候選人資料 ~ ';
     }
