@@ -13,6 +13,8 @@
                 "name": "南竿鄉",
                 "ivid": "LJF-010",
                 "code": "09007010",
+                "population": "7509",
+                "population_electors": "6028",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bce-efb8-433d-816a-5460acb5b862"
             }
         ]
@@ -31,6 +33,8 @@
                 "name": "莒光鄉",
                 "ivid": "LJF-030",
                 "code": "09007030",
+                "population": "1418",
+                "population_electors": "1225",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd0-e394-464e-a913-5460acb5b862"
             }
         ]
@@ -49,6 +53,8 @@
                 "name": "金城鎮",
                 "ivid": "JME-010",
                 "code": "09020010",
+                "population": "40500",
+                "population_electors": "33367",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd1-9eec-4217-ac52-5460acb5b862"
             }
         ]
@@ -67,6 +73,8 @@
                 "name": "金沙鎮",
                 "ivid": "JME-020",
                 "code": "09020020",
+                "population": "19290",
+                "population_electors": "16225",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd2-fe28-4f39-8538-5460acb5b862"
             }
         ]
@@ -85,6 +93,8 @@
                 "name": "東引鄉",
                 "ivid": "LJF-040",
                 "code": "09007040",
+                "population": "1234",
+                "population_electors": "1011",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd1-e0a0-4164-a171-5460acb5b862"
             }
         ]
@@ -103,6 +113,8 @@
                 "name": "北竿鄉",
                 "ivid": "LJF-020",
                 "code": "09007020",
+                "population": "2320",
+                "population_electors": "1905",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bcf-e880-4a7f-91c3-5460acb5b862"
             }
         ]
@@ -121,6 +133,8 @@
                 "name": "烏坵鄉",
                 "ivid": "JME-020",
                 "code": "09020060",
+                "population": "669",
+                "population_electors": "490",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd7-6afc-470f-9df0-5460acb5b862"
             }
         ]
@@ -139,6 +153,8 @@
                 "name": "烈嶼鄉",
                 "ivid": "JME-050",
                 "code": "09020050",
+                "population": "11751",
+                "population_electors": "10039",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd5-b0e8-4640-9e80-5460acb5b862"
             }
         ]
@@ -157,6 +173,8 @@
                 "name": "金寧鄉",
                 "ivid": "JME-040",
                 "code": "09020040",
+                "population": "26868",
+                "population_electors": "21893",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd5-0698-4581-bed5-5460acb5b862"
             }
         ]
@@ -175,6 +193,8 @@
                 "name": "金湖鎮",
                 "ivid": "JME-030",
                 "code": "09020030",
+                "population": "27078",
+                "population_electors": "22502",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd3-5b04-4218-9764-5460acb5b862"
             }
         ]
@@ -193,6 +213,8 @@
                 "name": "宜蘭市",
                 "ivid": "ILA-010",
                 "code": "10002010",
+                "population": "95799",
+                "population_electors": "74471",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd7-2824-4416-9e5a-5460acb5b862"
             }
         ]
@@ -211,6 +233,8 @@
                 "name": "頭城鎮",
                 "ivid": "ILA-040",
                 "code": "10002040",
+                "population": "29925",
+                "population_electors": "24410",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01be2-e62c-4ddd-9339-5460acb5b862"
             }
         ]
@@ -229,6 +253,8 @@
                 "name": "蘇澳鎮",
                 "ivid": "ILA-030",
                 "code": "10002030",
+                "population": "41143",
+                "population_electors": "33972",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bdf-3458-4d75-a8e7-5460acb5b862"
             }
         ]
@@ -247,6 +273,8 @@
                 "name": "羅東鎮",
                 "ivid": "ILA-020",
                 "code": "10002020",
+                "population": "72469",
+                "population_electors": "54659",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bdc-6248-4a99-a288-5460acb5b862"
             }
         ]
@@ -265,6 +293,8 @@
                 "name": "礁溪鄉",
                 "ivid": "ILA-050",
                 "code": "10002050",
+                "population": "36018",
+                "population_electors": "29577",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01be6-6128-446f-9b49-5460acb5b862"
             }
         ]
@@ -283,6 +313,8 @@
                 "name": "員山鄉",
                 "ivid": "ILA-070",
                 "code": "10002070",
+                "population": "32367",
+                "population_electors": "26523",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bea-c6a8-4e30-a4c8-5460acb5b862"
             }
         ]
@@ -301,6 +333,8 @@
                 "name": "壯圍鄉",
                 "ivid": "ILA-060",
                 "code": "10002060",
+                "population": "24476",
+                "population_electors": "20243",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01be8-2db4-4bac-ba49-5460acb5b862"
             }
         ]
@@ -319,6 +353,8 @@
                 "name": "冬山鄉",
                 "ivid": "ILA-080",
                 "code": "10002080",
+                "population": "53562",
+                "population_electors": "43119",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bec-bc98-4180-840c-5460acb5b862"
             }
         ]
@@ -337,6 +373,8 @@
                 "name": "大同鄉",
                 "ivid": "ILA-110",
                 "code": "10002110",
+                "population": "6135",
+                "population_electors": "4535",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf5-64ec-4f8e-9757-5460acb5b862"
             }
         ]
@@ -355,6 +393,8 @@
                 "name": "三星鄉",
                 "ivid": "ILA-100",
                 "code": "10002100",
+                "population": "21396",
+                "population_electors": "17992",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf1-3608-4016-82f2-5460acb5b862"
             }
         ]
@@ -373,6 +413,8 @@
                 "name": "五結鄉",
                 "ivid": "ILA-090",
                 "code": "10002090",
+                "population": "39332",
+                "population_electors": "32513",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bef-fbfc-41ab-8f6e-5460acb5b862"
             }
         ]
@@ -391,6 +433,8 @@
                 "name": "新埔鎮",
                 "ivid": "HSQ-030",
                 "code": "10004030",
+                "population": "34522",
+                "population_electors": "28405",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c40-81b8-4996-8ff3-5460acb5b862"
             }
         ]
@@ -409,6 +453,8 @@
                 "name": "竹東鎮",
                 "ivid": "HSQ-020",
                 "code": "10004020",
+                "population": "95989",
+                "population_electors": "72972",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c3c-949c-4db4-bf6d-5460acb5b862"
             }
         ]
@@ -427,6 +473,8 @@
                 "name": "南澳鄉",
                 "ivid": "ILA-120",
                 "code": "10002120",
+                "population": "6162",
+                "population_electors": "4388",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf6-9e84-417f-8e5b-5460acb5b862"
             }
         ]
@@ -445,6 +493,8 @@
                 "name": "竹北市",
                 "ivid": "HSQ-010",
                 "code": "10004010",
+                "population": "163701",
+                "population_electors": "115521",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c38-f738-493d-a3ba-5460acb5b862"
             }
         ]
@@ -463,6 +513,8 @@
                 "name": "橫山鄉",
                 "ivid": "HSQ-080",
                 "code": "10004080",
+                "population": "13859",
+                "population_electors": "11405",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c4b-4c5c-426d-a341-5460acb5b862"
             }
         ]
@@ -481,6 +533,8 @@
                 "name": "關西鎮",
                 "ivid": "HSQ-040",
                 "code": "10004040",
+                "population": "30790",
+                "population_electors": "24779",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c42-4e4c-42bc-b24f-5460acb5b862"
             }
         ]
@@ -499,6 +553,8 @@
                 "name": "湖口鄉",
                 "ivid": "HSQ-050",
                 "code": "10004050",
+                "population": "77098",
+                "population_electors": "58950",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c44-7e64-457f-ac69-5460acb5b862"
             }
         ]
@@ -517,6 +573,8 @@
                 "name": "新豐鄉",
                 "ivid": "HSQ-060",
                 "code": "10004060",
+                "population": "55678",
+                "population_electors": "41834",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c47-e28c-440c-b96f-5460acb5b862"
             }
         ]
@@ -535,6 +593,8 @@
                 "name": "芎林鄉",
                 "ivid": "HSQ-070",
                 "code": "10004070",
+                "population": "20302",
+                "population_electors": "16383",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c49-d158-486c-90f3-5460acb5b862"
             }
         ]
@@ -553,6 +613,8 @@
                 "name": "北埔鄉",
                 "ivid": "HSQ-090",
                 "code": "10004090",
+                "population": "9801",
+                "population_electors": "8012",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c4e-263c-4167-ba0e-5460acb5b862"
             }
         ]
@@ -571,6 +633,8 @@
                 "name": "五峰鄉",
                 "ivid": "HSQ-130",
                 "code": "10004130",
+                "population": "4743",
+                "population_electors": "3794",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c52-fa94-44c1-b8a1-5460acb5b862"
             }
         ]
@@ -589,6 +653,8 @@
                 "name": "尖石鄉",
                 "ivid": "HSQ-120",
                 "code": "10004120",
+                "population": "9459",
+                "population_electors": "6725",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c51-cd28-41b6-9074-5460acb5b862"
             }
         ]
@@ -607,6 +673,8 @@
                 "name": "寶山鄉",
                 "ivid": "HSQ-100",
                 "code": "10004100",
+                "population": "14377",
+                "population_electors": "11798",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c4f-5d48-4b26-b3fb-5460acb5b862"
             }
         ]
@@ -625,6 +693,8 @@
                 "name": "峨眉鄉",
                 "ivid": "HSQ-110",
                 "code": "10004110",
+                "population": "5792",
+                "population_electors": "4979",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c50-e4dc-4c3c-b8f3-5460acb5b862"
             }
         ]
@@ -643,6 +713,8 @@
                 "name": "通霄鎮",
                 "ivid": "MIA-030",
                 "code": "10005030",
+                "population": "37011",
+                "population_electors": "30135",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c59-6338-4357-98a2-5460acb5b862"
             }
         ]
@@ -661,6 +733,8 @@
                 "name": "苗栗市",
                 "ivid": "MIA-010",
                 "code": "10005010",
+                "population": "90936",
+                "population_electors": "71925",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c53-0c04-4c12-a487-5460acb5b862"
             }
         ]
@@ -679,6 +753,8 @@
                 "name": "頭份鎮",
                 "ivid": "MIA-050",
                 "code": "10005050",
+                "population": "102335",
+                "population_electors": "78043",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c60-1844-4f5a-909f-5460acb5b862"
             }
         ]
@@ -697,6 +773,8 @@
                 "name": "竹南鎮",
                 "ivid": "MIA-040",
                 "code": "10005040",
+                "population": "83353",
+                "population_electors": "62967",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c5d-0ac8-42e6-b473-5460acb5b862"
             }
         ]
@@ -715,6 +793,8 @@
                 "name": "苑裡鎮",
                 "ivid": "MIA-020",
                 "code": "10005020",
+                "population": "48605",
+                "population_electors": "38188",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c57-5908-4195-a256-5460acb5b862"
             }
         ]
@@ -733,6 +813,8 @@
                 "name": "卓蘭鎮",
                 "ivid": "MIA-070",
                 "code": "10005070",
+                "population": "18367",
+                "population_electors": "15052",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c67-abb0-4229-b1c4-5460acb5b862"
             }
         ]
@@ -751,6 +833,8 @@
                 "name": "公館鄉",
                 "ivid": "MIA-090",
                 "code": "10005090",
+                "population": "34784",
+                "population_electors": "27595",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c6a-bb40-4242-ab51-5460acb5b862"
             }
         ]
@@ -769,6 +853,8 @@
                 "name": "後龍鎮",
                 "ivid": "MIA-060",
                 "code": "10005060",
+                "population": "38524",
+                "population_electors": "30862",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c64-84c4-470d-9230-5460acb5b862"
             }
         ]
@@ -787,6 +873,8 @@
                 "name": "銅鑼鄉",
                 "ivid": "MIA-100",
                 "code": "10005100",
+                "population": "18951",
+                "population_electors": "15477",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c6d-6800-41dd-aade-5460acb5b862"
             }
         ]
@@ -805,6 +893,8 @@
                 "name": "南庄鄉",
                 "ivid": "MIA-110",
                 "code": "10005110",
+                "population": "10691",
+                "population_electors": "8772",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c6f-f8bc-4670-9b8e-5460acb5b862"
             }
         ]
@@ -823,6 +913,8 @@
                 "name": "大湖鄉",
                 "ivid": "MIA-080",
                 "code": "10005080",
+                "population": "15558",
+                "population_electors": "12778",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c68-a478-4fce-bcd2-5460acb5b862"
             }
         ]
@@ -841,6 +933,8 @@
                 "name": "造橋鄉",
                 "ivid": "MIA-150",
                 "code": "10005150",
+                "population": "13471",
+                "population_electors": "11032",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c73-9ab4-45bd-bc2a-5460acb5b862"
             }
         ]
@@ -859,6 +953,8 @@
                 "name": "西湖鄉",
                 "ivid": "MIA-140",
                 "code": "10005140",
+                "population": "7601",
+                "population_electors": "6423",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c72-9380-4cf7-8d5b-5460acb5b862"
             }
         ]
@@ -877,6 +973,8 @@
                 "name": "頭屋鄉",
                 "ivid": "MIA-120",
                 "code": "10005120",
+                "population": "11369",
+                "population_electors": "9463",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c70-aea8-460c-a02e-5460acb5b862"
             }
         ]
@@ -895,6 +993,8 @@
                 "name": "三義鄉",
                 "ivid": "MIA-130",
                 "code": "10005130",
+                "population": "17270",
+                "population_electors": "13964",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c71-e14c-44e3-bbfe-5460acb5b862"
             }
         ]
@@ -913,6 +1013,8 @@
                 "name": "獅潭鄉",
                 "ivid": "MIA-170",
                 "code": "10005170",
+                "population": "4749",
+                "population_electors": "4123",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c76-b19c-4129-8031-5460acb5b862"
             }
         ]
@@ -931,6 +1033,8 @@
                 "name": "泰安鄉",
                 "ivid": "MIA-180",
                 "code": "10005180",
+                "population": "6181",
+                "population_electors": "4958",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c78-9978-43bf-96f5-5460acb5b862"
             }
         ]
@@ -949,6 +1053,8 @@
                 "name": "彰化市",
                 "ivid": "CHA-010",
                 "code": "10007010",
+                "population": "235134",
+                "population_electors": "181720",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c79-13a8-4108-b201-5460acb5b862"
             }
         ]
@@ -967,6 +1073,8 @@
                 "name": "三灣鄉",
                 "ivid": "MIA-160",
                 "code": "10005160",
+                "population": "7162",
+                "population_electors": "5964",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c74-8164-4155-a393-5460acb5b862"
             }
         ]
@@ -985,6 +1093,8 @@
                 "name": "伸港鄉",
                 "ivid": "CHA-050",
                 "code": "10007050",
+                "population": "36158",
+                "population_electors": "27959",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c8b-011c-4404-84c2-5460acb5b862"
             }
         ]
@@ -1003,6 +1113,8 @@
                 "name": "福興鄉",
                 "ivid": "CHA-060",
                 "code": "10007060",
+                "population": "47802",
+                "population_electors": "37813",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c8e-e440-447c-9f94-5460acb5b862"
             }
         ]
@@ -1021,6 +1133,8 @@
                 "name": "秀水鄉",
                 "ivid": "CHA-070",
                 "code": "10007070",
+                "population": "39328",
+                "population_electors": "30280",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c91-4064-498a-a8a8-5460acb5b862"
             }
         ]
@@ -1039,6 +1153,8 @@
                 "name": "和美鎮",
                 "ivid": "CHA-030",
                 "code": "10007030",
+                "population": "90667",
+                "population_electors": "70861",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c86-8fc0-4c90-935c-5460acb5b862"
             }
         ]
@@ -1057,6 +1173,8 @@
                 "name": "線西鄉",
                 "ivid": "CHA-040",
                 "code": "10007040",
+                "population": "17130",
+                "population_electors": "13455",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c8a-f7a4-4a00-9626-5460acb5b862"
             }
         ]
@@ -1075,6 +1193,8 @@
                 "name": "鹿港鎮",
                 "ivid": "CHA-020",
                 "code": "10007020",
+                "population": "86037",
+                "population_electors": "66260",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c83-bc2c-4b75-acfd-5460acb5b862"
             }
         ]
@@ -1093,6 +1213,8 @@
                 "name": "花壇鄉",
                 "ivid": "CHA-080",
                 "code": "10007080",
+                "population": "45906",
+                "population_electors": "36733",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c92-7d10-484c-9e71-5460acb5b862"
             }
         ]
@@ -1111,6 +1233,8 @@
                 "name": "溪湖鎮",
                 "ivid": "CHA-110",
                 "code": "10007110",
+                "population": "55732",
+                "population_electors": "42823",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c9c-adf8-4a55-89d8-5460acb5b862"
             }
         ]
@@ -1129,6 +1253,8 @@
                 "name": "芬園鄉",
                 "ivid": "CHA-090",
                 "code": "10007090",
+                "population": "24188",
+                "population_electors": "19811",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c94-0c10-47ac-af7c-5460acb5b862"
             }
         ]
@@ -1147,6 +1273,8 @@
                 "name": "員林鎮",
                 "ivid": "CHA-100",
                 "code": "10007100",
+                "population": "124746",
+                "population_electors": "96408",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c96-1370-4d86-a7ff-5460acb5b862"
             }
         ]
@@ -1165,6 +1293,8 @@
                 "name": "田中鎮",
                 "ivid": "CHA-120",
                 "code": "10007120",
+                "population": "42812",
+                "population_electors": "34432",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c9f-2c08-4039-b9a0-5460acb5b862"
             }
         ]
@@ -1183,6 +1313,8 @@
                 "name": "大村鄉",
                 "ivid": "CHA-130",
                 "code": "10007130",
+                "population": "36440",
+                "population_electors": "29457",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ca2-923c-481f-8715-5460acb5b862"
             }
         ]
@@ -1201,6 +1333,8 @@
                 "name": "埔心鄉",
                 "ivid": "CHA-150",
                 "code": "10007150",
+                "population": "34928",
+                "population_electors": "28232",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ca9-8f1c-4db1-9d77-5460acb5b862"
             }
         ]
@@ -1219,6 +1353,8 @@
                 "name": "埔鹽鄉",
                 "ivid": "CHA-140",
                 "code": "10007140",
+                "population": "33238",
+                "population_electors": "26900",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ca5-b7f0-4e7b-9121-5460acb5b862"
             }
         ]
@@ -1237,6 +1373,8 @@
                 "name": "永靖鄉",
                 "ivid": "CHA-160",
                 "code": "10007160",
+                "population": "38296",
+                "population_electors": "30341",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cac-9644-41c5-913e-5460acb5b862"
             }
         ]
@@ -1255,6 +1393,8 @@
                 "name": "埤頭鄉",
                 "ivid": "CHA-220",
                 "code": "10007220",
+                "population": "31053",
+                "population_electors": "24701",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cbc-38b8-43ad-87e3-5460acb5b862"
             }
         ]
@@ -1273,6 +1413,8 @@
                 "name": "北斗鎮",
                 "ivid": "CHA-190",
                 "code": "10007190",
+                "population": "33175",
+                "population_electors": "26067",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cb4-4aa8-4d36-9412-5460acb5b862"
             }
         ]
@@ -1291,6 +1433,8 @@
                 "name": "二水鄉",
                 "ivid": "CHA-180",
                 "code": "10007180",
+                "population": "15857",
+                "population_electors": "13335",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cb2-ed88-46e0-adee-5460acb5b862"
             }
         ]
@@ -1309,6 +1453,8 @@
                 "name": "二林鎮",
                 "ivid": "CHA-200",
                 "code": "10007200",
+                "population": "52466",
+                "population_electors": "41767",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cb6-0a30-496a-a92a-5460acb5b862"
             }
         ]
@@ -1327,6 +1473,8 @@
                 "name": "田尾鄉",
                 "ivid": "CHA-210",
                 "code": "10007210",
+                "population": "27840",
+                "population_electors": "22191",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cb9-5534-40f1-8409-5460acb5b862"
             }
         ]
@@ -1345,6 +1493,8 @@
                 "name": "社頭鄉",
                 "ivid": "CHA-170",
                 "code": "10007170",
+                "population": "43678",
+                "population_electors": "34774",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01caf-1120-4e86-b304-5460acb5b862"
             }
         ]
@@ -1363,6 +1513,8 @@
                 "name": "大城鄉",
                 "ivid": "CHA-240",
                 "code": "10007240",
+                "population": "17894",
+                "population_electors": "14884",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cc1-5258-4aac-b5e4-5460acb5b862"
             }
         ]
@@ -1381,6 +1533,8 @@
                 "name": "竹塘鄉",
                 "ivid": "CHA-250",
                 "code": "10007250",
+                "population": "15949",
+                "population_electors": "12718",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cc2-9c00-4fbd-913c-5460acb5b862"
             }
         ]
@@ -1399,6 +1553,8 @@
                 "name": "芳苑鄉",
                 "ivid": "CHA-230",
                 "code": "10007230",
+                "population": "34851",
+                "population_electors": "28801",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cbe-bb44-4f43-9f2d-5460acb5b862"
             }
         ]
@@ -1417,6 +1573,8 @@
                 "name": "溪州鄉",
                 "ivid": "CHA-260",
                 "code": "10007260",
+                "population": "30821",
+                "population_electors": "24874",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cc4-a7e8-4d78-bd1a-5460acb5b862"
             }
         ]
@@ -1435,6 +1593,8 @@
                 "name": "草屯鎮",
                 "ivid": "NAN-030",
                 "code": "10008030",
+                "population": "99273",
+                "population_electors": "79319",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cce-7e88-4e74-bd6f-5460acb5b862"
             }
         ]
@@ -1453,6 +1613,8 @@
                 "name": "南投市",
                 "ivid": "NAN-010",
                 "code": "10008010",
+                "population": "102382",
+                "population_electors": "81150",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cc7-2d38-4e8a-ac7f-5460acb5b862"
             }
         ]
@@ -1471,6 +1633,8 @@
                 "name": "竹山鎮",
                 "ivid": "NAN-040",
                 "code": "10008040",
+                "population": "56796",
+                "population_electors": "46237",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cd2-c3f8-4bdc-8b1e-5460acb5b862"
             }
         ]
@@ -1489,6 +1653,8 @@
                 "name": "埔里鎮",
                 "ivid": "NAN-020",
                 "code": "10008020",
+                "population": "83232",
+                "population_electors": "66654",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ccb-4aa8-413d-9392-5460acb5b862"
             }
         ]
@@ -1507,6 +1673,8 @@
                 "name": "集集鎮",
                 "ivid": "NAN-050",
                 "code": "10008050",
+                "population": "11437",
+                "population_electors": "9528",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cd5-8c00-4402-a014-5460acb5b862"
             }
         ]
@@ -1525,6 +1693,8 @@
                 "name": "名間鄉",
                 "ivid": "NAN-060",
                 "code": "10008060",
+                "population": "40016",
+                "population_electors": "32696",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cd6-5450-4e57-b3c0-5460acb5b862"
             }
         ]
@@ -1543,6 +1713,8 @@
                 "name": "國姓鄉",
                 "ivid": "NAN-100",
                 "code": "10008100",
+                "population": "19798",
+                "population_electors": "16696",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce0-d8d4-4e6e-ba22-5460acb5b862"
             }
         ]
@@ -1561,6 +1733,8 @@
                 "name": "鹿谷鄉",
                 "ivid": "NAN-070",
                 "code": "10008070",
+                "population": "18534",
+                "population_electors": "15817",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cd9-628c-44f6-b08f-5460acb5b862"
             }
         ]
@@ -1579,6 +1753,8 @@
                 "name": "中寮鄉",
                 "ivid": "NAN-080",
                 "code": "10008080",
+                "population": "15607",
+                "population_electors": "13128",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cdb-2c98-458e-abe8-5460acb5b862"
             }
         ]
@@ -1597,6 +1773,8 @@
                 "name": "魚池鄉",
                 "ivid": "NAN-090",
                 "code": "10008090",
+                "population": "16555",
+                "population_electors": "13784",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cde-5da4-45a7-be64-5460acb5b862"
             }
         ]
@@ -1615,6 +1793,8 @@
                 "name": "水里鄉",
                 "ivid": "NAN-110",
                 "code": "10008110",
+                "population": "18774",
+                "population_electors": "15709",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce1-0af4-4ce8-8559-5460acb5b862"
             }
         ]
@@ -1633,6 +1813,8 @@
                 "name": "虎尾鎮",
                 "ivid": "YUN-030",
                 "code": "10009030",
+                "population": "70288",
+                "population_electors": "54422",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cef-6c18-49ae-8a1b-5460acb5b862"
             }
         ]
@@ -1651,6 +1833,8 @@
                 "name": "斗南鎮",
                 "ivid": "YUN-020",
                 "code": "10009020",
+                "population": "46029",
+                "population_electors": "36936",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cec-f6c8-4ab3-827c-5460acb5b862"
             }
         ]
@@ -1669,6 +1853,8 @@
                 "name": "信義鄉",
                 "ivid": "NAN-120",
                 "code": "10008120",
+                "population": "16829",
+                "population_electors": "12830",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce3-91e8-4a4c-888b-5460acb5b862"
             }
         ]
@@ -1687,6 +1873,8 @@
                 "name": "仁愛鄉",
                 "ivid": "NAN-130",
                 "code": "10008130",
+                "population": "15848",
+                "population_electors": "11930",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce6-6e84-453d-9533-5460acb5b862"
             }
         ]
@@ -1705,6 +1893,8 @@
                 "name": "斗六市",
                 "ivid": "YUN-010",
                 "code": "10009010",
+                "population": "108019",
+                "population_electors": "83768",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce8-34c0-418a-8e7f-5460acb5b862"
             }
         ]
@@ -1723,6 +1913,8 @@
                 "name": "西螺鎮",
                 "ivid": "YUN-040",
                 "code": "10009040",
+                "population": "47214",
+                "population_electors": "36901",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cf3-e48c-4bc4-b028-5460acb5b862"
             }
         ]
@@ -1741,6 +1933,8 @@
                 "name": "北港鎮",
                 "ivid": "YUN-060",
                 "code": "10009060",
+                "population": "41706",
+                "population_electors": "33430",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cf8-2768-43be-a0d1-5460acb5b862"
             }
         ]
@@ -1759,6 +1953,8 @@
                 "name": "古坑鄉",
                 "ivid": "YUN-070",
                 "code": "10009070",
+                "population": "32732",
+                "population_electors": "26817",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cfc-2fe0-4b62-bb8f-5460acb5b862"
             }
         ]
@@ -1777,6 +1973,8 @@
                 "name": "大埤鄉",
                 "ivid": "YUN-080",
                 "code": "10009080",
+                "population": "20027",
+                "population_electors": "16412",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cff-0f94-4974-9424-5460acb5b862"
             }
         ]
@@ -1795,6 +1993,8 @@
                 "name": "莿桐鄉",
                 "ivid": "YUN-090",
                 "code": "10009090",
+                "population": "29686",
+                "population_electors": "24036",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d01-a6d4-401a-89ce-5460acb5b862"
             }
         ]
@@ -1813,6 +2013,8 @@
                 "name": "土庫鎮",
                 "ivid": "YUN-050",
                 "code": "10009050",
+                "population": "29759",
+                "population_electors": "23862",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cf6-26e0-4c6d-9e66-5460acb5b862"
             }
         ]
@@ -1831,6 +2033,8 @@
                 "name": "林內鄉",
                 "ivid": "YUN-100",
                 "code": "10009100",
+                "population": "19112",
+                "population_electors": "15379",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d02-9980-42df-ade7-5460acb5b862"
             }
         ]
@@ -1849,6 +2053,8 @@
                 "name": "麥寮鄉",
                 "ivid": "YUN-130",
                 "code": "10009130",
+                "population": "41856",
+                "population_electors": "31085",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d08-59e4-40bf-9d4b-5460acb5b862"
             }
         ]
@@ -1867,6 +2073,8 @@
                 "name": "崙背鄉",
                 "ivid": "YUN-120",
                 "code": "10009120",
+                "population": "26008",
+                "population_electors": "21109",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d06-be28-4d1c-99cd-5460acb5b862"
             }
         ]
@@ -1885,6 +2093,8 @@
                 "name": "二崙鄉",
                 "ivid": "YUN-110",
                 "code": "10009110",
+                "population": "28398",
+                "population_electors": "23179",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d04-15e8-4d3c-920e-5460acb5b862"
             }
         ]
@@ -1903,6 +2113,8 @@
                 "name": "東勢鄉",
                 "ivid": "YUN-140",
                 "code": "10009140",
+                "population": "15988",
+                "population_electors": "13616",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d0a-ad80-4b34-a24c-5460acb5b862"
             }
         ]
@@ -1921,6 +2133,8 @@
                 "name": "四湖鄉",
                 "ivid": "YUN-180",
                 "code": "10009180",
+                "population": "25675",
+                "population_electors": "22011",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d12-92f4-4a3a-8f7f-5460acb5b862"
             }
         ]
@@ -1939,6 +2153,8 @@
                 "name": "褒忠鄉",
                 "ivid": "YUN-150",
                 "code": "10009150",
+                "population": "13681",
+                "population_electors": "11283",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d0b-a378-4726-9118-5460acb5b862"
             }
         ]
@@ -1957,6 +2173,8 @@
                 "name": "臺西鄉",
                 "ivid": "YUN-160",
                 "code": "10009160",
+                "population": "25059",
+                "population_electors": "21271",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d0c-bf6c-4974-9ee2-5460acb5b862"
             }
         ]
@@ -1975,6 +2193,8 @@
                 "name": "元長鄉",
                 "ivid": "YUN-170",
                 "code": "10009170",
+                "population": "27437",
+                "population_electors": "23133",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d0e-949c-4c41-be3a-5460acb5b862"
             }
         ]
@@ -1993,6 +2213,8 @@
                 "name": "朴子市",
                 "ivid": "CYQ-020",
                 "code": "10010020",
+                "population": "43256",
+                "population_electors": "33834",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d1e-fd7c-412e-be12-5460acb5b862"
             }
         ]
@@ -2011,6 +2233,8 @@
                 "name": "水林鄉",
                 "ivid": "YUN-200",
                 "code": "10009200",
+                "population": "27146",
+                "population_electors": "23043",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d17-7a88-4d39-974b-5460acb5b862"
             }
         ]
@@ -2029,6 +2253,8 @@
                 "name": "太保市",
                 "ivid": "CYQ-010",
                 "code": "10010010",
+                "population": "37054",
+                "population_electors": "28503",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d1b-8560-4443-b0ef-5460acb5b862"
             }
         ]
@@ -2047,6 +2273,8 @@
                 "name": "口湖鄉",
                 "ivid": "YUN-190",
                 "code": "10009190",
+                "population": "29202",
+                "population_electors": "24503",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d15-9670-43cc-a877-5460acb5b862"
             }
         ]
@@ -2065,6 +2293,8 @@
                 "name": "布袋鎮",
                 "ivid": "CYQ-030",
                 "code": "10010030",
+                "population": "28519",
+                "population_electors": "24176",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d21-fc8c-4575-9a8b-5460acb5b862"
             }
         ]
@@ -2083,6 +2313,8 @@
                 "name": "大林鎮",
                 "ivid": "CYQ-040",
                 "code": "10010040",
+                "population": "32246",
+                "population_electors": "26412",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d24-cc68-40d5-8a61-5460acb5b862"
             }
         ]
@@ -2101,6 +2333,8 @@
                 "name": "民雄鄉",
                 "ivid": "CYQ-050",
                 "code": "10010050",
+                "population": "71968",
+                "population_electors": "57678",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d26-22ac-446d-b54e-5460acb5b862"
             }
         ]
@@ -2119,6 +2353,8 @@
                 "name": "溪口鄉",
                 "ivid": "CYQ-060",
                 "code": "10010060",
+                "population": "15509",
+                "population_electors": "13058",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d2b-34d0-41b9-a65d-5460acb5b862"
             }
         ]
@@ -2137,6 +2373,8 @@
                 "name": "新港鄉",
                 "ivid": "CYQ-070",
                 "code": "10010070",
+                "population": "33289",
+                "population_electors": "26630",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d2d-d2fc-41bf-b1ca-5460acb5b862"
             }
         ]
@@ -2155,6 +2393,8 @@
                 "name": "六腳鄉",
                 "ivid": "CYQ-080",
                 "code": "10010080",
+                "population": "24714",
+                "population_electors": "21338",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d32-0878-4a50-8087-5460acb5b862"
             }
         ]
@@ -2173,6 +2413,8 @@
                 "name": "義竹鄉",
                 "ivid": "CYQ-100",
                 "code": "10010100",
+                "population": "19648",
+                "population_electors": "17033",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d39-e104-46d6-bd77-5460acb5b862"
             }
         ]
@@ -2191,6 +2433,8 @@
                 "name": "鹿草鄉",
                 "ivid": "CYQ-110",
                 "code": "10010110",
+                "population": "16459",
+                "population_electors": "14094",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d3c-0244-4d56-bdac-5460acb5b862"
             }
         ]
@@ -2209,6 +2453,8 @@
                 "name": "東石鄉",
                 "ivid": "CYQ-090",
                 "code": "10010090",
+                "population": "26346",
+                "population_electors": "22380",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d36-2ec0-4854-b92e-5460acb5b862"
             }
         ]
@@ -2227,6 +2473,8 @@
                 "name": "中埔鄉",
                 "ivid": "CYQ-130",
                 "code": "10010130",
+                "population": "46207",
+                "population_electors": "38249",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d42-a14c-427b-9778-5460acb5b862"
             }
         ]
@@ -2245,6 +2493,8 @@
                 "name": "番路鄉",
                 "ivid": "CYQ-160",
                 "code": "10010160",
+                "population": "12154",
+                "population_electors": "10123",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d4b-0594-4dbd-a2db-5460acb5b862"
             }
         ]
@@ -2263,6 +2513,8 @@
                 "name": "梅山鄉",
                 "ivid": "CYQ-150",
                 "code": "10010150",
+                "population": "20337",
+                "population_electors": "17034",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d48-fb1c-46ab-bbaa-5460acb5b862"
             }
         ]
@@ -2281,6 +2533,8 @@
                 "name": "大埔鄉",
                 "ivid": "CYQ-170",
                 "code": "10010170",
+                "population": "4656",
+                "population_electors": "3807",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d4d-a1a4-48ca-8d7a-5460acb5b862"
             }
         ]
@@ -2299,6 +2553,8 @@
                 "name": "水上鄉",
                 "ivid": "CYQ-120",
                 "code": "10010120",
+                "population": "50856",
+                "population_electors": "42494",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d3f-75f8-460e-84d3-5460acb5b862"
             }
         ]
@@ -2317,6 +2573,8 @@
                 "name": "竹崎鄉",
                 "ivid": "CYQ-140",
                 "code": "10010140",
+                "population": "37053",
+                "population_electors": "30858",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d45-ec1c-4ee5-9efd-5460acb5b862"
             }
         ]
@@ -2335,6 +2593,8 @@
                 "name": "萬丹鄉",
                 "ivid": "PIF-050",
                 "code": "10013050",
+                "population": "52151",
+                "population_electors": "41739",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d63-7c10-4077-825f-5460acb5b862"
             }
         ]
@@ -2353,6 +2613,8 @@
                 "name": "東港鎮",
                 "ivid": "PIF-030",
                 "code": "10013030",
+                "population": "48368",
+                "population_electors": "37508",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d5e-6570-4223-a658-5460acb5b862"
             }
         ]
@@ -2371,6 +2633,8 @@
                 "name": "阿里山鄉",
                 "ivid": "CYQ-180",
                 "code": "10010180",
+                "population": "5757",
+                "population_electors": "4510",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d4e-59c8-4c98-aac2-5460acb5b862"
             }
         ]
@@ -2389,6 +2653,8 @@
                 "name": "恆春鎮",
                 "ivid": "PIF-040",
                 "code": "10013040",
+                "population": "30793",
+                "population_electors": "24178",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d61-e514-4aea-83de-5460acb5b862"
             }
         ]
@@ -2407,6 +2673,8 @@
                 "name": "屏東市",
                 "ivid": "PIF-010",
                 "code": "10013010",
+                "population": "204084",
+                "population_electors": "164430",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d4f-6b98-4b6a-b45b-5460acb5b862"
             }
         ]
@@ -2425,6 +2693,8 @@
                 "name": "潮州鎮",
                 "ivid": "PIF-020",
                 "code": "10013020",
+                "population": "54812",
+                "population_electors": "44282",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d5a-9ef4-4768-9708-5460acb5b862"
             }
         ]
@@ -2443,6 +2713,8 @@
                 "name": "鹽埔鄉",
                 "ivid": "PIF-100",
                 "code": "10013100",
+                "population": "26670",
+                "population_electors": "21875",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d6f-e880-4ccd-8e53-5460acb5b862"
             }
         ]
@@ -2461,6 +2733,8 @@
                 "name": "麟洛鄉",
                 "ivid": "PIF-070",
                 "code": "10013070",
+                "population": "11338",
+                "population_electors": "9710",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d6a-d440-4dd9-a28e-5460acb5b862"
             }
         ]
@@ -2479,6 +2753,8 @@
                 "name": "里港鄉",
                 "ivid": "PIF-090",
                 "code": "10013090",
+                "population": "26730",
+                "population_electors": "21400",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d6d-317c-4e81-898a-5460acb5b862"
             }
         ]
@@ -2497,6 +2773,8 @@
                 "name": "長治鄉",
                 "ivid": "PIF-060",
                 "code": "10013060",
+                "population": "30471",
+                "population_electors": "25276",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d67-7d5c-4e22-934f-5460acb5b862"
             }
         ]
@@ -2515,6 +2793,8 @@
                 "name": "高樹鄉",
                 "ivid": "PIF-110",
                 "code": "10013110",
+                "population": "25653",
+                "population_electors": "21661",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d70-e68c-490c-baf3-5460acb5b862"
             }
         ]
@@ -2533,6 +2813,8 @@
                 "name": "九如鄉",
                 "ivid": "PIF-080",
                 "code": "10013080",
+                "population": "22247",
+                "population_electors": "18016",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d6c-2644-4c90-a48a-5460acb5b862"
             }
         ]
@@ -2551,6 +2833,8 @@
                 "name": "新埤鄉",
                 "ivid": "PIF-150",
                 "code": "10013150",
+                "population": "10310",
+                "population_electors": "8838",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d7c-9870-4d7b-aea7-5460acb5b862"
             }
         ]
@@ -2569,6 +2853,8 @@
                 "name": "新園鄉",
                 "ivid": "PIF-170",
                 "code": "10013170",
+                "population": "36792",
+                "population_electors": "29961",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d7e-2d1c-42b3-8acc-5460acb5b862"
             }
         ]
@@ -2587,6 +2873,8 @@
                 "name": "內埔鄉",
                 "ivid": "PIF-130",
                 "code": "10013130",
+                "population": "56250",
+                "population_electors": "46142",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d75-1f54-49eb-a9cc-5460acb5b862"
             }
         ]
@@ -2605,6 +2893,8 @@
                 "name": "枋寮鄉",
                 "ivid": "PIF-160",
                 "code": "10013160",
+                "population": "25554",
+                "population_electors": "21205",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d7c-c5e0-4653-8f95-5460acb5b862"
             }
         ]
@@ -2623,6 +2913,8 @@
                 "name": "萬巒鄉",
                 "ivid": "PIF-120",
                 "code": "10013120",
+                "population": "20955",
+                "population_electors": "17389",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d73-6148-4a48-a985-5460acb5b862"
             }
         ]
@@ -2641,6 +2933,8 @@
                 "name": "竹田鄉",
                 "ivid": "PIF-140",
                 "code": "10013140",
+                "population": "17763",
+                "population_electors": "15083",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d79-fca0-4b28-b27c-5460acb5b862"
             }
         ]
@@ -2659,6 +2953,8 @@
                 "name": "崁頂鄉",
                 "ivid": "PIF-180",
                 "code": "10013180",
+                "population": "16329",
+                "population_electors": "11900",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d81-0754-4ebb-af8d-5460acb5b862"
             }
         ]
@@ -2677,6 +2973,8 @@
                 "name": "滿州鄉",
                 "ivid": "PIF-240",
                 "code": "10013240",
+                "population": "8184",
+                "population_electors": "6888",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8a-1298-4fb2-9d7a-5460acb5b862"
             }
         ]
@@ -2695,6 +2993,8 @@
                 "name": "南州鄉",
                 "ivid": "PIF-200",
                 "code": "10013200",
+                "population": "11058",
+                "population_electors": "9388",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d84-1310-4f26-b0d4-5460acb5b862"
             }
         ]
@@ -2713,6 +3013,8 @@
                 "name": "琉球鄉",
                 "ivid": "PIF-220",
                 "code": "10013220",
+                "population": "12670",
+                "population_electors": "10296",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d87-f978-4024-bc34-5460acb5b862"
             }
         ]
@@ -2731,6 +3033,8 @@
                 "name": "佳冬鄉",
                 "ivid": "PIF-210",
                 "code": "10013210",
+                "population": "20320",
+                "population_electors": "16992",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d85-f754-4b7f-91c3-5460acb5b862"
             }
         ]
@@ -2749,6 +3053,8 @@
                 "name": "林邊鄉",
                 "ivid": "PIF-190",
                 "code": "10013190",
+                "population": "19312",
+                "population_electors": "16047",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d82-8620-4055-b090-5460acb5b862"
             }
         ]
@@ -2767,6 +3073,8 @@
                 "name": "車城鄉",
                 "ivid": "PIF-230",
                 "code": "10013230",
+                "population": "9172",
+                "population_electors": "7628",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d88-9e98-451b-a8cd-5460acb5b862"
             }
         ]
@@ -2785,6 +3093,8 @@
                 "name": "泰武鄉",
                 "ivid": "PIF-290",
                 "code": "10013290",
+                "population": "5312",
+                "population_electors": "4086",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d90-6b40-43a1-aff0-5460acb5b862"
             }
         ]
@@ -2803,6 +3113,8 @@
                 "name": "霧臺鄉",
                 "ivid": "PIF-270",
                 "code": "10013270",
+                "population": "3468",
+                "population_electors": "2914",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8d-927c-425d-ab35-5460acb5b862"
             }
         ]
@@ -2821,6 +3133,8 @@
                 "name": "三地門鄉",
                 "ivid": "PIF-260",
                 "code": "10013260",
+                "population": "7804",
+                "population_electors": "6157",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8b-f7b0-429a-8cbd-5460acb5b862"
             }
         ]
@@ -2839,6 +3153,8 @@
                 "name": "枋山鄉",
                 "ivid": "PIF-250",
                 "code": "10013250",
+                "population": "5759",
+                "population_electors": "4730",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8b-ce50-4813-95a5-5460acb5b862"
             }
         ]
@@ -2857,6 +3173,8 @@
                 "name": "來義鄉",
                 "ivid": "PIF-300",
                 "code": "10013300",
+                "population": "7636",
+                "population_electors": "6058",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d91-0994-421e-aeb4-5460acb5b862"
             }
         ]
@@ -2875,6 +3193,8 @@
                 "name": "瑪家鄉",
                 "ivid": "PIF-280",
                 "code": "10013280",
+                "population": "6711",
+                "population_electors": "5386",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8e-0aa0-4b23-8d26-5460acb5b862"
             }
         ]
@@ -2893,6 +3213,8 @@
                 "name": "春日鄉",
                 "ivid": "PIF-310",
                 "code": "10013310",
+                "population": "4873",
+                "population_electors": "3723",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d92-f738-4c80-bf1f-5460acb5b862"
             }
         ]
@@ -2911,6 +3233,8 @@
                 "name": "獅子鄉",
                 "ivid": "PIF-320",
                 "code": "10013320",
+                "population": "4903",
+                "population_electors": "3938",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d93-e9cc-43d6-aac9-5460acb5b862"
             }
         ]
@@ -2929,6 +3253,8 @@
                 "name": "臺東市",
                 "ivid": "TTT-010",
                 "code": "10014010",
+                "population": "106992",
+                "population_electors": "83254",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d95-57a0-4235-a698-5460acb5b862"
             }
         ]
@@ -2947,6 +3273,8 @@
                 "name": "牡丹鄉",
                 "ivid": "PIF-330",
                 "code": "10013330",
+                "population": "4874",
+                "population_electors": "4021",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d94-d2d4-4904-9d87-5460acb5b862"
             }
         ]
@@ -2965,6 +3293,8 @@
                 "name": "卑南鄉",
                 "ivid": "TTT-040",
                 "code": "10014040",
+                "population": "17737",
+                "population_electors": "14608",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d9d-40d8-4f61-a764-5460acb5b862"
             }
         ]
@@ -2983,6 +3313,8 @@
                 "name": "東河鄉",
                 "ivid": "TTT-070",
                 "code": "10014070",
+                "population": "9050",
+                "population_electors": "7808",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da1-1a48-4519-804b-5460acb5b862"
             }
         ]
@@ -3001,6 +3333,8 @@
                 "name": "鹿野鄉",
                 "ivid": "TTT-050",
                 "code": "10014050",
+                "population": "8229",
+                "population_electors": "6898",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d9f-dcac-46ef-826f-5460acb5b862"
             }
         ]
@@ -3019,6 +3353,8 @@
                 "name": "關山鎮",
                 "ivid": "TTT-030",
                 "code": "10014030",
+                "population": "9188",
+                "population_electors": "7356",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d9c-bae4-44f5-b758-5460acb5b862"
             }
         ]
@@ -3037,6 +3373,8 @@
                 "name": "成功鎮",
                 "ivid": "TTT-020",
                 "code": "10014020",
+                "population": "15006",
+                "population_electors": "12528",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d9b-149c-4a14-8829-5460acb5b862"
             }
         ]
@@ -3055,6 +3393,8 @@
                 "name": "池上鄉",
                 "ivid": "TTT-060",
                 "code": "10014060",
+                "population": "8622",
+                "population_electors": "7187",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da0-a378-4b56-acf6-5460acb5b862"
             }
         ]
@@ -3073,6 +3413,8 @@
                 "name": "長濱鄉",
                 "ivid": "TTT-080",
                 "code": "10014080",
+                "population": "7789",
+                "population_electors": "6782",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da3-2d44-4897-b1b8-5460acb5b862"
             }
         ]
@@ -3091,6 +3433,8 @@
                 "name": "海端鄉",
                 "ivid": "TTT-120",
                 "code": "10014120",
+                "population": "4378",
+                "population_electors": "3201",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da6-add0-4b80-b9fa-5460acb5b862"
             }
         ]
@@ -3109,6 +3453,8 @@
                 "name": "綠島鄉",
                 "ivid": "TTT-110",
                 "code": "10014110",
+                "population": "3816",
+                "population_electors": "3182",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da6-8bc4-4fa9-9e72-5460acb5b862"
             }
         ]
@@ -3127,6 +3473,8 @@
                 "name": "大武鄉",
                 "ivid": "TTT-100",
                 "code": "10014100",
+                "population": "6623",
+                "population_electors": "5436",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da5-e294-4c16-ae88-5460acb5b862"
             }
         ]
@@ -3145,6 +3493,8 @@
                 "name": "太麻里鄉",
                 "ivid": "TTT-090",
                 "code": "10014090",
+                "population": "11514",
+                "population_electors": "9447",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da4-4b38-4f4f-9dce-5460acb5b862"
             }
         ]
@@ -3163,6 +3513,8 @@
                 "name": "延平鄉",
                 "ivid": "TTT-130",
                 "code": "10014130",
+                "population": "3614",
+                "population_electors": "2742",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da7-60f8-4d2a-b3a5-5460acb5b862"
             }
         ]
@@ -3181,6 +3533,8 @@
                 "name": "蘭嶼鄉",
                 "ivid": "TTT-160",
                 "code": "10014160",
+                "population": "4959",
+                "population_electors": "3751",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da9-dab0-4de1-ac7a-5460acb5b862"
             }
         ]
@@ -3199,6 +3553,8 @@
                 "name": "達仁鄉",
                 "ivid": "TTT-150",
                 "code": "10014150",
+                "population": "3757",
+                "population_electors": "3123",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da8-4718-41ea-a79a-5460acb5b862"
             }
         ]
@@ -3217,6 +3573,8 @@
                 "name": "金峰鄉",
                 "ivid": "TTT-140",
                 "code": "10014140",
+                "population": "3657",
+                "population_electors": "2781",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da8-5374-42e1-b747-5460acb5b862"
             }
         ]
@@ -3235,6 +3593,8 @@
                 "name": "花蓮市",
                 "ivid": "HUA-010",
                 "code": "10015010",
+                "population": "106355",
+                "population_electors": "81978",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01daa-1c40-4c1c-a1d9-5460acb5b862"
             }
         ]
@@ -3253,6 +3613,8 @@
                 "name": "光復鄉",
                 "ivid": "HUA-070",
                 "code": "10015070",
+                "population": "13440",
+                "population_electors": "11386",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db8-bd48-4349-895c-5460acb5b862"
             }
         ]
@@ -3271,6 +3633,8 @@
                 "name": "壽豐鄉",
                 "ivid": "HUA-060",
                 "code": "10015060",
+                "population": "18245",
+                "population_electors": "15232",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db6-366c-4af9-881b-5460acb5b862"
             }
         ]
@@ -3289,6 +3653,8 @@
                 "name": "鳳林鎮",
                 "ivid": "HUA-020",
                 "code": "10015020",
+                "population": "11297",
+                "population_electors": "9557",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db0-7398-4f09-9e25-5460acb5b862"
             }
         ]
@@ -3307,6 +3673,8 @@
                 "name": "玉里鎮",
                 "ivid": "HUA-030",
                 "code": "10015030",
+                "population": "25480",
+                "population_electors": "20875",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db1-fd78-4ffd-8614-5460acb5b862"
             }
         ]
@@ -3325,6 +3693,8 @@
                 "name": "新城鄉",
                 "ivid": "HUA-040",
                 "code": "10015040",
+                "population": "20269",
+                "population_electors": "16276",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db3-2ee4-410f-96ea-5460acb5b862"
             }
         ]
@@ -3343,6 +3713,8 @@
                 "name": "吉安鄉",
                 "ivid": "HUA-050",
                 "code": "10015050",
+                "population": "82390",
+                "population_electors": "67259",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db4-dba8-4c2d-b2bc-5460acb5b862"
             }
         ]
@@ -3361,6 +3733,8 @@
                 "name": "瑞穗鄉",
                 "ivid": "HUA-090",
                 "code": "10015090",
+                "population": "12193",
+                "population_electors": "10195",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbb-ce34-4ec8-b86d-5460acb5b862"
             }
         ]
@@ -3379,6 +3753,8 @@
                 "name": "秀林鄉",
                 "ivid": "HUA-110",
                 "code": "10015110",
+                "population": "15449",
+                "population_electors": "11198",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbe-b044-4719-be48-5460acb5b862"
             }
         ]
@@ -3397,6 +3773,8 @@
                 "name": "萬榮鄉",
                 "ivid": "HUA-120",
                 "code": "10015120",
+                "population": "6511",
+                "population_electors": "4910",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbf-7818-4625-aa6e-5460acb5b862"
             }
         ]
@@ -3415,6 +3793,8 @@
                 "name": "富里鄉",
                 "ivid": "HUA-100",
                 "code": "10015100",
+                "population": "10913",
+                "population_electors": "9103",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbd-d62c-488f-a3ab-5460acb5b862"
             }
         ]
@@ -3433,6 +3813,8 @@
                 "name": "豐濱鄉",
                 "ivid": "HUA-080",
                 "code": "10015080",
+                "population": "4751",
+                "population_electors": "4165",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbb-ac10-4304-9586-5460acb5b862"
             }
         ]
@@ -3451,6 +3833,8 @@
                 "name": "卓溪鄉",
                 "ivid": "HUA-130",
                 "code": "10015130",
+                "population": "6238",
+                "population_electors": "4841",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dc0-4824-4b15-b246-5460acb5b862"
             }
         ]
@@ -3469,6 +3853,8 @@
                 "name": "白沙鄉",
                 "ivid": "PEN-030",
                 "code": "10016030",
+                "population": "9776",
+                "population_electors": "8160",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dc9-9c98-4ddf-9099-5460acb5b862"
             }
         ]
@@ -3487,6 +3873,8 @@
                 "name": "西嶼鄉",
                 "ivid": "PEN-040",
                 "code": "10016040",
+                "population": "8469",
+                "population_electors": "7104",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dcb-b73c-4728-b159-5460acb5b862"
             }
         ]
@@ -3505,6 +3893,8 @@
                 "name": "湖西鄉",
                 "ivid": "PEN-020",
                 "code": "10016020",
+                "population": "14260",
+                "population_electors": "11859",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dc6-b2b4-4b2f-9628-5460acb5b862"
             }
         ]
@@ -3523,6 +3913,8 @@
                 "name": "七美鄉",
                 "ivid": "PEN-060",
                 "code": "10016060",
+                "population": "3768",
+                "population_electors": "3154",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dcd-f1c4-44b2-9b05-5460acb5b862"
             }
         ]
@@ -3541,6 +3933,8 @@
                 "name": "馬公市",
                 "ivid": "PEN-010",
                 "code": "10016010",
+                "population": "60095",
+                "population_electors": "48185",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dc1-9d64-4bdb-abc6-5460acb5b862"
             }
         ]
@@ -3559,6 +3953,8 @@
                 "name": "望安鄉",
                 "ivid": "PEN-050",
                 "code": "10016050",
+                "population": "5114",
+                "population_electors": "4352",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dcc-ea90-4907-b495-5460acb5b862"
             }
         ]

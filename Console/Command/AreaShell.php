@@ -86,7 +86,7 @@ class AreaShell extends AppShell {
         }
 
         $areas = $this->Area->find('all', array(
-            'fields' => array('Area.id', 'Area.name', 'Area.ivid', 'Area.code'),
+            'fields' => array('Area.id', 'Area.name', 'Area.ivid', 'Area.code', 'Area.population', 'Area.population_electors'),
         ));
         $areas = Set::combine($areas, '{n}.Area.id', '{n}.Area');
         foreach($areas AS $k => $v) {

@@ -13,6 +13,8 @@
                 "name": "復興區",
                 "ivid": "TAO-130",
                 "code": "10003130",
+                "population": "10890",
+                "population_electors": "8404",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c36-77dc-4859-b5e0-5460acb5b862"
             }
         ]
@@ -31,6 +33,8 @@
                 "name": "茂林區",
                 "ivid": "KHH-360",
                 "code": "64000360",
+                "population": "1906",
+                "population_electors": "1454",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-46b8-4568-93a1-5460acb5b862"
             }
         ]
@@ -49,6 +53,8 @@
                 "name": "桃源區",
                 "ivid": "KHH-370",
                 "code": "64000370",
+                "population": "4289",
+                "population_electors": "3238",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-af58-43ae-996a-5460acb5b862"
             }
         ]
@@ -67,6 +73,8 @@
                 "name": "那瑪夏區",
                 "ivid": "KHH-380",
                 "code": "64000380",
+                "population": "3210",
+                "population_electors": "2323",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-0c1c-4c2b-85b1-5460acb5b862"
             }
         ]
@@ -85,6 +93,8 @@
                 "name": "烏來區",
                 "ivid": "TPQ-290",
                 "code": "65000290",
+                "population": "6126",
+                "population_electors": "4771",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-fe24-474e-9768-5460acb5b862"
             }
         ]
@@ -103,6 +113,8 @@
                 "name": "和平區",
                 "ivid": "TXG-290",
                 "code": "66000290",
+                "population": "10810",
+                "population_electors": "8867",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbf-d2a4-4c35-9643-5460acb5b862"
             }
         ]

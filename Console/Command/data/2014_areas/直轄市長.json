@@ -13,6 +13,8 @@
                 "name": "臺北市",
                 "ivid": "TPE",
                 "code": "63000",
+                "population": "2695649",
+                "population_electors": "2162080",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e04-f3ac-4e74-94d5-5460acb5b862"
             }
         ]
@@ -31,6 +33,8 @@
                 "name": "高雄市",
                 "ivid": "KHH",
                 "code": "64000",
+                "population": "2776752",
+                "population_electors": "2235929",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e47-b1e4-477d-ae4b-5460acb5b862"
             }
         ]
@@ -49,6 +53,8 @@
                 "name": "桃園市",
                 "ivid": "TAO",
                 "code": "10003",
+                "population": "2054260",
+                "population_electors": "1575900",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf7-57f0-4e3e-bbb6-5460acb5b862"
             }
         ]
@@ -67,6 +73,8 @@
                 "name": "新北市",
                 "ivid": "TPQ",
                 "code": "65000",
+                "population": "3961374",
+                "population_electors": "3173136",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-67b4-4aa7-92a1-5460acb5b862"
             }
         ]
@@ -85,6 +93,8 @@
                 "name": "臺南市",
                 "ivid": "TNN",
                 "code": "67000",
+                "population": "1883493",
+                "population_electors": "1516489",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-f25c-4a13-ab18-5460acb5b862"
             }
         ]
@@ -103,6 +113,8 @@
                 "name": "臺中市",
                 "ivid": "TXG",
                 "code": "66000",
+                "population": "2712948",
+                "population_electors": "2099294",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-2fa8-45d4-8254-5460acb5b862"
             }
         ]

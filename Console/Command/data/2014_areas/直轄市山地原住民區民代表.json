@@ -13,6 +13,8 @@
                 "name": "三民里",
                 "ivid": "TAO-130-001",
                 "code": "10003130-001",
+                "population": "2239",
+                "population_electors": "1803",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c36-c4cc-4749-8386-5460acb5b862"
             },
             {
@@ -20,6 +22,8 @@
                 "name": "義盛里",
                 "ivid": "TAO-130-003",
                 "code": "10003130-003",
+                "population": "797",
+                "population_electors": "605",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c36-ce28-4a0b-9cbd-5460acb5b862"
             },
             {
@@ -27,6 +31,8 @@
                 "name": "澤仁里",
                 "ivid": "TAO-130-002",
                 "code": "10003130-002",
+                "population": "1580",
+                "population_electors": "1239",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c36-f9c8-49cc-8737-5460acb5b862"
             },
             {
@@ -34,6 +40,8 @@
                 "name": "霞雲里",
                 "ivid": "TAO-130-004",
                 "code": "10003130-004",
+                "population": "655",
+                "population_electors": "490",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-94c0-4d63-80ad-5460acb5b862"
             }
         ]
@@ -52,6 +60,8 @@
                 "name": "奎輝里",
                 "ivid": "TAO-130-007",
                 "code": "10003130-007",
+                "population": "753",
+                "population_electors": "576",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-6964-41a7-a5ca-5460acb5b862"
             },
             {
@@ -59,6 +69,8 @@
                 "name": "長興里",
                 "ivid": "TAO-130-005",
                 "code": "10003130-005",
+                "population": "718",
+                "population_electors": "562",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-c23c-4c03-ac20-5460acb5b862"
             },
             {
@@ -66,6 +78,8 @@
                 "name": "羅浮里",
                 "ivid": "TAO-130-009",
                 "code": "10003130-009",
+                "population": "1137",
+                "population_electors": "874",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-c374-4ea2-bbed-5460acb5b862"
             }
         ]
@@ -84,6 +98,8 @@
                 "name": "高義里",
                 "ivid": "TAO-130-010",
                 "code": "10003130-010",
+                "population": "911",
+                "population_electors": "640",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-5480-4aa6-8693-5460acb5b862"
             },
             {
@@ -91,6 +107,8 @@
                 "name": "華陵里",
                 "ivid": "TAO-130-008",
                 "code": "10003130-008",
+                "population": "1381",
+                "population_electors": "1075",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-55b4-4eb2-96f4-5460acb5b862"
             },
             {
@@ -98,6 +116,8 @@
                 "name": "三光里",
                 "ivid": "TAO-130-006",
                 "code": "10003130-006",
+                "population": "719",
+                "population_electors": "540",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-d9a8-43f5-9b87-5460acb5b862"
             }
         ]
@@ -116,6 +136,8 @@
                 "name": "茂林里",
                 "ivid": "KHH-360-001",
                 "code": "64000360-001",
+                "population": "878",
+                "population_electors": "663",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-f080-434a-8f36-5460acb5b862"
             }
         ]
@@ -134,6 +156,8 @@
                 "name": "多納里",
                 "ivid": "KHH-360-003",
                 "code": "64000360-003",
+                "population": "600",
+                "population_electors": "449",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-e434-40ea-a240-5460acb5b862"
             },
             {
@@ -141,6 +165,8 @@
                 "name": "萬山里",
                 "ivid": "KHH-360-002",
                 "code": "64000360-002",
+                "population": "428",
+                "population_electors": "342",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-fb4c-486d-aaed-5460acb5b862"
             }
         ]
@@ -159,6 +185,8 @@
                 "name": "桃源里",
                 "ivid": "KHH-370-001",
                 "code": "64000370-001",
+                "population": "981",
+                "population_electors": "710",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-9264-4ab0-8650-5460acb5b862"
             },
             {
@@ -166,6 +194,8 @@
                 "name": "復興里",
                 "ivid": "KHH-370-006",
                 "code": "64000370-006",
+                "population": "356",
+                "population_electors": "266",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-4154-4246-ae3b-5460acb5b862"
             },
             {
@@ -173,6 +203,8 @@
                 "name": "勤和里",
                 "ivid": "KHH-370-005",
                 "code": "64000370-005",
+                "population": "285",
+                "population_electors": "204",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-49cc-4cbf-aa23-5460acb5b862"
             },
             {
@@ -180,6 +212,8 @@
                 "name": "高中里",
                 "ivid": "KHH-370-004",
                 "code": "64000370-004",
+                "population": "755",
+                "population_electors": "561",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-6f74-4fb6-a08d-5460acb5b862"
             },
             {
@@ -187,6 +221,8 @@
                 "name": "梅山里",
                 "ivid": "KHH-370-008",
                 "code": "64000370-008",
+                "population": "314",
+                "population_electors": "244",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-7648-463e-b05a-5460acb5b862"
             },
             {
@@ -194,6 +230,8 @@
                 "name": "拉芙蘭里",
                 "ivid": "KHH-370-007",
                 "code": "64000370-007",
+                "population": "305",
+                "population_electors": "234",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-8268-4d94-8e7c-5460acb5b862"
             }
         ]
@@ -212,6 +250,8 @@
                 "name": "建山里",
                 "ivid": "KHH-370-003",
                 "code": "64000370-003",
+                "population": "771",
+                "population_electors": "569",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-cd9c-4603-8200-5460acb5b862"
             },
             {
@@ -219,6 +259,8 @@
                 "name": "寶山里",
                 "ivid": "KHH-370-002",
                 "code": "64000370-002",
+                "population": "522",
+                "population_electors": "450",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-ee30-4bdb-8dc7-5460acb5b862"
             }
         ]
@@ -237,6 +279,8 @@
                 "name": "達卡努瓦里",
                 "ivid": "KHH-380-001",
                 "code": "64000380-001",
+                "population": "1752",
+                "population_electors": "1241",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-ef30-4e25-be6b-5460acb5b862"
             }
         ]
@@ -255,6 +299,8 @@
                 "name": "瑪雅里",
                 "ivid": "KHH-380-002",
                 "code": "64000380-002",
+                "population": "791",
+                "population_electors": "569",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-1fc0-4254-be0b-5460acb5b862"
             },
             {
@@ -262,6 +308,8 @@
                 "name": "南沙魯里",
                 "ivid": "KHH-380-003",
                 "code": "64000380-003",
+                "population": "667",
+                "population_electors": "513",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-cd68-4988-b2aa-5460acb5b862"
             }
         ]
@@ -280,6 +328,8 @@
                 "name": "忠治里",
                 "ivid": "TPQ-290-002",
                 "code": "65000290-002",
+                "population": "1810",
+                "population_electors": "1421",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-6e5c-49d4-b240-5460acb5b862"
             }
         ]
@@ -298,6 +348,8 @@
                 "name": "信賢里",
                 "ivid": "TPQ-290-004",
                 "code": "65000290-004",
+                "population": "626",
+                "population_electors": "483",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-17dc-46d9-b29b-5460acb5b862"
             }
         ]
@@ -316,6 +368,8 @@
                 "name": "孝義里",
                 "ivid": "TPQ-290-005",
                 "code": "65000290-005",
+                "population": "259",
+                "population_electors": "231",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-584c-4a62-af48-5460acb5b862"
             },
             {
@@ -323,6 +377,8 @@
                 "name": "烏來里",
                 "ivid": "TPQ-290-001",
                 "code": "65000290-001",
+                "population": "2690",
+                "population_electors": "2112",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-e47c-44d6-b916-5460acb5b862"
             }
         ]
@@ -341,6 +397,8 @@
                 "name": "福山里",
                 "ivid": "TPQ-290-003",
                 "code": "65000290-003",
+                "population": "741",
+                "population_electors": "524",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-3444-4efa-adc0-5460acb5b862"
             }
         ]
@@ -359,6 +417,8 @@
                 "name": "天輪里",
                 "ivid": "TXG-290-002",
                 "code": "66000290-002",
+                "population": "499",
+                "population_electors": "433",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbf-0224-4636-9ab9-5460acb5b862"
             },
             {
@@ -366,6 +426,8 @@
                 "name": "博愛里",
                 "ivid": "TXG-290-003",
                 "code": "66000290-003",
+                "population": "1893",
+                "population_electors": "1547",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbf-41cc-4417-8e68-5460acb5b862"
             },
             {
@@ -373,6 +435,8 @@
                 "name": "南勢里",
                 "ivid": "TXG-290-001",
                 "code": "66000290-001",
+                "population": "2184",
+                "population_electors": "1796",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbf-8098-4b38-bb00-5460acb5b862"
             }
         ]
@@ -391,6 +455,8 @@
                 "name": "自由里",
                 "ivid": "TXG-290-005",
                 "code": "66000290-005",
+                "population": "1236",
+                "population_electors": "979",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-5998-4d6b-8ad7-5460acb5b862"
             },
             {
@@ -398,6 +464,8 @@
                 "name": "達觀里",
                 "ivid": "TXG-290-006",
                 "code": "66000290-006",
+                "population": "1305",
+                "population_electors": "1024",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-9294-402b-81ba-5460acb5b862"
             },
             {
@@ -405,6 +473,8 @@
                 "name": "中坑里",
                 "ivid": "TXG-290-004",
                 "code": "66000290-004",
+                "population": "499",
+                "population_electors": "420",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-f2e0-4f7a-9a3e-5460acb5b862"
             }
         ]
@@ -423,6 +493,8 @@
                 "name": "平等里",
                 "ivid": "TXG-290-008",
                 "code": "66000290-008",
+                "population": "960",
+                "population_electors": "818",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-42fc-437b-8809-5460acb5b862"
             },
             {
@@ -430,6 +502,8 @@
                 "name": "梨山里",
                 "ivid": "TXG-290-007",
                 "code": "66000290-007",
+                "population": "2234",
+                "population_electors": "1850",
                 "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-eab8-4234-9631-5460acb5b862"
             }
         ]
