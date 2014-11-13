@@ -1,7 +1,11 @@
 [
-    [
-        "2014 > 縣市長 > 宜蘭縣",
-        [
+    {
+        "election": "2014 > 縣市長 > 宜蘭縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "458784",
+        "population_electors": "366402",
+        "areas": [
             {
                 "id": "53c01bd7-27c8-4328-bc85-5460acb5b862",
                 "name": "宜蘭縣",
@@ -9,10 +13,14 @@
                 "code": "10002"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 金門縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 金門縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "126156",
+        "population_electors": "104516",
+        "areas": [
             {
                 "id": "53c01bd1-909c-4af0-b76e-5460acb5b862",
                 "name": "金門縣",
@@ -20,10 +28,14 @@
                 "code": "09020"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 連江縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 連江縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "12481",
+        "population_electors": "10169",
+        "areas": [
             {
                 "id": "53c01bce-df94-4939-a456-5460acb5b862",
                 "name": "連江縣",
@@ -31,10 +43,14 @@
                 "code": "09007"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 新竹縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 新竹縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "536111",
+        "population_electors": "405557",
+        "areas": [
             {
                 "id": "53c01c37-10a0-42e3-bddf-5460acb5b862",
                 "name": "新竹縣",
@@ -42,10 +58,14 @@
                 "code": "10004"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 苗栗縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 苗栗縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "566918",
+        "population_electors": "447721",
+        "areas": [
             {
                 "id": "53c01c52-a780-46b4-bc34-5460acb5b862",
                 "name": "苗栗縣",
@@ -53,10 +73,14 @@
                 "code": "10005"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 雲林縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 雲林縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "705022",
+        "population_electors": "566196",
+        "areas": [
             {
                 "id": "53c01ce8-b6b8-42f2-8bf1-5460acb5b862",
                 "name": "雲林縣",
@@ -64,10 +88,14 @@
                 "code": "10009"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 南投縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 南投縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "515081",
+        "population_electors": "415478",
+        "areas": [
             {
                 "id": "53c01cc7-86d4-4896-96f9-5460acb5b862",
                 "name": "南投縣",
@@ -75,10 +103,14 @@
                 "code": "10008"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 嘉義縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 嘉義縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "526028",
+        "population_electors": "432211",
+        "areas": [
             {
                 "id": "53c01d1b-0dbc-4862-b0d1-5460acb5b862",
                 "name": "嘉義縣",
@@ -86,10 +118,14 @@
                 "code": "10010"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 彰化縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 彰化縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "1292126",
+        "population_electors": "1017597",
+        "areas": [
             {
                 "id": "53c01c79-c0e0-4b67-8b2d-5460acb5b862",
                 "name": "彰化縣",
@@ -97,10 +133,14 @@
                 "code": "10007"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 屏東縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 屏東縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "849326",
+        "population_electors": "688845",
+        "areas": [
             {
                 "id": "53c01d4f-6ccc-4e38-bcc1-5460acb5b862",
                 "name": "屏東縣",
@@ -108,10 +148,14 @@
                 "code": "10013"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 臺東縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 臺東縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "224931",
+        "population_electors": "180084",
+        "areas": [
             {
                 "id": "53c01d95-09c8-40a8-85fe-5460acb5b862",
                 "name": "臺東縣",
@@ -119,10 +163,14 @@
                 "code": "10014"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 澎湖縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 澎湖縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "101482",
+        "population_electors": "82814",
+        "areas": [
             {
                 "id": "53c01dc1-b5a4-4663-883c-5460acb5b862",
                 "name": "澎湖縣",
@@ -130,10 +178,14 @@
                 "code": "10016"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 花蓮縣",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 花蓮縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "333531",
+        "population_electors": "266975",
+        "areas": [
             {
                 "id": "53c01daa-8a90-4b29-95b5-5460acb5b862",
                 "name": "花蓮縣",
@@ -141,10 +193,14 @@
                 "code": "10015"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 新竹市",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 新竹市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "422760",
+        "population_electors": "318561",
+        "areas": [
             {
                 "id": "53c01de6-6074-4140-a4ee-5460acb5b862",
                 "name": "新竹市",
@@ -152,10 +208,14 @@
                 "code": "10018"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 嘉義市",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 嘉義市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "270826",
+        "population_electors": "209286",
+        "areas": [
             {
                 "id": "53c01df8-d340-4e31-aa6e-5460acb5b862",
                 "name": "嘉義市",
@@ -163,10 +223,14 @@
                 "code": "10020"
             }
         ]
-    ],
-    [
-        "2014 > 縣市長 > 基隆市",
-        [
+    },
+    {
+        "election": "2014 > 縣市長 > 基隆市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "373597",
+        "population_electors": "304786",
+        "areas": [
             {
                 "id": "53c01dcf-a8d8-47b0-984f-5460acb5b862",
                 "name": "基隆市",
@@ -174,5 +238,5 @@
                 "code": "10017"
             }
         ]
-    ]
+    }
 ]

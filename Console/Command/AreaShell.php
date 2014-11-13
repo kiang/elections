@@ -114,8 +114,12 @@ class AreaShell extends AppShell {
                     $electionAreas[] = $areas[$areaId];
                 }
                 $result[] = array(
-                    $electionTitle,
-                    $electionAreas,
+                    'election' => $electionTitle,
+                    'quota' => $leaf['Election']['quota'],
+                    'quota_woman' => $leaf['Election']['quota_women'],
+                    'population' => $leaf['Election']['population'],
+                    'population_electors' => $leaf['Election']['population_electors'],
+                    'areas' => $electionAreas,
                 );
             }
             file_put_contents(__DIR__ . "/data/2014_areas/{$electionType['Election']['name']}.json", json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));

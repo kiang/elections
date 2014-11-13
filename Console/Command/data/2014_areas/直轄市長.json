@@ -1,7 +1,11 @@
 [
-    [
-        "2014 > 直轄市長 > 臺北市",
-        [
+    {
+        "election": "2014 > 直轄市長 > 臺北市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2695649",
+        "population_electors": "2162080",
+        "areas": [
             {
                 "id": "53c01e04-f3ac-4e74-94d5-5460acb5b862",
                 "name": "臺北市",
@@ -9,10 +13,14 @@
                 "code": "63000"
             }
         ]
-    ],
-    [
-        "2014 > 直轄市長 > 高雄市",
-        [
+    },
+    {
+        "election": "2014 > 直轄市長 > 高雄市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2776752",
+        "population_electors": "2235929",
+        "areas": [
             {
                 "id": "53c01e47-b1e4-477d-ae4b-5460acb5b862",
                 "name": "高雄市",
@@ -20,10 +28,14 @@
                 "code": "64000"
             }
         ]
-    ],
-    [
-        "2014 > 直轄市長 > 桃園市",
-        [
+    },
+    {
+        "election": "2014 > 直轄市長 > 桃園市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2054260",
+        "population_electors": "1575900",
+        "areas": [
             {
                 "id": "53c01bf7-57f0-4e3e-bbb6-5460acb5b862",
                 "name": "桃園市",
@@ -31,10 +43,14 @@
                 "code": "10003"
             }
         ]
-    ],
-    [
-        "2014 > 直轄市長 > 新北市",
-        [
+    },
+    {
+        "election": "2014 > 直轄市長 > 新北市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "3961374",
+        "population_electors": "3173136",
+        "areas": [
             {
                 "id": "53c01ec7-67b4-4aa7-92a1-5460acb5b862",
                 "name": "新北市",
@@ -42,10 +58,14 @@
                 "code": "65000"
             }
         ]
-    ],
-    [
-        "2014 > 直轄市長 > 臺南市",
-        [
+    },
+    {
+        "election": "2014 > 直轄市長 > 臺南市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "1883493",
+        "population_electors": "1516489",
+        "areas": [
             {
                 "id": "53c01fc0-f25c-4a13-ab18-5460acb5b862",
                 "name": "臺南市",
@@ -53,10 +73,14 @@
                 "code": "67000"
             }
         ]
-    ],
-    [
-        "2014 > 直轄市長 > 臺中市",
-        [
+    },
+    {
+        "election": "2014 > 直轄市長 > 臺中市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2712948",
+        "population_electors": "2099294",
+        "areas": [
             {
                 "id": "53c01f64-2fa8-45d4-8254-5460acb5b862",
                 "name": "臺中市",
@@ -64,5 +88,5 @@
                 "code": "66000"
             }
         ]
-    ]
+    }
 ]
