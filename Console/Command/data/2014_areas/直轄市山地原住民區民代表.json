@@ -1,5 +1,7 @@
 [
     {
+        "id": "53c42352-4cc8-42a2-b56a-72c2acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c42352-4cc8-42a2-b56a-72c2acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 桃園市 > 復興區 > 第01選舉區",
         "quota": "5",
         "quota_woman": "1",
@@ -10,29 +12,35 @@
                 "id": "53c01c36-c4cc-4749-8386-5460acb5b862",
                 "name": "三民里",
                 "ivid": "TAO-130-001",
-                "code": "10003130-001"
+                "code": "10003130-001",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c36-c4cc-4749-8386-5460acb5b862"
             },
             {
                 "id": "53c01c36-ce28-4a0b-9cbd-5460acb5b862",
                 "name": "義盛里",
                 "ivid": "TAO-130-003",
-                "code": "10003130-003"
+                "code": "10003130-003",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c36-ce28-4a0b-9cbd-5460acb5b862"
             },
             {
                 "id": "53c01c36-f9c8-49cc-8737-5460acb5b862",
                 "name": "澤仁里",
                 "ivid": "TAO-130-002",
-                "code": "10003130-002"
+                "code": "10003130-002",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c36-f9c8-49cc-8737-5460acb5b862"
             },
             {
                 "id": "53c01c37-94c0-4d63-80ad-5460acb5b862",
                 "name": "霞雲里",
                 "ivid": "TAO-130-004",
-                "code": "10003130-004"
+                "code": "10003130-004",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-94c0-4d63-80ad-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4239c-7314-44ec-8dfb-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4239c-7314-44ec-8dfb-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 桃園市 > 復興區 > 第02選舉區",
         "quota": "3",
         "quota_woman": "0",
@@ -43,23 +51,28 @@
                 "id": "53c01c37-6964-41a7-a5ca-5460acb5b862",
                 "name": "奎輝里",
                 "ivid": "TAO-130-007",
-                "code": "10003130-007"
+                "code": "10003130-007",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-6964-41a7-a5ca-5460acb5b862"
             },
             {
                 "id": "53c01c37-c23c-4c03-ac20-5460acb5b862",
                 "name": "長興里",
                 "ivid": "TAO-130-005",
-                "code": "10003130-005"
+                "code": "10003130-005",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-c23c-4c03-ac20-5460acb5b862"
             },
             {
                 "id": "53c01c37-c374-4ea2-bbed-5460acb5b862",
                 "name": "羅浮里",
                 "ivid": "TAO-130-009",
-                "code": "10003130-009"
+                "code": "10003130-009",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-c374-4ea2-bbed-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4239d-71c4-4085-aa74-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4239d-71c4-4085-aa74-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 桃園市 > 復興區 > 第03選舉區",
         "quota": "3",
         "quota_woman": "0",
@@ -70,23 +83,28 @@
                 "id": "53c01c37-5480-4aa6-8693-5460acb5b862",
                 "name": "高義里",
                 "ivid": "TAO-130-010",
-                "code": "10003130-010"
+                "code": "10003130-010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-5480-4aa6-8693-5460acb5b862"
             },
             {
                 "id": "53c01c37-55b4-4eb2-96f4-5460acb5b862",
                 "name": "華陵里",
                 "ivid": "TAO-130-008",
-                "code": "10003130-008"
+                "code": "10003130-008",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-55b4-4eb2-96f4-5460acb5b862"
             },
             {
                 "id": "53c01c37-d9a8-43f5-9b87-5460acb5b862",
                 "name": "三光里",
                 "ivid": "TAO-130-006",
-                "code": "10003130-006"
+                "code": "10003130-006",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c37-d9a8-43f5-9b87-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4239e-812c-4c93-b11e-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4239e-812c-4c93-b11e-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 高雄市 > 茂林區 > 第02選舉區",
         "quota": "3",
         "quota_woman": "0",
@@ -97,11 +115,14 @@
                 "id": "53c01ec5-f080-434a-8f36-5460acb5b862",
                 "name": "茂林里",
                 "ivid": "KHH-360-001",
-                "code": "64000360-001"
+                "code": "64000360-001",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-f080-434a-8f36-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4239e-bd88-44e3-8b26-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4239e-bd88-44e3-8b26-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 高雄市 > 茂林區 > 第01選舉區",
         "quota": "4",
         "quota_woman": "1",
@@ -112,17 +133,21 @@
                 "id": "53c01ec5-e434-40ea-a240-5460acb5b862",
                 "name": "多納里",
                 "ivid": "KHH-360-003",
-                "code": "64000360-003"
+                "code": "64000360-003",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-e434-40ea-a240-5460acb5b862"
             },
             {
                 "id": "53c01ec5-fb4c-486d-aaed-5460acb5b862",
                 "name": "萬山里",
                 "ivid": "KHH-360-002",
-                "code": "64000360-002"
+                "code": "64000360-002",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-fb4c-486d-aaed-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4239f-ffd8-42f5-8a9d-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4239f-ffd8-42f5-8a9d-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 高雄市 > 桃源區 > 第01選舉區",
         "quota": "5",
         "quota_woman": "1",
@@ -133,41 +158,49 @@
                 "id": "53c01ec5-9264-4ab0-8650-5460acb5b862",
                 "name": "桃源里",
                 "ivid": "KHH-370-001",
-                "code": "64000370-001"
+                "code": "64000370-001",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-9264-4ab0-8650-5460acb5b862"
             },
             {
                 "id": "53c01ec6-4154-4246-ae3b-5460acb5b862",
                 "name": "復興里",
                 "ivid": "KHH-370-006",
-                "code": "64000370-006"
+                "code": "64000370-006",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-4154-4246-ae3b-5460acb5b862"
             },
             {
                 "id": "53c01ec6-49cc-4cbf-aa23-5460acb5b862",
                 "name": "勤和里",
                 "ivid": "KHH-370-005",
-                "code": "64000370-005"
+                "code": "64000370-005",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-49cc-4cbf-aa23-5460acb5b862"
             },
             {
                 "id": "53c01ec6-6f74-4fb6-a08d-5460acb5b862",
                 "name": "高中里",
                 "ivid": "KHH-370-004",
-                "code": "64000370-004"
+                "code": "64000370-004",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-6f74-4fb6-a08d-5460acb5b862"
             },
             {
                 "id": "53c01ec6-7648-463e-b05a-5460acb5b862",
                 "name": "梅山里",
                 "ivid": "KHH-370-008",
-                "code": "64000370-008"
+                "code": "64000370-008",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-7648-463e-b05a-5460acb5b862"
             },
             {
                 "id": "53c01ec6-8268-4d94-8e7c-5460acb5b862",
                 "name": "拉芙蘭里",
                 "ivid": "KHH-370-007",
-                "code": "64000370-007"
+                "code": "64000370-007",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-8268-4d94-8e7c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a0-4fec-4691-9208-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a0-4fec-4691-9208-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 高雄市 > 桃源區 > 第02選舉區",
         "quota": "2",
         "quota_woman": "0",
@@ -178,17 +211,21 @@
                 "id": "53c01ec6-cd9c-4603-8200-5460acb5b862",
                 "name": "建山里",
                 "ivid": "KHH-370-003",
-                "code": "64000370-003"
+                "code": "64000370-003",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-cd9c-4603-8200-5460acb5b862"
             },
             {
                 "id": "53c01ec6-ee30-4bdb-8dc7-5460acb5b862",
                 "name": "寶山里",
                 "ivid": "KHH-370-002",
-                "code": "64000370-002"
+                "code": "64000370-002",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-ee30-4bdb-8dc7-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a1-c93c-4c60-8726-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a1-c93c-4c60-8726-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 高雄市 > 那瑪夏區 > 第01選舉區",
         "quota": "4",
         "quota_woman": "1",
@@ -199,11 +236,14 @@
                 "id": "53c01ec7-ef30-4e25-be6b-5460acb5b862",
                 "name": "達卡努瓦里",
                 "ivid": "KHH-380-001",
-                "code": "64000380-001"
+                "code": "64000380-001",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-ef30-4e25-be6b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a1-da60-4373-99e6-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a1-da60-4373-99e6-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 高雄市 > 那瑪夏區 > 第02選舉區",
         "quota": "3",
         "quota_woman": "0",
@@ -214,17 +254,21 @@
                 "id": "53c01ec7-1fc0-4254-be0b-5460acb5b862",
                 "name": "瑪雅里",
                 "ivid": "KHH-380-002",
-                "code": "64000380-002"
+                "code": "64000380-002",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-1fc0-4254-be0b-5460acb5b862"
             },
             {
                 "id": "53c01ec7-cd68-4988-b2aa-5460acb5b862",
                 "name": "南沙魯里",
                 "ivid": "KHH-380-003",
-                "code": "64000380-003"
+                "code": "64000380-003",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-cd68-4988-b2aa-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a2-ac70-4544-ae81-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a2-ac70-4544-ae81-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 新北市 > 烏來區 > 第01選舉區",
         "quota": "2",
         "quota_woman": "0",
@@ -235,11 +279,14 @@
                 "id": "53c01f64-6e5c-49d4-b240-5460acb5b862",
                 "name": "忠治里",
                 "ivid": "TPQ-290-002",
-                "code": "65000290-002"
+                "code": "65000290-002",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-6e5c-49d4-b240-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a3-89e0-42c8-ad6f-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a3-89e0-42c8-ad6f-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 新北市 > 烏來區 > 第03選舉區",
         "quota": "1",
         "quota_woman": "0",
@@ -250,11 +297,14 @@
                 "id": "53c01f64-17dc-46d9-b29b-5460acb5b862",
                 "name": "信賢里",
                 "ivid": "TPQ-290-004",
-                "code": "65000290-004"
+                "code": "65000290-004",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-17dc-46d9-b29b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a3-a2fc-4d66-bf0d-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a3-a2fc-4d66-bf0d-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 新北市 > 烏來區 > 第02選舉區",
         "quota": "3",
         "quota_woman": "0",
@@ -265,17 +315,21 @@
                 "id": "53c01f64-584c-4a62-af48-5460acb5b862",
                 "name": "孝義里",
                 "ivid": "TPQ-290-005",
-                "code": "65000290-005"
+                "code": "65000290-005",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-584c-4a62-af48-5460acb5b862"
             },
             {
                 "id": "53c01f64-e47c-44d6-b916-5460acb5b862",
                 "name": "烏來里",
                 "ivid": "TPQ-290-001",
-                "code": "65000290-001"
+                "code": "65000290-001",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-e47c-44d6-b916-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a4-b598-49db-a254-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a4-b598-49db-a254-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 新北市 > 烏來區 > 第04選舉區",
         "quota": "1",
         "quota_woman": "0",
@@ -286,11 +340,14 @@
                 "id": "53c01f64-3444-4efa-adc0-5460acb5b862",
                 "name": "福山里",
                 "ivid": "TPQ-290-003",
-                "code": "65000290-003"
+                "code": "65000290-003",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-3444-4efa-adc0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a5-1ec0-47f0-8564-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a5-1ec0-47f0-8564-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 臺中市 > 和平區 > 第01選舉區",
         "quota": "5",
         "quota_woman": "1",
@@ -301,23 +358,28 @@
                 "id": "53c01fbf-0224-4636-9ab9-5460acb5b862",
                 "name": "天輪里",
                 "ivid": "TXG-290-002",
-                "code": "66000290-002"
+                "code": "66000290-002",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbf-0224-4636-9ab9-5460acb5b862"
             },
             {
                 "id": "53c01fbf-41cc-4417-8e68-5460acb5b862",
                 "name": "博愛里",
                 "ivid": "TXG-290-003",
-                "code": "66000290-003"
+                "code": "66000290-003",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbf-41cc-4417-8e68-5460acb5b862"
             },
             {
                 "id": "53c01fbf-8098-4b38-bb00-5460acb5b862",
                 "name": "南勢里",
                 "ivid": "TXG-290-001",
-                "code": "66000290-001"
+                "code": "66000290-001",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbf-8098-4b38-bb00-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a6-8df8-4ac4-bffb-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a6-8df8-4ac4-bffb-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 臺中市 > 和平區 > 第02選舉區",
         "quota": "3",
         "quota_woman": "0",
@@ -328,23 +390,28 @@
                 "id": "53c01fc0-5998-4d6b-8ad7-5460acb5b862",
                 "name": "自由里",
                 "ivid": "TXG-290-005",
-                "code": "66000290-005"
+                "code": "66000290-005",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-5998-4d6b-8ad7-5460acb5b862"
             },
             {
                 "id": "53c01fc0-9294-402b-81ba-5460acb5b862",
                 "name": "達觀里",
                 "ivid": "TXG-290-006",
-                "code": "66000290-006"
+                "code": "66000290-006",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-9294-402b-81ba-5460acb5b862"
             },
             {
                 "id": "53c01fc0-f2e0-4f7a-9a3e-5460acb5b862",
                 "name": "中坑里",
                 "ivid": "TXG-290-004",
-                "code": "66000290-004"
+                "code": "66000290-004",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-f2e0-4f7a-9a3e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c423a7-4ed8-4039-bfa5-72c8acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c423a7-4ed8-4039-bfa5-72c8acb5b862",
         "election": "2014 > 直轄市山地原住民區民代表 > 臺中市 > 和平區 > 第03選舉區",
         "quota": "3",
         "quota_woman": "0",
@@ -355,13 +422,15 @@
                 "id": "53c01fc0-42fc-437b-8809-5460acb5b862",
                 "name": "平等里",
                 "ivid": "TXG-290-008",
-                "code": "66000290-008"
+                "code": "66000290-008",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-42fc-437b-8809-5460acb5b862"
             },
             {
                 "id": "53c01fc0-eab8-4234-9631-5460acb5b862",
                 "name": "梨山里",
                 "ivid": "TXG-290-007",
-                "code": "66000290-007"
+                "code": "66000290-007",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-eab8-4234-9631-5460acb5b862"
             }
         ]
     }

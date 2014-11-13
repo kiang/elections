@@ -1,5 +1,7 @@
 [
     {
+        "id": "53c40084-1e1c-468b-b56c-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40084-1e1c-468b-b56c-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺北市 > 第01選區[區域]",
         "quota": "13",
         "quota_woman": "3",
@@ -10,17 +12,21 @@
                 "id": "53c01e39-2d08-427e-a810-5460acb5b862",
                 "name": "士林區",
                 "ivid": "TPE-110",
-                "code": "63000110"
+                "code": "63000110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e39-2d08-427e-a810-5460acb5b862"
             },
             {
                 "id": "53c01e41-502c-4685-89eb-5460acb5b862",
                 "name": "北投區",
                 "ivid": "TPE-120",
-                "code": "63000120"
+                "code": "63000120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e41-502c-4685-89eb-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40085-52e0-496c-aa91-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40085-52e0-496c-aa91-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺北市 > 第03選區[區域]",
         "quota": "10",
         "quota_woman": "2",
@@ -31,17 +37,21 @@
                 "id": "53c01e05-c5b0-4086-9351-5460acb5b862",
                 "name": "松山區",
                 "ivid": "TPE-010",
-                "code": "63000010"
+                "code": "63000010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e05-c5b0-4086-9351-5460acb5b862"
             },
             {
                 "id": "53c01e0a-c5d8-45be-af04-5460acb5b862",
                 "name": "信義區",
                 "ivid": "TPE-020",
-                "code": "63000020"
+                "code": "63000020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e0a-c5d8-45be-af04-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40085-c804-4fc1-a3b3-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40085-c804-4fc1-a3b3-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺北市 > 第04選區[區域]",
         "quota": "8",
         "quota_woman": "2",
@@ -52,17 +62,21 @@
                 "id": "53c01e18-0e00-4da5-aa2f-5460acb5b862",
                 "name": "中山區",
                 "ivid": "TPE-040",
-                "code": "63000040"
+                "code": "63000040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e18-0e00-4da5-aa2f-5460acb5b862"
             },
             {
                 "id": "53c01e22-e884-420a-b12a-5460acb5b862",
                 "name": "大同區",
                 "ivid": "TPE-060",
-                "code": "63000060"
+                "code": "63000060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e22-e884-420a-b12a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40085-dd50-4cf2-9c73-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40085-dd50-4cf2-9c73-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺北市 > 第02選區[區域]",
         "quota": "9",
         "quota_woman": "2",
@@ -73,17 +87,21 @@
                 "id": "53c01e30-5c3c-4271-b52e-5460acb5b862",
                 "name": "南港區",
                 "ivid": "TPE-090",
-                "code": "63000090"
+                "code": "63000090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e30-5c3c-4271-b52e-5460acb5b862"
             },
             {
                 "id": "53c01e34-1ba0-4525-8730-5460acb5b862",
                 "name": "內湖區",
                 "ivid": "TPE-100",
-                "code": "63000100"
+                "code": "63000100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e34-1ba0-4525-8730-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40087-3c78-4126-a3ae-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40087-3c78-4126-a3ae-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺北市 > 第06選區[區域]",
         "quota": "13",
         "quota_woman": "3",
@@ -94,17 +112,21 @@
                 "id": "53c01e11-665c-4484-88b0-5460acb5b862",
                 "name": "大安區",
                 "ivid": "TPE-030",
-                "code": "63000030"
+                "code": "63000030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e11-665c-4484-88b0-5460acb5b862"
             },
             {
                 "id": "53c01e2a-b7c4-4e75-8709-5460acb5b862",
                 "name": "文山區",
                 "ivid": "TPE-080",
-                "code": "63000080"
+                "code": "63000080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e2a-b7c4-4e75-8709-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40087-5ba0-4f8c-8c1b-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40087-5ba0-4f8c-8c1b-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺北市 > 第05選區[區域]",
         "quota": "8",
         "quota_woman": "2",
@@ -115,17 +137,21 @@
                 "id": "53c01e1e-bd54-4968-a434-5460acb5b862",
                 "name": "中正區",
                 "ivid": "TPE-050",
-                "code": "63000050"
+                "code": "63000050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e1e-bd54-4968-a434-5460acb5b862"
             },
             {
                 "id": "53c01e25-b984-45a0-8172-5460acb5b862",
                 "name": "萬華區",
                 "ivid": "TPE-070",
-                "code": "63000070"
+                "code": "63000070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e25-b984-45a0-8172-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40088-79b4-4eb8-b215-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40088-79b4-4eb8-b215-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺北市 > 第07選區[平地]",
         "quota": "1",
         "quota_woman": "0",
@@ -136,11 +162,14 @@
                 "id": "53c01e04-f3ac-4e74-94d5-5460acb5b862",
                 "name": "臺北市",
                 "ivid": "TPE",
-                "code": "63000"
+                "code": "63000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e04-f3ac-4e74-94d5-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40089-3e30-492d-8c8a-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40089-3e30-492d-8c8a-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第01選區[區域]",
         "quota": "3",
         "quota_woman": "0",
@@ -151,59 +180,70 @@
                 "id": "53c01eb8-17f8-4972-bfd1-5460acb5b862",
                 "name": "旗山區",
                 "ivid": "KHH-300",
-                "code": "64000300"
+                "code": "64000300",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb8-17f8-4972-bfd1-5460acb5b862"
             },
             {
                 "id": "53c01ebb-ed30-47df-8e3e-5460acb5b862",
                 "name": "美濃區",
                 "ivid": "KHH-310",
-                "code": "64000310"
+                "code": "64000310",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ebb-ed30-47df-8e3e-5460acb5b862"
             },
             {
                 "id": "53c01ebe-1dcc-48f7-9361-5460acb5b862",
                 "name": "六龜區",
                 "ivid": "KHH-320",
-                "code": "64000320"
+                "code": "64000320",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ebe-1dcc-48f7-9361-5460acb5b862"
             },
             {
                 "id": "53c01ec0-2230-47da-a74c-5460acb5b862",
                 "name": "甲仙區",
                 "ivid": "KHH-330",
-                "code": "64000330"
+                "code": "64000330",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec0-2230-47da-a74c-5460acb5b862"
             },
             {
                 "id": "53c01ec1-55dc-47a9-9850-5460acb5b862",
                 "name": "杉林區",
                 "ivid": "KHH-340",
-                "code": "64000340"
+                "code": "64000340",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec1-55dc-47a9-9850-5460acb5b862"
             },
             {
                 "id": "53c01ec3-64f0-47c7-aa67-5460acb5b862",
                 "name": "內門區",
                 "ivid": "KHH-350",
-                "code": "64000350"
+                "code": "64000350",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec3-64f0-47c7-aa67-5460acb5b862"
             },
             {
                 "id": "53c01ec5-46b8-4568-93a1-5460acb5b862",
                 "name": "茂林區",
                 "ivid": "KHH-360",
-                "code": "64000360"
+                "code": "64000360",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-46b8-4568-93a1-5460acb5b862"
             },
             {
                 "id": "53c01ec5-af58-43ae-996a-5460acb5b862",
                 "name": "桃源區",
                 "ivid": "KHH-370",
-                "code": "64000370"
+                "code": "64000370",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-af58-43ae-996a-5460acb5b862"
             },
             {
                 "id": "53c01ec6-0c1c-4c2b-85b1-5460acb5b862",
                 "name": "那瑪夏區",
                 "ivid": "KHH-380",
-                "code": "64000380"
+                "code": "64000380",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-0c1c-4c2b-85b1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40089-ac58-4275-be6e-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40089-ac58-4275-be6e-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺北市 > 第08選區[山地]",
         "quota": "1",
         "quota_woman": "0",
@@ -214,11 +254,14 @@
                 "id": "53c01e04-f3ac-4e74-94d5-5460acb5b862",
                 "name": "臺北市",
                 "ivid": "TPE",
-                "code": "63000"
+                "code": "63000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e04-f3ac-4e74-94d5-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4008a-a05c-4e93-b99c-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4008a-a05c-4e93-b99c-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第02選區[區域]",
         "quota": "3",
         "quota_woman": "0",
@@ -229,35 +272,42 @@
                 "id": "53c01ea8-f7b4-401d-98ce-5460acb5b862",
                 "name": "田寮區",
                 "ivid": "KHH-220",
-                "code": "64000220"
+                "code": "64000220",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ea8-f7b4-401d-98ce-5460acb5b862"
             },
             {
                 "id": "53c01eaa-64f4-484c-bf0c-5460acb5b862",
                 "name": "阿蓮區",
                 "ivid": "KHH-230",
-                "code": "64000230"
+                "code": "64000230",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eaa-64f4-484c-bf0c-5460acb5b862"
             },
             {
                 "id": "53c01eac-1f58-4fba-9902-5460acb5b862",
                 "name": "路竹區",
                 "ivid": "KHH-240",
-                "code": "64000240"
+                "code": "64000240",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eac-1f58-4fba-9902-5460acb5b862"
             },
             {
                 "id": "53c01eaf-dc98-42fe-8fad-5460acb5b862",
                 "name": "湖內區",
                 "ivid": "KHH-250",
-                "code": "64000250"
+                "code": "64000250",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eaf-dc98-42fe-8fad-5460acb5b862"
             },
             {
                 "id": "53c01eb1-dc88-414c-8db1-5460acb5b862",
                 "name": "茄萣區",
                 "ivid": "KHH-260",
-                "code": "64000260"
+                "code": "64000260",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb1-dc88-414c-8db1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4008b-bbcc-430c-8dc6-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4008b-bbcc-430c-8dc6-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第04選區[區域]",
         "quota": "8",
         "quota_woman": "2",
@@ -268,17 +318,21 @@
                 "id": "53c01e55-f0d0-477b-afa5-5460acb5b862",
                 "name": "左營區",
                 "ivid": "KHH-030",
-                "code": "64000030"
+                "code": "64000030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e55-f0d0-477b-afa5-5460acb5b862"
             },
             {
                 "id": "53c01e5a-cb6c-4270-9baa-5460acb5b862",
                 "name": "楠梓區",
                 "ivid": "KHH-040",
-                "code": "64000040"
+                "code": "64000040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e5a-cb6c-4270-9baa-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4008b-d51c-4273-bda9-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4008b-d51c-4273-bda9-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第03選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -289,41 +343,49 @@
                 "id": "53c01e9e-ad00-4c25-acab-5460acb5b862",
                 "name": "岡山區",
                 "ivid": "KHH-190",
-                "code": "64000190"
+                "code": "64000190",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e9e-ad00-4c25-acab-5460acb5b862"
             },
             {
                 "id": "53c01ea3-db84-4e72-8684-5460acb5b862",
                 "name": "橋頭區",
                 "ivid": "KHH-200",
-                "code": "64000200"
+                "code": "64000200",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ea3-db84-4e72-8684-5460acb5b862"
             },
             {
                 "id": "53c01ea7-3ac4-43c9-b24f-5460acb5b862",
                 "name": "燕巢區",
                 "ivid": "KHH-210",
-                "code": "64000210"
+                "code": "64000210",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ea7-3ac4-43c9-b24f-5460acb5b862"
             },
             {
                 "id": "53c01eb3-69f4-4d6c-a008-5460acb5b862",
                 "name": "永安區",
                 "ivid": "KHH-270",
-                "code": "64000270"
+                "code": "64000270",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb3-69f4-4d6c-a008-5460acb5b862"
             },
             {
                 "id": "53c01eb4-1890-427a-b8b8-5460acb5b862",
                 "name": "彌陀區",
                 "ivid": "KHH-280",
-                "code": "64000280"
+                "code": "64000280",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb4-1890-427a-b8b8-5460acb5b862"
             },
             {
                 "id": "53c01eb5-aaa4-4da2-94b4-5460acb5b862",
                 "name": "梓官區",
                 "ivid": "KHH-290",
-                "code": "64000290"
+                "code": "64000290",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb5-aaa4-4da2-94b4-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4008c-24e4-4705-8647-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4008c-24e4-4705-8647-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第05選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -334,29 +396,35 @@
                 "id": "53c01e98-f970-4f02-8606-5460acb5b862",
                 "name": "大樹區",
                 "ivid": "KHH-150",
-                "code": "64000150"
+                "code": "64000150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e98-f970-4f02-8606-5460acb5b862"
             },
             {
                 "id": "53c01e9a-0484-4970-bd6e-5460acb5b862",
                 "name": "大社區",
                 "ivid": "KHH-160",
-                "code": "64000160"
+                "code": "64000160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e9a-0484-4970-bd6e-5460acb5b862"
             },
             {
                 "id": "53c01e9b-7730-4736-8b85-5460acb5b862",
                 "name": "仁武區",
                 "ivid": "KHH-170",
-                "code": "64000170"
+                "code": "64000170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e9b-7730-4736-8b85-5460acb5b862"
             },
             {
                 "id": "53c01e9d-278c-4360-a8d9-5460acb5b862",
                 "name": "鳥松區",
                 "ivid": "KHH-180",
-                "code": "64000180"
+                "code": "64000180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e9d-278c-4360-a8d9-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4008c-ba7c-4340-8697-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4008c-ba7c-4340-8697-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第06選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -367,23 +435,28 @@
                 "id": "53c01e48-d5ac-4f9c-b8ae-5460acb5b862",
                 "name": "鹽埕區",
                 "ivid": "KHH-010",
-                "code": "64000010"
+                "code": "64000010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e48-d5ac-4f9c-b8ae-5460acb5b862"
             },
             {
                 "id": "53c01e50-a61c-4aba-9004-5460acb5b862",
                 "name": "鼓山區",
                 "ivid": "KHH-020",
-                "code": "64000020"
+                "code": "64000020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e50-a61c-4aba-9004-5460acb5b862"
             },
             {
                 "id": "53c01e81-e238-49f7-93eb-5460acb5b862",
                 "name": "旗津區",
                 "ivid": "KHH-100",
-                "code": "64000100"
+                "code": "64000100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e81-e238-49f7-93eb-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4008d-3e38-4446-b0d5-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4008d-3e38-4446-b0d5-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第07選區[區域]",
         "quota": "8",
         "quota_woman": "2",
@@ -394,11 +467,14 @@
                 "id": "53c01e5f-58c8-4543-93bb-5460acb5b862",
                 "name": "三民區",
                 "ivid": "KHH-050",
-                "code": "64000050"
+                "code": "64000050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e5f-58c8-4543-93bb-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4008e-2b7c-4ada-9257-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4008e-2b7c-4ada-9257-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第08選區[區域]",
         "quota": "6",
         "quota_woman": "1",
@@ -409,23 +485,28 @@
                 "id": "53c01e6b-a848-40e1-ac01-5460acb5b862",
                 "name": "新興區",
                 "ivid": "KHH-060",
-                "code": "64000060"
+                "code": "64000060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e6b-a848-40e1-ac01-5460acb5b862"
             },
             {
                 "id": "53c01e6f-24c8-48b3-b995-5460acb5b862",
                 "name": "前金區",
                 "ivid": "KHH-070",
-                "code": "64000070"
+                "code": "64000070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e6f-24c8-48b3-b995-5460acb5b862"
             },
             {
                 "id": "53c01e71-3aa4-4586-9611-5460acb5b862",
                 "name": "苓雅區",
                 "ivid": "KHH-080",
-                "code": "64000080"
+                "code": "64000080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e71-3aa4-4586-9611-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4008f-1a50-4826-8f47-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4008f-1a50-4826-8f47-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第09選區[區域]",
         "quota": "8",
         "quota_woman": "2",
@@ -436,11 +517,14 @@
                 "id": "53c01e87-8674-4476-9c21-5460acb5b862",
                 "name": "鳳山區",
                 "ivid": "KHH-120",
-                "code": "64000120"
+                "code": "64000120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e87-8674-4476-9c21-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4008f-f314-40a8-97f9-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4008f-f314-40a8-97f9-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第10選區[區域]",
         "quota": "8",
         "quota_woman": "2",
@@ -451,17 +535,21 @@
                 "id": "53c01e79-d34c-4dc0-8d85-5460acb5b862",
                 "name": "前鎮區",
                 "ivid": "KHH-090",
-                "code": "64000090"
+                "code": "64000090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e79-d34c-4dc0-8d85-5460acb5b862"
             },
             {
                 "id": "53c01e83-76c8-4b6c-bdc8-5460acb5b862",
                 "name": "小港區",
                 "ivid": "KHH-110",
-                "code": "64000110"
+                "code": "64000110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e83-76c8-4b6c-bdc8-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40090-7fac-4c69-8c25-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40090-7fac-4c69-8c25-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第11選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -472,17 +560,21 @@
                 "id": "53c01e91-2a58-4959-908b-5460acb5b862",
                 "name": "林園區",
                 "ivid": "KHH-130",
-                "code": "64000130"
+                "code": "64000130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e91-2a58-4959-908b-5460acb5b862"
             },
             {
                 "id": "53c01e94-4380-4a1a-b68a-5460acb5b862",
                 "name": "大寮區",
                 "ivid": "KHH-140",
-                "code": "64000140"
+                "code": "64000140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e94-4380-4a1a-b68a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40090-8e58-4345-9551-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40090-8e58-4345-9551-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第12選區[平地]",
         "quota": "1",
         "quota_woman": "0",
@@ -493,11 +585,14 @@
                 "id": "53c01e47-b1e4-477d-ae4b-5460acb5b862",
                 "name": "高雄市",
                 "ivid": "KHH",
-                "code": "64000"
+                "code": "64000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e47-b1e4-477d-ae4b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40091-2bf4-431a-a482-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40091-2bf4-431a-a482-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第13選區[山地]",
         "quota": "1",
         "quota_woman": "0",
@@ -508,89 +603,105 @@
                 "id": "53c01e55-f0d0-477b-afa5-5460acb5b862",
                 "name": "左營區",
                 "ivid": "KHH-030",
-                "code": "64000030"
+                "code": "64000030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e55-f0d0-477b-afa5-5460acb5b862"
             },
             {
                 "id": "53c01e5a-cb6c-4270-9baa-5460acb5b862",
                 "name": "楠梓區",
                 "ivid": "KHH-040",
-                "code": "64000040"
+                "code": "64000040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e5a-cb6c-4270-9baa-5460acb5b862"
             },
             {
                 "id": "53c01e5f-58c8-4543-93bb-5460acb5b862",
                 "name": "三民區",
                 "ivid": "KHH-050",
-                "code": "64000050"
+                "code": "64000050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e5f-58c8-4543-93bb-5460acb5b862"
             },
             {
                 "id": "53c01eac-1f58-4fba-9902-5460acb5b862",
                 "name": "路竹區",
                 "ivid": "KHH-240",
-                "code": "64000240"
+                "code": "64000240",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eac-1f58-4fba-9902-5460acb5b862"
             },
             {
                 "id": "53c01eaf-dc98-42fe-8fad-5460acb5b862",
                 "name": "湖內區",
                 "ivid": "KHH-250",
-                "code": "64000250"
+                "code": "64000250",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eaf-dc98-42fe-8fad-5460acb5b862"
             },
             {
                 "id": "53c01eb1-dc88-414c-8db1-5460acb5b862",
                 "name": "茄萣區",
                 "ivid": "KHH-260",
-                "code": "64000260"
+                "code": "64000260",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb1-dc88-414c-8db1-5460acb5b862"
             },
             {
                 "id": "53c01eb3-69f4-4d6c-a008-5460acb5b862",
                 "name": "永安區",
                 "ivid": "KHH-270",
-                "code": "64000270"
+                "code": "64000270",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb3-69f4-4d6c-a008-5460acb5b862"
             },
             {
                 "id": "53c01eb4-1890-427a-b8b8-5460acb5b862",
                 "name": "彌陀區",
                 "ivid": "KHH-280",
-                "code": "64000280"
+                "code": "64000280",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb4-1890-427a-b8b8-5460acb5b862"
             },
             {
                 "id": "53c01eb5-aaa4-4da2-94b4-5460acb5b862",
                 "name": "梓官區",
                 "ivid": "KHH-290",
-                "code": "64000290"
+                "code": "64000290",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb5-aaa4-4da2-94b4-5460acb5b862"
             },
             {
                 "id": "53c01eb8-17f8-4972-bfd1-5460acb5b862",
                 "name": "旗山區",
                 "ivid": "KHH-300",
-                "code": "64000300"
+                "code": "64000300",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eb8-17f8-4972-bfd1-5460acb5b862"
             },
             {
                 "id": "53c01ec0-2230-47da-a74c-5460acb5b862",
                 "name": "甲仙區",
                 "ivid": "KHH-330",
-                "code": "64000330"
+                "code": "64000330",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec0-2230-47da-a74c-5460acb5b862"
             },
             {
                 "id": "53c01ec1-55dc-47a9-9850-5460acb5b862",
                 "name": "杉林區",
                 "ivid": "KHH-340",
-                "code": "64000340"
+                "code": "64000340",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec1-55dc-47a9-9850-5460acb5b862"
             },
             {
                 "id": "53c01ec3-64f0-47c7-aa67-5460acb5b862",
                 "name": "內門區",
                 "ivid": "KHH-350",
-                "code": "64000350"
+                "code": "64000350",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec3-64f0-47c7-aa67-5460acb5b862"
             },
             {
                 "id": "53c01ec6-0c1c-4c2b-85b1-5460acb5b862",
                 "name": "那瑪夏區",
                 "ivid": "KHH-380",
-                "code": "64000380"
+                "code": "64000380",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-0c1c-4c2b-85b1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40092-05d8-49e4-abce-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40092-05d8-49e4-abce-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第14選區[山地]",
         "quota": "1",
         "quota_woman": "0",
@@ -601,77 +712,91 @@
                 "id": "53c01e48-d5ac-4f9c-b8ae-5460acb5b862",
                 "name": "鹽埕區",
                 "ivid": "KHH-010",
-                "code": "64000010"
+                "code": "64000010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e48-d5ac-4f9c-b8ae-5460acb5b862"
             },
             {
                 "id": "53c01e50-a61c-4aba-9004-5460acb5b862",
                 "name": "鼓山區",
                 "ivid": "KHH-020",
-                "code": "64000020"
+                "code": "64000020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e50-a61c-4aba-9004-5460acb5b862"
             },
             {
                 "id": "53c01e6b-a848-40e1-ac01-5460acb5b862",
                 "name": "新興區",
                 "ivid": "KHH-060",
-                "code": "64000060"
+                "code": "64000060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e6b-a848-40e1-ac01-5460acb5b862"
             },
             {
                 "id": "53c01e6f-24c8-48b3-b995-5460acb5b862",
                 "name": "前金區",
                 "ivid": "KHH-070",
-                "code": "64000070"
+                "code": "64000070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e6f-24c8-48b3-b995-5460acb5b862"
             },
             {
                 "id": "53c01e9e-ad00-4c25-acab-5460acb5b862",
                 "name": "岡山區",
                 "ivid": "KHH-190",
-                "code": "64000190"
+                "code": "64000190",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e9e-ad00-4c25-acab-5460acb5b862"
             },
             {
                 "id": "53c01ea3-db84-4e72-8684-5460acb5b862",
                 "name": "橋頭區",
                 "ivid": "KHH-200",
-                "code": "64000200"
+                "code": "64000200",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ea3-db84-4e72-8684-5460acb5b862"
             },
             {
                 "id": "53c01ea7-3ac4-43c9-b24f-5460acb5b862",
                 "name": "燕巢區",
                 "ivid": "KHH-210",
-                "code": "64000210"
+                "code": "64000210",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ea7-3ac4-43c9-b24f-5460acb5b862"
             },
             {
                 "id": "53c01ea8-f7b4-401d-98ce-5460acb5b862",
                 "name": "田寮區",
                 "ivid": "KHH-220",
-                "code": "64000220"
+                "code": "64000220",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ea8-f7b4-401d-98ce-5460acb5b862"
             },
             {
                 "id": "53c01eaa-64f4-484c-bf0c-5460acb5b862",
                 "name": "阿蓮區",
                 "ivid": "KHH-230",
-                "code": "64000230"
+                "code": "64000230",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eaa-64f4-484c-bf0c-5460acb5b862"
             },
             {
                 "id": "53c01ebb-ed30-47df-8e3e-5460acb5b862",
                 "name": "美濃區",
                 "ivid": "KHH-310",
-                "code": "64000310"
+                "code": "64000310",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ebb-ed30-47df-8e3e-5460acb5b862"
             },
             {
                 "id": "53c01ebe-1dcc-48f7-9361-5460acb5b862",
                 "name": "六龜區",
                 "ivid": "KHH-320",
-                "code": "64000320"
+                "code": "64000320",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ebe-1dcc-48f7-9361-5460acb5b862"
             },
             {
                 "id": "53c01ec5-af58-43ae-996a-5460acb5b862",
                 "name": "桃源區",
                 "ivid": "KHH-370",
-                "code": "64000370"
+                "code": "64000370",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-af58-43ae-996a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40092-2158-42d6-af3a-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40092-2158-42d6-af3a-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 高雄市 > 第15選區[山地]",
         "quota": "1",
         "quota_woman": "0",
@@ -682,77 +807,91 @@
                 "id": "53c01e71-3aa4-4586-9611-5460acb5b862",
                 "name": "苓雅區",
                 "ivid": "KHH-080",
-                "code": "64000080"
+                "code": "64000080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e71-3aa4-4586-9611-5460acb5b862"
             },
             {
                 "id": "53c01e79-d34c-4dc0-8d85-5460acb5b862",
                 "name": "前鎮區",
                 "ivid": "KHH-090",
-                "code": "64000090"
+                "code": "64000090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e79-d34c-4dc0-8d85-5460acb5b862"
             },
             {
                 "id": "53c01e81-e238-49f7-93eb-5460acb5b862",
                 "name": "旗津區",
                 "ivid": "KHH-100",
-                "code": "64000100"
+                "code": "64000100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e81-e238-49f7-93eb-5460acb5b862"
             },
             {
                 "id": "53c01e83-76c8-4b6c-bdc8-5460acb5b862",
                 "name": "小港區",
                 "ivid": "KHH-110",
-                "code": "64000110"
+                "code": "64000110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e83-76c8-4b6c-bdc8-5460acb5b862"
             },
             {
                 "id": "53c01e87-8674-4476-9c21-5460acb5b862",
                 "name": "鳳山區",
                 "ivid": "KHH-120",
-                "code": "64000120"
+                "code": "64000120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e87-8674-4476-9c21-5460acb5b862"
             },
             {
                 "id": "53c01e91-2a58-4959-908b-5460acb5b862",
                 "name": "林園區",
                 "ivid": "KHH-130",
-                "code": "64000130"
+                "code": "64000130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e91-2a58-4959-908b-5460acb5b862"
             },
             {
                 "id": "53c01e94-4380-4a1a-b68a-5460acb5b862",
                 "name": "大寮區",
                 "ivid": "KHH-140",
-                "code": "64000140"
+                "code": "64000140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e94-4380-4a1a-b68a-5460acb5b862"
             },
             {
                 "id": "53c01e98-f970-4f02-8606-5460acb5b862",
                 "name": "大樹區",
                 "ivid": "KHH-150",
-                "code": "64000150"
+                "code": "64000150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e98-f970-4f02-8606-5460acb5b862"
             },
             {
                 "id": "53c01e9a-0484-4970-bd6e-5460acb5b862",
                 "name": "大社區",
                 "ivid": "KHH-160",
-                "code": "64000160"
+                "code": "64000160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e9a-0484-4970-bd6e-5460acb5b862"
             },
             {
                 "id": "53c01e9b-7730-4736-8b85-5460acb5b862",
                 "name": "仁武區",
                 "ivid": "KHH-170",
-                "code": "64000170"
+                "code": "64000170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e9b-7730-4736-8b85-5460acb5b862"
             },
             {
                 "id": "53c01e9d-278c-4360-a8d9-5460acb5b862",
                 "name": "鳥松區",
                 "ivid": "KHH-180",
-                "code": "64000180"
+                "code": "64000180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01e9d-278c-4360-a8d9-5460acb5b862"
             },
             {
                 "id": "53c01ec5-46b8-4568-93a1-5460acb5b862",
                 "name": "茂林區",
                 "ivid": "KHH-360",
-                "code": "64000360"
+                "code": "64000360",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-46b8-4568-93a1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40093-1d90-48f8-973d-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40093-1d90-48f8-973d-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第01選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -763,29 +902,35 @@
                 "id": "53c01f2c-cbb0-417b-bcf0-5460acb5b862",
                 "name": "淡水區",
                 "ivid": "TPQ-100",
-                "code": "65000100"
+                "code": "65000100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f2c-cbb0-417b-bcf0-5460acb5b862"
             },
             {
                 "id": "53c01f56-38ac-4049-a241-5460acb5b862",
                 "name": "三芝區",
                 "ivid": "TPQ-210",
-                "code": "65000210"
+                "code": "65000210",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f56-38ac-4049-a241-5460acb5b862"
             },
             {
                 "id": "53c01f58-af40-45f5-a66d-5460acb5b862",
                 "name": "石門區",
                 "ivid": "TPQ-220",
-                "code": "65000220"
+                "code": "65000220",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f58-af40-45f5-a66d-5460acb5b862"
             },
             {
                 "id": "53c01f59-ec14-4673-a802-5460acb5b862",
                 "name": "八里區",
                 "ivid": "TPQ-230",
-                "code": "65000230"
+                "code": "65000230",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f59-ec14-4673-a802-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40093-221c-4acc-9571-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40093-221c-4acc-9571-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第02選區[區域]",
         "quota": "10",
         "quota_woman": "2",
@@ -796,29 +941,35 @@
                 "id": "53c01f07-8288-4c09-ad5b-5460acb5b862",
                 "name": "新莊區",
                 "ivid": "TPQ-050",
-                "code": "65000050"
+                "code": "65000050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f07-8288-4c09-ad5b-5460acb5b862"
             },
             {
                 "id": "53c01f4a-c35c-4661-b6ac-5460acb5b862",
                 "name": "五股區",
                 "ivid": "TPQ-150",
-                "code": "65000150"
+                "code": "65000150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f4a-c35c-4661-b6ac-5460acb5b862"
             },
             {
                 "id": "53c01f4d-0534-4093-bfff-5460acb5b862",
                 "name": "泰山區",
                 "ivid": "TPQ-160",
-                "code": "65000160"
+                "code": "65000160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f4d-0534-4093-bfff-5460acb5b862"
             },
             {
                 "id": "53c01f4f-a3ac-4324-b083-5460acb5b862",
                 "name": "林口區",
                 "ivid": "TPQ-170",
-                "code": "65000170"
+                "code": "65000170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f4f-a3ac-4324-b083-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40094-d20c-4a19-bd2e-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40094-d20c-4a19-bd2e-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第03選區[區域]",
         "quota": "9",
         "quota_woman": "2",
@@ -829,17 +980,21 @@
                 "id": "53c01eda-3944-4a0f-b58a-5460acb5b862",
                 "name": "三重區",
                 "ivid": "TPQ-020",
-                "code": "65000020"
+                "code": "65000020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01eda-3944-4a0f-b58a-5460acb5b862"
             },
             {
                 "id": "53c01f44-6244-4707-b56a-5460acb5b862",
                 "name": "蘆洲區",
                 "ivid": "TPQ-140",
-                "code": "65000140"
+                "code": "65000140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f44-6244-4707-b56a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40095-841c-4bdb-94f1-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40095-841c-4bdb-94f1-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第04選區[區域]",
         "quota": "9",
         "quota_woman": "2",
@@ -850,11 +1005,14 @@
                 "id": "53c01ec7-1a74-43bd-86a4-5460acb5b862",
                 "name": "板橋區",
                 "ivid": "TPQ-010",
-                "code": "65000010"
+                "code": "65000010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-1a74-43bd-86a4-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40096-5c78-4340-9171-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40096-5c78-4340-9171-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第06選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -865,11 +1023,14 @@
                 "id": "53c01efd-9b64-4d3c-91f0-5460acb5b862",
                 "name": "永和區",
                 "ivid": "TPQ-040",
-                "code": "65000040"
+                "code": "65000040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01efd-9b64-4d3c-91f0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40096-c3f0-47b9-8ef0-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40096-c3f0-47b9-8ef0-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第07選區[區域]",
         "quota": "10",
         "quota_woman": "2",
@@ -880,29 +1041,35 @@
                 "id": "53c01f1f-8b4c-409e-8c42-5460acb5b862",
                 "name": "樹林區",
                 "ivid": "TPQ-070",
-                "code": "65000070"
+                "code": "65000070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f1f-8b4c-409e-8c42-5460acb5b862"
             },
             {
                 "id": "53c01f25-7bfc-41bc-8fd0-5460acb5b862",
                 "name": "鶯歌區",
                 "ivid": "TPQ-080",
-                "code": "65000080"
+                "code": "65000080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f25-7bfc-41bc-8fd0-5460acb5b862"
             },
             {
                 "id": "53c01f28-05e4-431f-af89-5460acb5b862",
                 "name": "三峽區",
                 "ivid": "TPQ-090",
-                "code": "65000090"
+                "code": "65000090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f28-05e4-431f-af89-5460acb5b862"
             },
             {
                 "id": "53c01f3d-d298-479a-84e3-5460acb5b862",
                 "name": "土城區",
                 "ivid": "TPQ-130",
-                "code": "65000130"
+                "code": "65000130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f3d-d298-479a-84e3-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40096-d708-4107-ad21-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40096-d708-4107-ad21-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第05選區[區域]",
         "quota": "6",
         "quota_woman": "1",
@@ -913,11 +1080,14 @@
                 "id": "53c01ef0-620c-4683-a44d-5460acb5b862",
                 "name": "中和區",
                 "ivid": "TPQ-030",
-                "code": "65000030"
+                "code": "65000030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ef0-620c-4683-a44d-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40097-4e88-45d8-bb5e-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40097-4e88-45d8-bb5e-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第08選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -928,35 +1098,42 @@
                 "id": "53c01f15-c1dc-4c60-91cb-5460acb5b862",
                 "name": "新店區",
                 "ivid": "TPQ-060",
-                "code": "65000060"
+                "code": "65000060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f15-c1dc-4c60-91cb-5460acb5b862"
             },
             {
                 "id": "53c01f52-8194-4354-add3-5460acb5b862",
                 "name": "深坑區",
                 "ivid": "TPQ-180",
-                "code": "65000180"
+                "code": "65000180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f52-8194-4354-add3-5460acb5b862"
             },
             {
                 "id": "53c01f53-3db8-4eb8-b813-5460acb5b862",
                 "name": "石碇區",
                 "ivid": "TPQ-190",
-                "code": "65000190"
+                "code": "65000190",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f53-3db8-4eb8-b813-5460acb5b862"
             },
             {
                 "id": "53c01f55-d5c0-418c-8644-5460acb5b862",
                 "name": "坪林區",
                 "ivid": "TPQ-200",
-                "code": "65000200"
+                "code": "65000200",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f55-d5c0-418c-8644-5460acb5b862"
             },
             {
                 "id": "53c01f64-fe24-474e-9768-5460acb5b862",
                 "name": "烏來區",
                 "ivid": "TPQ-290",
-                "code": "65000290"
+                "code": "65000290",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-fe24-474e-9768-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40098-9394-4891-afa6-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40098-9394-4891-afa6-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第09選區[區域]",
         "quota": "1",
         "quota_woman": "0",
@@ -967,29 +1144,35 @@
                 "id": "53c01f38-00d8-43ad-b200-5460acb5b862",
                 "name": "瑞芳區",
                 "ivid": "TPQ-120",
-                "code": "65000120"
+                "code": "65000120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f38-00d8-43ad-b200-5460acb5b862"
             },
             {
                 "id": "53c01f5b-f340-4a21-9551-5460acb5b862",
                 "name": "平溪區",
                 "ivid": "TPQ-240",
-                "code": "65000240"
+                "code": "65000240",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f5b-f340-4a21-9551-5460acb5b862"
             },
             {
                 "id": "53c01f5c-b9d0-4aa5-839d-5460acb5b862",
                 "name": "雙溪區",
                 "ivid": "TPQ-250",
-                "code": "65000250"
+                "code": "65000250",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f5c-b9d0-4aa5-839d-5460acb5b862"
             },
             {
                 "id": "53c01f5f-3768-43f6-b316-5460acb5b862",
                 "name": "貢寮區",
                 "ivid": "TPQ-260",
-                "code": "65000260"
+                "code": "65000260",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f5f-3768-43f6-b316-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40098-c6b0-4352-93eb-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40098-c6b0-4352-93eb-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第10選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1000,23 +1183,28 @@
                 "id": "53c01f32-14f4-48c8-a923-5460acb5b862",
                 "name": "汐止區",
                 "ivid": "TPQ-110",
-                "code": "65000110"
+                "code": "65000110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f32-14f4-48c8-a923-5460acb5b862"
             },
             {
                 "id": "53c01f60-8928-49ed-bb84-5460acb5b862",
                 "name": "金山區",
                 "ivid": "TPQ-270",
-                "code": "65000270"
+                "code": "65000270",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f60-8928-49ed-bb84-5460acb5b862"
             },
             {
                 "id": "53c01f62-7bd0-4571-ba29-5460acb5b862",
                 "name": "萬里區",
                 "ivid": "TPQ-280",
-                "code": "65000280"
+                "code": "65000280",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f62-7bd0-4571-ba29-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40099-ad64-4035-899e-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40099-ad64-4035-899e-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第11選區[平地]",
         "quota": "3",
         "quota_woman": "0",
@@ -1027,11 +1215,14 @@
                 "id": "53c01ec7-67b4-4aa7-92a1-5460acb5b862",
                 "name": "新北市",
                 "ivid": "TPQ",
-                "code": "65000"
+                "code": "65000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-67b4-4aa7-92a1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009a-56c4-48d5-8f50-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009a-56c4-48d5-8f50-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 新北市 > 第12選區[山地]",
         "quota": "1",
         "quota_woman": "0",
@@ -1042,11 +1233,14 @@
                 "id": "53c01ec7-67b4-4aa7-92a1-5460acb5b862",
                 "name": "新北市",
                 "ivid": "TPQ",
-                "code": "65000"
+                "code": "65000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec7-67b4-4aa7-92a1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009a-7528-42ca-9c8a-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009a-7528-42ca-9c8a-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第01選區[區域]",
         "quota": "3",
         "quota_woman": "0",
@@ -1057,23 +1251,28 @@
                 "id": "53c01f8d-a5d0-48f6-a2e1-5460acb5b862",
                 "name": "大甲區",
                 "ivid": "TXG-110",
-                "code": "66000110"
+                "code": "66000110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f8d-a5d0-48f6-a2e1-5460acb5b862"
             },
             {
                 "id": "53c01fa9-e588-4ce2-ac95-5460acb5b862",
                 "name": "外埔區",
                 "ivid": "TXG-210",
-                "code": "66000210"
+                "code": "66000210",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fa9-e588-4ce2-ac95-5460acb5b862"
             },
             {
                 "id": "53c01fab-e1e4-49b8-b80e-5460acb5b862",
                 "name": "大安區",
                 "ivid": "TXG-220",
-                "code": "66000220"
+                "code": "66000220",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fab-e1e4-49b8-b80e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009b-71b0-4efb-8b3c-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009b-71b0-4efb-8b3c-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第02選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -1084,23 +1283,28 @@
                 "id": "53c01f91-f244-4e62-9b72-5460acb5b862",
                 "name": "清水區",
                 "ivid": "TXG-120",
-                "code": "66000120"
+                "code": "66000120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f91-f244-4e62-9b72-5460acb5b862"
             },
             {
                 "id": "53c01f96-e6a8-41a5-bbd4-5460acb5b862",
                 "name": "沙鹿區",
                 "ivid": "TXG-130",
-                "code": "66000130"
+                "code": "66000130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f96-e6a8-41a5-bbd4-5460acb5b862"
             },
             {
                 "id": "53c01f99-5828-41d1-ba06-5460acb5b862",
                 "name": "梧棲區",
                 "ivid": "TXG-140",
-                "code": "66000140"
+                "code": "66000140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f99-5828-41d1-ba06-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009b-bd4c-4654-b74a-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009b-bd4c-4654-b74a-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第03選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -1111,23 +1315,28 @@
                 "id": "53c01fad-1ce4-4dfa-8184-5460acb5b862",
                 "name": "烏日區",
                 "ivid": "TXG-230",
-                "code": "66000230"
+                "code": "66000230",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fad-1ce4-4dfa-8184-5460acb5b862"
             },
             {
                 "id": "53c01faf-2864-4396-8aa5-5460acb5b862",
                 "name": "大肚區",
                 "ivid": "TXG-240",
-                "code": "66000240"
+                "code": "66000240",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01faf-2864-4396-8aa5-5460acb5b862"
             },
             {
                 "id": "53c01fb1-be04-4414-a64b-5460acb5b862",
                 "name": "龍井區",
                 "ivid": "TXG-250",
-                "code": "66000250"
+                "code": "66000250",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fb1-be04-4414-a64b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009c-26a8-429f-ba1d-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009c-26a8-429f-ba1d-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第04選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -1138,17 +1347,21 @@
                 "id": "53c01f84-2900-48b9-897e-5460acb5b862",
                 "name": "豐原區",
                 "ivid": "TXG-090",
-                "code": "66000090"
+                "code": "66000090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f84-2900-48b9-897e-5460acb5b862"
             },
             {
                 "id": "53c01f9b-f848-4af9-9251-5460acb5b862",
                 "name": "后里區",
                 "ivid": "TXG-150",
-                "code": "66000150"
+                "code": "66000150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f9b-f848-4af9-9251-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009c-3f78-407f-8e3e-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009c-3f78-407f-8e3e-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第05選區[區域]",
         "quota": "6",
         "quota_woman": "1",
@@ -1159,23 +1372,28 @@
                 "id": "53c01f9d-cec0-41de-becb-5460acb5b862",
                 "name": "神岡區",
                 "ivid": "TXG-160",
-                "code": "66000160"
+                "code": "66000160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f9d-cec0-41de-becb-5460acb5b862"
             },
             {
                 "id": "53c01f9f-d1ec-41c2-bad8-5460acb5b862",
                 "name": "潭子區",
                 "ivid": "TXG-170",
-                "code": "66000170"
+                "code": "66000170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f9f-d1ec-41c2-bad8-5460acb5b862"
             },
             {
                 "id": "53c01fa4-53a0-46b9-9dc0-5460acb5b862",
                 "name": "大雅區",
                 "ivid": "TXG-180",
-                "code": "66000180"
+                "code": "66000180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fa4-53a0-46b9-9dc0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009d-78e4-4edd-9171-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009d-78e4-4edd-9171-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第06選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -1186,11 +1404,14 @@
                 "id": "53c01f76-c9dc-45ca-b7ba-5460acb5b862",
                 "name": "西屯區",
                 "ivid": "TXG-060",
-                "code": "66000060"
+                "code": "66000060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f76-c9dc-45ca-b7ba-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009e-0c74-4928-a173-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009e-0c74-4928-a173-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第07選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1201,11 +1422,14 @@
                 "id": "53c01f7a-b884-47f9-9562-5460acb5b862",
                 "name": "南屯區",
                 "ivid": "TXG-070",
-                "code": "66000070"
+                "code": "66000070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f7a-b884-47f9-9562-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009f-7c38-4de2-9c47-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009f-7c38-4de2-9c47-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第09選區[區域]",
         "quota": "3",
         "quota_woman": "0",
@@ -1216,11 +1440,14 @@
                 "id": "53c01f70-22b0-4852-87e1-5460acb5b862",
                 "name": "北區",
                 "ivid": "TXG-050",
-                "code": "66000050"
+                "code": "66000050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f70-22b0-4852-87e1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4009f-8690-49c6-af2e-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4009f-8690-49c6-af2e-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第08選區[區域]",
         "quota": "6",
         "quota_woman": "1",
@@ -1231,11 +1458,14 @@
                 "id": "53c01f7e-8ff8-4b08-8120-5460acb5b862",
                 "name": "北屯區",
                 "ivid": "TXG-080",
-                "code": "66000080"
+                "code": "66000080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f7e-8ff8-4b08-8120-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a0-5300-49f1-bf55-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a0-5300-49f1-bf55-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第10選區[區域]",
         "quota": "3",
         "quota_woman": "0",
@@ -1246,17 +1476,21 @@
                 "id": "53c01f65-5990-4387-ad82-5460acb5b862",
                 "name": "中區",
                 "ivid": "TXG-010",
-                "code": "66000010"
+                "code": "66000010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f65-5990-4387-ad82-5460acb5b862"
             },
             {
                 "id": "53c01f6d-0e58-40f7-8e1a-5460acb5b862",
                 "name": "西區",
                 "ivid": "TXG-040",
-                "code": "66000040"
+                "code": "66000040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f6d-0e58-40f7-8e1a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a1-07d0-4177-9775-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a1-07d0-4177-9775-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第11選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1267,17 +1501,21 @@
                 "id": "53c01f66-0be0-4946-b4d8-5460acb5b862",
                 "name": "東區",
                 "ivid": "TXG-020",
-                "code": "66000020"
+                "code": "66000020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f66-0be0-4946-b4d8-5460acb5b862"
             },
             {
                 "id": "53c01f6a-ed08-4546-ae64-5460acb5b862",
                 "name": "南區",
                 "ivid": "TXG-030",
-                "code": "66000030"
+                "code": "66000030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f6a-ed08-4546-ae64-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a1-2a38-45d8-ba7c-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a1-2a38-45d8-ba7c-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第12選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1288,11 +1526,14 @@
                 "id": "53c01fb6-1f24-424e-a2e4-5460acb5b862",
                 "name": "太平區",
                 "ivid": "TXG-270",
-                "code": "66000270"
+                "code": "66000270",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fb6-1f24-424e-a2e4-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a3-e710-4008-9fe4-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a3-e710-4008-9fe4-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第13選區[區域]",
         "quota": "6",
         "quota_woman": "1",
@@ -1303,17 +1544,21 @@
                 "id": "53c01fb3-8bc8-4d89-bcef-5460acb5b862",
                 "name": "霧峰區",
                 "ivid": "TXG-260",
-                "code": "66000260"
+                "code": "66000260",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fb3-8bc8-4d89-bcef-5460acb5b862"
             },
             {
                 "id": "53c01fbc-cf9c-4143-a619-5460acb5b862",
                 "name": "大里區",
                 "ivid": "TXG-280",
-                "code": "66000280"
+                "code": "66000280",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbc-cf9c-4143-a619-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a4-0894-4ab2-a228-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a4-0894-4ab2-a228-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第14選區[區域]",
         "quota": "2",
         "quota_woman": "0",
@@ -1324,29 +1569,35 @@
                 "id": "53c01f89-f8a8-4462-972b-5460acb5b862",
                 "name": "東勢區",
                 "ivid": "TXG-100",
-                "code": "66000100"
+                "code": "66000100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f89-f8a8-4462-972b-5460acb5b862"
             },
             {
                 "id": "53c01fa6-b130-4e08-8451-5460acb5b862",
                 "name": "新社區",
                 "ivid": "TXG-190",
-                "code": "66000190"
+                "code": "66000190",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fa6-b130-4e08-8451-5460acb5b862"
             },
             {
                 "id": "53c01fa7-ff6c-4297-93aa-5460acb5b862",
                 "name": "石岡區",
                 "ivid": "TXG-200",
-                "code": "66000200"
+                "code": "66000200",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fa7-ff6c-4297-93aa-5460acb5b862"
             },
             {
                 "id": "53c01fbf-d2a4-4c35-9643-5460acb5b862",
                 "name": "和平區",
                 "ivid": "TXG-290",
-                "code": "66000290"
+                "code": "66000290",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbf-d2a4-4c35-9643-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a4-105c-4e3c-a084-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a4-105c-4e3c-a084-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第15選區[平地]",
         "quota": "1",
         "quota_woman": "0",
@@ -1357,11 +1608,14 @@
                 "id": "53c01f64-2fa8-45d4-8254-5460acb5b862",
                 "name": "臺中市",
                 "ivid": "TXG",
-                "code": "66000"
+                "code": "66000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-2fa8-45d4-8254-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a5-a2a0-4ac9-837b-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a5-a2a0-4ac9-837b-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第01選區[區域]",
         "quota": "2",
         "quota_woman": "0",
@@ -1372,23 +1626,28 @@
                 "id": "53c01fc8-dbb8-4d4c-b657-5460acb5b862",
                 "name": "白河區",
                 "ivid": "TNN-030",
-                "code": "67000030"
+                "code": "67000030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc8-dbb8-4d4c-b657-5460acb5b862"
             },
             {
                 "id": "53c01fcd-16a4-43bc-8fe6-5460acb5b862",
                 "name": "後壁區",
                 "ivid": "TNN-050",
-                "code": "67000050"
+                "code": "67000050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fcd-16a4-43bc-8fe6-5460acb5b862"
             },
             {
                 "id": "53c01fd0-c740-4893-a4f1-5460acb5b862",
                 "name": "東山區",
                 "ivid": "TNN-060",
-                "code": "67000060"
+                "code": "67000060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fd0-c740-4893-a4f1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a5-f538-4480-84e3-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a5-f538-4480-84e3-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺中市 > 第16選區[山地]",
         "quota": "1",
         "quota_woman": "0",
@@ -1399,11 +1658,14 @@
                 "id": "53c01f64-2fa8-45d4-8254-5460acb5b862",
                 "name": "臺中市",
                 "ivid": "TXG",
-                "code": "66000"
+                "code": "66000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-2fa8-45d4-8254-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a6-a9e0-4fa7-a436-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a6-a9e0-4fa7-a436-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第02選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1414,23 +1676,28 @@
                 "id": "53c01fc0-584c-4443-8197-5460acb5b862",
                 "name": "新營區",
                 "ivid": "TNN-010",
-                "code": "67000010"
+                "code": "67000010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-584c-4443-8197-5460acb5b862"
             },
             {
                 "id": "53c01fc5-b938-4f95-8a4f-5460acb5b862",
                 "name": "鹽水區",
                 "ivid": "TNN-020",
-                "code": "67000020"
+                "code": "67000020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc5-b938-4f95-8a4f-5460acb5b862"
             },
             {
                 "id": "53c01fcb-7528-49c0-a9f8-5460acb5b862",
                 "name": "柳營區",
                 "ivid": "TNN-040",
-                "code": "67000040"
+                "code": "67000040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fcb-7528-49c0-a9f8-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a7-430c-42cc-bc1d-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a7-430c-42cc-bc1d-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第04選區[區域]",
         "quota": "3",
         "quota_woman": "0",
@@ -1441,29 +1708,35 @@
                 "id": "53c01fd2-1124-46ae-9e28-5460acb5b862",
                 "name": "麻豆區",
                 "ivid": "TNN-070",
-                "code": "67000070"
+                "code": "67000070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fd2-1124-46ae-9e28-5460acb5b862"
             },
             {
                 "id": "53c01fd6-a7cc-4590-8f7e-5460acb5b862",
                 "name": "下營區",
                 "ivid": "TNN-080",
-                "code": "67000080"
+                "code": "67000080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fd6-a7cc-4590-8f7e-5460acb5b862"
             },
             {
                 "id": "53c01fd8-2a68-461d-9c7d-5460acb5b862",
                 "name": "六甲區",
                 "ivid": "TNN-090",
-                "code": "67000090"
+                "code": "67000090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fd8-2a68-461d-9c7d-5460acb5b862"
             },
             {
                 "id": "53c01fda-b514-40b6-86a9-5460acb5b862",
                 "name": "官田區",
                 "ivid": "TNN-100",
-                "code": "67000100"
+                "code": "67000100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fda-b514-40b6-86a9-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a7-6c28-47eb-b304-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a7-6c28-47eb-b304-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第03選區[區域]",
         "quota": "2",
         "quota_woman": "0",
@@ -1474,23 +1747,28 @@
                 "id": "53c01fe0-0878-4d38-aa0b-5460acb5b862",
                 "name": "學甲區",
                 "ivid": "TNN-130",
-                "code": "67000130"
+                "code": "67000130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fe0-0878-4d38-aa0b-5460acb5b862"
             },
             {
                 "id": "53c01fe7-1fe0-4be0-a57d-5460acb5b862",
                 "name": "將軍區",
                 "ivid": "TNN-160",
-                "code": "67000160"
+                "code": "67000160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fe7-1fe0-4be0-a57d-5460acb5b862"
             },
             {
                 "id": "53c01fea-d4f4-45af-adcd-5460acb5b862",
                 "name": "北門區",
                 "ivid": "TNN-170",
-                "code": "67000170"
+                "code": "67000170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fea-d4f4-45af-adcd-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a8-d8e8-47c3-8e61-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a8-d8e8-47c3-8e61-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第05選區[區域]",
         "quota": "3",
         "quota_woman": "0",
@@ -1501,23 +1779,28 @@
                 "id": "53c01fdd-2f38-4969-87c1-5460acb5b862",
                 "name": "佳里區",
                 "ivid": "TNN-120",
-                "code": "67000120"
+                "code": "67000120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fdd-2f38-4969-87c1-5460acb5b862"
             },
             {
                 "id": "53c01fe2-7188-4c40-8ecf-5460acb5b862",
                 "name": "西港區",
                 "ivid": "TNN-140",
-                "code": "67000140"
+                "code": "67000140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fe2-7188-4c40-8ecf-5460acb5b862"
             },
             {
                 "id": "53c01fe4-cf2c-40c8-acbd-5460acb5b862",
                 "name": "七股區",
                 "ivid": "TNN-150",
-                "code": "67000150"
+                "code": "67000150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fe4-cf2c-40c8-acbd-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a9-6d30-4d50-a69f-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a9-6d30-4d50-a69f-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第06選區[區域]",
         "quota": "2",
         "quota_woman": "0",
@@ -1528,17 +1811,21 @@
                 "id": "53c01fef-6a40-4ed3-bfa7-5460acb5b862",
                 "name": "善化區",
                 "ivid": "TNN-190",
-                "code": "67000190"
+                "code": "67000190",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fef-6a40-4ed3-bfa7-5460acb5b862"
             },
             {
                 "id": "53c01ff4-fa5c-4e04-947d-5460acb5b862",
                 "name": "安定區",
                 "ivid": "TNN-210",
-                "code": "67000210"
+                "code": "67000210",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ff4-fa5c-4e04-947d-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400a9-ff0c-49b4-ad88-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400a9-ff0c-49b4-ad88-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第07選區[區域]",
         "quota": "2",
         "quota_woman": "0",
@@ -1549,23 +1836,28 @@
                 "id": "53c01fdc-2270-4d77-bb46-5460acb5b862",
                 "name": "大內區",
                 "ivid": "TNN-110",
-                "code": "67000110"
+                "code": "67000110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fdc-2270-4d77-bb46-5460acb5b862"
             },
             {
                 "id": "53c01fec-4e04-41ab-a4e8-5460acb5b862",
                 "name": "新化區",
                 "ivid": "TNN-180",
-                "code": "67000180"
+                "code": "67000180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fec-4e04-41ab-a4e8-5460acb5b862"
             },
             {
                 "id": "53c01ff6-6768-4884-98be-5460acb5b862",
                 "name": "山上區",
                 "ivid": "TNN-220",
-                "code": "67000220"
+                "code": "67000220",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ff6-6768-4884-98be-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400aa-a990-46c8-85b0-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400aa-a990-46c8-85b0-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第08選區[區域]",
         "quota": "1",
         "quota_woman": "0",
@@ -1576,29 +1868,35 @@
                 "id": "53c01ff7-78f4-4280-b00d-5460acb5b862",
                 "name": "玉井區",
                 "ivid": "TNN-230",
-                "code": "67000230"
+                "code": "67000230",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ff7-78f4-4280-b00d-5460acb5b862"
             },
             {
                 "id": "53c01ff8-3208-486b-bf16-5460acb5b862",
                 "name": "楠西區",
                 "ivid": "TNN-240",
-                "code": "67000240"
+                "code": "67000240",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ff8-3208-486b-bf16-5460acb5b862"
             },
             {
                 "id": "53c01ff9-a534-4035-97c0-5460acb5b862",
                 "name": "南化區",
                 "ivid": "TNN-250",
-                "code": "67000250"
+                "code": "67000250",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ff9-a534-4035-97c0-5460acb5b862"
             },
             {
                 "id": "53c01ffb-b474-495a-bfe1-5460acb5b862",
                 "name": "左鎮區",
                 "ivid": "TNN-260",
-                "code": "67000260"
+                "code": "67000260",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ffb-b474-495a-bfe1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400ab-082c-4614-bc31-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400ab-082c-4614-bc31-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第10選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -1609,11 +1907,14 @@
                 "id": "53c0201e-9420-412f-9702-5460acb5b862",
                 "name": "安南區",
                 "ivid": "TNN-350",
-                "code": "67000350"
+                "code": "67000350",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c0201e-9420-412f-9702-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400ab-69e8-49a5-9610-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400ab-69e8-49a5-9610-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第09選區[區域]",
         "quota": "8",
         "quota_woman": "2",
@@ -1624,17 +1925,21 @@
                 "id": "53c01ff2-177c-42aa-8f5a-5460acb5b862",
                 "name": "新市區",
                 "ivid": "TNN-200",
-                "code": "67000200"
+                "code": "67000200",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ff2-177c-42aa-8f5a-5460acb5b862"
             },
             {
                 "id": "53c02007-c954-40d5-a01e-5460acb5b862",
                 "name": "永康區",
                 "ivid": "TNN-310",
-                "code": "67000310"
+                "code": "67000310",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c02007-c954-40d5-a01e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400ac-40b8-4f9f-8a18-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400ac-40b8-4f9f-8a18-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第11選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1645,11 +1950,14 @@
                 "id": "53c02018-4bcc-4931-9912-5460acb5b862",
                 "name": "北區",
                 "ivid": "TNN-340",
-                "code": "67000340"
+                "code": "67000340",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c02018-4bcc-4931-9912-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400ad-0850-42da-88e8-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400ad-0850-42da-88e8-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第12選區[區域]",
         "quota": "2",
         "quota_woman": "0",
@@ -1660,11 +1968,14 @@
                 "id": "53c02029-a9e8-4bbf-9667-5460acb5b862",
                 "name": "中西區",
                 "ivid": "TNN-370",
-                "code": "67000370"
+                "code": "67000370",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c02029-a9e8-4bbf-9667-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400ad-9b4c-463e-8a59-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400ad-9b4c-463e-8a59-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第13選區[區域]",
         "quota": "2",
         "quota_woman": "0",
@@ -1675,11 +1986,14 @@
                 "id": "53c02026-743c-47d8-bc00-5460acb5b862",
                 "name": "安平區",
                 "ivid": "TNN-360",
-                "code": "67000360"
+                "code": "67000360",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c02026-743c-47d8-bc00-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400ae-75f8-40b8-8bcd-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400ae-75f8-40b8-8bcd-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第14選區[區域]",
         "quota": "6",
         "quota_woman": "1",
@@ -1690,11 +2004,14 @@
                 "id": "53c0200c-7b74-4725-a052-5460acb5b862",
                 "name": "東區",
                 "ivid": "TNN-320",
-                "code": "67000320"
+                "code": "67000320",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c0200c-7b74-4725-a052-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400ae-bd6c-467a-9bf1-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400ae-bd6c-467a-9bf1-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第15選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1705,11 +2022,14 @@
                 "id": "53c02013-dcbc-4710-ab10-5460acb5b862",
                 "name": "南區",
                 "ivid": "TNN-330",
-                "code": "67000330"
+                "code": "67000330",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c02013-dcbc-4710-ab10-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400af-9b80-4f92-87ea-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400af-9b80-4f92-87ea-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第17選區[平地]",
         "quota": "1",
         "quota_woman": "0",
@@ -1720,11 +2040,14 @@
                 "id": "53c01fc0-f25c-4a13-ab18-5460acb5b862",
                 "name": "臺南市",
                 "ivid": "TNN",
-                "code": "67000"
+                "code": "67000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-f25c-4a13-ab18-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400af-ccb0-488d-93d5-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400af-ccb0-488d-93d5-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第16選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -1735,29 +2058,35 @@
                 "id": "53c01ffc-3160-4fff-8761-5460acb5b862",
                 "name": "仁德區",
                 "ivid": "TNN-270",
-                "code": "67000270"
+                "code": "67000270",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ffc-3160-4fff-8761-5460acb5b862"
             },
             {
                 "id": "53c02000-09c4-4078-a5a2-5460acb5b862",
                 "name": "歸仁區",
                 "ivid": "TNN-280",
-                "code": "67000280"
+                "code": "67000280",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c02000-09c4-4078-a5a2-5460acb5b862"
             },
             {
                 "id": "53c02003-2078-4be3-b344-5460acb5b862",
                 "name": "關廟區",
                 "ivid": "TNN-290",
-                "code": "67000290"
+                "code": "67000290",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c02003-2078-4be3-b344-5460acb5b862"
             },
             {
                 "id": "53c02006-2270-49a4-ba23-5460acb5b862",
                 "name": "龍崎區",
                 "ivid": "TNN-300",
-                "code": "67000300"
+                "code": "67000300",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c02006-2270-49a4-ba23-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c400b0-1694-421d-8a2d-6cceacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c400b0-1694-421d-8a2d-6cceacb5b862",
         "election": "2014 > 直轄市議員 > 臺南市 > 第18選區[山地]",
         "quota": "1",
         "quota_woman": "0",
@@ -1768,11 +2097,14 @@
                 "id": "53c01fc0-f25c-4a13-ab18-5460acb5b862",
                 "name": "臺南市",
                 "ivid": "TNN",
-                "code": "67000"
+                "code": "67000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fc0-f25c-4a13-ab18-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40379-0dc4-43f0-b742-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40379-0dc4-43f0-b742-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第01選區[區域]",
         "quota": "11",
         "quota_woman": "2",
@@ -1783,11 +2115,14 @@
                 "id": "53c01bf7-358c-42b2-948a-5460acb5b862",
                 "name": "桃園區",
                 "ivid": "TAO-010",
-                "code": "10003010"
+                "code": "10003010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf7-358c-42b2-948a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40379-dfd4-45d2-9366-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40379-dfd4-45d2-9366-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第02選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1798,11 +2133,14 @@
                 "id": "53c01c1d-6618-4705-96c2-5460acb5b862",
                 "name": "龜山區",
                 "ivid": "TAO-070",
-                "code": "10003070"
+                "code": "10003070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c1d-6618-4705-96c2-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4037a-1020-44f3-8b71-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4037a-1020-44f3-8b71-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第03選區[區域]",
         "quota": "5",
         "quota_woman": "1",
@@ -1813,11 +2151,14 @@
                 "id": "53c01c21-d6a8-4ecc-ab4c-5460acb5b862",
                 "name": "八德區",
                 "ivid": "TAO-080",
-                "code": "10003080"
+                "code": "10003080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c21-d6a8-4ecc-ab4c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4037a-fb80-4a3d-a4fd-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4037a-fb80-4a3d-a4fd-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第04選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1828,11 +2169,14 @@
                 "id": "53c01c15-fb2c-4c5c-b66c-5460acb5b862",
                 "name": "蘆竹區",
                 "ivid": "TAO-050",
-                "code": "10003050"
+                "code": "10003050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c15-fb2c-4c5c-b66c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4037b-f258-429c-b4e4-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4037b-f258-429c-b4e4-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第05選區[區域]",
         "quota": "2",
         "quota_woman": "0",
@@ -1843,11 +2187,14 @@
                 "id": "53c01c1a-58c0-48a4-81f8-5460acb5b862",
                 "name": "大園區",
                 "ivid": "TAO-060",
-                "code": "10003060"
+                "code": "10003060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c1a-58c0-48a4-81f8-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4037c-2f64-4f07-81ee-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4037c-2f64-4f07-81ee-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第06選區[區域]",
         "quota": "3",
         "quota_woman": "0",
@@ -1858,17 +2205,21 @@
                 "id": "53c01c0c-20c4-4826-86e1-5460acb5b862",
                 "name": "大溪區",
                 "ivid": "TAO-030",
-                "code": "10003030"
+                "code": "10003030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c0c-20c4-4826-86e1-5460acb5b862"
             },
             {
                 "id": "53c01c36-77dc-4859-b5e0-5460acb5b862",
                 "name": "復興區",
                 "ivid": "TAO-130",
-                "code": "10003130"
+                "code": "10003130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c36-77dc-4859-b5e0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4037d-16cc-4e2d-a87e-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4037d-16cc-4e2d-a87e-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第07選區[區域]",
         "quota": "10",
         "quota_woman": "2",
@@ -1879,11 +2230,14 @@
                 "id": "53c01c00-e14c-48cd-ad88-5460acb5b862",
                 "name": "中壢區",
                 "ivid": "TAO-020",
-                "code": "10003020"
+                "code": "10003020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c00-e14c-48cd-ad88-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4037d-7e34-45be-9f21-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4037d-7e34-45be-9f21-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第08選區[區域]",
         "quota": "6",
         "quota_woman": "1",
@@ -1894,11 +2248,14 @@
                 "id": "53c01c2a-87fc-480e-94b0-5460acb5b862",
                 "name": "平鎮區",
                 "ivid": "TAO-100",
-                "code": "10003100"
+                "code": "10003100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c2a-87fc-480e-94b0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4037e-05d8-4352-bee3-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4037e-05d8-4352-bee3-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第09選區[區域]",
         "quota": "4",
         "quota_woman": "1",
@@ -1909,11 +2266,14 @@
                 "id": "53c01c10-124c-44af-ba9a-5460acb5b862",
                 "name": "楊梅區",
                 "ivid": "TAO-040",
-                "code": "10003040"
+                "code": "10003040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c10-124c-44af-ba9a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4037f-e47c-4242-84a2-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4037f-e47c-4242-84a2-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第10選區[區域]",
         "quota": "3",
         "quota_woman": "0",
@@ -1924,11 +2284,14 @@
                 "id": "53c01c26-8000-4911-b127-5460acb5b862",
                 "name": "龍潭區",
                 "ivid": "TAO-090",
-                "code": "10003090"
+                "code": "10003090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c26-8000-4911-b127-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40380-3d34-4f83-9e42-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40380-3d34-4f83-9e42-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第12選區[區域]",
         "quota": "2",
         "quota_woman": "0",
@@ -1939,11 +2302,14 @@
                 "id": "53c01c33-44a0-4589-ab86-5460acb5b862",
                 "name": "觀音區",
                 "ivid": "TAO-120",
-                "code": "10003120"
+                "code": "10003120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c33-44a0-4589-ab86-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40380-6cd4-40c3-887e-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40380-6cd4-40c3-887e-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第11選區[區域]",
         "quota": "1",
         "quota_woman": "0",
@@ -1954,11 +2320,14 @@
                 "id": "53c01c2f-7050-492d-bddb-5460acb5b862",
                 "name": "新屋區",
                 "ivid": "TAO-110",
-                "code": "10003110"
+                "code": "10003110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c2f-7050-492d-bddb-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40381-c84c-4785-a6e8-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40381-c84c-4785-a6e8-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第13選區[平地]",
         "quota": "3",
         "quota_woman": "0",
@@ -1969,11 +2338,14 @@
                 "id": "53c01bf7-57f0-4e3e-bbb6-5460acb5b862",
                 "name": "桃園市",
                 "ivid": "TAO",
-                "code": "10003"
+                "code": "10003",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf7-57f0-4e3e-bbb6-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c40382-7254-4f2a-ae12-6d45acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c40382-7254-4f2a-ae12-6d45acb5b862",
         "election": "2014 > 直轄市議員 > 桃園市 > 第14選區[山地]",
         "quota": "2",
         "quota_woman": "0",
@@ -1984,7 +2356,8 @@
                 "id": "53c01bf7-57f0-4e3e-bbb6-5460acb5b862",
                 "name": "桃園市",
                 "ivid": "TAO",
-                "code": "10003"
+                "code": "10003",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf7-57f0-4e3e-bbb6-5460acb5b862"
             }
         ]
     }

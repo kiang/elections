@@ -1,5 +1,7 @@
 [
     {
+        "id": "53c02085-6840-47ee-926b-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02085-6840-47ee-926b-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 連江縣 > 南竿鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -10,11 +12,14 @@
                 "id": "53c01bce-efb8-433d-816a-5460acb5b862",
                 "name": "南竿鄉",
                 "ivid": "LJF-010",
-                "code": "09007010"
+                "code": "09007010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bce-efb8-433d-816a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02086-0288-467f-8257-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02086-0288-467f-8257-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 連江縣 > 莒光鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -25,11 +30,14 @@
                 "id": "53c01bd0-e394-464e-a913-5460acb5b862",
                 "name": "莒光鄉",
                 "ivid": "LJF-030",
-                "code": "09007030"
+                "code": "09007030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd0-e394-464e-a913-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02086-205c-4d92-b1da-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02086-205c-4d92-b1da-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 金門縣 > 金城鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -40,11 +48,14 @@
                 "id": "53c01bd1-9eec-4217-ac52-5460acb5b862",
                 "name": "金城鎮",
                 "ivid": "JME-010",
-                "code": "09020010"
+                "code": "09020010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd1-9eec-4217-ac52-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02086-5fdc-4750-8a5a-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02086-5fdc-4750-8a5a-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 金門縣 > 金沙鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -55,11 +66,14 @@
                 "id": "53c01bd2-fe28-4f39-8538-5460acb5b862",
                 "name": "金沙鎮",
                 "ivid": "JME-020",
-                "code": "09020020"
+                "code": "09020020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd2-fe28-4f39-8538-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02086-80d0-484a-80b0-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02086-80d0-484a-80b0-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 連江縣 > 東引鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -70,11 +84,14 @@
                 "id": "53c01bd1-e0a0-4164-a171-5460acb5b862",
                 "name": "東引鄉",
                 "ivid": "LJF-040",
-                "code": "09007040"
+                "code": "09007040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd1-e0a0-4164-a171-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02086-9a44-4f35-8993-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02086-9a44-4f35-8993-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 連江縣 > 北竿鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -85,11 +102,14 @@
                 "id": "53c01bcf-e880-4a7f-91c3-5460acb5b862",
                 "name": "北竿鄉",
                 "ivid": "LJF-020",
-                "code": "09007020"
+                "code": "09007020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bcf-e880-4a7f-91c3-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02087-0e5c-4495-a7e4-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02087-0e5c-4495-a7e4-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 金門縣 > 烏坵鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -100,11 +120,14 @@
                 "id": "53c01bd7-6afc-470f-9df0-5460acb5b862",
                 "name": "烏坵鄉",
                 "ivid": "JME-020",
-                "code": "09020060"
+                "code": "09020060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd7-6afc-470f-9df0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02087-6158-4617-89a0-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02087-6158-4617-89a0-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 金門縣 > 烈嶼鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -115,11 +138,14 @@
                 "id": "53c01bd5-b0e8-4640-9e80-5460acb5b862",
                 "name": "烈嶼鄉",
                 "ivid": "JME-050",
-                "code": "09020050"
+                "code": "09020050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd5-b0e8-4640-9e80-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02087-7760-4839-a8bd-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02087-7760-4839-a8bd-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 金門縣 > 金寧鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -130,11 +156,14 @@
                 "id": "53c01bd5-0698-4581-bed5-5460acb5b862",
                 "name": "金寧鄉",
                 "ivid": "JME-040",
-                "code": "09020040"
+                "code": "09020040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd5-0698-4581-bed5-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02087-c5ec-431d-a57c-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02087-c5ec-431d-a57c-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 金門縣 > 金湖鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -145,11 +174,14 @@
                 "id": "53c01bd3-5b04-4218-9764-5460acb5b862",
                 "name": "金湖鎮",
                 "ivid": "JME-030",
-                "code": "09020030"
+                "code": "09020030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd3-5b04-4218-9764-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02088-0ef4-484f-923f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02088-0ef4-484f-923f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 宜蘭市",
         "quota": "1",
         "quota_woman": "0",
@@ -160,11 +192,14 @@
                 "id": "53c01bd7-2824-4416-9e5a-5460acb5b862",
                 "name": "宜蘭市",
                 "ivid": "ILA-010",
-                "code": "10002010"
+                "code": "10002010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bd7-2824-4416-9e5a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02088-3b84-4da0-b4a6-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02088-3b84-4da0-b4a6-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 頭城鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -175,11 +210,14 @@
                 "id": "53c01be2-e62c-4ddd-9339-5460acb5b862",
                 "name": "頭城鎮",
                 "ivid": "ILA-040",
-                "code": "10002040"
+                "code": "10002040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01be2-e62c-4ddd-9339-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02088-cb28-4674-96bb-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02088-cb28-4674-96bb-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 蘇澳鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -190,11 +228,14 @@
                 "id": "53c01bdf-3458-4d75-a8e7-5460acb5b862",
                 "name": "蘇澳鎮",
                 "ivid": "ILA-030",
-                "code": "10002030"
+                "code": "10002030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bdf-3458-4d75-a8e7-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02088-d8e0-4431-a21d-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02088-d8e0-4431-a21d-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 羅東鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -205,11 +246,14 @@
                 "id": "53c01bdc-6248-4a99-a288-5460acb5b862",
                 "name": "羅東鎮",
                 "ivid": "ILA-020",
-                "code": "10002020"
+                "code": "10002020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bdc-6248-4a99-a288-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02088-de3c-499a-ae2e-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02088-de3c-499a-ae2e-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 礁溪鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -220,11 +264,14 @@
                 "id": "53c01be6-6128-446f-9b49-5460acb5b862",
                 "name": "礁溪鄉",
                 "ivid": "ILA-050",
-                "code": "10002050"
+                "code": "10002050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01be6-6128-446f-9b49-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02089-3ec4-40b1-8806-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02089-3ec4-40b1-8806-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 員山鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -235,11 +282,14 @@
                 "id": "53c01bea-c6a8-4e30-a4c8-5460acb5b862",
                 "name": "員山鄉",
                 "ivid": "ILA-070",
-                "code": "10002070"
+                "code": "10002070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bea-c6a8-4e30-a4c8-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02089-62e0-422e-8c8c-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02089-62e0-422e-8c8c-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 壯圍鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -250,11 +300,14 @@
                 "id": "53c01be8-2db4-4bac-ba49-5460acb5b862",
                 "name": "壯圍鄉",
                 "ivid": "ILA-060",
-                "code": "10002060"
+                "code": "10002060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01be8-2db4-4bac-ba49-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02089-9b30-4216-8dff-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02089-9b30-4216-8dff-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 冬山鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -265,11 +318,14 @@
                 "id": "53c01bec-bc98-4180-840c-5460acb5b862",
                 "name": "冬山鄉",
                 "ivid": "ILA-080",
-                "code": "10002080"
+                "code": "10002080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bec-bc98-4180-840c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02089-d294-4816-a75a-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02089-d294-4816-a75a-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 大同鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -280,11 +336,14 @@
                 "id": "53c01bf5-64ec-4f8e-9757-5460acb5b862",
                 "name": "大同鄉",
                 "ivid": "ILA-110",
-                "code": "10002110"
+                "code": "10002110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf5-64ec-4f8e-9757-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02089-d91c-4049-a142-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02089-d91c-4049-a142-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 三星鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -295,11 +354,14 @@
                 "id": "53c01bf1-3608-4016-82f2-5460acb5b862",
                 "name": "三星鄉",
                 "ivid": "ILA-100",
-                "code": "10002100"
+                "code": "10002100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf1-3608-4016-82f2-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02089-f1bc-40f3-b766-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02089-f1bc-40f3-b766-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 五結鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -310,11 +372,14 @@
                 "id": "53c01bef-fbfc-41ab-8f6e-5460acb5b862",
                 "name": "五結鄉",
                 "ivid": "ILA-090",
-                "code": "10002090"
+                "code": "10002090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bef-fbfc-41ab-8f6e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208a-48e8-4ae5-8e13-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208a-48e8-4ae5-8e13-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 新埔鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -325,11 +390,14 @@
                 "id": "53c01c40-81b8-4996-8ff3-5460acb5b862",
                 "name": "新埔鎮",
                 "ivid": "HSQ-030",
-                "code": "10004030"
+                "code": "10004030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c40-81b8-4996-8ff3-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208a-b500-4a1b-a1f6-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208a-b500-4a1b-a1f6-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 竹東鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -340,11 +408,14 @@
                 "id": "53c01c3c-949c-4db4-bf6d-5460acb5b862",
                 "name": "竹東鎮",
                 "ivid": "HSQ-020",
-                "code": "10004020"
+                "code": "10004020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c3c-949c-4db4-bf6d-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208a-be38-42ef-ba31-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208a-be38-42ef-ba31-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 宜蘭縣 > 南澳鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -355,11 +426,14 @@
                 "id": "53c01bf6-9e84-417f-8e5b-5460acb5b862",
                 "name": "南澳鄉",
                 "ivid": "ILA-120",
-                "code": "10002120"
+                "code": "10002120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01bf6-9e84-417f-8e5b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208a-e834-459a-aef7-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208a-e834-459a-aef7-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 竹北市",
         "quota": "1",
         "quota_woman": "0",
@@ -370,11 +444,14 @@
                 "id": "53c01c38-f738-493d-a3ba-5460acb5b862",
                 "name": "竹北市",
                 "ivid": "HSQ-010",
-                "code": "10004010"
+                "code": "10004010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c38-f738-493d-a3ba-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208b-21f4-48b0-a090-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208b-21f4-48b0-a090-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 橫山鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -385,11 +462,14 @@
                 "id": "53c01c4b-4c5c-426d-a341-5460acb5b862",
                 "name": "橫山鄉",
                 "ivid": "HSQ-080",
-                "code": "10004080"
+                "code": "10004080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c4b-4c5c-426d-a341-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208b-6ba4-4e0f-a488-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208b-6ba4-4e0f-a488-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 關西鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -400,11 +480,14 @@
                 "id": "53c01c42-4e4c-42bc-b24f-5460acb5b862",
                 "name": "關西鎮",
                 "ivid": "HSQ-040",
-                "code": "10004040"
+                "code": "10004040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c42-4e4c-42bc-b24f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208b-73f0-4bce-a515-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208b-73f0-4bce-a515-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 湖口鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -415,11 +498,14 @@
                 "id": "53c01c44-7e64-457f-ac69-5460acb5b862",
                 "name": "湖口鄉",
                 "ivid": "HSQ-050",
-                "code": "10004050"
+                "code": "10004050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c44-7e64-457f-ac69-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208b-8750-4e12-94a1-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208b-8750-4e12-94a1-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 新豐鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -430,11 +516,14 @@
                 "id": "53c01c47-e28c-440c-b96f-5460acb5b862",
                 "name": "新豐鄉",
                 "ivid": "HSQ-060",
-                "code": "10004060"
+                "code": "10004060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c47-e28c-440c-b96f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208b-b3d4-4543-a08b-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208b-b3d4-4543-a08b-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 芎林鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -445,11 +534,14 @@
                 "id": "53c01c49-d158-486c-90f3-5460acb5b862",
                 "name": "芎林鄉",
                 "ivid": "HSQ-070",
-                "code": "10004070"
+                "code": "10004070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c49-d158-486c-90f3-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208c-201c-48a5-89c1-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208c-201c-48a5-89c1-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 北埔鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -460,11 +552,14 @@
                 "id": "53c01c4e-263c-4167-ba0e-5460acb5b862",
                 "name": "北埔鄉",
                 "ivid": "HSQ-090",
-                "code": "10004090"
+                "code": "10004090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c4e-263c-4167-ba0e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208c-8ee4-4f18-8f88-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208c-8ee4-4f18-8f88-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 五峰鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -475,11 +570,14 @@
                 "id": "53c01c52-fa94-44c1-b8a1-5460acb5b862",
                 "name": "五峰鄉",
                 "ivid": "HSQ-130",
-                "code": "10004130"
+                "code": "10004130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c52-fa94-44c1-b8a1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208c-c83c-411d-99fb-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208c-c83c-411d-99fb-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 尖石鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -490,11 +588,14 @@
                 "id": "53c01c51-cd28-41b6-9074-5460acb5b862",
                 "name": "尖石鄉",
                 "ivid": "HSQ-120",
-                "code": "10004120"
+                "code": "10004120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c51-cd28-41b6-9074-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208c-c9d8-4bf2-a913-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208c-c9d8-4bf2-a913-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 寶山鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -505,11 +606,14 @@
                 "id": "53c01c4f-5d48-4b26-b3fb-5460acb5b862",
                 "name": "寶山鄉",
                 "ivid": "HSQ-100",
-                "code": "10004100"
+                "code": "10004100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c4f-5d48-4b26-b3fb-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208c-f3e4-4b2c-ac08-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208c-f3e4-4b2c-ac08-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 新竹縣 > 峨眉鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -520,11 +624,14 @@
                 "id": "53c01c50-e4dc-4c3c-b8f3-5460acb5b862",
                 "name": "峨眉鄉",
                 "ivid": "HSQ-110",
-                "code": "10004110"
+                "code": "10004110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c50-e4dc-4c3c-b8f3-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208d-1da0-437a-b35d-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208d-1da0-437a-b35d-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 通霄鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -535,11 +642,14 @@
                 "id": "53c01c59-6338-4357-98a2-5460acb5b862",
                 "name": "通霄鎮",
                 "ivid": "MIA-030",
-                "code": "10005030"
+                "code": "10005030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c59-6338-4357-98a2-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208d-6498-4172-8831-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208d-6498-4172-8831-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 苗栗市",
         "quota": "1",
         "quota_woman": "0",
@@ -550,11 +660,14 @@
                 "id": "53c01c53-0c04-4c12-a487-5460acb5b862",
                 "name": "苗栗市",
                 "ivid": "MIA-010",
-                "code": "10005010"
+                "code": "10005010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c53-0c04-4c12-a487-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208d-8d08-4434-9a0c-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208d-8d08-4434-9a0c-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 頭份鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -565,11 +678,14 @@
                 "id": "53c01c60-1844-4f5a-909f-5460acb5b862",
                 "name": "頭份鎮",
                 "ivid": "MIA-050",
-                "code": "10005050"
+                "code": "10005050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c60-1844-4f5a-909f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208d-cc74-40dd-adbf-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208d-cc74-40dd-adbf-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 竹南鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -580,11 +696,14 @@
                 "id": "53c01c5d-0ac8-42e6-b473-5460acb5b862",
                 "name": "竹南鎮",
                 "ivid": "MIA-040",
-                "code": "10005040"
+                "code": "10005040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c5d-0ac8-42e6-b473-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208d-e738-4155-a755-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208d-e738-4155-a755-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 苑裡鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -595,11 +714,14 @@
                 "id": "53c01c57-5908-4195-a256-5460acb5b862",
                 "name": "苑裡鎮",
                 "ivid": "MIA-020",
-                "code": "10005020"
+                "code": "10005020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c57-5908-4195-a256-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208e-2148-4f81-9daa-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208e-2148-4f81-9daa-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 卓蘭鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -610,11 +732,14 @@
                 "id": "53c01c67-abb0-4229-b1c4-5460acb5b862",
                 "name": "卓蘭鎮",
                 "ivid": "MIA-070",
-                "code": "10005070"
+                "code": "10005070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c67-abb0-4229-b1c4-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208e-38e8-401b-a8b5-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208e-38e8-401b-a8b5-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 公館鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -625,11 +750,14 @@
                 "id": "53c01c6a-bb40-4242-ab51-5460acb5b862",
                 "name": "公館鄉",
                 "ivid": "MIA-090",
-                "code": "10005090"
+                "code": "10005090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c6a-bb40-4242-ab51-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208e-89c0-4e38-8baa-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208e-89c0-4e38-8baa-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 後龍鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -640,11 +768,14 @@
                 "id": "53c01c64-84c4-470d-9230-5460acb5b862",
                 "name": "後龍鎮",
                 "ivid": "MIA-060",
-                "code": "10005060"
+                "code": "10005060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c64-84c4-470d-9230-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208e-ecb8-4693-b16f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208e-ecb8-4693-b16f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 銅鑼鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -655,11 +786,14 @@
                 "id": "53c01c6d-6800-41dd-aade-5460acb5b862",
                 "name": "銅鑼鄉",
                 "ivid": "MIA-100",
-                "code": "10005100"
+                "code": "10005100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c6d-6800-41dd-aade-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208e-f864-4b8f-b085-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208e-f864-4b8f-b085-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 南庄鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -670,11 +804,14 @@
                 "id": "53c01c6f-f8bc-4670-9b8e-5460acb5b862",
                 "name": "南庄鄉",
                 "ivid": "MIA-110",
-                "code": "10005110"
+                "code": "10005110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c6f-f8bc-4670-9b8e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208e-fe38-4916-b1e0-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208e-fe38-4916-b1e0-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 大湖鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -685,11 +822,14 @@
                 "id": "53c01c68-a478-4fce-bcd2-5460acb5b862",
                 "name": "大湖鄉",
                 "ivid": "MIA-080",
-                "code": "10005080"
+                "code": "10005080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c68-a478-4fce-bcd2-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208f-1f4c-4087-9402-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208f-1f4c-4087-9402-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 造橋鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -700,11 +840,14 @@
                 "id": "53c01c73-9ab4-45bd-bc2a-5460acb5b862",
                 "name": "造橋鄉",
                 "ivid": "MIA-150",
-                "code": "10005150"
+                "code": "10005150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c73-9ab4-45bd-bc2a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208f-310c-423e-b804-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208f-310c-423e-b804-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 西湖鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -715,11 +858,14 @@
                 "id": "53c01c72-9380-4cf7-8d5b-5460acb5b862",
                 "name": "西湖鄉",
                 "ivid": "MIA-140",
-                "code": "10005140"
+                "code": "10005140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c72-9380-4cf7-8d5b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208f-98cc-4e9d-86d9-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208f-98cc-4e9d-86d9-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 頭屋鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -730,11 +876,14 @@
                 "id": "53c01c70-aea8-460c-a02e-5460acb5b862",
                 "name": "頭屋鄉",
                 "ivid": "MIA-120",
-                "code": "10005120"
+                "code": "10005120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c70-aea8-460c-a02e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0208f-ee40-4828-8c5b-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0208f-ee40-4828-8c5b-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 三義鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -745,11 +894,14 @@
                 "id": "53c01c71-e14c-44e3-bbfe-5460acb5b862",
                 "name": "三義鄉",
                 "ivid": "MIA-130",
-                "code": "10005130"
+                "code": "10005130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c71-e14c-44e3-bbfe-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02090-00c0-46e0-b7aa-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02090-00c0-46e0-b7aa-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 獅潭鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -760,11 +912,14 @@
                 "id": "53c01c76-b19c-4129-8031-5460acb5b862",
                 "name": "獅潭鄉",
                 "ivid": "MIA-170",
-                "code": "10005170"
+                "code": "10005170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c76-b19c-4129-8031-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02090-a9b8-4106-ad2d-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02090-a9b8-4106-ad2d-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 泰安鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -775,11 +930,14 @@
                 "id": "53c01c78-9978-43bf-96f5-5460acb5b862",
                 "name": "泰安鄉",
                 "ivid": "MIA-180",
-                "code": "10005180"
+                "code": "10005180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c78-9978-43bf-96f5-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02090-badc-4eea-926d-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02090-badc-4eea-926d-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 彰化市",
         "quota": "1",
         "quota_woman": "0",
@@ -790,11 +948,14 @@
                 "id": "53c01c79-13a8-4108-b201-5460acb5b862",
                 "name": "彰化市",
                 "ivid": "CHA-010",
-                "code": "10007010"
+                "code": "10007010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c79-13a8-4108-b201-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02090-d65c-4d6e-b508-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02090-d65c-4d6e-b508-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 苗栗縣 > 三灣鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -805,11 +966,14 @@
                 "id": "53c01c74-8164-4155-a393-5460acb5b862",
                 "name": "三灣鄉",
                 "ivid": "MIA-160",
-                "code": "10005160"
+                "code": "10005160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c74-8164-4155-a393-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02091-0040-45cb-ac9b-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02091-0040-45cb-ac9b-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 伸港鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -820,11 +984,14 @@
                 "id": "53c01c8b-011c-4404-84c2-5460acb5b862",
                 "name": "伸港鄉",
                 "ivid": "CHA-050",
-                "code": "10007050"
+                "code": "10007050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c8b-011c-4404-84c2-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02091-0f74-46f5-a264-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02091-0f74-46f5-a264-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 福興鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -835,11 +1002,14 @@
                 "id": "53c01c8e-e440-447c-9f94-5460acb5b862",
                 "name": "福興鄉",
                 "ivid": "CHA-060",
-                "code": "10007060"
+                "code": "10007060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c8e-e440-447c-9f94-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02091-2270-4cec-aca3-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02091-2270-4cec-aca3-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 秀水鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -850,11 +1020,14 @@
                 "id": "53c01c91-4064-498a-a8a8-5460acb5b862",
                 "name": "秀水鄉",
                 "ivid": "CHA-070",
-                "code": "10007070"
+                "code": "10007070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c91-4064-498a-a8a8-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02091-9f90-4b9c-a99f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02091-9f90-4b9c-a99f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 和美鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -865,11 +1038,14 @@
                 "id": "53c01c86-8fc0-4c90-935c-5460acb5b862",
                 "name": "和美鎮",
                 "ivid": "CHA-030",
-                "code": "10007030"
+                "code": "10007030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c86-8fc0-4c90-935c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02091-bfac-4c39-8f0f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02091-bfac-4c39-8f0f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 線西鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -880,11 +1056,14 @@
                 "id": "53c01c8a-f7a4-4a00-9626-5460acb5b862",
                 "name": "線西鄉",
                 "ivid": "CHA-040",
-                "code": "10007040"
+                "code": "10007040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c8a-f7a4-4a00-9626-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02091-ebec-43eb-998a-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02091-ebec-43eb-998a-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 鹿港鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -895,11 +1074,14 @@
                 "id": "53c01c83-bc2c-4b75-acfd-5460acb5b862",
                 "name": "鹿港鎮",
                 "ivid": "CHA-020",
-                "code": "10007020"
+                "code": "10007020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c83-bc2c-4b75-acfd-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02092-1220-4352-9662-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02092-1220-4352-9662-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 花壇鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -910,11 +1092,14 @@
                 "id": "53c01c92-7d10-484c-9e71-5460acb5b862",
                 "name": "花壇鄉",
                 "ivid": "CHA-080",
-                "code": "10007080"
+                "code": "10007080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c92-7d10-484c-9e71-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02092-6240-4262-93b6-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02092-6240-4262-93b6-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 溪湖鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -925,11 +1110,14 @@
                 "id": "53c01c9c-adf8-4a55-89d8-5460acb5b862",
                 "name": "溪湖鎮",
                 "ivid": "CHA-110",
-                "code": "10007110"
+                "code": "10007110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c9c-adf8-4a55-89d8-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02092-8bb8-47dc-a406-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02092-8bb8-47dc-a406-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 芬園鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -940,11 +1128,14 @@
                 "id": "53c01c94-0c10-47ac-af7c-5460acb5b862",
                 "name": "芬園鄉",
                 "ivid": "CHA-090",
-                "code": "10007090"
+                "code": "10007090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c94-0c10-47ac-af7c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02092-cc48-449f-9042-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02092-cc48-449f-9042-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 員林鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -955,11 +1146,14 @@
                 "id": "53c01c96-1370-4d86-a7ff-5460acb5b862",
                 "name": "員林鎮",
                 "ivid": "CHA-100",
-                "code": "10007100"
+                "code": "10007100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c96-1370-4d86-a7ff-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02092-da04-438c-8130-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02092-da04-438c-8130-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 田中鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -970,11 +1164,14 @@
                 "id": "53c01c9f-2c08-4039-b9a0-5460acb5b862",
                 "name": "田中鎮",
                 "ivid": "CHA-120",
-                "code": "10007120"
+                "code": "10007120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c9f-2c08-4039-b9a0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02093-1fec-4271-8cad-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02093-1fec-4271-8cad-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 大村鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -985,11 +1182,14 @@
                 "id": "53c01ca2-923c-481f-8715-5460acb5b862",
                 "name": "大村鄉",
                 "ivid": "CHA-130",
-                "code": "10007130"
+                "code": "10007130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ca2-923c-481f-8715-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02093-411c-4f41-be40-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02093-411c-4f41-be40-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 埔心鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1000,11 +1200,14 @@
                 "id": "53c01ca9-8f1c-4db1-9d77-5460acb5b862",
                 "name": "埔心鄉",
                 "ivid": "CHA-150",
-                "code": "10007150"
+                "code": "10007150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ca9-8f1c-4db1-9d77-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02093-72c4-4524-a405-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02093-72c4-4524-a405-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 埔鹽鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1015,11 +1218,14 @@
                 "id": "53c01ca5-b7f0-4e7b-9121-5460acb5b862",
                 "name": "埔鹽鄉",
                 "ivid": "CHA-140",
-                "code": "10007140"
+                "code": "10007140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ca5-b7f0-4e7b-9121-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02093-df4c-4fa8-8926-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02093-df4c-4fa8-8926-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 永靖鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1030,11 +1236,14 @@
                 "id": "53c01cac-9644-41c5-913e-5460acb5b862",
                 "name": "永靖鄉",
                 "ivid": "CHA-160",
-                "code": "10007160"
+                "code": "10007160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cac-9644-41c5-913e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02094-03fc-4cb7-a463-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02094-03fc-4cb7-a463-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 埤頭鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1045,11 +1254,14 @@
                 "id": "53c01cbc-38b8-43ad-87e3-5460acb5b862",
                 "name": "埤頭鄉",
                 "ivid": "CHA-220",
-                "code": "10007220"
+                "code": "10007220",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cbc-38b8-43ad-87e3-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02094-46e0-43ef-94a1-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02094-46e0-43ef-94a1-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 北斗鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1060,11 +1272,14 @@
                 "id": "53c01cb4-4aa8-4d36-9412-5460acb5b862",
                 "name": "北斗鎮",
                 "ivid": "CHA-190",
-                "code": "10007190"
+                "code": "10007190",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cb4-4aa8-4d36-9412-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02094-9508-4719-b4e5-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02094-9508-4719-b4e5-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 二水鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1075,11 +1290,14 @@
                 "id": "53c01cb2-ed88-46e0-adee-5460acb5b862",
                 "name": "二水鄉",
                 "ivid": "CHA-180",
-                "code": "10007180"
+                "code": "10007180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cb2-ed88-46e0-adee-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02094-9600-43ed-a563-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02094-9600-43ed-a563-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 二林鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1090,11 +1308,14 @@
                 "id": "53c01cb6-0a30-496a-a92a-5460acb5b862",
                 "name": "二林鎮",
                 "ivid": "CHA-200",
-                "code": "10007200"
+                "code": "10007200",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cb6-0a30-496a-a92a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02094-a4b0-4952-a78f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02094-a4b0-4952-a78f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 田尾鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1105,11 +1326,14 @@
                 "id": "53c01cb9-5534-40f1-8409-5460acb5b862",
                 "name": "田尾鄉",
                 "ivid": "CHA-210",
-                "code": "10007210"
+                "code": "10007210",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cb9-5534-40f1-8409-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02094-ddb8-4279-afe1-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02094-ddb8-4279-afe1-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 社頭鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1120,11 +1344,14 @@
                 "id": "53c01caf-1120-4e86-b304-5460acb5b862",
                 "name": "社頭鄉",
                 "ivid": "CHA-170",
-                "code": "10007170"
+                "code": "10007170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01caf-1120-4e86-b304-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02095-04b4-44d9-b37f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02095-04b4-44d9-b37f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 大城鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1135,11 +1362,14 @@
                 "id": "53c01cc1-5258-4aac-b5e4-5460acb5b862",
                 "name": "大城鄉",
                 "ivid": "CHA-240",
-                "code": "10007240"
+                "code": "10007240",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cc1-5258-4aac-b5e4-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02095-0b2c-4175-b505-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02095-0b2c-4175-b505-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 竹塘鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1150,11 +1380,14 @@
                 "id": "53c01cc2-9c00-4fbd-913c-5460acb5b862",
                 "name": "竹塘鄉",
                 "ivid": "CHA-250",
-                "code": "10007250"
+                "code": "10007250",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cc2-9c00-4fbd-913c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02095-7884-4adb-a7a2-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02095-7884-4adb-a7a2-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 芳苑鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1165,11 +1398,14 @@
                 "id": "53c01cbe-bb44-4f43-9f2d-5460acb5b862",
                 "name": "芳苑鄉",
                 "ivid": "CHA-230",
-                "code": "10007230"
+                "code": "10007230",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cbe-bb44-4f43-9f2d-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02095-afdc-4d04-b56e-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02095-afdc-4d04-b56e-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 彰化縣 > 溪州鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1180,11 +1416,14 @@
                 "id": "53c01cc4-a7e8-4d78-bd1a-5460acb5b862",
                 "name": "溪州鄉",
                 "ivid": "CHA-260",
-                "code": "10007260"
+                "code": "10007260",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cc4-a7e8-4d78-bd1a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02096-372c-4354-b358-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02096-372c-4354-b358-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 草屯鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1195,11 +1434,14 @@
                 "id": "53c01cce-7e88-4e74-bd6f-5460acb5b862",
                 "name": "草屯鎮",
                 "ivid": "NAN-030",
-                "code": "10008030"
+                "code": "10008030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cce-7e88-4e74-bd6f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02096-9664-4209-bef6-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02096-9664-4209-bef6-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 南投市",
         "quota": "1",
         "quota_woman": "0",
@@ -1210,11 +1452,14 @@
                 "id": "53c01cc7-2d38-4e8a-ac7f-5460acb5b862",
                 "name": "南投市",
                 "ivid": "NAN-010",
-                "code": "10008010"
+                "code": "10008010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cc7-2d38-4e8a-ac7f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02096-9fd0-41df-94cd-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02096-9fd0-41df-94cd-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 竹山鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1225,11 +1470,14 @@
                 "id": "53c01cd2-c3f8-4bdc-8b1e-5460acb5b862",
                 "name": "竹山鎮",
                 "ivid": "NAN-040",
-                "code": "10008040"
+                "code": "10008040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cd2-c3f8-4bdc-8b1e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02096-a048-43ca-8aa1-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02096-a048-43ca-8aa1-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 埔里鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1240,11 +1488,14 @@
                 "id": "53c01ccb-4aa8-413d-9392-5460acb5b862",
                 "name": "埔里鎮",
                 "ivid": "NAN-020",
-                "code": "10008020"
+                "code": "10008020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ccb-4aa8-413d-9392-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02096-a8a4-47df-a488-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02096-a8a4-47df-a488-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 集集鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1255,11 +1506,14 @@
                 "id": "53c01cd5-8c00-4402-a014-5460acb5b862",
                 "name": "集集鎮",
                 "ivid": "NAN-050",
-                "code": "10008050"
+                "code": "10008050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cd5-8c00-4402-a014-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02096-b6f0-4c76-a8c4-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02096-b6f0-4c76-a8c4-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 名間鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1270,11 +1524,14 @@
                 "id": "53c01cd6-5450-4e57-b3c0-5460acb5b862",
                 "name": "名間鄉",
                 "ivid": "NAN-060",
-                "code": "10008060"
+                "code": "10008060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cd6-5450-4e57-b3c0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02097-355c-4242-b5c7-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02097-355c-4242-b5c7-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 國姓鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1285,11 +1542,14 @@
                 "id": "53c01ce0-d8d4-4e6e-ba22-5460acb5b862",
                 "name": "國姓鄉",
                 "ivid": "NAN-100",
-                "code": "10008100"
+                "code": "10008100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce0-d8d4-4e6e-ba22-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02097-5670-47c1-9431-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02097-5670-47c1-9431-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 鹿谷鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1300,11 +1560,14 @@
                 "id": "53c01cd9-628c-44f6-b08f-5460acb5b862",
                 "name": "鹿谷鄉",
                 "ivid": "NAN-070",
-                "code": "10008070"
+                "code": "10008070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cd9-628c-44f6-b08f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02097-68e4-4b83-babe-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02097-68e4-4b83-babe-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 中寮鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1315,11 +1578,14 @@
                 "id": "53c01cdb-2c98-458e-abe8-5460acb5b862",
                 "name": "中寮鄉",
                 "ivid": "NAN-080",
-                "code": "10008080"
+                "code": "10008080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cdb-2c98-458e-abe8-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02097-aad8-4846-a92d-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02097-aad8-4846-a92d-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 魚池鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1330,11 +1596,14 @@
                 "id": "53c01cde-5da4-45a7-be64-5460acb5b862",
                 "name": "魚池鄉",
                 "ivid": "NAN-090",
-                "code": "10008090"
+                "code": "10008090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cde-5da4-45a7-be64-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02097-c5dc-4720-b2bc-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02097-c5dc-4720-b2bc-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 水里鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1345,11 +1614,14 @@
                 "id": "53c01ce1-0af4-4ce8-8559-5460acb5b862",
                 "name": "水里鄉",
                 "ivid": "NAN-110",
-                "code": "10008110"
+                "code": "10008110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce1-0af4-4ce8-8559-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02098-0430-4ff4-8486-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02098-0430-4ff4-8486-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 虎尾鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1360,11 +1632,14 @@
                 "id": "53c01cef-6c18-49ae-8a1b-5460acb5b862",
                 "name": "虎尾鎮",
                 "ivid": "YUN-030",
-                "code": "10009030"
+                "code": "10009030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cef-6c18-49ae-8a1b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02098-3590-4080-8b48-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02098-3590-4080-8b48-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 斗南鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1375,11 +1650,14 @@
                 "id": "53c01cec-f6c8-4ab3-827c-5460acb5b862",
                 "name": "斗南鎮",
                 "ivid": "YUN-020",
-                "code": "10009020"
+                "code": "10009020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cec-f6c8-4ab3-827c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02098-ad80-4215-bb9c-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02098-ad80-4215-bb9c-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 信義鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1390,11 +1668,14 @@
                 "id": "53c01ce3-91e8-4a4c-888b-5460acb5b862",
                 "name": "信義鄉",
                 "ivid": "NAN-120",
-                "code": "10008120"
+                "code": "10008120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce3-91e8-4a4c-888b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02098-dac8-4218-a05b-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02098-dac8-4218-a05b-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 南投縣 > 仁愛鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1405,11 +1686,14 @@
                 "id": "53c01ce6-6e84-453d-9533-5460acb5b862",
                 "name": "仁愛鄉",
                 "ivid": "NAN-130",
-                "code": "10008130"
+                "code": "10008130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce6-6e84-453d-9533-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02098-e610-478c-bd75-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02098-e610-478c-bd75-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 斗六市",
         "quota": "1",
         "quota_woman": "0",
@@ -1420,11 +1704,14 @@
                 "id": "53c01ce8-34c0-418a-8e7f-5460acb5b862",
                 "name": "斗六市",
                 "ivid": "YUN-010",
-                "code": "10009010"
+                "code": "10009010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ce8-34c0-418a-8e7f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02099-04b0-40cf-a5c0-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02099-04b0-40cf-a5c0-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 西螺鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1435,11 +1722,14 @@
                 "id": "53c01cf3-e48c-4bc4-b028-5460acb5b862",
                 "name": "西螺鎮",
                 "ivid": "YUN-040",
-                "code": "10009040"
+                "code": "10009040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cf3-e48c-4bc4-b028-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02099-3700-427b-8a89-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02099-3700-427b-8a89-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 北港鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1450,11 +1740,14 @@
                 "id": "53c01cf8-2768-43be-a0d1-5460acb5b862",
                 "name": "北港鎮",
                 "ivid": "YUN-060",
-                "code": "10009060"
+                "code": "10009060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cf8-2768-43be-a0d1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02099-40dc-4226-9ce1-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02099-40dc-4226-9ce1-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 古坑鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1465,11 +1758,14 @@
                 "id": "53c01cfc-2fe0-4b62-bb8f-5460acb5b862",
                 "name": "古坑鄉",
                 "ivid": "YUN-070",
-                "code": "10009070"
+                "code": "10009070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cfc-2fe0-4b62-bb8f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02099-656c-4a29-a6da-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02099-656c-4a29-a6da-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 大埤鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1480,11 +1776,14 @@
                 "id": "53c01cff-0f94-4974-9424-5460acb5b862",
                 "name": "大埤鄉",
                 "ivid": "YUN-080",
-                "code": "10009080"
+                "code": "10009080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cff-0f94-4974-9424-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02099-6880-4675-9ede-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02099-6880-4675-9ede-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 莿桐鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1495,11 +1794,14 @@
                 "id": "53c01d01-a6d4-401a-89ce-5460acb5b862",
                 "name": "莿桐鄉",
                 "ivid": "YUN-090",
-                "code": "10009090"
+                "code": "10009090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d01-a6d4-401a-89ce-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c02099-7914-47be-afb2-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02099-7914-47be-afb2-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 土庫鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1510,11 +1812,14 @@
                 "id": "53c01cf6-26e0-4c6d-9e66-5460acb5b862",
                 "name": "土庫鎮",
                 "ivid": "YUN-050",
-                "code": "10009050"
+                "code": "10009050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01cf6-26e0-4c6d-9e66-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209a-1a60-4908-80e8-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209a-1a60-4908-80e8-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 林內鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1525,11 +1830,14 @@
                 "id": "53c01d02-9980-42df-ade7-5460acb5b862",
                 "name": "林內鄉",
                 "ivid": "YUN-100",
-                "code": "10009100"
+                "code": "10009100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d02-9980-42df-ade7-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209a-4d44-4112-afea-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209a-4d44-4112-afea-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 麥寮鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1540,11 +1848,14 @@
                 "id": "53c01d08-59e4-40bf-9d4b-5460acb5b862",
                 "name": "麥寮鄉",
                 "ivid": "YUN-130",
-                "code": "10009130"
+                "code": "10009130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d08-59e4-40bf-9d4b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209a-84a0-4f54-b3c1-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209a-84a0-4f54-b3c1-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 崙背鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1555,11 +1866,14 @@
                 "id": "53c01d06-be28-4d1c-99cd-5460acb5b862",
                 "name": "崙背鄉",
                 "ivid": "YUN-120",
-                "code": "10009120"
+                "code": "10009120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d06-be28-4d1c-99cd-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209a-9e58-4194-b9b3-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209a-9e58-4194-b9b3-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 二崙鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1570,11 +1884,14 @@
                 "id": "53c01d04-15e8-4d3c-920e-5460acb5b862",
                 "name": "二崙鄉",
                 "ivid": "YUN-110",
-                "code": "10009110"
+                "code": "10009110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d04-15e8-4d3c-920e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209b-0648-4569-a6ab-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209b-0648-4569-a6ab-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 東勢鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1585,11 +1902,14 @@
                 "id": "53c01d0a-ad80-4b34-a24c-5460acb5b862",
                 "name": "東勢鄉",
                 "ivid": "YUN-140",
-                "code": "10009140"
+                "code": "10009140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d0a-ad80-4b34-a24c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209b-6a84-4781-a497-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209b-6a84-4781-a497-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 四湖鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1600,11 +1920,14 @@
                 "id": "53c01d12-92f4-4a3a-8f7f-5460acb5b862",
                 "name": "四湖鄉",
                 "ivid": "YUN-180",
-                "code": "10009180"
+                "code": "10009180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d12-92f4-4a3a-8f7f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209b-b730-4536-b96e-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209b-b730-4536-b96e-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 褒忠鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1615,11 +1938,14 @@
                 "id": "53c01d0b-a378-4726-9118-5460acb5b862",
                 "name": "褒忠鄉",
                 "ivid": "YUN-150",
-                "code": "10009150"
+                "code": "10009150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d0b-a378-4726-9118-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209b-c674-4a36-a6af-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209b-c674-4a36-a6af-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 臺西鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1630,11 +1956,14 @@
                 "id": "53c01d0c-bf6c-4974-9ee2-5460acb5b862",
                 "name": "臺西鄉",
                 "ivid": "YUN-160",
-                "code": "10009160"
+                "code": "10009160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d0c-bf6c-4974-9ee2-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209b-d144-4354-965a-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209b-d144-4354-965a-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 元長鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1645,11 +1974,14 @@
                 "id": "53c01d0e-949c-4c41-be3a-5460acb5b862",
                 "name": "元長鄉",
                 "ivid": "YUN-170",
-                "code": "10009170"
+                "code": "10009170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d0e-949c-4c41-be3a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209c-624c-4233-83bb-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209c-624c-4233-83bb-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 朴子市",
         "quota": "1",
         "quota_woman": "0",
@@ -1660,11 +1992,14 @@
                 "id": "53c01d1e-fd7c-412e-be12-5460acb5b862",
                 "name": "朴子市",
                 "ivid": "CYQ-020",
-                "code": "10010020"
+                "code": "10010020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d1e-fd7c-412e-be12-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209c-8ae4-4193-a1e1-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209c-8ae4-4193-a1e1-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 水林鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1675,11 +2010,14 @@
                 "id": "53c01d17-7a88-4d39-974b-5460acb5b862",
                 "name": "水林鄉",
                 "ivid": "YUN-200",
-                "code": "10009200"
+                "code": "10009200",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d17-7a88-4d39-974b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209c-9a08-4728-837b-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209c-9a08-4728-837b-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 太保市",
         "quota": "1",
         "quota_woman": "0",
@@ -1690,11 +2028,14 @@
                 "id": "53c01d1b-8560-4443-b0ef-5460acb5b862",
                 "name": "太保市",
                 "ivid": "CYQ-010",
-                "code": "10010010"
+                "code": "10010010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d1b-8560-4443-b0ef-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209c-9e94-4a6f-bb44-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209c-9e94-4a6f-bb44-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 雲林縣 > 口湖鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1705,11 +2046,14 @@
                 "id": "53c01d15-9670-43cc-a877-5460acb5b862",
                 "name": "口湖鄉",
                 "ivid": "YUN-190",
-                "code": "10009190"
+                "code": "10009190",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d15-9670-43cc-a877-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209c-d090-4dc7-a005-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209c-d090-4dc7-a005-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 布袋鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1720,11 +2064,14 @@
                 "id": "53c01d21-fc8c-4575-9a8b-5460acb5b862",
                 "name": "布袋鎮",
                 "ivid": "CYQ-030",
-                "code": "10010030"
+                "code": "10010030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d21-fc8c-4575-9a8b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209d-1400-4cff-9f5d-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209d-1400-4cff-9f5d-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 大林鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1735,11 +2082,14 @@
                 "id": "53c01d24-cc68-40d5-8a61-5460acb5b862",
                 "name": "大林鎮",
                 "ivid": "CYQ-040",
-                "code": "10010040"
+                "code": "10010040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d24-cc68-40d5-8a61-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209d-3a40-445e-b499-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209d-3a40-445e-b499-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 民雄鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1750,11 +2100,14 @@
                 "id": "53c01d26-22ac-446d-b54e-5460acb5b862",
                 "name": "民雄鄉",
                 "ivid": "CYQ-050",
-                "code": "10010050"
+                "code": "10010050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d26-22ac-446d-b54e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209d-7d00-4fd7-9414-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209d-7d00-4fd7-9414-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 溪口鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1765,11 +2118,14 @@
                 "id": "53c01d2b-34d0-41b9-a65d-5460acb5b862",
                 "name": "溪口鄉",
                 "ivid": "CYQ-060",
-                "code": "10010060"
+                "code": "10010060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d2b-34d0-41b9-a65d-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209d-91e8-4b0c-b3cd-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209d-91e8-4b0c-b3cd-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 新港鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1780,11 +2136,14 @@
                 "id": "53c01d2d-d2fc-41bf-b1ca-5460acb5b862",
                 "name": "新港鄉",
                 "ivid": "CYQ-070",
-                "code": "10010070"
+                "code": "10010070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d2d-d2fc-41bf-b1ca-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209e-06bc-4709-8cce-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209e-06bc-4709-8cce-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 六腳鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1795,11 +2154,14 @@
                 "id": "53c01d32-0878-4a50-8087-5460acb5b862",
                 "name": "六腳鄉",
                 "ivid": "CYQ-080",
-                "code": "10010080"
+                "code": "10010080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d32-0878-4a50-8087-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209e-ade4-4abd-ac15-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209e-ade4-4abd-ac15-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 義竹鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1810,11 +2172,14 @@
                 "id": "53c01d39-e104-46d6-bd77-5460acb5b862",
                 "name": "義竹鄉",
                 "ivid": "CYQ-100",
-                "code": "10010100"
+                "code": "10010100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d39-e104-46d6-bd77-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209e-bb88-4a16-86e4-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209e-bb88-4a16-86e4-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 鹿草鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1825,11 +2190,14 @@
                 "id": "53c01d3c-0244-4d56-bdac-5460acb5b862",
                 "name": "鹿草鄉",
                 "ivid": "CYQ-110",
-                "code": "10010110"
+                "code": "10010110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d3c-0244-4d56-bdac-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209e-e520-4b94-871e-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209e-e520-4b94-871e-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 東石鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1840,11 +2208,14 @@
                 "id": "53c01d36-2ec0-4854-b92e-5460acb5b862",
                 "name": "東石鄉",
                 "ivid": "CYQ-090",
-                "code": "10010090"
+                "code": "10010090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d36-2ec0-4854-b92e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209f-07cc-40f6-8023-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209f-07cc-40f6-8023-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 中埔鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1855,11 +2226,14 @@
                 "id": "53c01d42-a14c-427b-9778-5460acb5b862",
                 "name": "中埔鄉",
                 "ivid": "CYQ-130",
-                "code": "10010130"
+                "code": "10010130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d42-a14c-427b-9778-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209f-4378-48ac-94cb-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209f-4378-48ac-94cb-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 番路鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1870,11 +2244,14 @@
                 "id": "53c01d4b-0594-4dbd-a2db-5460acb5b862",
                 "name": "番路鄉",
                 "ivid": "CYQ-160",
-                "code": "10010160"
+                "code": "10010160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d4b-0594-4dbd-a2db-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209f-6b58-4903-8757-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209f-6b58-4903-8757-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 梅山鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1885,11 +2262,14 @@
                 "id": "53c01d48-fb1c-46ab-bbaa-5460acb5b862",
                 "name": "梅山鄉",
                 "ivid": "CYQ-150",
-                "code": "10010150"
+                "code": "10010150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d48-fb1c-46ab-bbaa-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209f-756c-48c0-8dfe-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209f-756c-48c0-8dfe-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 大埔鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1900,11 +2280,14 @@
                 "id": "53c01d4d-a1a4-48ca-8d7a-5460acb5b862",
                 "name": "大埔鄉",
                 "ivid": "CYQ-170",
-                "code": "10010170"
+                "code": "10010170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d4d-a1a4-48ca-8d7a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209f-ea20-4c87-b890-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209f-ea20-4c87-b890-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 水上鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1915,11 +2298,14 @@
                 "id": "53c01d3f-75f8-460e-84d3-5460acb5b862",
                 "name": "水上鄉",
                 "ivid": "CYQ-120",
-                "code": "10010120"
+                "code": "10010120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d3f-75f8-460e-84d3-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c0209f-f1e4-4292-8ea3-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0209f-f1e4-4292-8ea3-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 竹崎鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1930,11 +2316,14 @@
                 "id": "53c01d45-ec1c-4ee5-9efd-5460acb5b862",
                 "name": "竹崎鄉",
                 "ivid": "CYQ-140",
-                "code": "10010140"
+                "code": "10010140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d45-ec1c-4ee5-9efd-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a0-4294-4c2f-9e5f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a0-4294-4c2f-9e5f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 萬丹鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1945,11 +2334,14 @@
                 "id": "53c01d63-7c10-4077-825f-5460acb5b862",
                 "name": "萬丹鄉",
                 "ivid": "PIF-050",
-                "code": "10013050"
+                "code": "10013050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d63-7c10-4077-825f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a0-5b84-4deb-abb3-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a0-5b84-4deb-abb3-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 東港鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1960,11 +2352,14 @@
                 "id": "53c01d5e-6570-4223-a658-5460acb5b862",
                 "name": "東港鎮",
                 "ivid": "PIF-030",
-                "code": "10013030"
+                "code": "10013030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d5e-6570-4223-a658-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a0-600c-417a-bf81-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a0-600c-417a-bf81-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 嘉義縣 > 阿里山鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -1975,11 +2370,14 @@
                 "id": "53c01d4e-59c8-4c98-aac2-5460acb5b862",
                 "name": "阿里山鄉",
                 "ivid": "CYQ-180",
-                "code": "10010180"
+                "code": "10010180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d4e-59c8-4c98-aac2-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a0-7758-4ae3-b444-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a0-7758-4ae3-b444-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 恆春鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -1990,11 +2388,14 @@
                 "id": "53c01d61-e514-4aea-83de-5460acb5b862",
                 "name": "恆春鎮",
                 "ivid": "PIF-040",
-                "code": "10013040"
+                "code": "10013040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d61-e514-4aea-83de-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a0-a948-4eb8-9e19-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a0-a948-4eb8-9e19-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 屏東市",
         "quota": "1",
         "quota_woman": "0",
@@ -2005,11 +2406,14 @@
                 "id": "53c01d4f-6b98-4b6a-b45b-5460acb5b862",
                 "name": "屏東市",
                 "ivid": "PIF-010",
-                "code": "10013010"
+                "code": "10013010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d4f-6b98-4b6a-b45b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a0-cc50-4425-8685-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a0-cc50-4425-8685-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 潮州鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -2020,11 +2424,14 @@
                 "id": "53c01d5a-9ef4-4768-9708-5460acb5b862",
                 "name": "潮州鎮",
                 "ivid": "PIF-020",
-                "code": "10013020"
+                "code": "10013020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d5a-9ef4-4768-9708-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a1-49fc-4cfc-9a60-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a1-49fc-4cfc-9a60-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 鹽埔鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2035,11 +2442,14 @@
                 "id": "53c01d6f-e880-4ccd-8e53-5460acb5b862",
                 "name": "鹽埔鄉",
                 "ivid": "PIF-100",
-                "code": "10013100"
+                "code": "10013100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d6f-e880-4ccd-8e53-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a1-50bc-45a1-9ce7-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a1-50bc-45a1-9ce7-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 麟洛鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2050,11 +2460,14 @@
                 "id": "53c01d6a-d440-4dd9-a28e-5460acb5b862",
                 "name": "麟洛鄉",
                 "ivid": "PIF-070",
-                "code": "10013070"
+                "code": "10013070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d6a-d440-4dd9-a28e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a1-87c0-4623-9b13-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a1-87c0-4623-9b13-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 里港鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2065,11 +2478,14 @@
                 "id": "53c01d6d-317c-4e81-898a-5460acb5b862",
                 "name": "里港鄉",
                 "ivid": "PIF-090",
-                "code": "10013090"
+                "code": "10013090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d6d-317c-4e81-898a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a1-8db4-40f5-8366-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a1-8db4-40f5-8366-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 長治鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2080,11 +2496,14 @@
                 "id": "53c01d67-7d5c-4e22-934f-5460acb5b862",
                 "name": "長治鄉",
                 "ivid": "PIF-060",
-                "code": "10013060"
+                "code": "10013060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d67-7d5c-4e22-934f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a1-d654-4b5b-870c-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a1-d654-4b5b-870c-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 高樹鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2095,11 +2514,14 @@
                 "id": "53c01d70-e68c-490c-baf3-5460acb5b862",
                 "name": "高樹鄉",
                 "ivid": "PIF-110",
-                "code": "10013110"
+                "code": "10013110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d70-e68c-490c-baf3-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a1-f460-4453-b556-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a1-f460-4453-b556-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 九如鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2110,11 +2532,14 @@
                 "id": "53c01d6c-2644-4c90-a48a-5460acb5b862",
                 "name": "九如鄉",
                 "ivid": "PIF-080",
-                "code": "10013080"
+                "code": "10013080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d6c-2644-4c90-a48a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a2-17b4-41db-bd4e-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a2-17b4-41db-bd4e-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 新埤鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2125,11 +2550,14 @@
                 "id": "53c01d7c-9870-4d7b-aea7-5460acb5b862",
                 "name": "新埤鄉",
                 "ivid": "PIF-150",
-                "code": "10013150"
+                "code": "10013150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d7c-9870-4d7b-aea7-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a2-2f18-4857-8b22-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a2-2f18-4857-8b22-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 新園鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2140,11 +2568,14 @@
                 "id": "53c01d7e-2d1c-42b3-8acc-5460acb5b862",
                 "name": "新園鄉",
                 "ivid": "PIF-170",
-                "code": "10013170"
+                "code": "10013170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d7e-2d1c-42b3-8acc-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a2-4e58-4861-8c0a-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a2-4e58-4861-8c0a-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 內埔鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2155,11 +2586,14 @@
                 "id": "53c01d75-1f54-49eb-a9cc-5460acb5b862",
                 "name": "內埔鄉",
                 "ivid": "PIF-130",
-                "code": "10013130"
+                "code": "10013130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d75-1f54-49eb-a9cc-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a2-7890-4a01-abff-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a2-7890-4a01-abff-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 枋寮鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2170,11 +2604,14 @@
                 "id": "53c01d7c-c5e0-4653-8f95-5460acb5b862",
                 "name": "枋寮鄉",
                 "ivid": "PIF-160",
-                "code": "10013160"
+                "code": "10013160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d7c-c5e0-4653-8f95-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a2-91f4-4abd-9c4e-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a2-91f4-4abd-9c4e-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 萬巒鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2185,11 +2622,14 @@
                 "id": "53c01d73-6148-4a48-a985-5460acb5b862",
                 "name": "萬巒鄉",
                 "ivid": "PIF-120",
-                "code": "10013120"
+                "code": "10013120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d73-6148-4a48-a985-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a2-9b68-41f9-a64a-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a2-9b68-41f9-a64a-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 竹田鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2200,11 +2640,14 @@
                 "id": "53c01d79-fca0-4b28-b27c-5460acb5b862",
                 "name": "竹田鄉",
                 "ivid": "PIF-140",
-                "code": "10013140"
+                "code": "10013140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d79-fca0-4b28-b27c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a3-205c-49ed-bcb4-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a3-205c-49ed-bcb4-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 崁頂鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2215,11 +2658,14 @@
                 "id": "53c01d81-0754-4ebb-af8d-5460acb5b862",
                 "name": "崁頂鄉",
                 "ivid": "PIF-180",
-                "code": "10013180"
+                "code": "10013180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d81-0754-4ebb-af8d-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a3-2c68-4f55-824e-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a3-2c68-4f55-824e-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 滿州鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2230,11 +2676,14 @@
                 "id": "53c01d8a-1298-4fb2-9d7a-5460acb5b862",
                 "name": "滿州鄉",
                 "ivid": "PIF-240",
-                "code": "10013240"
+                "code": "10013240",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8a-1298-4fb2-9d7a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a3-5d60-47d5-b6d0-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a3-5d60-47d5-b6d0-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 南州鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2245,11 +2694,14 @@
                 "id": "53c01d84-1310-4f26-b0d4-5460acb5b862",
                 "name": "南州鄉",
                 "ivid": "PIF-200",
-                "code": "10013200"
+                "code": "10013200",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d84-1310-4f26-b0d4-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a3-6770-4d65-a351-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a3-6770-4d65-a351-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 琉球鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2260,11 +2712,14 @@
                 "id": "53c01d87-f978-4024-bc34-5460acb5b862",
                 "name": "琉球鄉",
                 "ivid": "PIF-220",
-                "code": "10013220"
+                "code": "10013220",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d87-f978-4024-bc34-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a3-7e8c-4035-83d2-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a3-7e8c-4035-83d2-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 佳冬鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2275,11 +2730,14 @@
                 "id": "53c01d85-f754-4b7f-91c3-5460acb5b862",
                 "name": "佳冬鄉",
                 "ivid": "PIF-210",
-                "code": "10013210"
+                "code": "10013210",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d85-f754-4b7f-91c3-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a3-9800-4ae9-9a7f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a3-9800-4ae9-9a7f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 林邊鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2290,11 +2748,14 @@
                 "id": "53c01d82-8620-4055-b090-5460acb5b862",
                 "name": "林邊鄉",
                 "ivid": "PIF-190",
-                "code": "10013190"
+                "code": "10013190",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d82-8620-4055-b090-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a3-c84c-4fdd-9d76-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a3-c84c-4fdd-9d76-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 車城鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2305,11 +2766,14 @@
                 "id": "53c01d88-9e98-451b-a8cd-5460acb5b862",
                 "name": "車城鄉",
                 "ivid": "PIF-230",
-                "code": "10013230"
+                "code": "10013230",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d88-9e98-451b-a8cd-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a4-20d0-4374-8e03-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a4-20d0-4374-8e03-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 泰武鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2320,11 +2784,14 @@
                 "id": "53c01d90-6b40-43a1-aff0-5460acb5b862",
                 "name": "泰武鄉",
                 "ivid": "PIF-290",
-                "code": "10013290"
+                "code": "10013290",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d90-6b40-43a1-aff0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a4-62a0-4ab6-9d96-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a4-62a0-4ab6-9d96-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 霧臺鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2335,11 +2802,14 @@
                 "id": "53c01d8d-927c-425d-ab35-5460acb5b862",
                 "name": "霧臺鄉",
                 "ivid": "PIF-270",
-                "code": "10013270"
+                "code": "10013270",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8d-927c-425d-ab35-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a4-c518-400e-869f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a4-c518-400e-869f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 三地門鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2350,11 +2820,14 @@
                 "id": "53c01d8b-f7b0-429a-8cbd-5460acb5b862",
                 "name": "三地門鄉",
                 "ivid": "PIF-260",
-                "code": "10013260"
+                "code": "10013260",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8b-f7b0-429a-8cbd-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a4-cff0-4cc6-a0d2-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a4-cff0-4cc6-a0d2-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 枋山鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2365,11 +2838,14 @@
                 "id": "53c01d8b-ce50-4813-95a5-5460acb5b862",
                 "name": "枋山鄉",
                 "ivid": "PIF-250",
-                "code": "10013250"
+                "code": "10013250",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8b-ce50-4813-95a5-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a4-e374-4b31-b13f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a4-e374-4b31-b13f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 來義鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2380,11 +2856,14 @@
                 "id": "53c01d91-0994-421e-aeb4-5460acb5b862",
                 "name": "來義鄉",
                 "ivid": "PIF-300",
-                "code": "10013300"
+                "code": "10013300",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d91-0994-421e-aeb4-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a4-f920-4d76-b423-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a4-f920-4d76-b423-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 瑪家鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2395,11 +2874,14 @@
                 "id": "53c01d8e-0aa0-4b23-8d26-5460acb5b862",
                 "name": "瑪家鄉",
                 "ivid": "PIF-280",
-                "code": "10013280"
+                "code": "10013280",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d8e-0aa0-4b23-8d26-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a5-2cb8-41f4-9823-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a5-2cb8-41f4-9823-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 春日鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2410,11 +2892,14 @@
                 "id": "53c01d92-f738-4c80-bf1f-5460acb5b862",
                 "name": "春日鄉",
                 "ivid": "PIF-310",
-                "code": "10013310"
+                "code": "10013310",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d92-f738-4c80-bf1f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a5-876c-4e40-b599-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a5-876c-4e40-b599-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 獅子鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2425,11 +2910,14 @@
                 "id": "53c01d93-e9cc-43d6-aac9-5460acb5b862",
                 "name": "獅子鄉",
                 "ivid": "PIF-320",
-                "code": "10013320"
+                "code": "10013320",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d93-e9cc-43d6-aac9-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a5-d1a8-47bd-8e21-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a5-d1a8-47bd-8e21-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 臺東市",
         "quota": "1",
         "quota_woman": "0",
@@ -2440,11 +2928,14 @@
                 "id": "53c01d95-57a0-4235-a698-5460acb5b862",
                 "name": "臺東市",
                 "ivid": "TTT-010",
-                "code": "10014010"
+                "code": "10014010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d95-57a0-4235-a698-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a5-f52c-49d0-b4ba-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a5-f52c-49d0-b4ba-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 屏東縣 > 牡丹鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2455,11 +2946,14 @@
                 "id": "53c01d94-d2d4-4904-9d87-5460acb5b862",
                 "name": "牡丹鄉",
                 "ivid": "PIF-330",
-                "code": "10013330"
+                "code": "10013330",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d94-d2d4-4904-9d87-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a6-08ac-45bc-8347-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a6-08ac-45bc-8347-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 卑南鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2470,11 +2964,14 @@
                 "id": "53c01d9d-40d8-4f61-a764-5460acb5b862",
                 "name": "卑南鄉",
                 "ivid": "TTT-040",
-                "code": "10014040"
+                "code": "10014040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d9d-40d8-4f61-a764-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a6-84e0-4c67-a3dd-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a6-84e0-4c67-a3dd-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 東河鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2485,11 +2982,14 @@
                 "id": "53c01da1-1a48-4519-804b-5460acb5b862",
                 "name": "東河鄉",
                 "ivid": "TTT-070",
-                "code": "10014070"
+                "code": "10014070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da1-1a48-4519-804b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a6-8794-43a8-97a8-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a6-8794-43a8-97a8-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 鹿野鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2500,11 +3000,14 @@
                 "id": "53c01d9f-dcac-46ef-826f-5460acb5b862",
                 "name": "鹿野鄉",
                 "ivid": "TTT-050",
-                "code": "10014050"
+                "code": "10014050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d9f-dcac-46ef-826f-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a6-8c3c-45c9-8b9f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a6-8c3c-45c9-8b9f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 關山鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -2515,11 +3018,14 @@
                 "id": "53c01d9c-bae4-44f5-b758-5460acb5b862",
                 "name": "關山鎮",
                 "ivid": "TTT-030",
-                "code": "10014030"
+                "code": "10014030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d9c-bae4-44f5-b758-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a6-a1bc-4832-b492-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a6-a1bc-4832-b492-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 成功鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -2530,11 +3036,14 @@
                 "id": "53c01d9b-149c-4a14-8829-5460acb5b862",
                 "name": "成功鎮",
                 "ivid": "TTT-020",
-                "code": "10014020"
+                "code": "10014020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01d9b-149c-4a14-8829-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a6-e250-4b0c-b28f-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a6-e250-4b0c-b28f-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 池上鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2545,11 +3054,14 @@
                 "id": "53c01da0-a378-4b56-acf6-5460acb5b862",
                 "name": "池上鄉",
                 "ivid": "TTT-060",
-                "code": "10014060"
+                "code": "10014060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da0-a378-4b56-acf6-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a7-1c4c-4bf2-b5e5-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a7-1c4c-4bf2-b5e5-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 長濱鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2560,11 +3072,14 @@
                 "id": "53c01da3-2d44-4897-b1b8-5460acb5b862",
                 "name": "長濱鄉",
                 "ivid": "TTT-080",
-                "code": "10014080"
+                "code": "10014080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da3-2d44-4897-b1b8-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a7-5254-4ac5-82fc-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a7-5254-4ac5-82fc-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 海端鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2575,11 +3090,14 @@
                 "id": "53c01da6-add0-4b80-b9fa-5460acb5b862",
                 "name": "海端鄉",
                 "ivid": "TTT-120",
-                "code": "10014120"
+                "code": "10014120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da6-add0-4b80-b9fa-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a7-86f8-4a23-8edc-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a7-86f8-4a23-8edc-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 綠島鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2590,11 +3108,14 @@
                 "id": "53c01da6-8bc4-4fa9-9e72-5460acb5b862",
                 "name": "綠島鄉",
                 "ivid": "TTT-110",
-                "code": "10014110"
+                "code": "10014110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da6-8bc4-4fa9-9e72-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a7-9bb8-455f-819b-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a7-9bb8-455f-819b-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 大武鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2605,11 +3126,14 @@
                 "id": "53c01da5-e294-4c16-ae88-5460acb5b862",
                 "name": "大武鄉",
                 "ivid": "TTT-100",
-                "code": "10014100"
+                "code": "10014100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da5-e294-4c16-ae88-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a7-ebd4-408c-a737-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a7-ebd4-408c-a737-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 太麻里鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2620,11 +3144,14 @@
                 "id": "53c01da4-4b38-4f4f-9dce-5460acb5b862",
                 "name": "太麻里鄉",
                 "ivid": "TTT-090",
-                "code": "10014090"
+                "code": "10014090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da4-4b38-4f4f-9dce-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a8-010c-4b22-8495-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a8-010c-4b22-8495-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 延平鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2635,11 +3162,14 @@
                 "id": "53c01da7-60f8-4d2a-b3a5-5460acb5b862",
                 "name": "延平鄉",
                 "ivid": "TTT-130",
-                "code": "10014130"
+                "code": "10014130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da7-60f8-4d2a-b3a5-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a8-107c-416b-be9a-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a8-107c-416b-be9a-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 蘭嶼鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2650,11 +3180,14 @@
                 "id": "53c01da9-dab0-4de1-ac7a-5460acb5b862",
                 "name": "蘭嶼鄉",
                 "ivid": "TTT-160",
-                "code": "10014160"
+                "code": "10014160",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da9-dab0-4de1-ac7a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a8-1130-4ba4-8b33-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a8-1130-4ba4-8b33-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 達仁鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2665,11 +3198,14 @@
                 "id": "53c01da8-4718-41ea-a79a-5460acb5b862",
                 "name": "達仁鄉",
                 "ivid": "TTT-150",
-                "code": "10014150"
+                "code": "10014150",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da8-4718-41ea-a79a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a8-9448-4046-a95c-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a8-9448-4046-a95c-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 臺東縣 > 金峰鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2680,11 +3216,14 @@
                 "id": "53c01da8-5374-42e1-b747-5460acb5b862",
                 "name": "金峰鄉",
                 "ivid": "TTT-140",
-                "code": "10014140"
+                "code": "10014140",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01da8-5374-42e1-b747-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020a9-2538-4c45-be80-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020a9-2538-4c45-be80-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 花蓮市",
         "quota": "1",
         "quota_woman": "0",
@@ -2695,11 +3234,14 @@
                 "id": "53c01daa-1c40-4c1c-a1d9-5460acb5b862",
                 "name": "花蓮市",
                 "ivid": "HUA-010",
-                "code": "10015010"
+                "code": "10015010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01daa-1c40-4c1c-a1d9-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020aa-2a24-4d09-8034-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020aa-2a24-4d09-8034-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 光復鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2710,11 +3252,14 @@
                 "id": "53c01db8-bd48-4349-895c-5460acb5b862",
                 "name": "光復鄉",
                 "ivid": "HUA-070",
-                "code": "10015070"
+                "code": "10015070",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db8-bd48-4349-895c-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020aa-55a8-437e-8ea5-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020aa-55a8-437e-8ea5-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 壽豐鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2725,11 +3270,14 @@
                 "id": "53c01db6-366c-4af9-881b-5460acb5b862",
                 "name": "壽豐鄉",
                 "ivid": "HUA-060",
-                "code": "10015060"
+                "code": "10015060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db6-366c-4af9-881b-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020aa-6504-4458-b157-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020aa-6504-4458-b157-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 鳳林鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -2740,11 +3288,14 @@
                 "id": "53c01db0-7398-4f09-9e25-5460acb5b862",
                 "name": "鳳林鎮",
                 "ivid": "HUA-020",
-                "code": "10015020"
+                "code": "10015020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db0-7398-4f09-9e25-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020aa-9400-41c3-ad90-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020aa-9400-41c3-ad90-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 玉里鎮",
         "quota": "1",
         "quota_woman": "0",
@@ -2755,11 +3306,14 @@
                 "id": "53c01db1-fd78-4ffd-8614-5460acb5b862",
                 "name": "玉里鎮",
                 "ivid": "HUA-030",
-                "code": "10015030"
+                "code": "10015030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db1-fd78-4ffd-8614-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020aa-b67c-4e67-acc3-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020aa-b67c-4e67-acc3-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 新城鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2770,11 +3324,14 @@
                 "id": "53c01db3-2ee4-410f-96ea-5460acb5b862",
                 "name": "新城鄉",
                 "ivid": "HUA-040",
-                "code": "10015040"
+                "code": "10015040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db3-2ee4-410f-96ea-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020aa-f3c8-498e-b573-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020aa-f3c8-498e-b573-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 吉安鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2785,11 +3342,14 @@
                 "id": "53c01db4-dba8-4c2d-b2bc-5460acb5b862",
                 "name": "吉安鄉",
                 "ivid": "HUA-050",
-                "code": "10015050"
+                "code": "10015050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01db4-dba8-4c2d-b2bc-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ab-11e0-488a-bef1-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ab-11e0-488a-bef1-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 瑞穗鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2800,11 +3360,14 @@
                 "id": "53c01dbb-ce34-4ec8-b86d-5460acb5b862",
                 "name": "瑞穗鄉",
                 "ivid": "HUA-090",
-                "code": "10015090"
+                "code": "10015090",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbb-ce34-4ec8-b86d-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ab-3ee0-4a50-8ef4-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ab-3ee0-4a50-8ef4-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 秀林鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2815,11 +3378,14 @@
                 "id": "53c01dbe-b044-4719-be48-5460acb5b862",
                 "name": "秀林鄉",
                 "ivid": "HUA-110",
-                "code": "10015110"
+                "code": "10015110",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbe-b044-4719-be48-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ab-9dc8-4c2b-95ed-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ab-9dc8-4c2b-95ed-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 萬榮鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2830,11 +3396,14 @@
                 "id": "53c01dbf-7818-4625-aa6e-5460acb5b862",
                 "name": "萬榮鄉",
                 "ivid": "HUA-120",
-                "code": "10015120"
+                "code": "10015120",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbf-7818-4625-aa6e-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ab-b4c4-47cf-86f7-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ab-b4c4-47cf-86f7-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 富里鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2845,11 +3414,14 @@
                 "id": "53c01dbd-d62c-488f-a3ab-5460acb5b862",
                 "name": "富里鄉",
                 "ivid": "HUA-100",
-                "code": "10015100"
+                "code": "10015100",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbd-d62c-488f-a3ab-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ab-d1fc-4f00-bf29-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ab-d1fc-4f00-bf29-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 豐濱鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2860,11 +3432,14 @@
                 "id": "53c01dbb-ac10-4304-9586-5460acb5b862",
                 "name": "豐濱鄉",
                 "ivid": "HUA-080",
-                "code": "10015080"
+                "code": "10015080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dbb-ac10-4304-9586-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ab-facc-483a-a984-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ab-facc-483a-a984-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 花蓮縣 > 卓溪鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2875,11 +3450,14 @@
                 "id": "53c01dc0-4824-4b15-b246-5460acb5b862",
                 "name": "卓溪鄉",
                 "ivid": "HUA-130",
-                "code": "10015130"
+                "code": "10015130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dc0-4824-4b15-b246-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ac-0374-4ccc-89f7-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ac-0374-4ccc-89f7-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 澎湖縣 > 白沙鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2890,11 +3468,14 @@
                 "id": "53c01dc9-9c98-4ddf-9099-5460acb5b862",
                 "name": "白沙鄉",
                 "ivid": "PEN-030",
-                "code": "10016030"
+                "code": "10016030",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dc9-9c98-4ddf-9099-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ac-3184-4473-bf97-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ac-3184-4473-bf97-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 澎湖縣 > 西嶼鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2905,11 +3486,14 @@
                 "id": "53c01dcb-b73c-4728-b159-5460acb5b862",
                 "name": "西嶼鄉",
                 "ivid": "PEN-040",
-                "code": "10016040"
+                "code": "10016040",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dcb-b73c-4728-b159-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ac-4154-433c-ad14-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ac-4154-433c-ad14-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 澎湖縣 > 湖西鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2920,11 +3504,14 @@
                 "id": "53c01dc6-b2b4-4b2f-9628-5460acb5b862",
                 "name": "湖西鄉",
                 "ivid": "PEN-020",
-                "code": "10016020"
+                "code": "10016020",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dc6-b2b4-4b2f-9628-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ac-6544-474a-bb75-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ac-6544-474a-bb75-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 澎湖縣 > 七美鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2935,11 +3522,14 @@
                 "id": "53c01dcd-f1c4-44b2-9b05-5460acb5b862",
                 "name": "七美鄉",
                 "ivid": "PEN-060",
-                "code": "10016060"
+                "code": "10016060",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dcd-f1c4-44b2-9b05-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ac-6f90-41a6-8737-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ac-6f90-41a6-8737-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 澎湖縣 > 馬公市",
         "quota": "1",
         "quota_woman": "0",
@@ -2950,11 +3540,14 @@
                 "id": "53c01dc1-9d64-4bdb-abc6-5460acb5b862",
                 "name": "馬公市",
                 "ivid": "PEN-010",
-                "code": "10016010"
+                "code": "10016010",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dc1-9d64-4bdb-abc6-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c020ac-74cc-42f0-8ec7-5c5aacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c020ac-74cc-42f0-8ec7-5c5aacb5b862",
         "election": "2014 > 鄉鎮市長 > 澎湖縣 > 望安鄉",
         "quota": "1",
         "quota_woman": "0",
@@ -2965,7 +3558,8 @@
                 "id": "53c01dcc-ea90-4907-b495-5460acb5b862",
                 "name": "望安鄉",
                 "ivid": "PEN-050",
-                "code": "10016050"
+                "code": "10016050",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01dcc-ea90-4907-b495-5460acb5b862"
             }
         ]
     }

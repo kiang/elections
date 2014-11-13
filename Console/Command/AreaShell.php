@@ -89,6 +89,9 @@ class AreaShell extends AppShell {
             'fields' => array('Area.id', 'Area.name', 'Area.ivid', 'Area.code'),
         ));
         $areas = Set::combine($areas, '{n}.Area.id', '{n}.Area');
+        foreach($areas AS $k => $v) {
+            $areas[$k]['url'] = 'http://k.olc.tw/elections/areas/index/' . $v['id'];
+        }
 
 
         $root = $this->Area->Election->find('first', array(
@@ -114,6 +117,8 @@ class AreaShell extends AppShell {
                     $electionAreas[] = $areas[$areaId];
                 }
                 $result[] = array(
+                    'id' => $leaf['Election']['id'],
+                    'url' => 'http://k.olc.tw/elections/candidates/index/' . $leaf['Election']['id'],
                     'election' => $electionTitle,
                     'quota' => $leaf['Election']['quota'],
                     'quota_woman' => $leaf['Election']['quota_women'],

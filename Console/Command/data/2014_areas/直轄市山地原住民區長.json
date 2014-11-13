@@ -1,5 +1,7 @@
 [
     {
+        "id": "53c4205a-cddc-4665-81a0-7258acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4205a-cddc-4665-81a0-7258acb5b862",
         "election": "2014 > 直轄市山地原住民區長 > 桃園市 > 復興區",
         "quota": "1",
         "quota_woman": "0",
@@ -10,11 +12,14 @@
                 "id": "53c01c36-77dc-4859-b5e0-5460acb5b862",
                 "name": "復興區",
                 "ivid": "TAO-130",
-                "code": "10003130"
+                "code": "10003130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01c36-77dc-4859-b5e0-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4205b-1e14-46de-a19d-7258acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4205b-1e14-46de-a19d-7258acb5b862",
         "election": "2014 > 直轄市山地原住民區長 > 高雄市 > 茂林區",
         "quota": "1",
         "quota_woman": "0",
@@ -25,11 +30,14 @@
                 "id": "53c01ec5-46b8-4568-93a1-5460acb5b862",
                 "name": "茂林區",
                 "ivid": "KHH-360",
-                "code": "64000360"
+                "code": "64000360",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-46b8-4568-93a1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4205c-4e00-4d7d-ae39-7258acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4205c-4e00-4d7d-ae39-7258acb5b862",
         "election": "2014 > 直轄市山地原住民區長 > 高雄市 > 桃源區",
         "quota": "1",
         "quota_woman": "0",
@@ -40,11 +48,14 @@
                 "id": "53c01ec5-af58-43ae-996a-5460acb5b862",
                 "name": "桃源區",
                 "ivid": "KHH-370",
-                "code": "64000370"
+                "code": "64000370",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec5-af58-43ae-996a-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4205c-d5a0-453c-98e0-7258acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4205c-d5a0-453c-98e0-7258acb5b862",
         "election": "2014 > 直轄市山地原住民區長 > 高雄市 > 那瑪夏區",
         "quota": "1",
         "quota_woman": "0",
@@ -55,11 +66,14 @@
                 "id": "53c01ec6-0c1c-4c2b-85b1-5460acb5b862",
                 "name": "那瑪夏區",
                 "ivid": "KHH-380",
-                "code": "64000380"
+                "code": "64000380",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01ec6-0c1c-4c2b-85b1-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4205e-bd68-43d0-b667-7258acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4205e-bd68-43d0-b667-7258acb5b862",
         "election": "2014 > 直轄市山地原住民區長 > 新北市 > 烏來區",
         "quota": "1",
         "quota_woman": "0",
@@ -70,11 +84,14 @@
                 "id": "53c01f64-fe24-474e-9768-5460acb5b862",
                 "name": "烏來區",
                 "ivid": "TPQ-290",
-                "code": "65000290"
+                "code": "65000290",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01f64-fe24-474e-9768-5460acb5b862"
             }
         ]
     },
     {
+        "id": "53c4205f-fc68-4f0d-b9cf-7258acb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c4205f-fc68-4f0d-b9cf-7258acb5b862",
         "election": "2014 > 直轄市山地原住民區長 > 臺中市 > 和平區",
         "quota": "1",
         "quota_woman": "0",
@@ -85,7 +102,8 @@
                 "id": "53c01fbf-d2a4-4c35-9643-5460acb5b862",
                 "name": "和平區",
                 "ivid": "TXG-290",
-                "code": "66000290"
+                "code": "66000290",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/53c01fbf-d2a4-4c35-9643-5460acb5b862"
             }
         ]
     }
