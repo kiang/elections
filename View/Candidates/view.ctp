@@ -33,7 +33,11 @@
             if (!empty($this->data['Election'][0]['quota_women'])) {
                 $quota .= " / 婦女保障： {$this->data['Election'][0]['quota_women']}";
             }
-            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$this->data['Election'][0]['population_electors']} / 人口： {$this->data['Election'][0]['population']} )";
+            $bulletin = '';
+            if (!empty($this->data['Election'][0]['bulletin_key'])) {
+                $bulletin = ' / ' . $this->Html->link('選舉公報', "http://k.olc.tw/bulletin/{$this->data['Election'][0]['bulletin_key']}/{$this->data['Election'][0]['bulletin_key']}.html", array('target' => '_blank'));
+            }
+            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$this->data['Election'][0]['population_electors']} / 人口： {$this->data['Election'][0]['population']} {$bulletin} )";
             ?>
         </div>
         <div class="col-md-6">

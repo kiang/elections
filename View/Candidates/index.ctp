@@ -41,7 +41,11 @@
             if (!empty($currentElection['quota_women'])) {
                 $quota .= " / 婦女保障： {$currentElection['quota_women']}";
             }
-            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )";
+            $bulletin = '';
+            if (!empty($currentElection['bulletin_key'])) {
+                $bulletin = ' / ' . $this->Html->link('選舉公報', "http://k.olc.tw/bulletin/{$currentElection['bulletin_key']}/{$currentElection['bulletin_key']}.html", array('target' => '_blank'));
+            }
+            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} $bulletin )";
         }
         ?>
     </div>

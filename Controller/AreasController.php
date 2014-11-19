@@ -83,7 +83,7 @@ class AreasController extends AppController {
             ),
             'contain' => array(
                 'Election' => array('fields' => array('population', 'population_electors',
-                    'quota', 'quota_women')),
+                    'quota', 'quota_women', 'bulletin_key')),
             ),
         ));
         $electionStack = array();
@@ -99,6 +99,7 @@ class AreasController extends AppController {
             $elections[$k]['AreasElection']['population_electors'] = $election['Election']['population_electors'];
             $elections[$k]['AreasElection']['quota'] = $election['Election']['quota'];
             $elections[$k]['AreasElection']['quota_women'] = $election['Election']['quota_women'];
+            $elections[$k]['AreasElection']['bulletin_key'] = $election['Election']['bulletin_key'];
             $elections[$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name', 'parent_id'));
             $elections[$k]['Candidate'] = $this->Area->Election->Candidate->find('all', array(
                 'joins' => array(
