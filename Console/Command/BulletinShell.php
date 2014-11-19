@@ -68,8 +68,7 @@ class BulletinShell extends AppShell {
             'conditions' => array('Election.parent_id' => $rootNode['Election']['id']),
             'fields' => array('id', 'name'),
         ));
-        $dbMap = array();
-        $nodes = array();
+        $dbMap = $nodes = $subKeys = array();
         foreach ($electionTypes AS $electionId => $electionName) {
             $cities = $this->Election->find('all', array(
                 'conditions' => array('Election.parent_id' => $electionId),
@@ -77,14 +76,35 @@ class BulletinShell extends AppShell {
             foreach ($cities AS $city) {
                 $cityKey = "{$city['Election']['name']}{$electionName}";
                 $dbMap[$cityKey] = $city['Election']['id'];
-                $nodes[$city['Election']['id']] = $this->Election->find('list', array(
-                    'conditions' => array(
-                        'Election.lft >=' => $city['Election']['lft'],
-                        'Election.rght <=' => $city['Election']['rght'],
-                        'Election.rght - Election.lft = 1',
-                    ),
-                    'fields' => array('id', 'name'),
-                ));
+
+                if ($electionName !== '鄉鎮市民代表') {
+                    $nodes[$city['Election']['id']] = $this->Election->find('list', array(
+                        'conditions' => array(
+                            'Election.lft >=' => $city['Election']['lft'],
+                            'Election.rght <=' => $city['Election']['rght'],
+                            'Election.rght - Election.lft = 1',
+                        ),
+                        'fields' => array('id', 'name'),
+                    ));
+                } else {
+                    $towns = $this->Election->find('list', array(
+                        'conditions' => array('parent_id' => $city['Election']['id']),
+                        'fields' => array('id', 'name'),
+                    ));
+                    $nodes[$city['Election']['id']] = $subKeys[$city['Election']['id']] = array();
+                    $lNodes = $this->Election->find('all', array(
+                        'conditions' => array(
+                            'Election.lft >=' => $city['Election']['lft'],
+                            'Election.rght <=' => $city['Election']['rght'],
+                            'Election.rght - Election.lft = 1',
+                        ),
+                        'fields' => array('id', 'parent_id', 'name'),
+                    ));
+                    foreach ($lNodes AS $lNode) {
+                        $nodes[$city['Election']['id']][$lNode['Election']['id']] = $lNode['Election']['name'];
+                        $subKeys[$city['Election']['id']][$lNode['Election']['id']] = $towns[$lNode['Election']['parent_id']];
+                    }
+                }
                 foreach ($nodes[$city['Election']['id']] AS $k => $v) {
                     $qPos = strpos($v, '[');
                     if (false !== $qPos) {
@@ -125,18 +145,32 @@ class BulletinShell extends AppShell {
                 foreach ($nodes[$scopeId] AS $nodeId => $nodeName) {
                     $currentNodeMatched = false;
                     if (false !== strpos($line[0], $nodeName)) {
-                        $ebMap[$nodeId] = $line[2];
-                        $currentNodeMatched = true;
+                        $currentNodeMatched = $line[2];
                     } else {
                         $newHaystack = str_replace(array('第'), array('第0'), $line[0]);
                         if (false !== strpos($newHaystack, $nodeName)) {
-                            $ebMap[$nodeId] = $line[2];
-                            $currentNodeMatched = true;
+                            $currentNodeMatched = $line[2];
                         }
                     }
                     if (false === $currentNodeMatched) {
                         if (false !== strpos($txt, $nodeName)) {
-                            $ebMap[$nodeId] = $line[2];
+                            $currentNodeMatched = $line[2];
+                        }
+                    }
+                    if (false !== $currentNodeMatched) {
+                        if (isset($subKeys[$scopeId][$nodeId])) {
+                            $subKeyMatched = false;
+                            if (false !== strpos($line[0], $subKeys[$scopeId][$nodeId])) {
+                                $subKeyMatched = true;
+                            }
+                            if (false === $subKeyMatched && false !== strpos($txt, $subKeys[$scopeId][$nodeId])) {
+                                $subKeyMatched = true;
+                            }
+                            if ($subKeyMatched) {
+                                $ebMap[$nodeId] = $currentNodeMatched;
+                            }
+                        } else {
+                            $ebMap[$nodeId] = $currentNodeMatched;
                         }
                     }
                 }
