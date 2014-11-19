@@ -163,9 +163,6 @@ class BulletinShell extends AppShell {
                             if (false !== strpos($line[0], $subKeys[$scopeId][$nodeId])) {
                                 $subKeyMatched = true;
                             }
-                            if (false === $subKeyMatched && false !== strpos($txt, $subKeys[$scopeId][$nodeId])) {
-                                $subKeyMatched = true;
-                            }
                             if ($subKeyMatched) {
                                 $ebMap[$nodeId] = $currentNodeMatched;
                             }
