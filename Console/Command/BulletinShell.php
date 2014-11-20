@@ -26,7 +26,13 @@ class BulletinShell extends AppShell {
             '鄉鎮市民代表' => array(
                 '鄉鎮市民代表',
             ),
+            '鄉市民代表' => array(
+                '鄉鎮市民代表',
+            ),
             '鄉鎮市長' => array(
+                '鄉鎮市長',
+            ),
+            '鄉市長' => array(
                 '鄉鎮市長',
             ),
             '直轄市議員' => array(
@@ -43,10 +49,24 @@ class BulletinShell extends AppShell {
                 '縣市議員',
                 '直轄市議員',
             ),
+            '2-市議員' => array(
+                '縣市議員',
+                '直轄市議員',
+            ),
+            '議員' => array(
+                '縣市議員',
+                '直轄市議員',
+            ),
             '原住民區民代表' => array(
                 '直轄市山地原住民區民代表',
             ),
+            '4-原住民區民代表' => array(
+                '直轄市山地原住民區民代表',
+            ),
             '原住民區長' => array(
+                '直轄市山地原住民區長',
+            ),
+            '3-原住民區長' => array(
                 '直轄市山地原住民區長',
             ),
             '縣長' => array(
@@ -77,7 +97,7 @@ class BulletinShell extends AppShell {
                 $cityKey = "{$city['Election']['name']}{$electionName}";
                 $dbMap[$cityKey] = $city['Election']['id'];
 
-                if ($electionName !== '鄉鎮市民代表') {
+                if ($electionName !== '鄉鎮市民代表' && $electionName !== '村里長') {
                     $nodes[$city['Election']['id']] = $this->Election->find('list', array(
                         'conditions' => array(
                             'Election.lft >=' => $city['Election']['lft'],
@@ -113,16 +133,23 @@ class BulletinShell extends AppShell {
                 }
             }
         }
-        $bulletinFile = TMP . 'bulletin_103.csv';
+        $bulletinFile = '/home/kiang/public_html/bulletin.cec.gov.tw/Console/Command/data/bulletin_103.csv';
         if (!file_exists($bulletinFile)) {
             file_put_contents($bulletinFile, file_get_contents('https://github.com/kiang/bulletin.cec.gov.tw/raw/master/Console/Command/data/bulletin_103.csv'));
         }
-        $ebMap = array();
+        $ebMap = $bulletins = array();
         $fh = fopen($bulletinFile, 'r');
         while ($line = fgetcsv($fh, 2048)) {
             $parts = explode(' > ', $line[0]);
             if ($parts[0] === '桃園市1') {
                 continue;
+            }
+            if ($parts[1] === '紙本公告') {
+                foreach ($parts AS $pK => $pV) {
+                    if ($pK > 1) {
+                        $parts[$pK - 1] = $pV;
+                    }
+                }
             }
             $scopeId = false;
             foreach ($csvMap[$parts[1]] AS $csvKey) {
@@ -136,12 +163,18 @@ class BulletinShell extends AppShell {
                 print_r($line);
                 exit();
             } else {
+                $bulletins[$line[2]] = array(
+                    'line' => $line,
+                    'elections' => array(),
+                );
                 $txtFile = "/home/kiang/public_html/bulletin.cec.gov.tw/Console/Command/data/txt_103/{$line[2]}.csv";
                 $txt = '';
                 if (file_exists($txtFile)) {
                     $txt = file_get_contents($txtFile);
                 }
-                $electionId = array();
+                if(mb_substr($line[0], -1) === '長') {
+                    $line[0] = mb_substr($line[0], 0, -2);
+                }
                 foreach ($nodes[$scopeId] AS $nodeId => $nodeName) {
                     $currentNodeMatched = false;
                     if (false !== strpos($line[0], $nodeName)) {
@@ -165,20 +198,40 @@ class BulletinShell extends AppShell {
                             }
                             if ($subKeyMatched) {
                                 $ebMap[$nodeId] = $currentNodeMatched;
+                            } else {
+                                $currentNodeMatched = false;
                             }
                         } else {
                             $ebMap[$nodeId] = $currentNodeMatched;
                         }
+                    }
+                    if (false !== $currentNodeMatched) {
+                        $bulletins[$line[2]]['elections'][] = $nodeId;
                     }
                 }
             }
         }
         fclose($fh);
         $fh = fopen(TMP . 'bulletin.sql', 'w');
+
         foreach ($ebMap AS $eId => $bId) {
             fputs($fh, "UPDATE elections SET bulletin_key = '{$bId}' WHERE id = '{$eId}';");
         }
         fclose($fh);
+        $bFh = fopen(__DIR__ . '/data/bulletin_map.csv', 'w');
+        fputcsv($bFh, array(
+            'bulletin_name',
+            'bulletin_key',
+            'election_id',
+        ));
+        foreach ($bulletins AS $bId => $data) {
+            fputcsv($bFh, array(
+                $data['line'][0],
+                $bId,
+                implode('|', $data['elections']),
+            ));
+        }
+        fclose($bFh);
     }
 
 }
