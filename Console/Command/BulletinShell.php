@@ -133,6 +133,23 @@ class BulletinShell extends AppShell {
                 }
             }
         }
+
+        /*
+         * prefix provides records that fixed manually, just skip and merge the result
+         */
+        $prefixes = array();
+        $pFh = fopen(__DIR__ . '/data/bulletin_map_prefix.csv', 'r');
+        fgets($pFh, 512);
+        while ($line = fgetcsv($pFh, 2048)) {
+            /*
+             * 0 - name from bulletin
+             * 1 - bulletin key
+             * 2 - election id separated by |
+             */
+            $prefixes[$line[1]] = explode('|', $line[2]);
+        }
+        fclose($pFh);
+
         $bulletinFile = '/home/kiang/public_html/bulletin.cec.gov.tw/Console/Command/data/bulletin_103.csv';
         if (!file_exists($bulletinFile)) {
             file_put_contents($bulletinFile, file_get_contents('https://github.com/kiang/bulletin.cec.gov.tw/raw/master/Console/Command/data/bulletin_103.csv'));
@@ -140,6 +157,16 @@ class BulletinShell extends AppShell {
         $ebMap = $bulletins = array();
         $fh = fopen($bulletinFile, 'r');
         while ($line = fgetcsv($fh, 2048)) {
+            if (isset($prefixes[$line[2]])) {
+                $bulletins[$line[2]] = array(
+                    'line' => $line,
+                    'elections' => $prefixes[$line[2]],
+                );
+                foreach ($prefixes[$line[2]] AS $nodeId) {
+                    $ebMap[$nodeId] = $line[2];
+                }
+                continue;
+            }
             $parts = explode(' > ', $line[0]);
             if ($parts[0] === '桃園市1') {
                 continue;
@@ -172,7 +199,7 @@ class BulletinShell extends AppShell {
                 if (file_exists($txtFile)) {
                     $txt = file_get_contents($txtFile);
                 }
-                if(mb_substr($line[0], -1) === '長') {
+                if (mb_substr($line[0], -1) === '長') {
                     $line[0] = mb_substr($line[0], 0, -2);
                 }
                 foreach ($nodes[$scopeId] AS $nodeId => $nodeName) {
