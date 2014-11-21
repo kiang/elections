@@ -10,6 +10,14 @@ class BulletinShell extends AppShell {
                 '縣市議員',
                 '直轄市議員',
             ),
+            '市議員選舉公報' => array(
+                '縣市議員',
+                '直轄市議員',
+            ),
+            '市長選舉公報' => array(
+                '縣市長',
+                '直轄市長',
+            ),
             '市長' => array(
                 '縣市長',
                 '直轄市長',
@@ -18,6 +26,9 @@ class BulletinShell extends AppShell {
                 '村里長',
             ),
             '村里長' => array(
+                '村里長',
+            ),
+            '里長選舉公報' => array(
                 '村里長',
             ),
             '縣議員' => array(
