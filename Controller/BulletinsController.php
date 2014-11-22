@@ -126,7 +126,12 @@ class BulletinsController extends AppController {
                         'Bulletin.count_elections' => 'Bulletin.count_elections + 1',
                         'Bulletin.modified' => 'now()',
                             ), array("Bulletin.id = '{$bulletinId}'"));
-                    $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => "'{$bulletinId}'"), array("Election.id = '{$electionId}'"));
+                    $this->Bulletin->Election->updateAll(array(
+                        'Election.bulletin_key' => "'{$bulletinId}'"
+                            ), array(
+                        "Election.id = '{$electionId}'",
+                        "Election.bulletin_key != '{$bulletinId}'",
+                    ));
                 }
             }
         }
@@ -144,7 +149,9 @@ class BulletinsController extends AppController {
                 'Bulletin.count_elections' => 'Bulletin.count_elections - 1',
                 'Bulletin.modified' => 'now()',
                     ), array("Bulletin.id = '{$link['BulletinsElection']['Bulletin_id']}'"));
-            $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => 'NULL'), array("Election.id = '{$link['BulletinsElection']['Election_id']}'"));
+            $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => 'NULL'), array(
+                "Election.id = '{$link['BulletinsElection']['Election_id']}'",
+                "Election.bulletin_key = '{$link['BulletinsElection']['Bulletin_id']}'",));
         }
         echo 'ok';
         exit();
