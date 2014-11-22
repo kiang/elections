@@ -265,9 +265,16 @@ class BulletinShell extends AppShell {
         }
         fclose($fh);
         $fh = fopen(TMP . 'bulletin.sql', 'w');
-
+        $bulletinKeys = $this->Election->find('list', array(
+            'conditions' => array(
+                'Election.bulletin_key IS NOT NULL'
+            ),
+            'fields' => array('Election.id', 'Election.bulletin_key'),
+        ));
         foreach ($ebMap AS $eId => $bId) {
-            fputs($fh, "UPDATE elections SET bulletin_key = '{$bId}' WHERE id = '{$eId}';");
+            if (isset($bulletinKeys[$eId]) && $bulletinKeys[$eId] !== $bId) {
+                fputs($fh, "UPDATE elections SET bulletin_key = '{$bId}' WHERE id = '{$eId}';");
+            }
         }
         fclose($fh);
         $bFh = fopen(__DIR__ . '/data/bulletin_map.csv', 'w');
