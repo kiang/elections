@@ -189,11 +189,15 @@ class BulletinShell extends AppShell {
                     }
                 }
             }
+            end($parts);
+            $partLastKey = key($parts);
             $scopeId = false;
             foreach ($csvMap[$parts[1]] AS $csvKey) {
-                $csvKey = $parts[0] . $csvKey;
-                if (isset($dbMap[$csvKey])) {
-                    $scopeId = $dbMap[$csvKey];
+                if (false === $scopeId) {
+                    $csvKey = $parts[0] . $csvKey;
+                    if (isset($dbMap[$csvKey])) {
+                        $scopeId = $dbMap[$csvKey];
+                    }
                 }
             }
             if (false === $scopeId) {
@@ -211,7 +215,7 @@ class BulletinShell extends AppShell {
                     $txt = file_get_contents($txtFile);
                 }
                 if (mb_substr($line[0], -1) === '長') {
-                    $line[0] = mb_substr($line[0], 0, -2);
+                    $line[0] = mb_substr($line[0], 0, -2, 'utf-8');
                 }
                 foreach ($nodes[$scopeId] AS $nodeId => $nodeName) {
                     $currentNodeMatched = false;
@@ -245,6 +249,16 @@ class BulletinShell extends AppShell {
                     }
                     if (false !== $currentNodeMatched) {
                         $bulletins[$line[2]]['elections'][] = $nodeId;
+                    }
+                }
+                if (empty($bulletins[$line[2]]['elections']) && preg_match('/(村|里)/', $line[0]) && false === strpos($line[0], '背')
+                ) {
+                    foreach ($nodes[$scopeId] AS $nodeId => $nodeName) {
+                        $nodeName = mb_substr($nodeName, 0, -1, 'utf-8');
+                        if (false !== strpos($parts[$partLastKey], $nodeName) || false !== strpos($txt, $nodeName)) {
+                            $ebMap[$nodeId] = $line[2];
+                            $bulletins[$line[2]]['elections'][] = $nodeId;
+                        }
                     }
                 }
             }
