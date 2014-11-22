@@ -1,11 +1,14 @@
 <h3><?php echo $bulletin['Bulletin']['name']; ?></h3>
-<ul>
-    <?php if (!empty($bulletin['Bulletin']['source'])) { ?>
-        <li><?php echo $this->Html->link('原始檔案', $bulletin['Bulletin']['source'], array('target' => '_blank')); ?></li>
-    <?php } ?>
-    <li><?php echo $this->Html->link('備份檔案', 'https://github.com/kiang/bulletin.cec.gov.tw/tree/master/Console/Command/data/pdf_103/' . $bulletin['Bulletin']['id'] . '.pdf', array('target' => '_blank')); ?></li>
-    <li><?php echo $this->Html->link('網頁格式', 'http://k.olc.tw/bulletin/' . $bulletin['Bulletin']['id'] . '/' . $bulletin['Bulletin']['id'] . '.html', array('target' => '_blank')); ?></li>
-</ul>
+<div class="container btn-group">
+    <?php
+    if (!empty($bulletin['Bulletin']['source'])) {
+        echo $this->Html->link('原始檔案', $bulletin['Bulletin']['source'], array('target' => '_blank', 'class' => 'btn btn-default'));
+    }
+    echo $this->Html->link('備份檔案', 'https://github.com/kiang/bulletin.cec.gov.tw/tree/master/Console/Command/data/pdf_103/' . $bulletin['Bulletin']['id'] . '.pdf', array('target' => '_blank', 'class' => 'btn btn-default'));
+    echo $this->Html->link('網頁格式', 'http://k.olc.tw/bulletin/' . $bulletin['Bulletin']['id'] . '/' . $bulletin['Bulletin']['id'] . '.html', array('target' => '_blank', 'class' => 'btn btn-default'));
+    echo $this->Html->link('下一個', array('action' => 'next_link'), array('class' => 'btn btn-default'));
+    ?>
+</div>
 <div class="container">
     <input type="text" id="bulletinElection" class="form-control" placeholder="新增選區到這個選舉公報" />
 </div>

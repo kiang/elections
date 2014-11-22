@@ -79,6 +79,18 @@ class BulletinsController extends AppController {
         }
     }
 
+    public function admin_next_link() {
+        $bulletinId = $this->Bulletin->field('id', array('count_elections' => 0));
+        if (empty($bulletinId)) {
+            $bulletinId = $this->Bulletin->field('id', null, array('modified' => 'ASC'));
+        }
+        if (!empty($bulletinId)) {
+            $this->redirect(array('action' => 'links', $bulletinId));
+        } else {
+            $this->redirect(array('action' => 'index'));
+        }
+    }
+
     public function admin_link_add($bulletinId = '', $electionId = '') {
         if (!empty($electionId) && !empty($bulletinId)) {
             $election = $this->Bulletin->Election->find('first', array(
@@ -110,7 +122,10 @@ class BulletinsController extends AppController {
                             'Election_id' => $electionId,
                             'Bulletin_id' => $bulletinId,
                     )));
-                    $this->Bulletin->updateAll(array('Bulletin.count_elections' => 'Bulletin.count_elections + 1'), array("Bulletin.id = '{$bulletinId}'"));
+                    $this->Bulletin->updateAll(array(
+                        'Bulletin.count_elections' => 'Bulletin.count_elections + 1',
+                        'Bulletin.modified' => 'now()',
+                            ), array("Bulletin.id = '{$bulletinId}'"));
                     $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => "'{$bulletinId}'"), array("Election.id = '{$electionId}'"));
                 }
             }
@@ -125,7 +140,10 @@ class BulletinsController extends AppController {
         ));
         if (!empty($link)) {
             $this->Bulletin->BulletinsElection->delete($linkId);
-            $this->Bulletin->updateAll(array('Bulletin.count_elections' => 'Bulletin.count_elections - 1'), array("Bulletin.id = '{$link['BulletinsElection']['Bulletin_id']}'"));
+            $this->Bulletin->updateAll(array(
+                'Bulletin.count_elections' => 'Bulletin.count_elections - 1',
+                'Bulletin.modified' => 'now()',
+                    ), array("Bulletin.id = '{$link['BulletinsElection']['Bulletin_id']}'"));
             $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => 'NULL'), array("Election.id = '{$link['BulletinsElection']['Election_id']}'"));
         }
         echo 'ok';
@@ -137,7 +155,7 @@ class BulletinsController extends AppController {
         $bulletins = $this->paginate($this->Bulletin);
         $this->set('bulletins', $bulletins);
     }
-    
+
     public function view($bulletinId = '') {
         if (!empty($bulletinId)) {
             $bulletin = $this->Bulletin->find('first', array(
