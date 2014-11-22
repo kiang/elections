@@ -128,6 +128,12 @@ class BulletinsController extends AppController {
                         'Bulletin.count_elections' => 'Bulletin.count_elections + 1',
                         'Bulletin.modified' => 'now()',
                             ), array("Bulletin.id = '{$bulletinId}'"));
+                    /*
+                     * @todo: the following part not work as expected when updating multiple records.
+                     * 
+                     * But could be fixed batchly using following SQL:
+                     * UPDATE elections e INNER JOIN bulletins_elections be ON be.Election_id = e.id SET e.bulletin_key = be.Bulletin_id
+                     */
                     $this->Bulletin->Election->updateAll(array(
                         'Election.bulletin_key' => "'{$bulletinId}'"
                             ), array(
