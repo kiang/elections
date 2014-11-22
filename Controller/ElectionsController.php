@@ -22,17 +22,35 @@ class ElectionsController extends AppController {
             $keyword = Sanitize::clean($this->request->query['term']);
         }
         if (!empty($keyword)) {
+            $keywords = explode(' ', $keyword);
+            $firstKeyword = false;
+            foreach ($keywords AS $k => $keyword) {
+                $keyword = trim($keyword);
+                if (empty($keyword)) {
+                    unset($keywords[$k]);
+                } elseif (false === $firstKeyword) {
+                    $firstKeyword = $keyword;
+                    unset($keywords[$k]);
+                }
+            }
+
             $result = $this->Election->find('all', array(
                 'fields' => array('Election.id', 'Election.name', 'Election.lft', 'Election.rght'),
                 'conditions' => array(
                     'Election.parent_id IS NOT NULL',
-                    'Election.name LIKE' => "%{$keyword}%",
+                    'Election.name LIKE' => "%{$firstKeyword}%",
                 ),
-                'limit' => 20,
+                'limit' => 100,
             ));
+
             foreach ($result AS $k => $v) {
                 $parents = $this->Election->getPath($v['Election']['id'], array('name'));
                 $result[$k]['Election']['name'] = implode(' > ', Set::extract($parents, '{n}.Election.name'));
+                foreach ($keywords AS $keyword) {
+                    if (false === strpos($result[$k]['Election']['name'], $keyword)) {
+                        unset($result[$k]);
+                    }
+                }
             }
         }
         $this->set('result', $result);
