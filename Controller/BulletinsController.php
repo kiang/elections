@@ -1,0 +1,141 @@
+<?php
+
+/**
+ * @property Bulletin Bulletin
+ */
+class BulletinsController extends AppController {
+
+    public $name = 'Bulletins';
+    public $paginate = array();
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        if (isset($this->Auth)) {
+            $this->Auth->allow('index');
+        }
+    }
+
+    public function admin_index() {
+        $bulletins = $this->paginate($this->Bulletin);
+        $this->set('bulletins', $bulletins);
+    }
+
+    public function admin_add() {
+        if (!empty($this->request->data)) {
+            $this->Bulletin->create();
+            if ($this->Bulletin->save($this->request->data)) {
+                $this->Session->setFlash('資料已經儲存');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('資料儲存時發生錯誤，請重試');
+            }
+        }
+    }
+
+    public function admin_edit($id = null) {
+        if (!$id && empty($this->request->data)) {
+            $this->Session->setFlash(__('Please select a bulletin first!', true));
+            $this->redirect($this->referer());
+        }
+        if (!empty($this->request->data)) {
+            $this->Bulletin->id = $id;
+            if ($this->Bulletin->save($this->request->data)) {
+                $this->Session->setFlash('資料已經儲存');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('資料儲存時發生錯誤，請重試');
+            }
+        }
+        if (empty($this->request->data)) {
+            $this->request->data = $this->Bulletin->read(null, $id);
+        }
+    }
+
+    public function admin_delete($id = null) {
+        if (!$id) {
+            $this->Session->setFlash(__('Please select a bulletin first!', true));
+            $this->redirect($this->referer());
+        }
+        if ($this->Bulletin->delete($id)) {
+            $this->Session->setFlash(__('The bulletin has been removed', true));
+            $this->redirect(array('action' => 'index'));
+        }
+    }
+
+    public function admin_links($bulletinId = '') {
+        if (!empty($bulletinId)) {
+            $bulletin = $this->Bulletin->find('first', array(
+                'conditions' => array(
+                    'Bulletin.id' => $bulletinId,
+                ),
+                'contain' => array('Election'),
+            ));
+        }
+        if (!empty($bulletin)) {
+            $this->set('bulletin', $bulletin);
+        } else {
+            $this->Session->setFlash(__('Please select a bulletin first!', true));
+            $this->redirect($this->referer());
+        }
+    }
+
+    public function admin_link_add($bulletinId = '', $electionId = '') {
+        if (!empty($electionId) && !empty($bulletinId)) {
+            $election = $this->Bulletin->Election->find('first', array(
+                'conditions' => array('Election.id' => $electionId,),
+                'fields' => array('id', 'lft', 'rght'),
+            ));
+            if ($election['Election']['rght'] - $election['Election']['lft'] !== 1) {
+                $elections = $this->Bulletin->Election->find('list', array(
+                    'conditions' => array(
+                        'Election.rght - Election.lft = 1',
+                        'Election.rght <=' => $election['Election']['rght'],
+                        'Election.lft >=' => $election['Election']['lft'],
+                    ),
+                    'fields' => array('id', 'id'),
+                ));
+            } else {
+                $elections = array(
+                    $electionId => $electionId,
+                );
+            }
+            foreach ($elections AS $electionId) {
+                $linkId = $this->Bulletin->BulletinsElection->field('id', array(
+                    'Election_id' => $electionId,
+                    'Bulletin_id' => $bulletinId,
+                ));
+                if (empty($linkId)) {
+                    $this->Bulletin->BulletinsElection->create();
+                    $this->Bulletin->BulletinsElection->save(array('BulletinsElection' => array(
+                            'Election_id' => $electionId,
+                            'Bulletin_id' => $bulletinId,
+                    )));
+                    $this->Bulletin->updateAll(array('Bulletin.count_elections' => 'Bulletin.count_elections + 1'), array("Bulletin.id = '{$bulletinId}'"));
+                    $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => "'{$bulletinId}'"), array("Election.id = '{$electionId}'"));
+                }
+            }
+        }
+        echo 'ok';
+        exit();
+    }
+
+    public function admin_link_delete($linkId = '') {
+        $link = $this->Bulletin->BulletinsElection->find('first', array(
+            'conditions' => array('id' => $linkId),
+        ));
+        if (!empty($link)) {
+            $this->Bulletin->BulletinsElection->delete($linkId);
+            $this->Bulletin->updateAll(array('Bulletin.count_elections' => 'Bulletin.count_elections - 1'), array("Bulletin.id = '{$link['BulletinsElection']['Bulletin_id']}'"));
+            $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => 'NULL'), array("Election.id = '{$link['BulletinsElection']['Election_id']}'"));
+        }
+        echo 'ok';
+        exit();
+    }
+
+    public function index() {
+        $this->paginate['Bulletin']['limit'] = 100;
+        $bulletins = $this->paginate($this->Bulletin);
+        $this->set('bulletins', $bulletins);
+    }
+
+}

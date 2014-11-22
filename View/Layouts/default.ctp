@@ -71,6 +71,7 @@
                         <?php echo $this->Html->link('Areas', '/admin/areas', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Candidates', '/admin/candidates', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Tags', '/admin/tags', array('class' => 'btn')); ?>
+                        <?php echo $this->Html->link('Bulletins', '/admin/bulletins', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Members', '/admin/members', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Groups', '/admin/groups', array('class' => 'btn')); ?>
                         <?php echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn')); ?>
