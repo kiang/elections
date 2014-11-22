@@ -8,6 +8,9 @@
     echo $this->Html->link('網頁格式', 'http://k.olc.tw/bulletin/' . $bulletin['Bulletin']['id'] . '/' . $bulletin['Bulletin']['id'] . '.html', array('target' => '_blank', 'class' => 'btn btn-default'));
     echo $this->Html->link('下一個', array('action' => 'next_link'), array('class' => 'btn btn-default'));
     ?>
+    <div class="pull-right">
+        <?php echo $this->Html->link('刪除', array('action' => 'delete', $bulletin['Bulletin']['id']), array('class' => 'btn btn-default'), '確定要刪除？'); ?>
+    </div>
 </div>
 <div class="container">
     <input type="text" id="bulletinElection" class="form-control" placeholder="新增選區到這個選舉公報" />

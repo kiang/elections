@@ -39,5 +39,13 @@ class Bulletin extends AppModel {
             'finderQuery' => '',
         ),
     );
+    
+    public $hasMany = array(
+        'BulletinsElection' => array(
+            'foreignKey' => 'Election_id',
+            'dependent' => true,
+            'className' => 'BulletinsElection',
+        ),
+    );
 
 }
