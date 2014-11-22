@@ -11,7 +11,7 @@ class BulletinsController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index');
+            $this->Auth->allow('index', 'view');
         }
     }
 
@@ -136,6 +136,24 @@ class BulletinsController extends AppController {
         $this->paginate['Bulletin']['limit'] = 100;
         $bulletins = $this->paginate($this->Bulletin);
         $this->set('bulletins', $bulletins);
+    }
+    
+    public function view($bulletinId = '') {
+        if (!empty($bulletinId)) {
+            $bulletin = $this->Bulletin->find('first', array(
+                'conditions' => array(
+                    'Bulletin.id' => $bulletinId,
+                ),
+                'contain' => array('Election'),
+            ));
+        }
+        if (!empty($bulletin)) {
+            $this->set('bulletin', $bulletin);
+            $this->set('title_for_layout', $bulletin['Bulletin']['name'] . ' 選舉公報 @ ');
+        } else {
+            $this->Session->setFlash(__('Please select a bulletin first!', true));
+            $this->redirect($this->referer());
+        }
     }
 
 }
