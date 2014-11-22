@@ -5,6 +5,55 @@ class BulletinShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
+        $this->import();
+    }
+
+    public function import() {
+        $bulletinFile = '/home/kiang/public_html/bulletin.cec.gov.tw/Console/Command/data/bulletin_103.csv';
+        $dbBulletins = $this->Election->Bulletin->find('list', array(
+            'fields' => array('id', 'count_elections'),
+        ));
+        $fh = fopen($bulletinFile, 'r');
+        while ($line = fgetcsv($fh, 2048)) {
+            if (!isset($dbBulletins[$line[2]])) {
+                $this->Election->Bulletin->create();
+                $this->Election->Bulletin->save(array('Bulletin' => array(
+                        'id' => $line[2],
+                        'name' => $line[0],
+                        'source' => $line[1],
+                )));
+                $dbBulletins[$line[2]] = 0;
+            }
+        }
+        fclose($fh);
+        $ebMap = $this->Election->find('list', array(
+            'conditions' => array('Election.bulletin_key IS NOT NULL'),
+            'fields' => array('id', 'bulletin_key'),
+        ));
+        $ebMapCount = array();
+        foreach ($ebMap AS $eId => $bId) {
+            if (!isset($ebMapCount[$bId])) {
+                $ebMapCount[$bId] = array();
+            }
+            $ebMapCount[$bId][] = $eId;
+        }
+        foreach ($ebMapCount AS $bId => $electionIds) {
+            if (isset($dbBulletins[$bId]) && $dbBulletins[$bId] != count($electionIds)) {
+                $this->Election->Bulletin->id = $bId;
+                $this->Election->Bulletin->saveField('count_elections', count($electionIds));
+                $this->Election->Bulletin->BulletinsElection->deleteAll(array('Bulletin_id' => $bId));
+                foreach ($electionIds AS $electionId) {
+                    $this->Election->Bulletin->BulletinsElection->create();
+                    $this->Election->Bulletin->BulletinsElection->save(array('BulletinsElection' => array(
+                            'Bulletin_id' => $bId,
+                            'Election_id' => $electionId,
+                    )));
+                }
+            }
+        }
+    }
+
+    public function matchBulletin() {
         $csvMap = array(
             '市議員' => array(
                 '縣市議員',
@@ -162,9 +211,6 @@ class BulletinShell extends AppShell {
         fclose($pFh);
 
         $bulletinFile = '/home/kiang/public_html/bulletin.cec.gov.tw/Console/Command/data/bulletin_103.csv';
-        if (!file_exists($bulletinFile)) {
-            file_put_contents($bulletinFile, file_get_contents('https://github.com/kiang/bulletin.cec.gov.tw/raw/master/Console/Command/data/bulletin_103.csv'));
-        }
         $ebMap = $bulletins = array();
         $fh = fopen($bulletinFile, 'r');
         while ($line = fgetcsv($fh, 2048)) {

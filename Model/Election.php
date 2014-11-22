@@ -27,6 +27,19 @@ class Election extends AppModel {
             'associationForeignKey' => 'Candidate_id',
             'className' => 'Candidate',
         ),
+        'Bulletin' => array(
+            'className' => 'Bulletin',
+            'joinTable' => 'bulletins_elections',
+            'foreignKey' => 'Election_id',
+            'associationForeignKey' => 'Bulletin_id',
+            'unique' => 'keepExisting',
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'finderQuery' => '',
+        )
     );
     public $hasMany = array(
         'AreasElection' => array(
