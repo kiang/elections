@@ -5,7 +5,45 @@ class BulletinShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->import();
+        $this->dbFix();
+    }
+
+    public function dbFix() {
+        $eTree = Hash::nest($this->Election->children('53c021ec-e11c-49be-b6c8-5c5aacb5b862', false, array('id', 'parent_id', 'name')));
+        $elections = array();
+        foreach ($eTree AS $town) {
+            foreach ($town['children'] AS $cunli) {
+                $elections[$cunli['Election']['id']] = "{$town['Election']['name']} > {$cunli['Election']['name']}";
+            }
+        }
+        $bulletins = $this->Election->Bulletin->find('all', array(
+            'conditions' => array(
+                'count_elections' => 0,
+                'name like' => '%雲林縣 > 村里長%',
+            ),
+        ));
+        foreach ($bulletins AS $bulletin) {
+            $bulletinMatched = false;
+            foreach ($elections AS $electionId => $filter) {
+                if (false === $bulletinMatched && false !== strpos($bulletin['Bulletin']['name'], $filter)) {
+                    $bulletinMatched = true;
+                    if ($this->Election->Bulletin->save(array('Bulletin' => array(
+                                    'id' => $bulletin['Bulletin']['id'],
+                                    'count_elections' => 1,
+                        )))) {
+                        $this->Election->save(array('Election' => array(
+                                'id' => $electionId,
+                                'bulletin_key' => $bulletin['Bulletin']['id'],
+                        )));
+                        $this->Election->BulletinsElection->create();
+                        $this->Election->BulletinsElection->save(array('BulletinsElection' => array(
+                                'Election_id' => $electionId,
+                                'Bulletin_id' => $bulletin['Bulletin']['id'],
+                        )));
+                    }
+                }
+            }
+        }
     }
 
     public function import() {
