@@ -105,8 +105,7 @@ class BulletinsController extends AppController {
                 $elections = $this->Bulletin->Election->find('list', array(
                     'conditions' => array(
                         'Election.rght - Election.lft = 1',
-                        'Election.rght <=' => $election['Election']['rght'],
-                        'Election.lft >=' => $election['Election']['lft'],
+                        'Election.parent_id' => $election['Election']['id'],
                     ),
                     'fields' => array('id', 'id'),
                 ));
@@ -170,7 +169,7 @@ class BulletinsController extends AppController {
     public function index($keyword = '') {
         $keyword = Sanitize::clean($keyword);
         $scope = array();
-        if(!empty($keyword)) {
+        if (!empty($keyword)) {
             $scope['Bulletin.name LIKE'] = "%{$keyword}%";
         }
         $this->paginate['Bulletin']['limit'] = 100;
