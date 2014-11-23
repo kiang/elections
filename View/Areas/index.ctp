@@ -54,13 +54,12 @@ if (!empty($parents)) {
                     if (!empty($election['AreasElection']['quota_women'])) {
                         $quota .= " / 婦女保障： {$election['AreasElection']['quota_women']}";
                     }
-                    $bulletin = '';
-                    if (!empty($election['AreasElection']['bulletin_key'])) {
-                        $bulletin = ' / ' . $this->Html->link('選舉公報', '/bulletins/view/' . $election['AreasElection']['bulletin_key']);
-                    }
-                    echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$election['AreasElection']['population_electors']} / 人口： {$election['AreasElection']['population']} {$bulletin} )";
+                    echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$election['AreasElection']['population_electors']} / 人口： {$election['AreasElection']['population']} )";
                     echo '</div>';
-                    echo $this->Html->link("新增 {$eType} 候選人", array('controller' => 'candidates', 'action' => 'add', $election['AreasElection']['Election_id']), array('class' => 'btn btn-primary pull-right col-md-2'));
+                    if (!empty($election['AreasElection']['bulletin_key'])) {
+                        echo $this->Html->link('選舉公報', '/bulletins/view/' . $election['AreasElection']['bulletin_key'], array('class' => 'btn btn-primary pull-right col-md-1'));
+                    }
+                    
                     echo '<div class="clearfix"></div>';
                     if (!empty($election['Candidate'])) {
                         foreach ($election['Candidate'] AS $candidate) {

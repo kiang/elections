@@ -1,3 +1,21 @@
+<?php
+$currentElection = array();
+if (!empty($parents)) {
+    foreach ($parents AS $parent) {
+        if ($parent['Election']['rght'] - $parent['Election']['lft'] !== 1) {
+            $this->Html->addCrumb($parent['Election']['name'], array(
+                'controller' => 'elections',
+                'action' => 'index', $parent['Election']['id'])
+            );
+        } else {
+            $currentElection = $parent['Election'];
+            $this->Html->addCrumb($parent['Election']['name'], array(
+                'action' => 'index', $parent['Election']['id'])
+            );
+        }
+    }
+}
+?>
 <div id="CandidatesAdminIndex">
     <h2>候選人</h2>
     <div class="col-md-12">
@@ -6,27 +24,14 @@
             if (!empty($electionId)) {
                 echo $this->Html->link('本頁 API', '/api/elections/candidates/' . $electionId, array('class' => 'btn btn-default', 'target' => '_blank'));
             }
+            if (!empty($currentElection['bulletin_key'])) {
+                echo $this->Html->link('選舉公報', '/bulletins/view/' . $currentElection['bulletin_key'], array('class' => 'btn btn-primary'));
+            }
             ?>
         </div>
     </div>
     <div class="clearfix"></div>
     <?php
-    $currentElection = array();
-    if (!empty($parents)) {
-        foreach ($parents AS $parent) {
-            if ($parent['Election']['rght'] - $parent['Election']['lft'] !== 1) {
-                $this->Html->addCrumb($parent['Election']['name'], array(
-                    'controller' => 'elections',
-                    'action' => 'index', $parent['Election']['id'])
-                );
-            } else {
-                $currentElection = $parent['Election'];
-                $this->Html->addCrumb($parent['Election']['name'], array(
-                    'action' => 'index', $parent['Election']['id'])
-                );
-            }
-        }
-    }
     if (!empty($electionId)) {
         $this->Html->addCrumb('新增候選人', array(
             'action' => 'add', $electionId)
@@ -41,11 +46,7 @@
             if (!empty($currentElection['quota_women'])) {
                 $quota .= " / 婦女保障： {$currentElection['quota_women']}";
             }
-            $bulletin = '';
-            if (!empty($currentElection['bulletin_key'])) {
-                $bulletin = ' / ' . $this->Html->link('選舉公報', '/bulletins/view/' . $currentElection['bulletin_key']);
-            }
-            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} $bulletin )";
+            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )";
         }
         ?>
     </div>
