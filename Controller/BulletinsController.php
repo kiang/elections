@@ -18,6 +18,7 @@ class BulletinsController extends AppController {
     }
 
     public function admin_index() {
+        $this->paginate['Bulletin']['order'] = array('Bulletin.modified' => 'DESC');
         $bulletins = $this->paginate($this->Bulletin);
         $this->set('bulletins', $bulletins);
     }
@@ -173,6 +174,7 @@ class BulletinsController extends AppController {
             $scope['Bulletin.name LIKE'] = "%{$keyword}%";
         }
         $this->paginate['Bulletin']['limit'] = 100;
+        $this->paginate['Bulletin']['order'] = array('Bulletin.modified' => 'DESC');
         $bulletins = $this->paginate($this->Bulletin, $scope);
         $this->set('bulletins', $bulletins);
         $this->set('url', array($keyword));
