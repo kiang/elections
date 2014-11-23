@@ -32,6 +32,7 @@
                         <li><?php echo $this->Html->link('選舉區', '/elections', array('class' => '')); ?></li>
                         <li><?php echo $this->Html->link('候選人', '/candidates', array('class' => '')); ?></li>
                         <li><?php echo $this->Html->link('分類', '/tags', array('class' => '')); ?></li>
+                        <li><?php echo $this->Html->link('選舉公報', '/bulletins', array('class' => '')); ?></li>
                     </ul>
                     <div class="pull-right submitCount" style="color: #f2f2f2"></div>
                 </div>

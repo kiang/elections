@@ -22,7 +22,7 @@ if (!empty($parents)) {
                 <ul class="nav nav-pills">
                     <?php foreach ($items as $item): ?>
                         <li>
-                        <?php echo $this->Html->link($item['Area']['name'], array('action' => $areaMethod, $item['Area']['id']), array('class' => 'code' . $item['Area']['code']));?>
+                            <?php echo $this->Html->link($item['Area']['name'], array('action' => $areaMethod, $item['Area']['id']), array('class' => 'code' . $item['Area']['code'])); ?>
                         </li>
                     <?php endforeach ?>
 
@@ -51,12 +51,12 @@ if (!empty($parents)) {
                     echo '<div class="col-md-8">';
                     echo $this->Html->link(implode(' > ', $c), '/candidates/index/' . $cLinkId);
                     $quota = "名額： {$election['AreasElection']['quota']}";
-                    if(!empty($election['AreasElection']['quota_women'])) {
+                    if (!empty($election['AreasElection']['quota_women'])) {
                         $quota .= " / 婦女保障： {$election['AreasElection']['quota_women']}";
                     }
                     $bulletin = '';
-                    if(!empty($election['AreasElection']['bulletin_key'])) {
-                        $bulletin = ' / ' . $this->Html->link('選舉公報', "http://k.olc.tw/bulletin/{$election['AreasElection']['bulletin_key']}/{$election['AreasElection']['bulletin_key']}.html", array('target' => '_blank'));
+                    if (!empty($election['AreasElection']['bulletin_key'])) {
+                        $bulletin = ' / ' . $this->Html->link('選舉公報', '/bulletins/view/' . $election['AreasElection']['bulletin_key']);
                     }
                     echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$election['AreasElection']['population_electors']} / 人口： {$election['AreasElection']['population']} {$bulletin} )";
                     echo '</div>';
