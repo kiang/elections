@@ -1,5 +1,7 @@
 <?php
 
+App::uses('Sanitize', 'Utility');
+
 /**
  * @property Bulletin Bulletin
  */
@@ -165,10 +167,17 @@ class BulletinsController extends AppController {
         exit();
     }
 
-    public function index() {
+    public function index($keyword = '') {
+        $keyword = Sanitize::clean($keyword);
+        $scope = array();
+        if(!empty($keyword)) {
+            $scope['Bulletin.name LIKE'] = "%{$keyword}%";
+        }
         $this->paginate['Bulletin']['limit'] = 100;
-        $bulletins = $this->paginate($this->Bulletin);
+        $bulletins = $this->paginate($this->Bulletin, $scope);
         $this->set('bulletins', $bulletins);
+        $this->set('url', array($keyword));
+        $this->set('keyword', $keyword);
     }
 
     public function view($bulletinId = '') {

@@ -1,5 +1,21 @@
 <div id="BulletinsIndex">
-    <h2>選舉公報</h2>
+    <div class="pull-right">
+        <?php
+        echo $this->Form->input('keyword', array(
+            'type' => 'text',
+            'label' => false,
+            'value' => $keyword,
+            'div' => '',
+            'id' => 'bulletinIndexKeyword',
+            'class' => 'form-control col-md-4',
+        ));
+        ?>
+        <a href="#" class="btn btn-default pull-right bulletinIndexButton">搜尋選舉公報</a>
+    </div>
+    <h2>
+        選舉公報
+
+    </h2>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
     <table class="table table-bordered" id="BulletinsIndexTable">
         <tr>
@@ -25,4 +41,11 @@
         <?php endforeach; ?>
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
+    <script>
+        $(function () {
+            $('a.bulletinIndexButton').click(function () {
+                location.href = '<?php echo $this->Html->url('/bulletins/index/'); ?>' + $('input#bulletinIndexKeyword').val();
+            });
+        })
+    </script>
 </div>
