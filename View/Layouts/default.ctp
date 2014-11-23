@@ -68,7 +68,8 @@
             <div id="content">
                 <div class="btn-group">
                     <?php
-                    switch (Configure::read('loginMember.group_id')) {
+                    $groupId = Configure::read('loginMember.group_id');
+                    switch ($groupId) {
                         case '1':
                             echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn btn-default'));
                             echo $this->Html->link('Areas', '/admin/areas', array('class' => 'btn btn-default'));
@@ -84,7 +85,7 @@
                             echo $this->Html->link('Bulletins', '/admin/bulletins', array('class' => 'btn btn-default'));
                             break;
                     }
-                    if (!empty(Configure::read('loginMember.group_id'))) {
+                    if (!empty($groupId)) {
                         echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn btn-default'));
                     }
                     if (!empty($actions_for_layout)) {
