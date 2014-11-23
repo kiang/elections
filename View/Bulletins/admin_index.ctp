@@ -34,7 +34,11 @@
                 <td class="actions">
                     <?php echo $this->Html->link(__('Links', true), array('action' => 'links', $bulletin['Bulletin']['id'])); ?>
                     <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $bulletin['Bulletin']['id']), array('class' => 'dialogControl')); ?>
-                    <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $bulletin['Bulletin']['id']), null, __('Delete the item, sure?', true)); ?>
+                    <?php
+                    if (Configure::read('loginMember.group_id') == 1) {
+                        echo $this->Html->link(__('Delete', true), array('action' => 'delete', $bulletin['Bulletin']['id']), null, __('Delete the item, sure?', true));
+                    }
+                    ?>
                 </td>
             </tr>
         <?php endforeach; ?>

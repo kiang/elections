@@ -115,18 +115,22 @@ $renderer = new Diff_Renderer_Html_Inline;
             <?php echo $this->Html->link('通過', "/admin/candidates/review/{$submittedId}/yes", array('class' => 'btn btn-primary')); ?>
             <?php echo $this->Html->link('前台資料', "/candidates/view/{$originalId}", array('class' => 'btn btn-default', 'target' => '_blank')); ?>
             <?php echo $this->Html->link('編輯', "/admin/candidates/edit/{$submittedId}/submits", array('class' => 'btn btn-default')); ?>
-            <?php echo $this->Html->link('刪除', "/admin/candidates/delete/{$submittedId}/submits", array('class' => 'btn btn-default')); ?>
+            <?php
+            if (Configure::read('loginMember.group_id') == 1) {
+                echo $this->Html->link('刪除', "/admin/candidates/delete/{$submittedId}/submits", array('class' => 'btn btn-default'));
+            }
+            ?>
         </div>
     </div>
     <hr />
     <div class="row">
         <?php
-        if(!empty($original['Candidate']['image'])) {
+        if (!empty($original['Candidate']['image'])) {
             echo '<div class="col-md-3">Before: <br />';
             echo $this->Html->image('../media/' . $original['Candidate']['image'], array('class' => 'img-thumbnail'));
             echo '</div>';
         }
-        if(!empty($submitted['Candidate']['image'])) {
+        if (!empty($submitted['Candidate']['image'])) {
             echo '<div class="col-md-3">After: <br />';
             echo $this->Html->image('../media/' . $submitted['Candidate']['image'], array('class' => 'img-thumbnail'));
             echo '</div>';

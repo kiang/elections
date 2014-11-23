@@ -67,17 +67,26 @@
 
             <div id="content">
                 <div class="btn-group">
-                    <?php if (Configure::read('loginMember.group_id') === '1') { ?>
-                        <?php echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Areas', '/admin/areas', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Candidates', '/admin/candidates', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Tags', '/admin/tags', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Bulletins', '/admin/bulletins', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Members', '/admin/members', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Groups', '/admin/groups', array('class' => 'btn')); ?>
-                        <?php echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn')); ?>
-                    <?php } ?>
                     <?php
+                    switch (Configure::read('loginMember.group_id')) {
+                        case '1':
+                            echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn btn-default'));
+                            echo $this->Html->link('Areas', '/admin/areas', array('class' => 'btn btn-default'));
+                            echo $this->Html->link('Candidates', '/admin/candidates', array('class' => 'btn btn-default'));
+                            echo $this->Html->link('Tags', '/admin/tags', array('class' => 'btn btn-default'));
+                            echo $this->Html->link('Bulletins', '/admin/bulletins', array('class' => 'btn btn-default'));
+                            echo $this->Html->link('Members', '/admin/members', array('class' => 'btn btn-default'));
+                            echo $this->Html->link('Groups', '/admin/groups', array('class' => 'btn btn-default'));
+                            break;
+                        case '2':
+                            echo $this->Html->link('Candidates', '/admin/candidates', array('class' => 'btn btn-default'));
+                            echo $this->Html->link('Tags', '/admin/tags', array('class' => 'btn btn-default'));
+                            echo $this->Html->link('Bulletins', '/admin/bulletins', array('class' => 'btn btn-default'));
+                            break;
+                    }
+                    if (!empty(Configure::read('loginMember.group_id'))) {
+                        echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn btn-default'));
+                    }
                     if (!empty($actions_for_layout)) {
                         foreach ($actions_for_layout as $title => $url) {
                             echo $this->Html->link($title, $url, array('class' => 'btn'));
@@ -105,30 +114,30 @@
         ?>
         <script type="text/javascript">
             //<![CDATA[
-                $(function () {
-                    $('a.dialogControl').click(function () {
+            $(function () {
+                $('a.dialogControl').click(function () {
                     dialogFull(this);
-                return false;
+                    return false;
                 });
-                    $('input#CandidateKeyword').autocomplete({
+                $('input#CandidateKeyword').autocomplete({
                     source: '<?php echo $this->Html->url('/candidates/s/'); ?>',
-                                    select: function (event, ui) {
-                                    location.href = '<?php echo $this->Html->url('/candidates/view/'); ?>' + ui.item.id;
-                                }
-                                });
-                                    $('input#ElectionKeyword').autocomplete({
+                    select: function (event, ui) {
+                        location.href = '<?php echo $this->Html->url('/candidates/view/'); ?>' + ui.item.id;
+                    }
+                });
+                $('input#ElectionKeyword').autocomplete({
                     source: '<?php echo $this->Html->url('/elections/s/'); ?>',
-                                    select: function (event, ui) {
-                                        if (ui.item.rght - ui.item.lft === 1) {
-                                            location.href = '<?php echo $this->Html->url('/candidates/index/'); ?>' + ui.item.id;
-                                                } else {
-                                            location.href = '<?php echo $this->Html->url('/elections/index/'); ?>' + ui.item.id;
-                                        }
+                    select: function (event, ui) {
+                        if (ui.item.rght - ui.item.lft === 1) {
+                            location.href = '<?php echo $this->Html->url('/candidates/index/'); ?>' + ui.item.id;
+                        } else {
+                            location.href = '<?php echo $this->Html->url('/elections/index/'); ?>' + ui.item.id;
+                        }
 
-                                    }
-                                    });
+                    }
+                });
                 $('div.submitCount').load('<?php echo $this->Html->url('/candidates/submits'); ?>');
-                    });
+            });
             //]]>
         </script>
     </body>

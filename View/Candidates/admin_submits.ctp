@@ -33,7 +33,11 @@
                     <td class="actions">
                         <?php echo $this->Html->link('審核', array('action' => 'review', $item['Candidate']['id'])); ?>
                         <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Candidate']['id'], 'submits'), array('class' => 'dialogControl')); ?>
-                        <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Candidate']['id'], 'submits'), null, __('Delete the item, sure?', true)); ?>
+                        <?php
+                        if (Configure::read('loginMember.group_id') == 1) {
+                            echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Candidate']['id'], 'submits'), null, __('Delete the item, sure?', true));
+                        }
+                        ?>
                     </td>
                 </tr>
             <?php } // End of foreach ($items as $item) {   ?>
