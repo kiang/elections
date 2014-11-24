@@ -61,7 +61,21 @@ class ElectionShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->quota_match();
+        $this->generateKeywords();
+    }
+
+    public function generateKeywords() {
+        $nodes = $this->Election->find('list', array(
+            'conditions' => array('rght - lft = 1'),
+            'fields' => array('id', 'id'),
+        ));
+        foreach ($nodes AS $nodeId) {
+            $path = $this->Election->getPath($nodeId, array('id', 'name'));
+            $this->Election->save(array('Election' => array(
+                    'id' => $nodeId,
+                    'keywords' => implode(',', Set::extract('{n}.Election.name', $path)),
+            )));
+        }
     }
 
     /*

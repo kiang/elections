@@ -127,7 +127,8 @@ CREATE TABLE `bulletins` (
   `source` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `count_elections` int(10) unsigned NOT NULL,
   `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`(191))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -244,7 +245,9 @@ CREATE TABLE `elections` (
   `quota` int(10) NOT NULL DEFAULT '0',
   `quota_women` int(10) NOT NULL DEFAULT '0',
   `bulletin_key` binary(36) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `keywords` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `keywords` (`keywords`(191))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -372,4 +375,4 @@ CREATE TABLE `tags` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-23  1:32:47
+-- Dump completed on 2014-11-25  2:16:05

@@ -5,7 +5,7 @@ class BulletinShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->dbFix();
+        $this->import();
     }
 
     public function dbFix() {

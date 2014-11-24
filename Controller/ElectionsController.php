@@ -23,34 +23,26 @@ class ElectionsController extends AppController {
         }
         if (!empty($keyword)) {
             $keywords = explode(' ', $keyword);
-            $firstKeyword = false;
+            $countKeywords = 0;
+            $conditions = array(
+                'Election.parent_id IS NOT NULL',
+            );
             foreach ($keywords AS $k => $keyword) {
                 $keyword = trim($keyword);
-                if (empty($keyword)) {
-                    unset($keywords[$k]);
-                } elseif (false === $firstKeyword) {
-                    $firstKeyword = $keyword;
-                    unset($keywords[$k]);
+                if (!empty($keyword) && ++$countKeywords < 4) {
+                    $conditions[] = "Election.keywords LIKE '%{$keyword}%'";
                 }
             }
 
             $result = $this->Election->find('all', array(
                 'fields' => array('Election.id', 'Election.name', 'Election.lft', 'Election.rght'),
-                'conditions' => array(
-                    'Election.parent_id IS NOT NULL',
-                    'Election.name LIKE' => "%{$firstKeyword}%",
-                ),
-                'limit' => 100,
+                'conditions' => $conditions,
+                'limit' => 50,
             ));
 
             foreach ($result AS $k => $v) {
                 $parents = $this->Election->getPath($v['Election']['id'], array('name'));
                 $result[$k]['Election']['name'] = implode(' > ', Set::extract($parents, '{n}.Election.name'));
-                foreach ($keywords AS $keyword) {
-                    if (false === strpos($result[$k]['Election']['name'], $keyword)) {
-                        unset($result[$k]);
-                    }
-                }
             }
         }
         $this->set('result', $result);
