@@ -146,7 +146,7 @@ class BulletinsController extends AppController {
             }
         }
         echo 'ok';
-        //exit();
+        exit();
     }
 
     public function admin_link_delete($linkId = '') {
