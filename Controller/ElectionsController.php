@@ -30,7 +30,12 @@ class ElectionsController extends AppController {
             foreach ($keywords AS $k => $keyword) {
                 $keyword = trim($keyword);
                 if (!empty($keyword) && ++$countKeywords < 4) {
-                    $conditions[] = "Election.keywords LIKE '%{$keyword}%'";
+                    $conditions[] = array(
+                        'OR' => array(
+                            "Election.name LIKE '%{$keyword}%'",
+                            "Election.keywords LIKE '%{$keyword}%'",
+                        )
+                    );
                 }
             }
 
