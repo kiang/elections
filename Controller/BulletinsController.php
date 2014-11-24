@@ -61,7 +61,7 @@ class BulletinsController extends AppController {
         }
         if ($this->Bulletin->delete($id)) {
             $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => 'NULL'), array(
-                "Election.bulletin_key = '{$id}'",));
+                'Election.bulletin_key' => "'{$id}'",));
             $this->Session->setFlash(__('The bulletin has been removed', true));
             $this->redirect(array('action' => 'index'));
         }
@@ -129,7 +129,7 @@ class BulletinsController extends AppController {
                     $this->Bulletin->updateAll(array(
                         'Bulletin.count_elections' => 'Bulletin.count_elections + 1',
                         'Bulletin.modified' => 'now()',
-                            ), array("Bulletin.id = '{$bulletinId}'"));
+                            ), array('Bulletin.id' => "'{$bulletinId}'"));
                     /*
                      * @todo: the following part not work as expected when updating multiple records.
                      * 
@@ -139,8 +139,8 @@ class BulletinsController extends AppController {
                     $this->Bulletin->Election->updateAll(array(
                         'Election.bulletin_key' => "'{$bulletinId}'"
                             ), array(
-                        "Election.id = '{$electionId}'",
-                        "Election.bulletin_key != '{$bulletinId}'",
+                        'Election.id' => "'{$electionId}'",
+                        'Election.bulletin_key !=' => "'{$bulletinId}'",
                     ));
                 }
             }
@@ -158,10 +158,10 @@ class BulletinsController extends AppController {
             $this->Bulletin->updateAll(array(
                 'Bulletin.count_elections' => 'Bulletin.count_elections - 1',
                 'Bulletin.modified' => 'now()',
-                    ), array("Bulletin.id = '{$link['BulletinsElection']['Bulletin_id']}'"));
+                    ), array('Bulletin.id' => "'{$link['BulletinsElection']['Bulletin_id']}'"));
             $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => 'NULL'), array(
-                "Election.id = '{$link['BulletinsElection']['Election_id']}'",
-                "Election.bulletin_key = '{$link['BulletinsElection']['Bulletin_id']}'",));
+                'Election.id' => "'{$link['BulletinsElection']['Election_id']}'",
+                'Election.bulletin_key' => "'{$link['BulletinsElection']['Bulletin_id']}'",));
         }
         echo 'ok';
         exit();
