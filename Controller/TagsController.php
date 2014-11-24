@@ -89,7 +89,7 @@ class TagsController extends AppController {
                     'Candidate_id' => $candidateId,
                     'Tag_id' => $tagId,
             )));
-            $this->Tag->updateAll(array('Tag.count' => 'Tag.count + 1'), array('Tag.id' => "'{$tagId}'"));
+            $this->Tag->updateAll(array('Tag.count' => 'Tag.count + 1'), array('Tag.id' => $tagId));
         }
         echo 'ok';
         exit();
@@ -99,7 +99,7 @@ class TagsController extends AppController {
         $tagId = $this->Tag->CandidatesTag->field('Tag_id', array('id' => $linkId));
         $this->Tag->CandidatesTag->delete($linkId);
         if (!empty($tagId)) {
-            $this->Tag->updateAll(array('Tag.count' => 'Tag.count - 1'), array('Tag.id' => "'{$tagId}'"));
+            $this->Tag->updateAll(array('Tag.count' => 'Tag.count - 1'), array('Tag.id' => $tagId));
         }
         echo 'ok';
         exit();
