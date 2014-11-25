@@ -140,7 +140,10 @@ class BulletinsController extends AppController {
                         'Election.bulletin_key' => "'{$bulletinId}'"
                             ), array(
                         'Election.id' => $electionId,
-                        'Election.bulletin_key !=' => $bulletinId,
+                        'OR' => array(
+                            'Election.bulletin_key !=' => $bulletinId,
+                            'Election.bulletin_key IS NULL',
+                        ),
                     ));
                 }
             }
