@@ -63,7 +63,7 @@ class BulletinsController extends AppController {
             $this->Bulletin->Election->updateAll(array('Election.bulletin_key' => 'NULL'), array(
                 'Election.bulletin_key' => $id,));
             $this->Session->setFlash(__('The bulletin has been removed', true));
-            $this->redirect(array('action' => 'index'));
+            $this->redirect(array('action' => 'next_link'));
         }
     }
 
