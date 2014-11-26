@@ -5,7 +5,107 @@ class BulletinShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->import();
+        $this->import_ptec();
+    }
+
+    public function import_ptec() {
+        $bulletinFile = '/home/kiang/public_html/bulletin.cec.gov.tw/Console/Command/data/bulletin_103_ptec.csv';
+        $dbBulletins = $this->Election->Bulletin->find('list', array(
+            'fields' => array('id', 'count_elections'),
+        ));
+        $townNodes = $this->Election->find('list', array(
+            'conditions' => array(
+                'Election.parent_id' => '53c020a0-f5a4-4054-836f-5c5aacb5b862',
+            ),
+            'fields' => array('name', 'id'),
+        ));
+        $townRepNodes = $this->Election->find('list', array(
+            'conditions' => array(
+                'Election.parent_id' => '53c020ce-0798-4ae9-af49-5c5aacb5b862',
+            ),
+            'fields' => array('name', 'id'),
+        ));
+        foreach ($townRepNodes AS $name => $id) {
+            $list = $this->Election->find('list', array(
+                'conditions' => array(
+                    'Election.parent_id' => $id,
+                ),
+                'fields' => array('name', 'id'),
+            ));
+            $townRepNodes[$name] = array();
+            foreach ($list AS $lName => $lId) {
+                $lName = preg_replace('/[^0-9]/', '', $lName);
+                $townRepNodes[$name][$lName] = $lId;
+            }
+        }
+        $fh = fopen($bulletinFile, 'r');
+        while ($line = fgetcsv($fh, 2048)) {
+            if (!isset($dbBulletins[$line[2]])) {
+                $this->Election->Bulletin->create();
+                $this->Election->Bulletin->save(array('Bulletin' => array(
+                        'id' => $line[2],
+                        'name' => $line[0],
+                        'source' => $line[1],
+                )));
+                $dbBulletins[$line[2]] = 0;
+            }
+            if (isset($dbBulletins[$line[2]]) && $dbBulletins[$line[2]] == 0) {
+                if (false !== strpos($line[0], '代表選舉')) {
+                    $line[0] = str_replace(array('103', '第一', '第二', '第三', '第四', '第五'), array('', '01', '02', '03', '04', '05'), $line[0]);
+                    //鄉鎮市民代表
+                    foreach ($townRepNodes AS $town => $nodes) {
+                        foreach ($nodes AS $node => $id) {
+                            if (false !== strpos($line[0], $town) && false !== strpos($line[0], $node)) {
+                                $this->Election->BulletinsElection->create();
+                                $this->Election->BulletinsElection->save(array('BulletinsElection' => array(
+                                        'Election_id' => $id,
+                                        'Bulletin_id' => $line[2],
+                                )));
+                                $this->Election->Bulletin->updateAll(array(
+                                    'Bulletin.count_elections' => 'Bulletin.count_elections + 1',
+                                    'Bulletin.modified' => 'now()',
+                                        ), array('Bulletin.id' => $line[2]));
+                                $this->Election->updateAll(array(
+                                    'Election.bulletin_key' => "'{$line[2]}'"
+                                        ), array(
+                                    'Election.id' => $id,
+                                    'OR' => array(
+                                        'Election.bulletin_key !=' => $line[2],
+                                        'Election.bulletin_key IS NULL',
+                                    ),
+                                ));
+                            }
+                        }
+                    }
+                } else {
+                    //鄉鎮市長
+                    $nodeMatched = false;
+                    foreach ($townNodes AS $town => $id) {
+                        if (false !== strpos($line[0], $town)) {
+                            $this->Election->BulletinsElection->create();
+                            $this->Election->BulletinsElection->save(array('BulletinsElection' => array(
+                                    'Election_id' => $id,
+                                    'Bulletin_id' => $line[2],
+                            )));
+                            $this->Election->Bulletin->updateAll(array(
+                                'Bulletin.count_elections' => 'Bulletin.count_elections + 1',
+                                'Bulletin.modified' => 'now()',
+                                    ), array('Bulletin.id' => $line[2]));
+                            $this->Election->updateAll(array(
+                                'Election.bulletin_key' => "'{$line[2]}'"
+                                    ), array(
+                                'Election.id' => $id,
+                                'OR' => array(
+                                    'Election.bulletin_key !=' => $line[2],
+                                    'Election.bulletin_key IS NULL',
+                                ),
+                            ));
+                        }
+                    }
+                }
+            }
+        }
+        fclose($fh);
     }
 
     public function dbFix() {
