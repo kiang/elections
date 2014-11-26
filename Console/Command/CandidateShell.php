@@ -1086,10 +1086,11 @@ class CandidateShell extends AppShell {
                                         'active_id' => 0,
                                     ),
                                 ));
-                                if (empty($candidateId) || empty($this->Candidate->CandidatesElection->field('id', array(
-                                                    'Election_id' => $e2['Election']['id'],
-                                                    'Candidate_id' => $candidateId,
-                                        )))) {
+                                $linkId = $this->Candidate->CandidatesElection->field('id', array(
+                                    'Election_id' => $e2['Election']['id'],
+                                    'Candidate_id' => $candidateId,
+                                ));
+                                if (empty($candidateId) || empty($linkId)) {
                                     $this->Candidate->create();
                                     if ($this->Candidate->save(array('Candidate' => array(
                                                     'name' => $fields[0],
