@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-md-6">
                     <h2><?php
-                        if (!empty($this->data['Candidate'])) {
+                        if (!empty($this->data['Candidate']['no'])) {
                             echo "{$this->data['Candidate']['no']}號 ";
                         }
                         echo $this->data['Candidate']['name'];
