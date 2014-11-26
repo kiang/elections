@@ -472,6 +472,9 @@ class CandidatesController extends AppController {
             if (!empty($this->data)) {
                 $dataToSave = $this->data;
                 $dataToSave['Candidate']['id'] = $id;
+                if(empty($dataToSave['Candidate']['active_id'])) {
+                    unset($dataToSave['Candidate']['active_id']);
+                }
                 if (!empty($dataToSave['Candidate']['image_upload']['size'])) {
                     $dataToSave['Candidate']['image'] = $dataToSave['Candidate']['image_upload'];
                 }
