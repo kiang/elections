@@ -11,7 +11,7 @@ class CandidatesController extends ApiAppController {
         if (!empty($term)) {
             $keyword = Sanitize::clean($term);
             $this->jsonData = $this->Candidate->find('all', array(
-                'fields' => array('Candidate.id', 'Candidate.name', 'CandidatesElection.Election_id'),
+                'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'CandidatesElection.Election_id'),
                 'conditions' => array(
                     'Candidate.active_id IS NULL',
                     'Candidate.name LIKE' => "%{$term}%",
