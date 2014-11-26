@@ -12,8 +12,7 @@ class CandidatesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'add', 'view', 'edit', 's',
-                    'tag', 'tag_list', 'submits', 'links');
+            $this->Auth->allow('index', 'add', 'view', 'edit', 's', 'tag', 'tag_list', 'submits', 'links');
         }
     }
 
@@ -128,7 +127,7 @@ class CandidatesController extends AppController {
             );
             $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
             $this->paginate['Candidate']['limit'] = 30;
-            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.stage', 'Candidate.image', 'CandidatesElection.Election_id');
+            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image', 'CandidatesElection.Election_id');
             $items = $this->paginate($this->Candidate, $scope);
             $electionStack = array();
             foreach ($items AS $k => $item) {
@@ -146,7 +145,7 @@ class CandidatesController extends AppController {
             $this->redirect(array('controller' => 'areas'));
         }
     }
-    
+
     public function tag_list($tagId = '') {
         $tag = $this->Candidate->Tag->find('first', array(
             'conditions' => array('Tag.id' => $tagId,)
@@ -177,7 +176,7 @@ class CandidatesController extends AppController {
             );
             $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
             $this->paginate['Candidate']['limit'] = 30;
-            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.stage', 'Candidate.image', 'CandidatesElection.Election_id');
+            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image', 'CandidatesElection.Election_id');
             $items = $this->paginate($this->Candidate, $scope);
             $electionStack = array();
             foreach ($items AS $k => $item) {
@@ -203,6 +202,9 @@ class CandidatesController extends AppController {
 
         if (!empty($electionId)) {
             $scope['CandidatesElection.Election_id'] = $electionId;
+            $this->paginate['Candidate']['order'] = array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC');
+        } else {
+            $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
         }
 
         $this->paginate['Candidate']['joins'] = array(
@@ -215,9 +217,8 @@ class CandidatesController extends AppController {
                 ),
             ),
         );
-        $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
         $this->paginate['Candidate']['limit'] = 30;
-        $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.stage', 'Candidate.image', 'CandidatesElection.Election_id');
+        $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image', 'CandidatesElection.Election_id');
         $items = $this->paginate($this->Candidate, $scope);
         $electionStack = array();
         foreach ($items AS $k => $item) {
@@ -356,7 +357,12 @@ class CandidatesController extends AppController {
             if (!empty($descElections)) {
                 $desc_for_layout .= $this->data['Candidate']['name'] . '在' . implode(' > ', $descElections) . '的參選資訊。';
             }
-            $descElections[] = $this->data['Candidate']['name'];
+            if (!empty($this->data['Candidate']['no'])) {
+                $descElections[] = "{$this->data['Candidate']['no']}號 {$this->data['Candidate']['name']}";
+            } else {
+                $descElections[] = $this->data['Candidate']['name'];
+            }
+
             $this->set('referer', $this->request->referer());
             $this->set('desc_for_layout', $desc_for_layout);
             $this->set('title_for_layout', implode(' > ', $descElections) . '候選人 @ ');
@@ -571,8 +577,8 @@ class CandidatesController extends AppController {
             $unReviewId = $this->Candidate->field('id', array(
                 'Candidate.active_id IS NOT NULL',
                 'Candidate.is_reviewed' => '0',
-            ), array('Candidate.created' => 'DESC'));
-            if(!empty($unReviewId)) {
+                    ), array('Candidate.created' => 'DESC'));
+            if (!empty($unReviewId)) {
                 $this->redirect('/admin/candidates/review/' . $unReviewId);
             } else {
                 $this->redirect('/admin/candidates/submits');

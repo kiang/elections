@@ -73,7 +73,12 @@
                     ?>
                 </div>
                 <div class="col-md-6">
-                    <h2><?php echo $this->data['Candidate']['name']; ?></h2>
+                    <h2><?php
+                        if (!empty($this->data['Candidate'])) {
+                            echo "{$this->data['Candidate']['no']}號 ";
+                        }
+                        echo $this->data['Candidate']['name'];
+                        ?></h2>
                     <?php echo $this->Olc->stages[$this->data['Candidate']['stage']]; ?>
                 </div>
             </div>
@@ -86,12 +91,6 @@
                         </div>
                         <div class="col-sm-8">
                             <ul>
-                                <li>電話：<?php echo $this->data['Candidate']['contacts_phone']; ?></li>
-                                <li>傳真：<?php echo $this->data['Candidate']['contacts_fax']; ?></li>
-                                <li>信箱：<?php echo $this->data['Candidate']['contacts_email']; ?></li>
-                                <li>服務處：<?php echo $this->data['Candidate']['contacts_address']; ?></li>
-                                <li>政黨：<?php echo $this->data['Candidate']['party']; ?></li>
-                                <li>生日：<?php echo $this->data['Candidate']['birth']; ?></li>
                                 <li>性別：<?php
                                     $gender = strtolower($this->data['Candidate']['gender']);
                                     switch ($gender) {
@@ -105,6 +104,16 @@
                                             echo '未設定';
                                     }
                                     ?></li>
+                                <li>電話：<?php echo $this->data['Candidate']['contacts_phone']; ?></li>
+                                <li>傳真：<?php echo $this->data['Candidate']['contacts_fax']; ?></li>
+                                <li>信箱：<?php echo $this->data['Candidate']['contacts_email']; ?></li>
+                                <li>服務處：<?php echo $this->data['Candidate']['contacts_address']; ?></li>
+                                <li>政黨：<?php echo $this->data['Candidate']['party']; ?></li>
+                                <li>生日：<?php echo $this->data['Candidate']['birth']; ?></li>
+                                <li>教育程度：<?php echo $this->data['Candidate']['education_level']; ?></li>
+                                <li>出生地：<?php echo $this->data['Candidate']['birth_place']; ?></li>
+                                <li>英文姓名：<?php echo $this->data['Candidate']['name_english']; ?></li>
+                                <li>是否現任：<?php echo ($this->data['Candidate']['is_present'] == 1) ? '是' : '否'; ?></li>
                             </ul>
                         </div>
                     </div>

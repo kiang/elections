@@ -24,6 +24,9 @@
             <tr>
                 <td class="candidate-<?php echo $candidate['Candidate']['stage']; ?>">
                     <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>"><?php
+                    if(!empty($candidate['Candidate']['no'])) {
+                        echo $candidate['Candidate']['no'] . '號 ';
+                    }
                     echo $candidate['Candidate']['name'];
                     ?></a></td>
                 <td><?php echo implode(' > ', $candidate['Election']); ?></td>

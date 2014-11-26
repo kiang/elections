@@ -64,7 +64,12 @@ if (!empty($parents)) {
                         echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; height: 100px; border: 0px;'));
                     }
                     ?>
-                    <br /><?php echo $candidate['Candidate']['name']; ?>
+                    <br /><?php
+                    if(!empty($candidate['Candidate']['no'])) {
+                        echo $candidate['Candidate']['no'] . '號 ';
+                    }
+                    echo $candidate['Candidate']['name'];
+                    ?>
                     <br /><?php echo $candidate['Election'][1]['Election']['name']; ?>
                 </a>
             </div><?php
