@@ -533,6 +533,8 @@ class CandidatesController extends AppController {
 
     public function admin_review($candidateId = '', $approved = '') {
         $fields = array('Candidate.id', 'Candidate.active_id', 'Candidate.name',
+            'Candidate.no', 'Candidate.education_level', 'Candidate.is_present',
+            'Candidate.name_english', 'Candidate.birth_place',
             'Candidate.image', 'Candidate.party', 'Candidate.contacts_phone',
             'Candidate.contacts_fax', 'Candidate.contacts_email',
             'Candidate.contacts_address', 'Candidate.links', 'Candidate.gender',
@@ -565,6 +567,7 @@ class CandidatesController extends AppController {
 
             //update candidate
             $cFields = array('name', 'party', 'contacts_phone', 'contacts_fax',
+                'no', 'education_level', 'is_present', 'name_english', 'birth_place',
                 'contacts_email', 'contacts_address', 'links', 'gender', 'birth',
                 'education', 'experience');
 
