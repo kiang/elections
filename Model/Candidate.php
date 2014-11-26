@@ -33,6 +33,14 @@ class Candidate extends AppModel {
             'className' => 'Keyword',
         ),
     );
+    
+    public $hasMany = array(
+        'CandidatesElection' => array(
+            'foreignKey' => 'Candidate_id',
+            'dependent' => true,
+            'className' => 'CandidatesElection',
+        ),
+    );
 
     public function beforeSave($options = array()) {
         if (isset($this->data['Candidate']['image']) && is_array($this->data['Candidate']['image'])) {

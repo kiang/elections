@@ -6,7 +6,184 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->google_data();
+        $this->vote_2014();
+    }
+
+    /*
+     * import data from https://github.com/ronnywang/vote2014/tree/master/webdata/data
+     */
+
+    public function vote_2014() {
+        $candidates = $this->Candidate->find('list', array(
+            'conditions' => array('Candidate.active_id IS NULL'),
+            'fields' => array('Candidate.id', 'Candidate.name'),
+        ));
+        $ceLinks = $this->Candidate->CandidatesElection->find('list', array(
+            'fields' => array('Candidate_id', 'Election_id'),
+        ));
+        $eCandidates = array();
+        foreach ($candidates AS $candidateId => $candidateName) {
+            if (!isset($ceLinks[$candidateId])) {
+                continue;
+            }
+            if (!isset($eCandidates[$ceLinks[$candidateId]])) {
+                $eCandidates[$ceLinks[$candidateId]] = array();
+            }
+            $eCandidates[$ceLinks[$candidateId]][$candidateName] = $candidateId;
+        }
+        $elections = $this->Candidate->Election->find('threaded', array(
+            'fields' => array('id', 'name', 'parent_id'),
+        ));
+        $electionNodes = array();
+        foreach ($elections[0]['children'] AS $eType) {
+            $electionNodes[$eType['Election']['name']] = array();
+            foreach ($eType['children'] AS $child) {
+                $nodes = $this->parseChildren($child);
+                foreach ($nodes AS $nodeId => $nodeName) {
+                    $electionNodes[$eType['Election']['name']][$nodeName] = $nodeId;
+                }
+            }
+        }
+        $csvFiles = array(
+            'T1.csv' => array('縣市議員', '直轄市議員'),
+            'T4.csv' => array('鄉鎮市民代表'),
+            'T6.csv' => array('直轄市山地原住民區民代表'),
+            'TC.csv' => array('直轄市長', '縣市長'),
+            'TD.csv' => array('鄉鎮市長', '直轄市山地原住民區長'),
+            'TV.csv' => array('村里長'),
+        );
+        $csvPath = __DIR__ . '/data/2014_vote';
+        /*
+         * Array
+          (
+          [0] => 選舉區
+          [1] => 號次
+          [2] => 姓名
+          [3] => 性別
+          [4] => 出生年月日
+          [5] => 年齡
+          [6] => 推薦之政黨
+          [7] => 學歷
+          [8] => 是否現任
+          [9] => 英文姓名
+          [10] => 出生地
+          )
+         */
+        foreach ($csvFiles AS $csvFile => $electionTypes) {
+            $csvFile = "{$csvPath}/{$csvFile}";
+            $fh = fopen($csvFile, 'r');
+            fgets($fh, 2048);
+            while ($line = fgetcsv($fh, 2048)) {
+                $electionId = false;
+                $newKey = str_replace(array('第'), array('第0'), $line[0]);
+                foreach ($electionTypes AS $electionType) {
+                    if (false === $electionId && isset($electionNodes[$electionType][$line[0]])) {
+                        $electionId = $electionNodes[$electionType][$line[0]];
+                    }
+                    if (false === $electionId && isset($electionNodes[$electionType][$newKey])) {
+                        $electionId = $electionNodes[$electionType][$newKey];
+                    }
+                }
+                if (false === $electionId) {
+                    switch ($line[0]) {
+                        case '新北市坪林區石里':
+                            $electionId = $electionNodes[$electionType]['新北市坪林區石𥕢里'];
+                            break;
+                        case '臺南市新化區拔里':
+                            $electionId = $electionNodes[$electionType]['臺南市新化區𦰡拔里'];
+                            break;
+                        case '臺南市龍崎區石里':
+                            $electionId = $electionNodes[$electionType]['臺南市龍崎區石𥕢里'];
+                            break;
+                        case '臺南市安南區南里':
+                            $electionId = $electionNodes[$electionType]['臺南市安南區塭南里'];
+                            break;
+                        case '臺南市安南區公里':
+                            $electionId = $electionNodes[$electionType]['臺南市安南區公塭里'];
+                            break;
+                        case '新竹縣竹東鎮上里':
+                            $electionId = $electionNodes[$electionType]['新竹縣竹東鎮上舘里'];
+                            break;
+                        case '苗栗縣三義鄉双湖村':
+                            $electionId = $electionNodes[$electionType]['苗栗縣三義鄉雙湖村'];
+                            break;
+                        case '彰化縣彰化市下廍里':
+                            $electionId = $electionNodes[$electionType]['彰化縣彰化市下廍里'];
+                            break;
+                        case '彰化縣彰化市磚磘里':
+                            $electionId = $electionNodes[$electionType]['彰化縣彰化市磚磘里'];
+                            break;
+                        case '彰化縣彰化市寶廍里':
+                            $electionId = $electionNodes[$electionType]['彰化縣彰化市寶廍里'];
+                            break;
+                        case '雲林縣口湖鄉台子村':
+                            $electionId = $electionNodes[$electionType]['雲林縣口湖鄉臺子村'];
+                            break;
+                        default:
+                            print_r($electionTypes);
+                            print_r($line);
+                            exit();
+                    }
+                }
+                $candidateId = '';
+                if (!isset($eCandidates[$electionId][$line[2]])) {
+                    $chars = preg_split('//u', $line[2], -1, PREG_SPLIT_NO_EMPTY);
+                    $maxMatched = 0;
+                    foreach ($eCandidates[$electionId] AS $name => $id) {
+                        $currentMatched = 0;
+                        foreach ($chars AS $char) {
+                            if (false !== strpos($name, $char)) {
+                                $currentMatched++;
+                            }
+                        }
+                        if ($currentMatched > $maxMatched) {
+                            $maxMatched = $currentMatched;
+                            $candidateId = $id;
+                        }
+                    }
+                } else {
+                    $candidateId = $eCandidates[$electionId][$line[2]];
+                }
+                if (empty($candidateId)) {
+                    print_r($line);
+                    print_r($eCandidates[$electionId]);
+                    exit();
+                }
+                $dob = explode('/', $line[4]);
+                $dob[0] = intval($dob[0]) + 1911;
+                echo "processing {$line[0]} {$line[2]}\n";
+                $this->Candidate->save(array('Candidate' => array(
+                        'id' => $candidateId,
+                        'no' => $line[1],
+                        'name' => $line[2],
+                        'gender' => ($line[3] === '男') ? 'm' : 'f',
+                        'birth' => implode('-', $dob),
+                        'party' => $line[6],
+                        'education_level' => $line[7],
+                        'is_present' => ($line[8] === '是') ? '1' : '0',
+                        'name_english' => $line[9],
+                        'birth_place' => $line[10],
+                )));
+            }
+            fclose($fh);
+        }
+    }
+
+    public function parseChildren($arr = array(), $namePrefix = '') {
+        $result = array();
+        $pos = strpos($arr['Election']['name'], '[');
+        if (false !== $pos) {
+            $arr['Election']['name'] = substr($arr['Election']['name'], 0, $pos);
+        }
+        $arr['Election']['name'] = str_replace(array('選區'), array('選舉區'), $arr['Election']['name']);
+        if (!empty($arr['children'])) {
+            foreach ($arr['children'] AS $child) {
+                $result = array_merge($result, $this->parseChildren($child, $namePrefix . $arr['Election']['name']));
+            }
+        } else {
+            $result[$arr['Election']['id']] = $namePrefix . $arr['Election']['name'];
+        }
+        return $result;
     }
 
     public function google_data() {
