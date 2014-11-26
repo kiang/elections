@@ -28,6 +28,12 @@
         'class' => 'form-control',
         'placeholder' => '姓名是必填欄位',
     ));
+    echo $this->Form->input('Candidate.no', array(
+        'type' => 'text',
+        'label' => '號次',
+        'div' => 'form-group col-md-1',
+        'class' => 'form-control',
+    ));
     echo $this->Form->input('Candidate.gender', array(
         'type' => 'select',
         'options' => array(
@@ -47,8 +53,36 @@
     echo $this->Form->input('Candidate.image', array(
         'type' => 'file',
         'label' => '照片（上傳後會自動壓縮為寬度、高度 512 畫素圖片，建議上傳前先自行剪裁）',
-        'div' => 'form-group col-md-7',
+        'div' => 'form-group col-md-6',
         'class' => 'form-control',
+    ));
+    echo $this->Form->input('Candidate.name_english', array(
+        'label' => '英文姓名',
+        'div' => 'form-group col-md-2',
+        'class' => 'form-control',
+    ));
+    echo $this->Form->input('Candidate.education_level', array(
+        'label' => '教育程度',
+        'div' => 'form-group col-md-4',
+        'class' => 'form-control',
+        'placeholder' => '例如： 專科 大學 碩士 博士',
+    ));
+    echo $this->Form->input('Candidate.birth_place', array(
+        'label' => '出生地',
+        'div' => 'form-group col-md-4',
+        'class' => 'form-control',
+        'placeholder' => '例如： 臺北市',
+    ));
+    echo $this->Form->input('Candidate.is_present', array(
+        'label' => '是否現任',
+        'type' => 'select',
+        'options' => array(
+            '0' => '否',
+            '1' => '是',
+        ),
+        'div' => 'form-group col-md-2',
+        'class' => 'form-control',
+        'placeholder' => '例如： 臺北市',
     ));
     echo $this->Form->input('Candidate.party', array(
         'label' => '政黨',
