@@ -1,7 +1,13 @@
 <div id="CandidatesEdit">
+    <h3>編輯</h3>
     <?php
-    $url = array();
     echo $this->Form->create('Candidate', array('type' => 'file', 'url' => array($id)));
+    echo $this->Form->input('Candidate.active_id', array(
+        'type' => 'text',
+        'label' => '上層編號',
+        'div' => 'form-group col-md-12',
+        'class' => 'form-control',
+    ));
     echo $this->Form->input('Candidate.name', array(
         'label' => '姓名',
         'div' => 'form-group col-md-2',
