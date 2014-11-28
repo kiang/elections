@@ -102,7 +102,7 @@ class AreasController extends AppController {
             $elections[$k]['AreasElection']['bulletin_key'] = $election['Election']['bulletin_key'];
             $elections[$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name', 'parent_id'));
             $elections[$k]['Candidate'] = $this->Area->Election->Candidate->find('all', array(
-                'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image'),
+                'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.party', 'Candidate.stage', 'Candidate.image'),
                 'joins' => array(
                     array(
                         'table' => 'candidates_elections',

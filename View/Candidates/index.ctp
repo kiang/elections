@@ -69,6 +69,7 @@ if (!empty($parents)) {
                         echo $candidate['Candidate']['no'] . '號 ';
                     }
                     echo $candidate['Candidate']['name'];
+                    echo ' (' . $this->Olc->party[$candidate['Candidate']['party']] . ')';
                     ?>
                     <br /><?php echo $candidate['Election'][1]['Election']['name']; ?>
                 </a>

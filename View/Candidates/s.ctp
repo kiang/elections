@@ -4,7 +4,7 @@ $jsonResult = array();
 if (!empty($result)) {
     foreach ($result AS $item) {
         if(!empty($item['Candidate']['no'])) {
-            $item['Candidate']['name'] = $item['Candidate']['no'] . '號 ' . $item['Candidate']['name'];
+            $item['Candidate']['name'] = $item['Candidate']['no'] . '號 ' . $item['Candidate']['name'] . ' (' . $this->Olc->party[$item['Candidate']['party']] . ')';;
         }
         $jsonResult[] = array(
             'id' => $item['Candidate']['id'],
