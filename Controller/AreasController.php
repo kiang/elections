@@ -63,81 +63,91 @@ class AreasController extends AppController {
             $parentId = $this->Area->field('id', array('parent_id IS NULL'));
         }
 
-        $items = $this->Area->find('all', array(
-            'conditions' => array(
-                'Area.parent_id' => $parentId,
-            )
-        ));
-        if (empty($items)) {
-            $items = $this->Area->find('all', array(
+        $cacheKey = "AreasIndex{$parentId}";
+        $result = Cache::read($cacheKey, 'long');
+        if (!$result) {
+            $result = array(
+                'items' => array(),
+                'parents' => array(),
+                'elections' => array(),
+            );
+            $result['items'] = $this->Area->find('all', array(
                 'conditions' => array(
-                    'Area.parent_id' => $this->Area->field('parent_id', array('id' => $parentId)),
+                    'Area.parent_id' => $parentId,
                 )
             ));
-        }
-
-        $parents = $this->Area->getPath($parentId, array('id', 'name'));
-        $elections = $this->Area->AreasElection->find('all', array(
-            'conditions' => array(
-                'AreasElection.Area_id' => Set::extract($parents, '{n}.Area.id'),
-            ),
-            'contain' => array(
-                'Election' => array('fields' => array('population', 'population_electors',
-                    'quota', 'quota_women', 'bulletin_key')),
-            ),
-        ));
-        $electionStack = array();
-        foreach ($elections AS $eKey => $election) {
-            if (!isset($electionStack[$election['AreasElection']['Election_id']])) {
-                $electionStack[$election['AreasElection']['Election_id']] = true;
-            } else {
-                unset($elections[$eKey]);
+            if (empty($result['items'])) {
+                $result['items'] = $this->Area->find('all', array(
+                    'conditions' => array(
+                        'Area.parent_id' => $this->Area->field('parent_id', array('id' => $parentId)),
+                    )
+                ));
             }
-        }
-        foreach ($elections AS $k => $election) {
-            $elections[$k]['AreasElection']['population'] = $election['Election']['population'];
-            $elections[$k]['AreasElection']['population_electors'] = $election['Election']['population_electors'];
-            $elections[$k]['AreasElection']['quota'] = $election['Election']['quota'];
-            $elections[$k]['AreasElection']['quota_women'] = $election['Election']['quota_women'];
-            $elections[$k]['AreasElection']['bulletin_key'] = $election['Election']['bulletin_key'];
-            $elections[$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name', 'parent_id'));
-            $elections[$k]['Candidate'] = $this->Area->Election->Candidate->find('all', array(
-                'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.party', 'Candidate.stage', 'Candidate.image'),
-                'joins' => array(
-                    array(
-                        'table' => 'candidates_elections',
-                        'alias' => 'CandidatesElection',
-                        'type' => 'inner',
-                        'conditions' => array(
-                            'CandidatesElection.Candidate_id = Candidate.id',
+            $result['parents'] = $this->Area->getPath($parentId, array('id', 'name'));
+            $result['elections'] = $this->Area->AreasElection->find('all', array(
+                'conditions' => array(
+                    'AreasElection.Area_id' => Set::extract($result['parents'], '{n}.Area.id'),
+                ),
+                'contain' => array(
+                    'Election' => array('fields' => array('population', 'population_electors',
+                            'quota', 'quota_women', 'bulletin_key')),
+                ),
+            ));
+            $electionStack = array();
+            foreach ($result['elections'] AS $eKey => $election) {
+                if (!isset($electionStack[$election['AreasElection']['Election_id']])) {
+                    $electionStack[$election['AreasElection']['Election_id']] = true;
+                } else {
+                    unset($result['elections'][$eKey]);
+                }
+            }
+            foreach ($result['elections'] AS $k => $election) {
+                $result['elections'][$k]['AreasElection']['population'] = $election['Election']['population'];
+                $result['elections'][$k]['AreasElection']['population_electors'] = $election['Election']['population_electors'];
+                $result['elections'][$k]['AreasElection']['quota'] = $election['Election']['quota'];
+                $result['elections'][$k]['AreasElection']['quota_women'] = $election['Election']['quota_women'];
+                $result['elections'][$k]['AreasElection']['bulletin_key'] = $election['Election']['bulletin_key'];
+                $result['elections'][$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name', 'parent_id'));
+                $result['elections'][$k]['Candidate'] = $this->Area->Election->Candidate->find('all', array(
+                    'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.party', 'Candidate.stage', 'Candidate.image'),
+                    'joins' => array(
+                        array(
+                            'table' => 'candidates_elections',
+                            'alias' => 'CandidatesElection',
+                            'type' => 'inner',
+                            'conditions' => array(
+                                'CandidatesElection.Candidate_id = Candidate.id',
+                            ),
                         ),
                     ),
-                ),
-                'conditions' => array(
-                    'Candidate.active_id IS NULL',
-                    'CandidatesElection.Election_id' => $election['AreasElection']['Election_id'],
-                ),
-                'order' => array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC'),
-            ));
+                    'conditions' => array(
+                        'Candidate.active_id IS NULL',
+                        'CandidatesElection.Election_id' => $election['AreasElection']['Election_id'],
+                    ),
+                    'order' => array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC'),
+                ));
+            }
+            Cache::write($cacheKey, $result, 'long');
         }
 
         $desc_for_layout = '';
-        $descElections = Set::extract('{n}.Election.1.Election.name', $elections);
+        $descElections = Set::extract('{n}.Election.1.Election.name', $result['elections']);
         if (!empty($descElections)) {
             $desc_for_layout .= implode(', ', $descElections) . '等各種候選人的資訊。';
         }
         $pageTitle = '行政區 @ ';
-        if(!empty($parents)) {
-            $pageTitle = implode(' > ', Set::extract('{n}.Area.name', $parents)) . $pageTitle;
+        if (!empty($result['parents'])) {
+            $pageTitle = implode(' > ', Set::extract('{n}.Area.name', $result['parents'])) . $pageTitle;
         }
         $this->set('title_for_layout', $pageTitle);
         $this->set('desc_for_layout', $desc_for_layout);
 
-        $this->set('items', $items);
+        $this->set('items', $result['items']);
+        $this->set('parents', $result['parents']);
+        $this->set('elections', $result['elections']);
+
         $this->set('url', array($parentId));
         $this->set('parentId', $parentId);
-        $this->set('parents', $parents);
-        $this->set('elections', $elections);
         $this->set('areaMethod', $areaMethod);
     }
 
