@@ -17,43 +17,56 @@ class AreasController extends AppController {
 
     public function breadcrumb($parentId = '') {
         if (!empty($parentId)) {
-            $parents = $this->Area->getPath($parentId, array('id', 'name'));
-            $this->set('parents', $parents);
+            $cacheKey = "AreasBreadcrumb{$parentId}";
+            $result = Cache::read($cacheKey, 'long');
+            if (!$result) {
+                $result = $this->Area->getPath($parentId, array('id', 'name'));
+            }
+            $this->set('parents', $result);
         }
     }
 
     public function json($areaId = '') {
-        if (!empty($areaId)) {
-            $area = $this->Area->find('first', array(
-                'conditions' => array('id' => $areaId)
-            ));
+        $cacheKey = "AreasJson{$areaId}";
+        $result = Cache::read($cacheKey, 'long');
+        if (!$result) {
+            if (!empty($areaId)) {
+                $area = $this->Area->find('first', array(
+                    'conditions' => array('id' => $areaId)
+                ));
+            }
+            if (empty($area)) {
+                $area = $this->Area->find('first', array(
+                    'conditions' => array('name' => '2014')
+                ));
+            }
+            if ($area['Area']['rght'] - $area['Area']['lft'] === 1) {
+                $result = $this->Area->find('all', array(
+                    'conditions' => array('parent_id' => $area['Area']['parent_id']),
+                ));
+            } else {
+                $result = $this->Area->find('all', array(
+                    'conditions' => array('parent_id' => $area['Area']['id']),
+                ));
+            }
         }
-        if (empty($area)) {
-            $area = $this->Area->find('first', array(
-                'conditions' => array('name' => '2014')
-            ));
-        }
-        if ($area['Area']['rght'] - $area['Area']['lft'] === 1) {
-            $areas = $this->Area->find('all', array(
-                'conditions' => array('parent_id' => $area['Area']['parent_id']),
-            ));
-        } else {
-            $areas = $this->Area->find('all', array(
-                'conditions' => array('parent_id' => $area['Area']['id']),
-            ));
-        }
-        $this->set('areas', $areas);
+        $this->set('areas', $result);
     }
 
     public function map($parentId = '') {
         if (empty($parentId)) {
             $parentId = $this->Area->field('id', array('name' => '2014'));
         }
-        $parents = $this->Area->getPath($parentId, array('id', 'name'));
-        $this->set('areaId', $parentId);
-        $this->set('parents', $parents);
+        $cacheKey = "AreasMap{$parentId}";
+        $result = Cache::read($cacheKey, 'long');
+        if (!$result) {
+            $result = $this->Area->getPath($parentId, array('id', 'name'));
+        }
 
-        $this->set('title_for_layout', implode(' > ', Set::extract('{n}.Area.name', $parents)) . '行政區 @ ');
+        $this->set('areaId', $parentId);
+        $this->set('parents', $result);
+
+        $this->set('title_for_layout', implode(' > ', Set::extract('{n}.Area.name', $result)) . '行政區 @ ');
     }
 
     function index($parentId = '', $areaMethod = 'index') {
