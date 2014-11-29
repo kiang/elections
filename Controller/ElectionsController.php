@@ -22,32 +22,38 @@ class ElectionsController extends AppController {
             $keyword = Sanitize::clean($this->request->query['term']);
         }
         if (!empty($keyword)) {
-            $keywords = explode(' ', $keyword);
-            $countKeywords = 0;
-            $conditions = array(
-                'Election.parent_id IS NOT NULL',
-            );
-            foreach ($keywords AS $k => $keyword) {
-                $keyword = trim($keyword);
-                if (!empty($keyword) && ++$countKeywords < 4) {
-                    $conditions[] = array(
-                        'OR' => array(
-                            "Election.name LIKE '%{$keyword}%'",
-                            "Election.keywords LIKE '%{$keyword}%'",
-                        )
-                    );
+            $cacheKey = "ElectionsS{$keyword}";
+            $result = Cache::read($cacheKey, 'long');
+            if (!$result) {
+                $keywords = explode(' ', $keyword);
+                $countKeywords = 0;
+                $conditions = array(
+                    'Election.parent_id IS NOT NULL',
+                );
+                foreach ($keywords AS $k => $keyword) {
+                    $keyword = trim($keyword);
+                    if (!empty($keyword) && ++$countKeywords < 4) {
+                        $conditions[] = array(
+                            'OR' => array(
+                                "Election.name LIKE '%{$keyword}%'",
+                                "Election.keywords LIKE '%{$keyword}%'",
+                            )
+                        );
+                    }
                 }
-            }
 
-            $result = $this->Election->find('all', array(
-                'fields' => array('Election.id', 'Election.name', 'Election.lft', 'Election.rght'),
-                'conditions' => $conditions,
-                'limit' => 50,
-            ));
+                $result = $this->Election->find('all', array(
+                    'fields' => array('Election.id', 'Election.name', 'Election.lft', 'Election.rght'),
+                    'conditions' => $conditions,
+                    'limit' => 50,
+                ));
 
-            foreach ($result AS $k => $v) {
-                $parents = $this->Election->getPath($v['Election']['id'], array('name'));
-                $result[$k]['Election']['name'] = implode(' > ', Set::extract($parents, '{n}.Election.name'));
+                foreach ($result AS $k => $v) {
+                    $parents = $this->Election->getPath($v['Election']['id'], array('name'));
+                    $result[$k]['Election']['name'] = implode(' > ', Set::extract($parents, '{n}.Election.name'));
+                }
+
+                Cache::write($cacheKey, $result, 'long');
             }
         }
         $this->set('result', $result);
@@ -60,20 +66,30 @@ class ElectionsController extends AppController {
         if (empty($parentId)) {
             $parentId = $this->Election->field('id', array('parent_id IS NULL'));
         }
-        $items = $this->Election->find('all', array(
-            'conditions' => array(
-                'Election.parent_id' => empty($parentId) ? NULL : $parentId,
-            ),
-        ));
+        $cacheKey = "ElectionsIndex{$parentId}";
+        $result = Cache::read($cacheKey, 'long');
+        if (!$result) {
+            $result = array(
+                'items' => array(),
+                'parents' => array(),
+            );
+            $result['items'] = $this->Election->find('all', array(
+                'conditions' => array(
+                    'Election.parent_id' => empty($parentId) ? NULL : $parentId,
+                ),
+            ));
 
-        $parents = $this->Election->getPath($parentId);
-        $c = Set::extract('{n}.Election.name', $parents);
+            $result['parents'] = $this->Election->getPath($parentId);
+            Cache::write($cacheKey, $result, 'long');
+        }
+
+        $c = Set::extract('{n}.Election.name', $result['parents']);
 
         $this->set('title_for_layout', implode(' > ', $c) . '選舉區 @ ');
-        $this->set('items', $items);
+        $this->set('items', $result['items']);
         $this->set('url', array($parentId));
         $this->set('parentId', $parentId);
-        $this->set('parents', $parents);
+        $this->set('parents', $result['parents']);
     }
 
     function admin_index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {
