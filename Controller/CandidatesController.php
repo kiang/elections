@@ -68,31 +68,36 @@ class CandidatesController extends AppController {
             $keyword = Sanitize::clean($this->request->query['term']);
         }
         if (!empty($keyword)) {
-            $result = $this->Candidate->find('all', array(
-                'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no',
-                    'Candidate.party', 'CandidatesElection.Election_id'),
-                'conditions' => array(
-                    'Candidate.active_id IS NULL',
-                    'Candidate.name LIKE' => "%{$keyword}%",
-                ),
-                'limit' => 20,
-                'joins' => array(
-                    array(
-                        'table' => 'candidates_elections',
-                        'alias' => 'CandidatesElection',
-                        'type' => 'inner',
-                        'conditions' => array(
-                            'CandidatesElection.Candidate_id = Candidate.id',
+            $cacheKey = "CandidatesS{$keyword}";
+            $result = Cache::read($cacheKey, 'long');
+            if (!$result) {
+                $result = $this->Candidate->find('all', array(
+                    'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no',
+                        'Candidate.party', 'CandidatesElection.Election_id'),
+                    'conditions' => array(
+                        'Candidate.active_id IS NULL',
+                        'Candidate.name LIKE' => "%{$keyword}%",
+                    ),
+                    'limit' => 20,
+                    'joins' => array(
+                        array(
+                            'table' => 'candidates_elections',
+                            'alias' => 'CandidatesElection',
+                            'type' => 'inner',
+                            'conditions' => array(
+                                'CandidatesElection.Candidate_id = Candidate.id',
+                            ),
                         ),
                     ),
-                ),
-            ));
-            foreach ($result AS $k => $v) {
-                $result[$k]['jobTitle'] = '';
-                $parents = $this->Candidate->Election->getPath($v['CandidatesElection']['Election_id'], array('name'));
-                foreach ($parents AS $parent) {
-                    $result[$k]['jobTitle'] .= $parent['Election']['name'];
+                ));
+                foreach ($result AS $k => $v) {
+                    $result[$k]['jobTitle'] = '';
+                    $parents = $this->Candidate->Election->getPath($v['CandidatesElection']['Election_id'], array('name'));
+                    foreach ($parents AS $parent) {
+                        $result[$k]['jobTitle'] .= $parent['Election']['name'];
+                    }
                 }
+                Cache::write($cacheKey, $result, 'long');
             }
         }
         $this->set('result', $result);
@@ -335,41 +340,53 @@ class CandidatesController extends AppController {
     }
 
     function view($id = null) {
-        $this->data = $this->Candidate->find('first', array(
-            'conditions' => array(
-                'Candidate.id' => $id,
-                'Candidate.active_id IS NULL',
-            ),
-            'contain' => array(
-                'Election' => array(
-                    'fields' => array('id', 'population_electors', 'population',
-                        'quota', 'quota_women', 'bulletin_key'),
-                    'Area' => array(
-                        'fields' => array('Area.id', 'Area.name'),
+        if (!empty($id)) {
+            $cacheKey = "CandidatesView{$id}";
+            $result = Cache::read($cacheKey, 'long');
+            if (!$result) {
+                $result = array(
+                    'candidate' => array(),
+                    'parents' => array(),
+                );
+                $result['candidate'] = $this->Candidate->find('first', array(
+                    'conditions' => array(
+                        'Candidate.id' => $id,
+                        'Candidate.active_id IS NULL',
                     ),
-                ),
-                'Tag' => array(
-                    'fields' => array('Tag.id', 'Tag.name'),
-                ),
-            ),
-        ));
-        if (!empty($this->data)) {
-            $parents = $this->Candidate->Election->getPath($this->data['Election'][0]['id']);
-            $desc_for_layout = '';
-            $descElections = Set::extract('{n}.Election.name', $parents);
-            if (!empty($descElections)) {
-                $desc_for_layout .= $this->data['Candidate']['name'] . '在' . implode(' > ', $descElections) . '的參選資訊。';
+                    'contain' => array(
+                        'Election' => array(
+                            'fields' => array('id', 'population_electors', 'population',
+                                'quota', 'quota_women', 'bulletin_key'),
+                            'Area' => array(
+                                'fields' => array('Area.id', 'Area.name'),
+                            ),
+                        ),
+                        'Tag' => array(
+                            'fields' => array('Tag.id', 'Tag.name'),
+                        ),
+                    ),
+                ));
+                $result['parents'] = $this->Candidate->Election->getPath($result['candidate']['Election'][0]['id']);
+                Cache::write($cacheKey, $result, 'long');
             }
-            if (!empty($this->data['Candidate']['no'])) {
-                $descElections[] = "{$this->data['Candidate']['no']}號 {$this->data['Candidate']['name']}";
-            } else {
-                $descElections[] = $this->data['Candidate']['name'];
-            }
+        }
 
+        if (!empty($result['candidate'])) {
+            $desc_for_layout = '';
+            $descElections = Set::extract('{n}.Election.name', $result['parents']);
+            if (!empty($descElections)) {
+                $desc_for_layout .= $result['candidate']['Candidate']['name'] . '在' . implode(' > ', $descElections) . '的參選資訊。';
+            }
+            if (!empty($result['candidate']['Candidate']['no'])) {
+                $descElections[] = "{$result['candidate']['Candidate']['no']}號 {$result['candidate']['Candidate']['name']}";
+            } else {
+                $descElections[] = $result['candidate']['Candidate']['name'];
+            }
+            $this->set('candidate', $result['candidate']);
             $this->set('referer', $this->request->referer());
             $this->set('desc_for_layout', $desc_for_layout);
             $this->set('title_for_layout', implode(' > ', $descElections) . '候選人 @ ');
-            $this->set('parents', $parents);
+            $this->set('parents', $result['parents']);
         } else {
             $this->Session->setFlash('請依照網頁指示操作');
             $this->redirect(array('action' => 'index'));
@@ -475,7 +492,7 @@ class CandidatesController extends AppController {
             if (!empty($this->data)) {
                 $dataToSave = $this->data;
                 $dataToSave['Candidate']['id'] = $id;
-                if(empty($dataToSave['Candidate']['active_id'])) {
+                if (empty($dataToSave['Candidate']['active_id'])) {
                     unset($dataToSave['Candidate']['active_id']);
                 }
                 if (!empty($dataToSave['Candidate']['image_upload']['size'])) {

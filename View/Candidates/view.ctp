@@ -16,42 +16,42 @@
         <div class="col-md-12">
             <div class="pull-right btn-group">
                 <?php
-                echo $this->Html->link('編輯', array('action' => 'edit', $this->data['Candidate']['id']), array('class' => 'btn btn-default'));
-                echo $this->Html->link('本頁 API', '/api/candidates/view/' . $this->data['Candidate']['id'], array('class' => 'btn btn-default', 'target' => '_blank'));
-                echo $this->Html->link('相關公司', 'http://gcis.nat.g0v.tw/name/' . $this->data['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
-                echo $this->Html->link('相關法人', 'http://foundations.olc.tw/directors/index/' . $this->data['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
+                echo $this->Html->link('編輯', array('action' => 'edit', $candidate['Candidate']['id']), array('class' => 'btn btn-default'));
+                echo $this->Html->link('本頁 API', '/api/candidates/view/' . $candidate['Candidate']['id'], array('class' => 'btn btn-default', 'target' => '_blank'));
+                echo $this->Html->link('相關公司', 'http://gcis.nat.g0v.tw/name/' . $candidate['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
+                echo $this->Html->link('相關法人', 'http://foundations.olc.tw/directors/index/' . $candidate['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
                 if (Configure::read('loginMember.group_id') === '1') {
-                    echo $this->Html->link('管理', array('action' => 'edit', $this->data['Candidate']['id'], 'admin' => true), array('class' => 'btn btn-default'));
+                    echo $this->Html->link('管理', array('action' => 'edit', $candidate['Candidate']['id'], 'admin' => true), array('class' => 'btn btn-default'));
                 }
                 if (false !== strpos($referer, $this->Html->url('/', true))) {
                     echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default'));
                 }
-                if (!empty($this->data['Election'][0]['bulletin_key'])) {
-                    echo $this->Html->link('選舉公報', '/bulletins/view/' . $this->data['Election'][0]['bulletin_key'], array('class' => 'btn btn-primary'));
+                if (!empty($candidate['Election'][0]['bulletin_key'])) {
+                    echo $this->Html->link('選舉公報', '/bulletins/view/' . $candidate['Election'][0]['bulletin_key'], array('class' => 'btn btn-primary'));
                 }
                 ?>
             </div>
             <?php
-            $quota = "名額： {$this->data['Election'][0]['quota']}";
-            if (!empty($this->data['Election'][0]['quota_women'])) {
-                $quota .= " / 婦女保障： {$this->data['Election'][0]['quota_women']}";
+            $quota = "名額： {$candidate['Election'][0]['quota']}";
+            if (!empty($candidate['Election'][0]['quota_women'])) {
+                $quota .= " / 婦女保障： {$candidate['Election'][0]['quota_women']}";
             }
-            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$this->data['Election'][0]['population_electors']} / 人口： {$this->data['Election'][0]['population']} )";
+            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$candidate['Election'][0]['population_electors']} / 人口： {$candidate['Election'][0]['population']} )";
             ?>
         </div>
         <div class="col-md-6">
             行政區：
             <?php
-            foreach ($this->data['Election'][0]['Area'] AS $area) {
+            foreach ($candidate['Election'][0]['Area'] AS $area) {
                 echo $this->Html->link($area['name'], '/areas/index/' . $area['id'], array('class' => 'btn btn-default'));
             }
             ?>
         </div>
         <div class="col-md-6">
-            <?php if (!empty($this->data['Tag'])) { ?>
+            <?php if (!empty($candidate['Tag'])) { ?>
                 分類：
                 <?php
-                foreach ($this->data['Tag'] AS $tag) {
+                foreach ($candidate['Tag'] AS $tag) {
                     echo $this->Html->link($tag['name'], '/candidates/tag/' . $tag['id'], array('class' => 'btn btn-default'));
                 }
             }
@@ -62,24 +62,24 @@
     </div>
     <div class="row">
         <div class="col-md-12 candidateMainBlock">
-            <div class="col-md-12 candidate-<?php echo $this->data['Candidate']['stage']; ?>">
+            <div class="col-md-12 candidate-<?php echo $candidate['Candidate']['stage']; ?>">
                 <div class="col-md-6">
                     <?php
-                    if (empty($this->data['Candidate']['image'])) {
+                    if (empty($candidate['Candidate']['image'])) {
                         echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 200px; border: 0px;'));
                     } else {
-                        echo $this->Html->image('../media/' . $this->data['Candidate']['image'], array('style' => 'width: 200px; border: 0px;'));
+                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 200px; border: 0px;'));
                     }
                     ?>
                 </div>
                 <div class="col-md-6">
                     <h2><?php
-                        if (!empty($this->data['Candidate']['no'])) {
-                            echo "{$this->data['Candidate']['no']}號 ";
+                        if (!empty($candidate['Candidate']['no'])) {
+                            echo "{$candidate['Candidate']['no']}號 ";
                         }
-                        echo $this->data['Candidate']['name'];
+                        echo $candidate['Candidate']['name'];
                         ?></h2>
-                    <?php echo $this->Olc->stages[$this->data['Candidate']['stage']]; ?>
+                    <?php echo $this->Olc->stages[$candidate['Candidate']['stage']]; ?>
                 </div>
             </div>
             <div class="col-md-12">
@@ -92,7 +92,7 @@
                         <div class="col-sm-8">
                             <ul>
                                 <li>性別：<?php
-                                    $gender = strtolower($this->data['Candidate']['gender']);
+                                    $gender = strtolower($candidate['Candidate']['gender']);
                                     switch ($gender) {
                                         case 'f':
                                             echo '女';
@@ -104,38 +104,38 @@
                                             echo '未設定';
                                     }
                                     ?></li>
-                                <li>電話：<?php echo $this->data['Candidate']['contacts_phone']; ?></li>
-                                <li>傳真：<?php echo $this->data['Candidate']['contacts_fax']; ?></li>
-                                <li>信箱：<?php echo $this->data['Candidate']['contacts_email']; ?></li>
-                                <li>服務處：<?php echo $this->data['Candidate']['contacts_address']; ?></li>
-                                <li>政黨：<?php echo $this->data['Candidate']['party']; ?></li>
-                                <li>生日：<?php echo $this->data['Candidate']['birth']; ?></li>
-                                <li>教育程度：<?php echo $this->data['Candidate']['education_level']; ?></li>
-                                <li>出生地：<?php echo $this->data['Candidate']['birth_place']; ?></li>
-                                <li>英文姓名：<?php echo $this->data['Candidate']['name_english']; ?></li>
-                                <li>是否現任：<?php echo ($this->data['Candidate']['is_present'] == 1) ? '是' : '否'; ?></li>
+                                <li>電話：<?php echo $candidate['Candidate']['contacts_phone']; ?></li>
+                                <li>傳真：<?php echo $candidate['Candidate']['contacts_fax']; ?></li>
+                                <li>信箱：<?php echo $candidate['Candidate']['contacts_email']; ?></li>
+                                <li>服務處：<?php echo $candidate['Candidate']['contacts_address']; ?></li>
+                                <li>政黨：<?php echo $candidate['Candidate']['party']; ?></li>
+                                <li>生日：<?php echo $candidate['Candidate']['birth']; ?></li>
+                                <li>教育程度：<?php echo $candidate['Candidate']['education_level']; ?></li>
+                                <li>出生地：<?php echo $candidate['Candidate']['birth_place']; ?></li>
+                                <li>英文姓名：<?php echo $candidate['Candidate']['name_english']; ?></li>
+                                <li>是否現任：<?php echo ($candidate['Candidate']['is_present'] == 1) ? '是' : '否'; ?></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php if (!empty($this->data['Election'][0]['CandidatesElection']['platform'])) { ?>
+            <?php if (!empty($candidate['Election'][0]['CandidatesElection']['platform'])) { ?>
                 <div class="col-md-12">
                     <div class="well well-lg"> 
                         <div class="row">
                             <strong>政見</strong> <hr />
-                            <?php echo str_replace('\\n', '<br />', $this->data['Election'][0]['CandidatesElection']['platform']); ?>
+                            <?php echo str_replace('\\n', '<br />', $candidate['Election'][0]['CandidatesElection']['platform']); ?>
                         </div>
                     </div>
                 </div>
             <?php } ?>
-            <?php if (!empty($this->data['Candidate']['links'])) { ?>
+            <?php if (!empty($candidate['Candidate']['links'])) { ?>
                 <div class="col-md-12">
                     <div class="well well-lg"> 
                         <div class="row">
                             <strong>相關連結</strong> <hr />
                             <?php
-                            $lines = explode('\\n', $this->data['Candidate']['links']);
+                            $lines = explode('\\n', $candidate['Candidate']['links']);
                             foreach ($lines AS $line) {
                                 $pos = strrpos($line, 'http');
                                 if (false !== $pos) {
@@ -154,22 +154,22 @@
                     </div>
                 </div>
             <?php } ?>
-            <?php if (!empty($this->data['Candidate']['education'])) { ?>
+            <?php if (!empty($candidate['Candidate']['education'])) { ?>
                 <div class="col-md-12">
                     <div class="well well-lg"> 
                         <div class="row">
                             <strong>經歷</strong> <hr />
-                            <?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['experience'])); ?>
+                            <?php echo nl2br(str_replace('\\n', '<br />', $candidate['Candidate']['experience'])); ?>
                         </div>
                     </div>
                 </div>
             <?php } ?>
-            <?php if (!empty($this->data['Candidate']['education'])) { ?>
+            <?php if (!empty($candidate['Candidate']['education'])) { ?>
                 <div class="col-md-12">
                     <div class="well well-lg"> 
                         <div class="row">
                             <strong>學歷</strong> <hr />
-                            <?php echo nl2br(str_replace('\\n', '<br />', $this->data['Candidate']['education'])); ?>
+                            <?php echo nl2br(str_replace('\\n', '<br />', $candidate['Candidate']['education'])); ?>
                         </div>
                     </div>
                 </div>
@@ -181,8 +181,8 @@
     <div id="vanilla-comments"></div>
     <script type="text/javascript">
         var vanilla_forum_url = '<?php echo $this->Html->url('/../talk'); ?>'; // Required: the full http url & path to your vanilla forum
-        var vanilla_identifier = '<?php echo $this->data['Candidate']['id']; ?>'; // Required: your unique identifier for the content being commented on
-        var vanilla_url = '<?php echo $this->Html->url('/candidates/view/' . $this->data['Candidate']['id'], true); ?>'; // Current page's url
+        var vanilla_identifier = '<?php echo $candidate['Candidate']['id']; ?>'; // Required: your unique identifier for the content being commented on
+        var vanilla_url = '<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id'], true); ?>'; // Current page's url
         (function () {
             var vanilla = document.createElement('script');
             vanilla.type = 'text/javascript';
@@ -191,7 +191,7 @@
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(vanilla);
         })();
         $(function () {
-            $.get('<?php echo $this->Html->url('/candidates/links/' . $this->data['Candidate']['id']); ?>', {}, function (pageBlock) {
+            $.get('<?php echo $this->Html->url('/candidates/links/' . $candidate['Candidate']['id']); ?>', {}, function (pageBlock) {
                 if (pageBlock !== '') {
                     $('div.candidateNewsBlock').html(pageBlock).show();
                     $('div.candidateMainBlock').removeClass('col-md-12').addClass('col-md-5');
