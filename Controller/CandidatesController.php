@@ -18,38 +18,48 @@ class CandidatesController extends AppController {
 
     public function links($candidateId = '') {
         if (!empty($candidateId)) {
-            $candidate = $this->Candidate->find('first', array(
-                'conditions' => array(
-                    'Candidate.id' => $candidateId,
-                    'Candidate.active_id IS NULL',
-                ),
-                'contain' => array(
-                    'Keyword',
-                ),
-            ));
-        }
-        if (!empty($candidate)) {
-            $keywords = Set::combine($candidate['Keyword'], '{n}.id', '{n}.keyword');
-            $scope = array(
-                'LinksKeyword.Keyword_id' => array_keys($keywords),
-            );
-
-            $this->paginate['Link']['joins'] = array(
-                array(
-                    'table' => 'links_keywords',
-                    'alias' => 'LinksKeyword',
-                    'type' => 'inner',
+            $cPage = isset($this->request->params['named']['page']) ? $this->request->params['named']['page'] : '1';
+            $cacheKey = "CandidatesLinks{$candidateId}{$cPage}";
+            $result = Cache::read($cacheKey, 'long');
+            if (!$result) {
+                $result = array();
+                $candidate = $this->Candidate->find('first', array(
                     'conditions' => array(
-                        'LinksKeyword.Link_id = Link.id',
+                        'Candidate.id' => $candidateId,
+                        'Candidate.active_id IS NULL',
                     ),
-                ),
-            );
-            $this->paginate['Link']['order'] = array('Link.created' => 'desc');
-            $this->paginate['Link']['limit'] = 30;
-            $this->paginate['Link']['fields'] = array('Link.*', 'LinksKeyword.summary', 'LinksKeyword.Keyword_id');
+                    'contain' => array(
+                        'Keyword',
+                    ),
+                ));
+                if (!empty($candidate)) {
+                    $keywords = Set::combine($candidate['Keyword'], '{n}.id', '{n}.keyword');
+                    $scope = array(
+                        'LinksKeyword.Keyword_id' => array_keys($keywords),
+                    );
+
+                    $this->paginate['Link']['joins'] = array(
+                        array(
+                            'table' => 'links_keywords',
+                            'alias' => 'LinksKeyword',
+                            'type' => 'inner',
+                            'conditions' => array(
+                                'LinksKeyword.Link_id = Link.id',
+                            ),
+                        ),
+                    );
+                    $this->paginate['Link']['order'] = array('Link.created' => 'desc');
+                    $this->paginate['Link']['limit'] = 30;
+                    $this->paginate['Link']['fields'] = array('Link.*', 'LinksKeyword.summary', 'LinksKeyword.Keyword_id');
+                    $result['links'] = $this->paginate($this->Candidate->Keyword->Link, $scope);
+                }
+                Cache::write($cacheKey, $result, 'long');
+            }
+        }
+        if (!empty($result['links'])) {
             $this->set('url', array($candidateId));
             $this->set('linkKeywords', $keywords);
-            $this->set('newsLinks', $this->paginate($this->Candidate->Keyword->Link, $scope));
+            $this->set('newsLinks', $result['links']);
         }
     }
 
@@ -202,50 +212,59 @@ class CandidatesController extends AppController {
     }
 
     function index($electionId = '') {
-        $scope = array(
-            'Candidate.active_id IS NULL',
-        );
+        $cPage = isset($this->request->params['named']['page']) ? $this->request->params['named']['page'] : '1';
+        $cacheKey = "CandidatesIndex{$electionId}{$cPage}";
+        $result = Cache::read($cacheKey, 'long');
+        if (!$result) {
+            $result = array();
+            $scope = array(
+                'Candidate.active_id IS NULL',
+            );
 
-        if (!empty($electionId)) {
-            $scope['CandidatesElection.Election_id'] = $electionId;
-            $this->paginate['Candidate']['order'] = array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC');
-        } else {
-            $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
-        }
-
-        $this->paginate['Candidate']['joins'] = array(
-            array(
-                'table' => 'candidates_elections',
-                'alias' => 'CandidatesElection',
-                'type' => 'inner',
-                'conditions' => array(
-                    'CandidatesElection.Candidate_id = Candidate.id',
-                ),
-            ),
-        );
-        $this->paginate['Candidate']['limit'] = 30;
-        $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.party',
-            'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image',
-            'CandidatesElection.Election_id');
-        $items = $this->paginate($this->Candidate, $scope);
-        $electionStack = array();
-        foreach ($items AS $k => $item) {
-            if (!isset($electionStack[$item['CandidatesElection']['Election_id']])) {
-                $electionStack[$item['CandidatesElection']['Election_id']] = $this->Candidate->Election->getPath($item['CandidatesElection']['Election_id'], array('id', 'name'));
+            if (!empty($electionId)) {
+                $scope['CandidatesElection.Election_id'] = $electionId;
+                $this->paginate['Candidate']['order'] = array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC');
+            } else {
+                $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
             }
-            $items[$k]['Election'] = $electionStack[$item['CandidatesElection']['Election_id']];
+
+            $this->paginate['Candidate']['joins'] = array(
+                array(
+                    'table' => 'candidates_elections',
+                    'alias' => 'CandidatesElection',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'CandidatesElection.Candidate_id = Candidate.id',
+                    ),
+                ),
+            );
+            $this->paginate['Candidate']['limit'] = 30;
+            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.party',
+                'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image',
+                'CandidatesElection.Election_id');
+            $result['items'] = $this->paginate($this->Candidate, $scope);
+            $electionStack = array();
+            foreach ($result['items'] AS $k => $item) {
+                if (!isset($electionStack[$item['CandidatesElection']['Election_id']])) {
+                    $electionStack[$item['CandidatesElection']['Election_id']] = $this->Candidate->Election->getPath($item['CandidatesElection']['Election_id'], array('id', 'name'));
+                }
+                $result['items'][$k]['Election'] = $electionStack[$item['CandidatesElection']['Election_id']];
+            }
+            $result['parents'] = $this->Candidate->Election->getPath($electionId);
+            Cache::write($cacheKey, $result, 'long');
         }
-        $parents = $this->Candidate->Election->getPath($electionId);
+
+
         $c = array();
-        if (!empty($parents)) {
-            $c = Set::extract('{n}.Election.name', $parents);
+        if (!empty($result['parents'])) {
+            $c = Set::extract('{n}.Election.name', $result['parents']);
         }
 
         $this->set('title_for_layout', implode(' > ', $c) . '候選人 @ ');
-        $this->set('items', $items);
+        $this->set('items', $result['items']);
         $this->set('electionId', $electionId);
         $this->set('url', array($electionId));
-        $this->set('parents', $parents);
+        $this->set('parents', $result['parents']);
     }
 
     function add($electionId = '') {
