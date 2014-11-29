@@ -21,6 +21,7 @@ class AreasController extends AppController {
             $result = Cache::read($cacheKey, 'long');
             if (!$result) {
                 $result = $this->Area->getPath($parentId, array('id', 'name'));
+                Cache::write($cacheKey, $result, 'long');
             }
             $this->set('parents', $result);
         }
@@ -49,6 +50,7 @@ class AreasController extends AppController {
                     'conditions' => array('parent_id' => $area['Area']['id']),
                 ));
             }
+            Cache::write($cacheKey, $result, 'long');
         }
         $this->set('areas', $result);
     }
@@ -61,6 +63,7 @@ class AreasController extends AppController {
         $result = Cache::read($cacheKey, 'long');
         if (!$result) {
             $result = $this->Area->getPath($parentId, array('id', 'name'));
+            Cache::write($cacheKey, $result, 'long');
         }
 
         $this->set('areaId', $parentId);
