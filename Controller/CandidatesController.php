@@ -52,8 +52,11 @@ class CandidatesController extends AppController {
                     $this->paginate['Link']['limit'] = 30;
                     $this->paginate['Link']['fields'] = array('Link.*', 'LinksKeyword.summary', 'LinksKeyword.Keyword_id');
                     $result['links'] = $this->paginate($this->Candidate->Keyword->Link, $scope);
+                    $result['paging'] = $this->request->params['paging'];
                 }
                 Cache::write($cacheKey, $result, 'long');
+            } else {
+                $this->request->params['paging'] = $result['paging'];
             }
         }
         if (!empty($result['links'])) {
@@ -243,6 +246,7 @@ class CandidatesController extends AppController {
                 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image',
                 'CandidatesElection.Election_id');
             $result['items'] = $this->paginate($this->Candidate, $scope);
+            $result['paging'] = $this->request->params['paging'];
             $electionStack = array();
             foreach ($result['items'] AS $k => $item) {
                 if (!isset($electionStack[$item['CandidatesElection']['Election_id']])) {
@@ -252,6 +256,8 @@ class CandidatesController extends AppController {
             }
             $result['parents'] = $this->Candidate->Election->getPath($electionId);
             Cache::write($cacheKey, $result, 'long');
+        } else {
+            $this->request->params['paging'] = $result['paging'];
         }
 
 
