@@ -79,7 +79,12 @@
                         }
                         echo $candidate['Candidate']['name'];
                         ?></h2>
-                    <?php echo $this->Olc->stages[$candidate['Candidate']['stage']]; ?>
+                    <?php
+                    echo $this->Olc->stages[$candidate['Candidate']['stage']];
+                    if (!empty($candidate['Candidate']['vote_count'])) {
+                        echo "<br />得票數： {$candidate['Candidate']['vote_count']}";
+                    }
+                    ?>
                 </div>
             </div>
             <div class="col-md-12">

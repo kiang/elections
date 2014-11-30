@@ -6,7 +6,43 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->vote_2014_result();
+        $this->vote_2014_import();
+    }
+
+    public function vote_2014_import() {
+        $candidates = $this->Candidate->find('all', array(
+            'conditions' => array(
+                'Candidate.active_id IS NULL',
+            ),
+            'fields' => array('id', 'stage', 'vote_count'),
+        ));
+        $candidates = Set::combine($candidates, '{n}.Candidate.id', '{n}.Candidate');
+        $fh = fopen(__DIR__ . '/data/2014_vote_result.csv', 'r');
+        fgets($fh, 512);
+        /*
+         * * 自然當選,
+          ! 婦女保障當選,
+          - 被排擠未當選
+          < 未達選罷法 66 條規定票數未當選
+          ? 尚有爭議
+         */
+        while ($line = fgetcsv($fh, 512)) {
+            if ($line[2] === '*' || $line[2] === '!') {
+                //當選
+                $stage = '2';
+            } else {
+                $stage = '1';
+            }
+            if ($candidates[$line[0]]['stage'] != $stage || $candidates[$line[0]]['vote_count'] != $line[1]) {
+                echo "updating {$line[0]}\n";
+                $this->Candidate->save(array('Candidate' => array(
+                        'id' => $line[0],
+                        'stage' => $stage,
+                        'vote_count' => $line[1],
+                )));
+            }
+        }
+        fclose($fh);
     }
 
     public function vote_2014_result() {
