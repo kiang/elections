@@ -6,7 +6,415 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->vote_2014();
+        $this->vote_2014_result();
+    }
+
+    public function vote_2014_result() {
+        $codes = array();
+        $finalFh = fopen(__DIR__ . '/data/2014_vote_result.csv', 'w');
+        fputcsv($finalFh, array(
+            'Candidate ID',
+            'count',
+            'mark',
+            'rate',
+        ));
+        $vFh = fopen(__DIR__ . '/data/2014_vote/village.csv', 'r');
+        while ($line = fgets($vFh, 512)) {
+            $cols = explode(' ', trim($line));
+            if (!isset($codes[$cols[0]])) {
+                $codes[$cols[0]] = array(
+                    'name' => $cols[1],
+                );
+            }
+            if (!isset($codes[$cols[0]][$cols[2]])) {
+                $codes[$cols[0]][$cols[2]] = array(
+                    'name' => $cols[3],
+                );
+            }
+            if (!isset($codes[$cols[0]][$cols[2]][$cols[5]])) {
+                $codes[$cols[0]][$cols[2]][$cols[5]] = $cols[4];
+            }
+        }
+        fclose($vFh);
+        $candidates = $this->Candidate->find('list', array(
+            'conditions' => array('Candidate.active_id IS NULL'),
+            'fields' => array('Candidate.id', 'Candidate.no'),
+        ));
+        $ceLinks = $this->Candidate->CandidatesElection->find('list', array(
+            'fields' => array('Candidate_id', 'Election_id'),
+        ));
+        $eCandidates = array();
+        foreach ($candidates AS $candidateId => $candidateNo) {
+            if (!isset($ceLinks[$candidateId])) {
+                continue;
+            }
+            if (!isset($eCandidates[$ceLinks[$candidateId]])) {
+                $eCandidates[$ceLinks[$candidateId]] = array();
+            }
+            $eCandidates[$ceLinks[$candidateId]][$candidateNo] = $candidateId;
+        }
+        $elections = $this->Candidate->Election->find('threaded', array(
+            'fields' => array('id', 'name', 'parent_id'),
+        ));
+        $electionNodes = array();
+        foreach ($elections[0]['children'] AS $eType) {
+            $electionNodes[$eType['Election']['name']] = array();
+            foreach ($eType['children'] AS $child) {
+                $nodes = $this->parseChildren($child);
+                foreach ($nodes AS $nodeId => $nodeName) {
+                    $electionNodes[$eType['Election']['name']][$nodeName] = $nodeId;
+                }
+            }
+        }
+
+        foreach (glob(__DIR__ . '/data/2014_vote/result/T*.csv') AS $csvFile) {
+            $pathInfo = pathinfo($csvFile);
+            switch ($pathInfo['filename']) {
+                case 'T1': //區域縣市議員
+                    $fh = fopen($csvFile, 'r');
+                    $titles = fgetcsv($fh, 2048);
+                    while ($line = fgetcsv($fh, 2048)) {
+                        if ($line[3] === '00' && $line[4] === '0000') {
+                            $electionId = false;
+                            $cityCode = "{$line[0]}{$line[1]}";
+                            $eAreaName = "{$codes[$cityCode]['name']}第{$line[2]}選舉區";
+                            if (isset($electionNodes['縣市議員'][$eAreaName])) {
+                                $electionId = $electionNodes['縣市議員'][$eAreaName];
+                            }
+                            if (false === $electionId && isset($electionNodes['直轄市議員'][$eAreaName])) {
+                                $electionId = $electionNodes['直轄市議員'][$eAreaName];
+                            }
+                            if (false !== $electionId) {
+                                $lineKey = 5;
+                                $votes = array();
+                                for ($candidateNo = 1; $candidateNo <= 30; $candidateNo++) {
+                                    $votes[$candidateNo] = array(
+                                        'count' => $line[$lineKey++],
+                                        'mark' => $line[$lineKey++],
+                                        'rate' => $line[$lineKey++],
+                                    );
+                                }
+                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                    if ($candidateNo > 0) {
+                                        fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    fclose($fh);
+                    break;
+                case 'T2': //平地原住民縣市議員
+                    $fh = fopen($csvFile, 'r');
+                    $titles = fgetcsv($fh, 2048);
+                    while ($line = fgetcsv($fh, 2048)) {
+                        if ($line[3] === '00' && $line[4] === '0000') {
+                            $electionId = false;
+                            $cityCode = "{$line[0]}{$line[1]}";
+                            $eAreaName = "{$codes[$cityCode]['name']}第{$line[2]}選舉區";
+                            if (isset($electionNodes['縣市議員'][$eAreaName])) {
+                                $electionId = $electionNodes['縣市議員'][$eAreaName];
+                            }
+                            if (false === $electionId && isset($electionNodes['直轄市議員'][$eAreaName])) {
+                                $electionId = $electionNodes['直轄市議員'][$eAreaName];
+                            }
+                            if (false !== $electionId) {
+                                $lineKey = 5;
+                                $votes = array();
+                                for ($candidateNo = 1; $candidateNo <= 20; $candidateNo++) {
+                                    $votes[$candidateNo] = array(
+                                        'count' => $line[$lineKey++],
+                                        'mark' => $line[$lineKey++],
+                                        'rate' => $line[$lineKey++],
+                                    );
+                                }
+                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                    if ($candidateNo > 0) {
+                                        fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    fclose($fh);
+                    break;
+                case 'T3': //山地原住民縣市議員
+                    $fh = fopen($csvFile, 'r');
+                    $titles = fgetcsv($fh, 2048);
+                    while ($line = fgetcsv($fh, 2048)) {
+                        if ($line[3] === '00' && $line[4] === '0000') {
+                            $electionId = false;
+                            $cityCode = "{$line[0]}{$line[1]}";
+                            $eAreaName = "{$codes[$cityCode]['name']}第{$line[2]}選舉區";
+                            if (isset($electionNodes['縣市議員'][$eAreaName])) {
+                                $electionId = $electionNodes['縣市議員'][$eAreaName];
+                            }
+                            if (false === $electionId && isset($electionNodes['直轄市議員'][$eAreaName])) {
+                                $electionId = $electionNodes['直轄市議員'][$eAreaName];
+                            }
+                            if (false !== $electionId) {
+                                $lineKey = 5;
+                                $votes = array();
+                                for ($candidateNo = 1; $candidateNo <= 20; $candidateNo++) {
+                                    $votes[$candidateNo] = array(
+                                        'count' => $line[$lineKey++],
+                                        'mark' => $line[$lineKey++],
+                                        'rate' => $line[$lineKey++],
+                                    );
+                                }
+                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                    if ($candidateNo > 0) {
+                                        fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    fclose($fh);
+                    break;
+                case 'T4': //鄉鎮市區民代表
+                    $fh = fopen($csvFile, 'r');
+                    $titles = fgetcsv($fh, 2048);
+                    while ($line = fgetcsv($fh, 2048)) {
+                        if ($line[4] === '0000') {
+                            $electionId = false;
+                            $cityCode = "{$line[0]}{$line[1]}";
+                            $eAreaName = "{$codes[$cityCode]['name']}{$codes[$cityCode][$line[2]]['name']}第{$line[3]}選舉區";
+                            if (isset($electionNodes['鄉鎮市民代表'][$eAreaName])) {
+                                $electionId = $electionNodes['鄉鎮市民代表'][$eAreaName];
+                            }
+                            if (isset($electionNodes['直轄市山地原住民區民代表'][$eAreaName])) {
+                                $electionId = $electionNodes['直轄市山地原住民區民代表'][$eAreaName];
+                            }
+                            if (false !== $electionId) {
+                                $lineKey = 5;
+                                $votes = array();
+                                for ($candidateNo = 1; $candidateNo <= 20; $candidateNo++) {
+                                    $votes[$candidateNo] = array(
+                                        'count' => $line[$lineKey++],
+                                        'mark' => $line[$lineKey++],
+                                        'rate' => $line[$lineKey++],
+                                    );
+                                }
+                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                    if ($candidateNo > 0) {
+                                        fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    fclose($fh);
+                    break;
+                case 'T5': //鄉鎮市平地原住民代表
+                    $fh = fopen($csvFile, 'r');
+                    $titles = fgetcsv($fh, 2048);
+                    while ($line = fgetcsv($fh, 2048)) {
+                        if ($line[4] === '0000') {
+                            $electionId = false;
+                            $cityCode = "{$line[0]}{$line[1]}";
+                            $eAreaName = "{$codes[$cityCode]['name']}{$codes[$cityCode][$line[2]]['name']}第{$line[3]}選舉區";
+                            if (isset($electionNodes['鄉鎮市民代表'][$eAreaName])) {
+                                $electionId = $electionNodes['鄉鎮市民代表'][$eAreaName];
+                            }
+                            if (isset($electionNodes['直轄市山地原住民區民代表'][$eAreaName])) {
+                                $electionId = $electionNodes['直轄市山地原住民區民代表'][$eAreaName];
+                            }
+                            if (false !== $electionId) {
+                                $lineKey = 5;
+                                $votes = array();
+                                for ($candidateNo = 1; $candidateNo <= 20; $candidateNo++) {
+                                    $votes[$candidateNo] = array(
+                                        'count' => $line[$lineKey++],
+                                        'mark' => $line[$lineKey++],
+                                        'rate' => $line[$lineKey++],
+                                    );
+                                }
+                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                    if ($candidateNo > 0) {
+                                        fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    fclose($fh);
+                    break;
+                case 'T6': //原住民區民代表
+                    $fh = fopen($csvFile, 'r');
+                    $titles = fgetcsv($fh, 2048);
+                    while ($line = fgetcsv($fh, 2048)) {
+                        if ($line[4] === '0000') {
+                            $electionId = false;
+                            $cityCode = "{$line[0]}{$line[1]}";
+                            $eAreaName = "{$codes[$cityCode]['name']}{$codes[$cityCode][$line[2]]['name']}第{$line[3]}選舉區";
+                            if (isset($electionNodes['鄉鎮市民代表'][$eAreaName])) {
+                                $electionId = $electionNodes['鄉鎮市民代表'][$eAreaName];
+                            }
+                            if (isset($electionNodes['直轄市山地原住民區民代表'][$eAreaName])) {
+                                $electionId = $electionNodes['直轄市山地原住民區民代表'][$eAreaName];
+                            }
+                            if (false !== $electionId) {
+                                $lineKey = 5;
+                                $votes = array();
+                                for ($candidateNo = 1; $candidateNo <= 10; $candidateNo++) {
+                                    $votes[$candidateNo] = array(
+                                        'count' => $line[$lineKey++],
+                                        'mark' => $line[$lineKey++],
+                                        'rate' => $line[$lineKey++],
+                                    );
+                                }
+                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                    if ($candidateNo > 0) {
+                                        fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    fclose($fh);
+                    break;
+                case 'TC': //縣市長
+                    $fh = fopen($csvFile, 'r');
+                    $titles = fgetcsv($fh, 2048);
+                    while ($line = fgetcsv($fh, 2048)) {
+                        if ($line[2] === '00' && $line[3] === '0000') {
+                            $cityCode = "{$line[0]}{$line[1]}";
+                            $eAreaName = "{$codes[$cityCode]['name']}";
+                            $electionId = false;
+                            if (isset($electionNodes['直轄市長'][$eAreaName])) {
+                                $electionId = $electionNodes['直轄市長'][$eAreaName];
+                            }
+                            if (isset($electionNodes['縣市長'][$eAreaName])) {
+                                $electionId = $electionNodes['縣市長'][$eAreaName];
+                            }
+                            if (false !== $electionId) {
+                                $lineKey = 4;
+                                $votes = array();
+                                for ($candidateNo = 1; $candidateNo <= 10; $candidateNo++) {
+                                    $votes[$candidateNo] = array(
+                                        'count' => $line[$lineKey++],
+                                        'mark' => $line[$lineKey++],
+                                        'rate' => $line[$lineKey++],
+                                    );
+                                }
+                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                    if ($candidateNo > 0) {
+                                        fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    fclose($fh);
+                    break;
+                case 'TD': //鄉鎮市(原住民區)長
+                    $fh = fopen($csvFile, 'r');
+                    $titles = fgetcsv($fh, 2048);
+                    while ($line = fgetcsv($fh, 2048)) {
+                        if ($line[3] === '0000') {
+                            $cityCode = "{$line[0]}{$line[1]}";
+                            $eAreaName = "{$codes[$cityCode]['name']}{$codes[$cityCode][$line[2]]['name']}";
+                            $electionId = false;
+                            if (isset($electionNodes['鄉鎮市長'][$eAreaName])) {
+                                $electionId = $electionNodes['鄉鎮市長'][$eAreaName];
+                            }
+                            if (isset($electionNodes['直轄市山地原住民區長'][$eAreaName])) {
+                                $electionId = $electionNodes['直轄市山地原住民區長'][$eAreaName];
+                            }
+                            if (false !== $electionId) {
+                                $lineKey = 4;
+                                $votes = array();
+                                for ($candidateNo = 1; $candidateNo <= 10; $candidateNo++) {
+                                    $votes[$candidateNo] = array(
+                                        'count' => $line[$lineKey++],
+                                        'mark' => $line[$lineKey++],
+                                        'rate' => $line[$lineKey++],
+                                    );
+                                }
+                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                    if ($candidateNo > 0) {
+                                        fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    fclose($fh);
+                    break;
+                case 'TV': //村里長
+                    $fh = fopen($csvFile, 'r');
+                    $titles = fgetcsv($fh, 2048);
+                    while ($line = fgetcsv($fh, 2048)) {
+                        if ($line[4] === '0000') {
+                            $cityCode = "{$line[0]}{$line[1]}";
+                            $eAreaName = "{$codes[$cityCode]['name']}{$codes[$cityCode][$line[2]]['name']}{$codes[$cityCode][$line[2]][$line[3]]}";
+                            $electionId = false;
+                            if (isset($electionNodes['村里長'][$eAreaName])) {
+                                $electionId = $electionNodes['村里長'][$eAreaName];
+                            }
+                            if (false === $electionId) {
+                                switch ($eAreaName) {
+                                    case '新北市坪林區石里':
+                                        $electionId = $electionNodes['村里長']['新北市坪林區石𥕢里'];
+                                        break;
+                                    case '臺南市新化區拔里':
+                                        $electionId = $electionNodes['村里長']['臺南市新化區𦰡拔里'];
+                                        break;
+                                    case '臺南市龍崎區石里':
+                                        $electionId = $electionNodes['村里長']['臺南市龍崎區石𥕢里'];
+                                        break;
+                                    case '臺南市安南區南里':
+                                        $electionId = $electionNodes['村里長']['臺南市安南區塭南里'];
+                                        break;
+                                    case '臺南市安南區公里':
+                                        $electionId = $electionNodes['村里長']['臺南市安南區公塭里'];
+                                        break;
+                                    case '新竹縣竹東鎮上里':
+                                        $electionId = $electionNodes['村里長']['新竹縣竹東鎮上舘里'];
+                                        break;
+                                    case '苗栗縣三義鄉双湖村':
+                                        $electionId = $electionNodes['村里長']['苗栗縣三義鄉雙湖村'];
+                                        break;
+                                    case '彰化縣彰化市下廍里':
+                                        $electionId = $electionNodes['村里長']['彰化縣彰化市下廍里'];
+                                        break;
+                                    case '彰化縣彰化市磚磘里':
+                                        $electionId = $electionNodes['村里長']['彰化縣彰化市磚磘里'];
+                                        break;
+                                    case '彰化縣彰化市寶廍里':
+                                        $electionId = $electionNodes['村里長']['彰化縣彰化市寶廍里'];
+                                        break;
+                                    case '雲林縣口湖鄉台子村':
+                                        $electionId = $electionNodes['村里長']['雲林縣口湖鄉臺子村'];
+                                        break;
+                                    default:
+                                        echo "{$eAreaName}\n";
+                                }
+                            }
+                            if (false !== $electionId) {
+                                $lineKey = 5;
+                                $votes = array();
+                                for ($candidateNo = 1; $candidateNo <= 10; $candidateNo++) {
+                                    $votes[$candidateNo] = array(
+                                        'count' => $line[$lineKey++],
+                                        'mark' => $line[$lineKey++],
+                                        'rate' => $line[$lineKey++],
+                                    );
+                                }
+                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                    if ($candidateNo > 0) {
+                                        fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    fclose($fh);
+                    break;
+            }
+        }
+        fclose($finalFh);
     }
 
     /*
