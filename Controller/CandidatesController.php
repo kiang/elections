@@ -61,7 +61,7 @@ class CandidatesController extends AppController {
         }
         if (!empty($result['links'])) {
             $this->set('url', array($candidateId));
-            $this->set('linkKeywords', $keywords);
+            $this->set('linkKeywords', isset($keywords) ? $keywords : array());
             $this->set('newsLinks', $result['links']);
         }
     }
