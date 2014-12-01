@@ -6,7 +6,92 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->vote_2014_import();
+        $this->vote_2014_count();
+    }
+
+    public function vote_2014_count() {
+        //縣市議員 53c0202f-4f58-4419-8d07-5460acb5b862
+        //直轄市議員 53c0202f-da0c-4e3e-bbb4-5460acb5b862
+        $node1 = $this->Candidate->Election->find('first', array(
+            'conditions' => array('id' => '53c0202f-4f58-4419-8d07-5460acb5b862'),
+        ));
+        $node2 = $this->Candidate->Election->find('first', array(
+            'conditions' => array('id' => '53c0202f-da0c-4e3e-bbb4-5460acb5b862'),
+        ));
+        $nodes = $this->Candidate->Election->find('all', array(
+            'conditions' => array(
+                'Election.rght - Election.lft = 1',
+                'OR' => array(
+                    array(
+                        'Election.lft >' => $node1['Election']['lft'],
+                        'Election.rght <' => $node1['Election']['rght'],
+                    ),
+                    array(
+                        'Election.lft >' => $node2['Election']['lft'],
+                        'Election.rght <' => $node2['Election']['rght'],
+                    )
+                ),
+            ),
+            'order' => array('Election.lft' => 'ASC'),
+            'contain' => array(
+                'Candidate' => array(
+                    'conditions' => array('Candidate.stage' => 2),
+                    'fields' => array('id', 'name', 'party', 'vote_count', 'no'),
+                    'order' => array('Candidate.vote_count' => 'DESC'),
+                ),
+                'Area' => array(
+                    'fields' => array('name'),
+                ),
+            )
+        ));
+        $partyCount = array();
+        $cStack = array();
+        foreach ($nodes AS $node) {
+            $keywords = explode(',', $node['Election']['keywords']);
+            if (!isset($partyCount[$keywords[2]])) {
+                $partyCount[$keywords[2]] = array();
+            }
+            if (!isset($cStack[$keywords[2]])) {
+                $cStack[$keywords[2]] = array();
+            }
+            foreach ($node['Candidate'] AS $c) {
+                if (!isset($partyCount[$keywords[2]][$c['party']])) {
+                    $partyCount[$keywords[2]][$c['party']] = 0;
+                }
+                if (!isset($cStack[$keywords[2]][$keywords[3]])) {
+                    $cStack[$keywords[2]][$keywords[3]] = array(
+                        'areas' => array(),
+                        'c' => array(),
+                    );
+                }
+                ++$partyCount[$keywords[2]][$c['party']];
+                $cStack[$keywords[2]][$keywords[3]]['c'][] = "{$c['party']} - {$c['no']}號 {$c['name']} - {$c['vote_count']}";
+            }
+
+            foreach ($node['Area'] AS $a) {
+                $cStack[$keywords[2]][$keywords[3]]['areas'][] = $a['name'];
+            }
+        }
+
+        foreach ($partyCount AS $city => $parties) {
+            echo "--- {$city} ---\n";
+            foreach ($parties AS $party => $count) {
+                echo "[{$party}] {$count}席\n";
+            }
+            echo "\n";
+        }
+        
+        foreach ($partyCount AS $city => $parties) {
+            echo "--- {$city}議員一覽 ---\n";
+            echo "\n";
+            foreach ($cStack[$city] AS $eArea => $e) {
+                echo "\n" . $eArea . ' (' . implode(', ', $e['areas']) . ")\n";
+                foreach ($e['c'] AS $c) {
+                    echo "{$c}\n";
+                }
+            }
+            echo "\n\n";
+        }
     }
 
     public function vote_2014_import() {
