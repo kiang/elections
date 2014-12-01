@@ -33,9 +33,9 @@ class CandidatesController extends AppController {
                     ),
                 ));
                 if (!empty($candidate)) {
-                    $keywords = Set::combine($candidate['Keyword'], '{n}.id', '{n}.keyword');
+                    $result['keywords'] = Set::combine($candidate['Keyword'], '{n}.id', '{n}.keyword');
                     $scope = array(
-                        'LinksKeyword.Keyword_id' => array_keys($keywords),
+                        'LinksKeyword.Keyword_id' => array_keys($result['keywords']),
                     );
 
                     $this->paginate['Link']['joins'] = array(
@@ -53,15 +53,15 @@ class CandidatesController extends AppController {
                     $this->paginate['Link']['fields'] = array('Link.*', 'LinksKeyword.summary', 'LinksKeyword.Keyword_id');
                     $result['links'] = $this->paginate($this->Candidate->Keyword->Link, $scope);
                     $result['paging'] = $this->request->params['paging'];
+                    Cache::write($cacheKey, $result, 'long');
                 }
-                Cache::write($cacheKey, $result, 'long');
             } else {
                 $this->request->params['paging'] = $result['paging'];
             }
         }
         if (!empty($result['links'])) {
             $this->set('url', array($candidateId));
-            $this->set('linkKeywords', isset($keywords) ? $keywords : array());
+            $this->set('linkKeywords', $result['keywords']);
             $this->set('newsLinks', $result['links']);
         }
     }
