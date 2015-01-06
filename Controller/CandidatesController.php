@@ -195,7 +195,7 @@ class CandidatesController extends AppController {
             );
             $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
             $this->paginate['Candidate']['limit'] = 30;
-            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image', 'CandidatesElection.Election_id');
+            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.party', 'Candidate.image', 'CandidatesElection.Election_id');
             $items = $this->paginate($this->Candidate, $scope);
             $electionStack = array();
             foreach ($items AS $k => $item) {

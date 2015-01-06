@@ -11,33 +11,38 @@
     <?php
     if (!empty($items)) {
         ?>        <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>候選人</th>
-                <th>選區</th>
-            </tr>
-        </thead>
-        <tbody>
-<?php
-        foreach ($items AS $candidate) {
-            ?>
-            <tr>
-                <td class="candidate-<?php echo $candidate['Candidate']['stage']; ?>">
-                    <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>"><?php
-                    if(!empty($candidate['Candidate']['no'])) {
-                        echo $candidate['Candidate']['no'] . '號 ';
-                    }
-                    echo $candidate['Candidate']['name'];
-                    ?></a></td>
-                <td><?php echo implode(' > ', $candidate['Election']); ?></td>
-            </tr>
-        <?php
-        }
-        ?>
+            <thead>
+                <tr>
+                    <th>候選人</th>
+                    <th>政黨</th>
+                    <th>選區</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($items AS $candidate) {
+                    ?>
+                    <tr>
+                        <td class="candidate-<?php echo $candidate['Candidate']['stage']; ?>">
+                            <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>"><?php
+                                if (!empty($candidate['Candidate']['no'])) {
+                                    echo $candidate['Candidate']['no'] . '號 ';
+                                }
+                                echo $candidate['Candidate']['name'];
+                                ?></a></td>
+                        <td>
+                            <?php
+                            echo $candidate['Candidate']['party'];
+                            ?></td>
+                        <td><?php echo implode(' > ', $candidate['Election']); ?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
 
-        </tbody>
-    </table>
-<?php
+            </tbody>
+        </table>
+        <?php
     } else {
         echo ' ~ 目前沒有候選人資料 ~ ';
     }
