@@ -479,6 +479,7 @@ class CandidatesController extends AppController {
                 'order' => array('Candidate.created DESC'),
             ));
             $this->set('versions', $versions);
+            $this->set('parents', $this->Candidate->Election->getPath($this->data['Election'][0]['id']));
         }
     }
 
