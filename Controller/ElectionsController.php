@@ -179,13 +179,6 @@ class ElectionsController extends AppController {
         $this->set('url', array($parentId, $foreignModel, $foreignId, $op));
     }
 
-    function admin_view($id = null) {
-        if (!$id || !$this->data = $this->Election->read(null, $id)) {
-            $this->Session->setFlash('請依照網頁指示操作');
-            $this->redirect(array('action' => 'index'));
-        }
-    }
-
     function admin_add($parentId = '') {
         if (!empty($this->data)) {
             $dataToSave = $this->data;

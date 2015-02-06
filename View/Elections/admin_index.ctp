@@ -60,7 +60,6 @@
                         echo $this->Html->link($item['Election']['name'], array('action' => 'index', $item['Election']['id']));
                         ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Election']['id'])); ?>
                         <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Election']['id'])); ?>
                         <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Election']['id']), null, __('Delete the item, sure?', true)); ?>
                         <?php
