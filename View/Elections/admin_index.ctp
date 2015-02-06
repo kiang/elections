@@ -60,13 +60,13 @@
                         echo $this->Html->link($item['Election']['name'], array('action' => 'index', $item['Election']['id']));
                         ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Election']['id'])); ?>
-                        <?php echo $this->Html->link('刪除', array('action' => 'delete', $item['Election']['id']), null, '確定刪除？'); ?>
-                        <?php echo $this->Html->link('新增下一層', array('action' => 'add', $item['Election']['id'])); ?>
+                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Election']['id']), array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Html->link('刪除', array('action' => 'delete', $item['Election']['id']), array('class' => 'btn btn-default'), '確定刪除？'); ?>
+                        <?php echo $this->Html->link('新增下一層', array('action' => 'add', $item['Election']['id']), array('class' => 'btn btn-default')); ?>
                         <?php
                         if($item['Election']['rght'] - $item['Election']['lft'] === 1) {
-                            echo ' ' . $this->Html->link('候選人', array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']));
-                            echo ' ' . $this->Html->link('新增候選人', array('controller' => 'candidates', 'action' => 'add', $item['Election']['id']));
+                            echo ' ' . $this->Html->link('候選人', array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']), array('class' => 'btn btn-default'));
+                            echo ' ' . $this->Html->link('新增候選人', array('controller' => 'candidates', 'action' => 'add', $item['Election']['id']), array('class' => 'btn btn-default'));
                         }
                         ?>
                     </td>

@@ -1,7 +1,7 @@
 <div id="AreasAdminIndex">
     <h2><?php echo __('Areas', true); ?></h2>
     <div class="btn-group">
-        <?php echo $this->Html->link('新增', array('action' => 'add', $parentId), array('class' => 'btn dialogControl')); ?>
+        <?php echo $this->Html->link('新增', array('action' => 'add', $parentId), array('class' => 'btn btn-default dialogControl')); ?>
     </div>
     <div class="clearfix"></div>
     <?php
@@ -74,9 +74,8 @@
                         echo $item['Area']['is_area'];
                         ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Area']['id']), array('class' => 'dialogControl')); ?>
-                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Area']['id']), array('class' => 'dialogControl')); ?>
-                        <?php echo $this->Html->link('刪除', array('action' => 'delete', $item['Area']['id']), null, '確定刪除？'); ?>
+                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Area']['id']), array('class' => 'btn btn-default dialogControl')); ?>
+                        <?php echo $this->Html->link('刪除', array('action' => 'delete', $item['Area']['id']), array('class' => 'btn btn-default'), '確定刪除？'); ?>
                     </td>
                 </tr>
             <?php } // End of foreach ($items as $item) {   ?>

@@ -2,7 +2,7 @@
     <h2><?php echo __('Tags', true); ?></h2>
     <div class="btn-group">
         <?php
-        echo $this->Html->link('新增', array('action' => 'add'), array('class' => 'btn'));
+        echo $this->Html->link('新增', array('action' => 'add'), array('class' => 'btn btn-default'));
         ?>
     </div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
@@ -28,11 +28,11 @@
                     <?php echo $tag['Tag']['name']; ?>
                 </td>
                 <td class="actions">
-                    <?php echo $this->Html->link(__('Links', true), array('action' => 'links', $tag['Tag']['id'])); ?>
-                    <?php echo $this->Html->link('編輯', array('action' => 'edit', $tag['Tag']['id']), array('class' => 'dialogControl')); ?>
+                    <?php echo $this->Html->link('連結', array('action' => 'links', $tag['Tag']['id']), array('class' => 'btn btn-default')); ?>
+                    <?php echo $this->Html->link('編輯', array('action' => 'edit', $tag['Tag']['id']), array('class' => 'btn btn-default dialogControl')); ?>
                     <?php
                         if (Configure::read('loginMember.group_id') == 1) {
-                            echo $this->Html->link('刪除', array('action' => 'delete', $tag['Tag']['id']), null, '確定刪除？');
+                            echo $this->Html->link('刪除', array('action' => 'delete', $tag['Tag']['id']), array('class' => 'btn btn-default'), '確定刪除？');
                     }
                      ?>
                 </td>

@@ -3,9 +3,9 @@
     <div class="btn-group">
         <?php
         if (!empty($electionId)) {
-            echo $this->Html->link('新增', array('action' => 'add', $electionId), array('class' => 'btn'));
+            echo $this->Html->link('新增', array('action' => 'add', $electionId), array('class' => 'btn btn-default'));
         }
-        echo $this->Html->link('審核', array('action' => 'submits'), array('class' => 'btn'));
+        echo $this->Html->link('審核', array('action' => 'submits'), array('class' => 'btn btn-default'));
         ?>
     </div>
     <div class="clearfix"></div>
@@ -51,11 +51,11 @@
                     <td><?php echo $item['Candidate']['created']; ?></td>
                     <td><?php echo $item['Candidate']['modified']; ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Candidate']['id'])); ?>
-                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Candidate']['id'])); ?>
+                        <?php echo $this->Html->link('檢視', array('action' => 'view', $item['Candidate']['id']), array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Candidate']['id']), array('class' => 'btn btn-default')); ?>
                         <?php
                         if (Configure::read('loginMember.group_id') == 1) {
-                            echo $this->Html->link('刪除', array('action' => 'delete', $item['Candidate']['id']), null, '確定刪除？');
+                            echo $this->Html->link('刪除', array('action' => 'delete', $item['Candidate']['id']), array('class' => 'btn btn-default'), '確定刪除？');
                         }
                         ?>
                     </td>
