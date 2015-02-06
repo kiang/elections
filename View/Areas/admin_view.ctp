@@ -31,7 +31,7 @@
     <hr />
     <div class="actions">
         <ul>
-            <li><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Area.id')), null, __('Delete the item, sure?', true)); ?></li>
+            <li><?php echo $this->Html->link('刪除', array('action' => 'delete', $this->Form->value('Area.id')), null, '確定刪除？'); ?></li>
             <li><?php echo $this->Html->link(__('Areas List', true), array('action' => 'index')); ?> </li>
             <li><?php echo $this->Html->link(__('View Related Elections', true), array('controller' => 'elections', 'action' => 'index', 'Area', $this->data['Area']['id']), array('class' => 'AreasAdminViewControl')); ?></li>
             <li><?php echo $this->Html->link(__('Set Related Elections', true), array('controller' => 'elections', 'action' => 'index', 'Area', $this->data['Area']['id'], 'set'), array('class' => 'AreasAdminViewControl')); ?></li>

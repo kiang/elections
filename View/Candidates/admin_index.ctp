@@ -3,7 +3,7 @@
     <div class="btn-group">
         <?php
         if (!empty($electionId)) {
-            echo $this->Html->link(__('Add', true), array('action' => 'add', $electionId), array('class' => 'btn'));
+            echo $this->Html->link('新增', array('action' => 'add', $electionId), array('class' => 'btn'));
         }
         echo $this->Html->link('審核', array('action' => 'submits'), array('class' => 'btn'));
         ?>
@@ -34,7 +34,7 @@
                 <th><?php echo $this->Paginator->sort('Candidate.name', '姓名', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Candidate.created', '建立時間', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Candidate.modified', '更新時間', array('url' => $url)); ?></th>
-                <th class="actions"><?php echo __('Action', true); ?></th>
+                <th class="actions">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -52,10 +52,10 @@
                     <td><?php echo $item['Candidate']['modified']; ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Candidate']['id'])); ?>
-                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Candidate']['id'])); ?>
+                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Candidate']['id'])); ?>
                         <?php
                         if (Configure::read('loginMember.group_id') == 1) {
-                            echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Candidate']['id']), null, __('Delete the item, sure?', true));
+                            echo $this->Html->link('刪除', array('action' => 'delete', $item['Candidate']['id']), null, '確定刪除？');
                         }
                         ?>
                     </td>

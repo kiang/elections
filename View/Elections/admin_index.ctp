@@ -1,7 +1,7 @@
 <div id="ElectionsAdminIndex">
     <h2><?php echo __('Elections', true); ?></h2>
     <div class="btn-group">
-        <?php echo $this->Html->link(__('Add', true), array('action' => 'add', $parentId), array('class' => 'btn dialogControl')); ?>
+        <?php echo $this->Html->link('新增', array('action' => 'add', $parentId), array('class' => 'btn btn-default dialogControl')); ?>
     </div>
     <div class="clearfix"></div>
     <?php
@@ -32,7 +32,7 @@
                 }
                 ?>
                 <th><?php echo $this->Paginator->sort('Election.name', 'Name', array('url' => $url)); ?></th>
-                <th class="actions"><?php echo __('Action', true); ?></th>
+                <th class="actions">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -60,8 +60,9 @@
                         echo $this->Html->link($item['Election']['name'], array('action' => 'index', $item['Election']['id']));
                         ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Election']['id'])); ?>
-                        <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Election']['id']), null, __('Delete the item, sure?', true)); ?>
+                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Election']['id'])); ?>
+                        <?php echo $this->Html->link('刪除', array('action' => 'delete', $item['Election']['id']), null, '確定刪除？'); ?>
+                        <?php echo $this->Html->link('新增下一層', array('action' => 'add', $item['Election']['id'])); ?>
                         <?php
                         if($item['Election']['rght'] - $item['Election']['lft'] === 1) {
                             echo ' ' . $this->Html->link('候選人', array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']));

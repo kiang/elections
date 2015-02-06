@@ -38,8 +38,8 @@
                     <?php echo $group['Group']['name']; ?>
                 </td>
                 <td class="actions">
-                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $group['Group']['id']), array('class' => 'dialogControl')); ?>
-                    <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $group['Group']['id']), null, __('Delete the item, sure?', true)); ?>
+                    <?php echo $this->Html->link('編輯', array('action' => 'edit', $group['Group']['id']), array('class' => 'dialogControl')); ?>
+                    <?php echo $this->Html->link('刪除', array('action' => 'delete', $group['Group']['id']), null, '確定刪除？'); ?>
                     <?php echo $this->Html->link(__('Sub group', true), array('action' => 'index', $group['Group']['id'])); ?>
                     <?php
                     if ($group['Group']['id'] != 1) {

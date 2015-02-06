@@ -1,7 +1,7 @@
 <div id="AreasAdminIndex">
     <h2><?php echo __('Areas', true); ?></h2>
     <div class="btn-group">
-        <?php echo $this->Html->link(__('Add', true), array('action' => 'add', $parentId), array('class' => 'btn dialogControl')); ?>
+        <?php echo $this->Html->link('新增', array('action' => 'add', $parentId), array('class' => 'btn dialogControl')); ?>
     </div>
     <div class="clearfix"></div>
     <?php
@@ -37,7 +37,7 @@
                 <th><?php echo $this->Paginator->sort('Area.code', 'Code', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Area.name', 'Name', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Area.is_area', 'Is Area?', array('url' => $url)); ?></th>
-                <th class="actions"><?php echo __('Action', true); ?></th>
+                <th class="actions">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -75,8 +75,8 @@
                         ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Area']['id']), array('class' => 'dialogControl')); ?>
-                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Area']['id']), array('class' => 'dialogControl')); ?>
-                        <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Area']['id']), null, __('Delete the item, sure?', true)); ?>
+                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Area']['id']), array('class' => 'dialogControl')); ?>
+                        <?php echo $this->Html->link('刪除', array('action' => 'delete', $item['Area']['id']), null, '確定刪除？'); ?>
                     </td>
                 </tr>
             <?php } // End of foreach ($items as $item) {   ?>

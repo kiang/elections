@@ -11,7 +11,7 @@
             <tr>
                 <th>Name</th>
                 <th>Created</th>
-                <th class="actions"><?php echo __('Action', true); ?></th>
+                <th class="actions">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -32,10 +32,10 @@
                         ?></td>
                     <td class="actions">
                         <?php echo $this->Html->link('審核', array('action' => 'review', $item['Candidate']['id'])); ?>
-                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Candidate']['id'], 'submits'), array('class' => 'dialogControl')); ?>
+                        <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Candidate']['id'], 'submits'), array('class' => 'dialogControl')); ?>
                         <?php
                         if (Configure::read('loginMember.group_id') == 1) {
-                            echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Candidate']['id'], 'submits'), null, __('Delete the item, sure?', true));
+                            echo $this->Html->link('刪除', array('action' => 'delete', $item['Candidate']['id'], 'submits'), null, '確定刪除？');
                         }
                         ?>
                     </td>

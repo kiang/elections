@@ -2,7 +2,7 @@
     <h2><?php echo __('Bulletins', true); ?></h2>
     <div class="btn-group">
         <?php
-        echo $this->Html->link(__('Add', true), array('action' => 'add'), array('class' => 'btn'));
+        echo $this->Html->link('新增', array('action' => 'add'), array('class' => 'btn'));
         ?>
     </div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
@@ -33,10 +33,10 @@
                 </td>
                 <td class="actions">
                     <?php echo $this->Html->link(__('Links', true), array('action' => 'links', $bulletin['Bulletin']['id'])); ?>
-                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $bulletin['Bulletin']['id']), array('class' => 'dialogControl')); ?>
+                    <?php echo $this->Html->link('編輯', array('action' => 'edit', $bulletin['Bulletin']['id']), array('class' => 'dialogControl')); ?>
                     <?php
                     if (Configure::read('loginMember.group_id') == 1) {
-                        echo $this->Html->link(__('Delete', true), array('action' => 'delete', $bulletin['Bulletin']['id']), null, __('Delete the item, sure?', true));
+                        echo $this->Html->link('刪除', array('action' => 'delete', $bulletin['Bulletin']['id']), null, '確定刪除？');
                     }
                     ?>
                 </td>

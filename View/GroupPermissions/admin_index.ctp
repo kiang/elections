@@ -50,12 +50,12 @@
                     }
                     ?>
                     <?php
-                    echo $this->Html->link(__('Edit', true), array(
+                    echo $this->Html->link('編輯', array(
                         'action' => 'edit', $groupPermission['GroupPermission']['id']
                             ), array('class' => 'groupPermissionsIndexControl'));
                     ?>
                     <?php
-                    echo $this->Html->link(__('Delete', true), array(
+                    echo $this->Html->link('刪除', array(
                         'action' => 'delete', $groupPermission['GroupPermission']['id']
                             ), null, __('Are you sure you want to delete?', true));
                     ?>
