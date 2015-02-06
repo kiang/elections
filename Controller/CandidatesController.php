@@ -539,7 +539,7 @@ class CandidatesController extends AppController {
         ));
         $original = $this->Candidate->find('first', array(
             'fields' => $fields,
-            'conditions' => array('id' => $submitted['Candidate']['active_id']),
+            'conditions' => array('Candidate.id' => $submitted['Candidate']['active_id']),
             'contain' => array('Election' => array('fields' => array('Election.name'))),
         ));
         $originalId = $original['Candidate']['id'];
