@@ -21,12 +21,6 @@ class Election extends AppModel {
             'associationForeignKey' => 'Area_id',
             'className' => 'Area',
         ),
-        'Candidate' => array(
-            'joinTable' => 'candidates_elections',
-            'foreignKey' => 'Election_id',
-            'associationForeignKey' => 'Candidate_id',
-            'className' => 'Candidate',
-        ),
         'Bulletin' => array(
             'className' => 'Bulletin',
             'joinTable' => 'bulletins_elections',
@@ -42,10 +36,10 @@ class Election extends AppModel {
         )
     );
     public $hasMany = array(
-        'AreasElection' => array(
-            'foreignKey' => 'Election_id',
+        'Candidate' => array(
+            'foreignKey' => 'election_id',
             'dependent' => false,
-            'className' => 'AreasElection',
+            'className' => 'Candidate',
         ),
     );
 

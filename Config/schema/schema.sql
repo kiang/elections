@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.40, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.41, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: kiang_elections
 -- ------------------------------------------------------
--- Server version	5.5.40-0ubuntu0.14.04.1
+-- Server version	5.5.41-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -156,6 +156,7 @@ DROP TABLE IF EXISTS `candidates`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `candidates` (
   `id` binary(36) NOT NULL,
+  `election_id` binary(36) NOT NULL,
   `is_reviewed` tinyint(1) NOT NULL DEFAULT '0',
   `active_id` binary(36) DEFAULT NULL,
   `stage` int(2) NOT NULL DEFAULT '0',
@@ -169,12 +170,13 @@ CREATE TABLE `candidates` (
   `contacts_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `links` text COLLATE utf8_unicode_ci,
   `gender` char(1) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `no` int(3) NOT NULL,
+  `no` int(3) DEFAULT NULL,
   `education_level` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `is_present` tinyint(1) NOT NULL,
   `name_english` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `birth_place` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `birth` date DEFAULT NULL,
+  `platform` text COLLATE utf8_unicode_ci NOT NULL,
   `education` text COLLATE utf8_unicode_ci,
   `experience` text COLLATE utf8_unicode_ci,
   `created` datetime NOT NULL,
@@ -183,23 +185,6 @@ CREATE TABLE `candidates` (
   KEY `active_id` (`active_id`),
   KEY `no` (`no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `candidates_elections`
---
-
-DROP TABLE IF EXISTS `candidates_elections`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `candidates_elections` (
-  `id` binary(36) NOT NULL,
-  `Election_id` binary(36) NOT NULL,
-  `Candidate_id` binary(36) NOT NULL,
-  `platform` text COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`id`),
-  KEY `Election_id` (`Election_id`,`Candidate_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,4 +367,4 @@ CREATE TABLE `tags` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-01  4:36:56
+-- Dump completed on 2015-02-06 20:51:26

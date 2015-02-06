@@ -13,13 +13,13 @@ class Candidate extends AppModel {
             ),
         ),
     );
-    var $hasAndBelongsToMany = array(
+    public $belongsTo = array(
         'Election' => array(
-            'joinTable' => 'candidates_elections',
-            'foreignKey' => 'Candidate_id',
-            'associationForeignKey' => 'Election_id',
+            'foreignKey' => 'election_id',
             'className' => 'Election',
         ),
+    );
+    var $hasAndBelongsToMany = array(
         'Tag' => array(
             'joinTable' => 'candidates_tags',
             'foreignKey' => 'Candidate_id',
@@ -34,14 +34,6 @@ class Candidate extends AppModel {
         ),
     );
     
-    public $hasMany = array(
-        'CandidatesElection' => array(
-            'foreignKey' => 'Candidate_id',
-            'dependent' => true,
-            'className' => 'CandidatesElection',
-        ),
-    );
-
     public function beforeSave($options = array()) {
         if (isset($this->data['Candidate']['image']) && is_array($this->data['Candidate']['image'])) {
             if (!empty($this->data['Candidate']['image']['size'])) {
