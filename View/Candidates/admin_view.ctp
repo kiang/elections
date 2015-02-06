@@ -92,7 +92,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="success">政見</div><?php echo str_replace('\\n', '<br />', $this->data['Election'][0]['CandidatesElection']['platform']); ?>
+        <div class="success">政見</div><?php echo str_replace('\\n', '<br />', $this->data['Candidate']['platform']); ?>
         <div class="success">相關連結</div><?php
         $lines = explode('\\n', $this->data['Candidate']['links']);
         foreach ($lines AS $line) {

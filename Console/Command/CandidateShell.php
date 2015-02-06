@@ -80,7 +80,7 @@ class CandidateShell extends AppShell {
             }
             echo "\n";
         }
-        
+
         foreach ($partyCount AS $city => $parties) {
             echo "--- {$city}議員一覽 ---\n";
             echo "\n";
@@ -161,8 +161,8 @@ class CandidateShell extends AppShell {
             'conditions' => array('Candidate.active_id IS NULL'),
             'fields' => array('Candidate.id', 'Candidate.no'),
         ));
-        $ceLinks = $this->Candidate->CandidatesElection->find('list', array(
-            'fields' => array('Candidate_id', 'Election_id'),
+        $ceLinks = $this->Candidate->find('list', array(
+            'fields' => array('id', 'election_id'),
         ));
         $eCandidates = array();
         foreach ($candidates AS $candidateId => $candidateNo) {
@@ -547,8 +547,8 @@ class CandidateShell extends AppShell {
             'conditions' => array('Candidate.active_id IS NULL'),
             'fields' => array('Candidate.id', 'Candidate.name'),
         ));
-        $ceLinks = $this->Candidate->CandidatesElection->find('list', array(
-            'fields' => array('Candidate_id', 'Election_id'),
+        $ceLinks = $this->Candidate->find('list', array(
+            'fields' => array('id', 'election_id'),
         ));
         $eCandidates = array();
         foreach ($candidates AS $candidateId => $candidateName) {
@@ -756,34 +756,17 @@ class CandidateShell extends AppShell {
                 fclose($fh);
                 if (!empty($fbLinks)) {
                     $candidate = $this->Candidate->find('first', array(
-                        'fields' => array('Candidate.id', 'Candidate.links', 'CandidatesElection.Election_id'),
+                        'fields' => array('Candidate.id', 'Candidate.links', 'Caididate.election_id'),
+                        'contain' => array('Election'),
                         'conditions' => array(
                             'Election.lft >' => $dataTypes[$dataType]['lft'],
                             'Election.rght <' => $dataTypes[$dataType]['rght'],
                             'Candidate.name' => $candidateName,
                             'Candidate.active_id IS NULL',
                         ),
-                        'joins' => array(
-                            array(
-                                'table' => 'candidates_elections',
-                                'alias' => 'CandidatesElection',
-                                'type' => 'inner',
-                                'conditions' => array(
-                                    'CandidatesElection.Candidate_id = Candidate.id',
-                                ),
-                            ),
-                            array(
-                                'table' => 'elections',
-                                'alias' => 'Election',
-                                'type' => 'inner',
-                                'conditions' => array(
-                                    'CandidatesElection.Election_id = Election.id',
-                                ),
-                            ),
-                        ),
                     ));
                     if (!empty($candidate)) {
-                        $parents = $this->Candidate->Election->getPath($candidate['CandidatesElection']['Election_id'], array('name'));
+                        $parents = $this->Candidate->Election->getPath($candidate['Candidate']['election_id'], array('name'));
                         $record = array();
                         $record[] = $candidateName;
                         $record[] = $parents[1]['Election']['name'];
@@ -915,19 +898,9 @@ class CandidateShell extends AppShell {
                     $candidate = $this->Candidate->find('first', array(
                         'fields' => array('Candidate.id', 'Candidate.party', 'Candidate.stage'),
                         'conditions' => array(
-                            'CandidatesElection.Election_id' => $electionId,
+                            'Candidate.election_id' => $electionId,
                             'Candidate.name' => $line[1],
                             'Candidate.active_id IS NULL',
-                        ),
-                        'joins' => array(
-                            array(
-                                'table' => 'candidates_elections',
-                                'alias' => 'CandidatesElection',
-                                'type' => 'inner',
-                                'conditions' => array(
-                                    'CandidatesElection.Candidate_id = Candidate.id',
-                                ),
-                            ),
                         ),
                     ));
                     if (!empty($candidate['Candidate']['id'])) {
@@ -938,17 +911,12 @@ class CandidateShell extends AppShell {
                         }
                     } else {
                         $this->Candidate->create();
-                        if ($this->Candidate->save(array('Candidate' => array(
-                                        'stage' => 1,
-                                        'name' => $line[1],
-                                        'party' => $line[2],
-                            )))) {
-                            $this->Candidate->CandidatesElection->create();
-                            $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
-                                    'Candidate_id' => $this->Candidate->getInsertID(),
-                                    'Election_id' => $electionId,
-                            )));
-                        }
+                        $this->Candidate->save(array('Candidate' => array(
+                                'stage' => 1,
+                                'name' => $line[1],
+                                'party' => $line[2],
+                                'election_id' => $electionId,
+                        )));
                     }
                 } else {
                     print_r($line);
@@ -1489,19 +1457,14 @@ class CandidateShell extends AppShell {
                 $line[0] = $areaStack[$line[1] . $line[2]][$line[4]];
                 if (isset($townElectionId[$line[1] . $line[2] . $line[0]])) {
                     $this->Candidate->create();
-                    if ($this->Candidate->save(array('Candidate' => array(
-                                    'name' => $line[4],
-                                    'party' => $line[7],
-                                    'gender' => ($line[6] === '男') ? 'm' : 'f',
-                                    'education' => $line[11],
-                                    'experience' => $line[12],
-                        )))) {
-                        $this->Candidate->CandidatesElection->create();
-                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
-                                'Election_id' => $townElectionId[$line[1] . $line[2] . $line[0]],
-                                'Candidate_id' => $this->Candidate->getInsertID(),
-                        )));
-                    }
+                    $this->Candidate->save(array('Candidate' => array(
+                            'name' => $line[4],
+                            'party' => $line[7],
+                            'gender' => ($line[6] === '男') ? 'm' : 'f',
+                            'education' => $line[11],
+                            'experience' => $line[12],
+                            'election_id' => $townElectionId[$line[1] . $line[2] . $line[0]],
+                    )));
                 }
             }
         }
@@ -1531,19 +1494,14 @@ class CandidateShell extends AppShell {
             $key = str_replace(array('台'), array('臺'), $line[1] . $line[2]);
             if (isset($townmastElectionId[$key])) {
                 $this->Candidate->create();
-                if ($this->Candidate->save(array('Candidate' => array(
-                                'name' => $line[4],
-                                'party' => $line[7],
-                                'gender' => ($line[6] === '男') ? 'm' : 'f',
-                                'education' => $line[11],
-                                'experience' => $line[12],
-                    )))) {
-                    $this->Candidate->CandidatesElection->create();
-                    $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
-                            'Election_id' => $townmastElectionId[$key],
-                            'Candidate_id' => $this->Candidate->getInsertID(),
-                    )));
-                }
+                $this->Candidate->save(array('Candidate' => array(
+                        'name' => $line[4],
+                        'party' => $line[7],
+                        'gender' => ($line[6] === '男') ? 'm' : 'f',
+                        'education' => $line[11],
+                        'experience' => $line[12],
+                        'election_id' => $townmastElectionId[$key],
+                )));
             }
         }
         fclose($fh);
@@ -1615,24 +1573,15 @@ class CandidateShell extends AppShell {
                                         'active_id' => 0,
                                     ),
                                 ));
-                                $linkId = $this->Candidate->CandidatesElection->field('id', array(
-                                    'Election_id' => $e2['Election']['id'],
-                                    'Candidate_id' => $candidateId,
-                                ));
-                                if (empty($candidateId) || empty($linkId)) {
+                                if (empty($candidateId)) {
                                     $this->Candidate->create();
-                                    if ($this->Candidate->save(array('Candidate' => array(
-                                                    'name' => $fields[0],
-                                                    'party' => '台灣團結聯盟',
-                                                    'experience' => str_replace($fields[2][0], "\n", '\\n'),
-                                                    'links' => isset($fields[2][1]) ? '臉書 ' . $fields[2][1] : '',
-                                        )))) {
-                                        $this->Candidate->CandidatesElection->create();
-                                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
-                                                'Election_id' => $e2['Election']['id'],
-                                                'Candidate_id' => $this->Candidate->getInsertID(),
-                                        )));
-                                    }
+                                    $this->Candidate->save(array('Candidate' => array(
+                                            'election_id' => $e2['Election']['id'],
+                                            'name' => $fields[0],
+                                            'party' => '台灣團結聯盟',
+                                            'experience' => str_replace($fields[2][0], "\n", '\\n'),
+                                            'links' => isset($fields[2][1]) ? '臉書 ' . $fields[2][1] : '',
+                                    )));
                                 }
                             }
                         }
@@ -1707,21 +1656,16 @@ class CandidateShell extends AppShell {
 
                 if (!empty($zones[$c['cityname']][$eareaname])) {
                     $this->Candidate->create();
-                    if ($this->Candidate->save(array('Candidate' => array(
-                                    'name' => $c['idname'],
-                                    'gender' => ($c['sex'] === '男') ? 'M' : 'F',
-                                    'party' => $c['partymship'],
-                                    'contacts_address' => $c['officeadress'],
-                                    'contacts_phone' => $c['officetelphone'],
-                                    'education' => $c['education'],
-                                    'experience' => $c['profession'],
-                        )))) {
-                        $this->Candidate->CandidatesElection->create();
-                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
-                                'Election_id' => $zones[$c['cityname']][$eareaname]['Election']['id'],
-                                'Candidate_id' => $this->Candidate->getInsertID(),
-                        )));
-                    }
+                    $this->Candidate->save(array('Candidate' => array(
+                            'election_id' => $zones[$c['cityname']][$eareaname]['Election']['id'],
+                            'name' => $c['idname'],
+                            'gender' => ($c['sex'] === '男') ? 'M' : 'F',
+                            'party' => $c['partymship'],
+                            'contacts_address' => $c['officeadress'],
+                            'contacts_phone' => $c['officetelphone'],
+                            'education' => $c['education'],
+                            'experience' => $c['profession'],
+                    )));
                 }
             }
         }
@@ -1767,29 +1711,14 @@ class CandidateShell extends AppShell {
             if (isset($stack[$line[1]][$line[2]][$line[3]])) {
                 $candidates = $this->Candidate->find('list', array(
                     'fields' => array('name', 'name'),
-                    'joins' => array(
-                        array(
-                            'table' => 'candidates_elections',
-                            'alias' => 'CandidatesElection',
-                            'type' => 'inner',
-                            'conditions' => array(
-                                'CandidatesElection.Candidate_id = Candidate.id',
-                                'CandidatesElection.Election_id' => $stack[$line[1]][$line[2]][$line[3]],
-                            ),
-                        ),
-                    ),
+                    'conditions' => array('Candidate.election_id' => $stack[$line[1]][$line[2]][$line[3]]),
                 ));
                 if (!isset($candidates[$line[4]])) {
                     $this->Candidate->create();
-                    if ($this->Candidate->save(array('Candidate' => array(
-                                    'name' => $line[4],
-                        )))) {
-                        $this->Candidate->CandidatesElection->create();
-                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
-                                'Election_id' => $stack[$line[1]][$line[2]][$line[3]],
-                                'Candidate_id' => $this->Candidate->getInsertID(),
-                        )));
-                    }
+                    $this->Candidate->save(array('Candidate' => array(
+                            'name' => $line[4],
+                            'election_id' => $stack[$line[1]][$line[2]][$line[3]],
+                    )));
                 }
             }
         }
@@ -1843,29 +1772,16 @@ class CandidateShell extends AppShell {
                     if ($county === $eCity['Election']['name']) {
                         $candidates = $this->Candidate->find('list', array(
                             'fields' => array('name', 'name'),
-                            'joins' => array(
-                                array(
-                                    'table' => 'candidates_elections',
-                                    'alias' => 'CandidatesElection',
-                                    'type' => 'inner',
-                                    'conditions' => array(
-                                        'CandidatesElection.Candidate_id = Candidate.id',
-                                        'CandidatesElection.Election_id' => $eCity['Election']['id'],
-                                    ),
-                                ),
+                            'conditions' => array(
+                                'Candidate.election_id' => $eCity['Election']['id'],
                             ),
                         ));
                         if (!isset($candidates[$line[0]])) {
                             $this->Candidate->create();
-                            if ($this->Candidate->save(array('Candidate' => array(
-                                            'name' => $line[0],
-                                )))) {
-                                $this->Candidate->CandidatesElection->create();
-                                $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
-                                        'Election_id' => $eCity['Election']['id'],
-                                        'Candidate_id' => $this->Candidate->getInsertID(),
-                                )));
-                            }
+                            $this->Candidate->save(array('Candidate' => array(
+                                    'name' => $line[0],
+                                    'election_id' => $eCity['Election']['id'],
+                            )));
                         }
                     }
                 }

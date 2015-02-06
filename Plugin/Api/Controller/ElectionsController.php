@@ -65,27 +65,14 @@ class ElectionsController extends ApiAppController {
         if (!empty($electionId)) {
             $this->jsonData = $this->Election->Candidate->find('all', array(
                 'conditions' => array(
-                    'CandidatesElection.Election_id' => $electionId,
+                    'Candidate.election_id' => $electionId,
                     'Candidate.active_id IS NULL',
-                ),
-                'fields' => array('Candidate.*', 'CandidatesElection.platform'),
-                'joins' => array(
-                    array(
-                        'table' => 'candidates_elections',
-                        'alias' => 'CandidatesElection',
-                        'type' => 'inner',
-                        'conditions' => array(
-                            'CandidatesElection.Candidate_id = Candidate.id',
-                        ),
-                    ),
                 ),
             ));
             foreach ($this->jsonData AS $k => $v) {
-                $this->jsonData[$k]['Candidate']['platform'] = $v['CandidatesElection']['platform'];
                 if (!empty($this->jsonData[$k]['Candidate']['image'])) {
                     $this->jsonData[$k]['Candidate']['image'] = Router::url('/img/' . $this->jsonData[$k]['Candidate']['image'], true);
                 }
-                unset($this->jsonData[$k]['CandidatesElection']);
             }
         }
     }

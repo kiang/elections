@@ -126,19 +126,9 @@ class AreasController extends AppController {
                 $result['elections'][$k]['Election'] = $this->Area->Election->getPath($election['AreasElection']['Election_id'], array('id', 'name', 'parent_id'));
                 $result['elections'][$k]['Candidate'] = $this->Area->Election->Candidate->find('all', array(
                     'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.party', 'Candidate.stage', 'Candidate.image'),
-                    'joins' => array(
-                        array(
-                            'table' => 'candidates_elections',
-                            'alias' => 'CandidatesElection',
-                            'type' => 'inner',
-                            'conditions' => array(
-                                'CandidatesElection.Candidate_id = Candidate.id',
-                            ),
-                        ),
-                    ),
                     'conditions' => array(
                         'Candidate.active_id IS NULL',
-                        'CandidatesElection.Election_id' => $election['AreasElection']['Election_id'],
+                        'Candidate.election_id' => $election['AreasElection']['Election_id'],
                     ),
                     'order' => array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC'),
                 ));

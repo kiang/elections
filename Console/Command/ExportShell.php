@@ -13,8 +13,7 @@ class ExportShell extends AppShell {
             'conditions' => array('Tag.name LIKE' => '當選無效之訴%'),
             'contain' => array(
                 'Candidate' => array(
-                    'fields' => array('id', 'name', 'no', 'party'),
-                    'CandidatesElection',
+                    'fields' => array('id', 'name', 'no', 'party', 'election_id'),
                 ),
             ),
             'order' => array(
@@ -33,7 +32,7 @@ class ExportShell extends AppShell {
         foreach ($tags AS $tag) {
             $lines = array();
             foreach ($tag['Candidate'] AS $candidate) {
-                $electionId = $candidate['CandidatesElection'][0]['Election_id'];
+                $electionId = $candidate['Candidate']['election_id'];
                 if (!isset($elections[$electionId])) {
                     $path = $this->Election->getPath($electionId, array('name'));
                     unset($path[0]);
@@ -112,8 +111,8 @@ class ExportShell extends AppShell {
         $fh = fopen(__DIR__ . '/data/facebook_candidates.csv', 'w');
         fputcsv($fh, array('選舉類型', '選區', '姓名', '連結'));
         foreach ($candidates AS $candidate) {
-            if (!empty($candidate['Election'][0]['id'])) {
-                $parents = $this->Election->getPath($candidate['Election'][0]['id'], array('id', 'name'));
+            if (!empty($candidate['Election']['id'])) {
+                $parents = $this->Election->getPath($candidate['Election']['id'], array('id', 'name'));
                 $links = array();
                 $candidate['Candidate']['links'] = str_replace(array('\\n', '&amp;'), array("\n", '&'), $candidate['Candidate']['links']);
                 $lines = explode("\n", $candidate['Candidate']['links']);
@@ -161,19 +160,9 @@ class ExportShell extends AppShell {
                 $candidates = $this->Election->Candidate->find('all', array(
                     'conditions' => array(
                         'Candidate.active_id IS NULL',
-                        'CandidatesElection.Election_id' => $eNode['Election']['id'],
+                        'Candidate.election_id' => $eNode['Election']['id'],
                     ),
                     'fields' => array('Candidate.id', 'Candidate.name'),
-                    'joins' => array(
-                        array(
-                            'table' => 'candidates_elections',
-                            'alias' => 'CandidatesElection',
-                            'type' => 'inner',
-                            'conditions' => array(
-                                'CandidatesElection.Candidate_id = Candidate.id',
-                            ),
-                        ),
-                    )
                 ));
                 foreach ($candidates AS $candidate) {
                     fputcsv($fh, array(

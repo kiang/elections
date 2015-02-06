@@ -126,20 +126,6 @@ class ElectionsController extends AppController {
                         'conditions' => array('AreasElection.Area_id = Area.id'),
                     ),
                 ),
-                'Candidate' => array(
-                    0 => array(
-                        'table' => 'candidates_elections',
-                        'alias' => 'CandidatesElection',
-                        'type' => 'inner',
-                        'conditions' => array('CandidatesElection.Election_id = Election.id'),
-                    ),
-                    1 => array(
-                        'table' => 'candidates',
-                        'alias' => 'Candidate',
-                        'type' => 'inner',
-                        'conditions' => array('CandidatesElection.Candidate_id = Candidate.id'),
-                    ),
-                ),
             );
             if (array_key_exists($foreignModel, $habtmKeys)) {
                 unset($scope['Election.' . $foreignKeys[$foreignModel]]);

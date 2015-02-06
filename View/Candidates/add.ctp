@@ -115,7 +115,7 @@
         'class' => 'form-control',
         'placeholder' => '主要是服務處地址，例如： [北區]xx路xx號, [東區]oo路oo號',
     ));
-    echo $this->Form->input('CandidatesElection.platform', array(
+    echo $this->Form->input('Candidate.platform', array(
         'type' => 'textarea',
         'label' => '政見',
         'div' => 'form-group col-md-12',

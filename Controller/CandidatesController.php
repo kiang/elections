@@ -86,26 +86,16 @@ class CandidatesController extends AppController {
             if (!$result) {
                 $result = $this->Candidate->find('all', array(
                     'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no',
-                        'Candidate.party', 'CandidatesElection.Election_id'),
+                        'Candidate.party', 'Candidate.election_id'),
                     'conditions' => array(
                         'Candidate.active_id IS NULL',
                         'Candidate.name LIKE' => "%{$keyword}%",
                     ),
                     'limit' => 20,
-                    'joins' => array(
-                        array(
-                            'table' => 'candidates_elections',
-                            'alias' => 'CandidatesElection',
-                            'type' => 'inner',
-                            'conditions' => array(
-                                'CandidatesElection.Candidate_id = Candidate.id',
-                            ),
-                        ),
-                    ),
                 ));
                 foreach ($result AS $k => $v) {
                     $result[$k]['jobTitle'] = '';
-                    $parents = $this->Candidate->Election->getPath($v['CandidatesElection']['Election_id'], array('name'));
+                    $parents = $this->Candidate->Election->getPath($v['Candidate']['election_id'], array('name'));
                     foreach ($parents AS $parent) {
                         $result[$k]['jobTitle'] .= $parent['Election']['name'];
                     }
@@ -128,14 +118,6 @@ class CandidatesController extends AppController {
 
             $this->paginate['Candidate']['joins'] = array(
                 array(
-                    'table' => 'candidates_elections',
-                    'alias' => 'CandidatesElection',
-                    'type' => 'inner',
-                    'conditions' => array(
-                        'CandidatesElection.Candidate_id = Candidate.id',
-                    ),
-                ),
-                array(
                     'table' => 'candidates_tags',
                     'alias' => 'CandidatesTag',
                     'type' => 'inner',
@@ -146,14 +128,16 @@ class CandidatesController extends AppController {
             );
             $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
             $this->paginate['Candidate']['limit'] = 30;
-            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image', 'CandidatesElection.Election_id');
+            $this->paginate['Candidate']['fields'] = array('Candidate.id',
+                'Candidate.name', 'Candidate.no', 'Candidate.stage',
+                'Candidate.image', 'Candidate.election_id');
             $items = $this->paginate($this->Candidate, $scope);
             $electionStack = array();
             foreach ($items AS $k => $item) {
-                if (!isset($electionStack[$item['CandidatesElection']['Election_id']])) {
-                    $electionStack[$item['CandidatesElection']['Election_id']] = $this->Candidate->Election->getPath($item['CandidatesElection']['Election_id'], array('id', 'name'));
+                if (!isset($electionStack[$item['Candidate']['election_id']])) {
+                    $electionStack[$item['Candidate']['election_id']] = $this->Candidate->Election->getPath($item['Candidate']['election_id'], array('id', 'name'));
                 }
-                $items[$k]['Election'] = $electionStack[$item['CandidatesElection']['Election_id']];
+                $items[$k]['Election'] = $electionStack[$item['Candidate']['election_id']];
             }
 
             $this->set('title_for_layout', $tag['Tag']['name'] . ' 候選人');
@@ -177,14 +161,6 @@ class CandidatesController extends AppController {
 
             $this->paginate['Candidate']['joins'] = array(
                 array(
-                    'table' => 'candidates_elections',
-                    'alias' => 'CandidatesElection',
-                    'type' => 'inner',
-                    'conditions' => array(
-                        'CandidatesElection.Candidate_id = Candidate.id',
-                    ),
-                ),
-                array(
                     'table' => 'candidates_tags',
                     'alias' => 'CandidatesTag',
                     'type' => 'inner',
@@ -195,14 +171,16 @@ class CandidatesController extends AppController {
             );
             $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
             $this->paginate['Candidate']['limit'] = 30;
-            $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.party', 'Candidate.image', 'CandidatesElection.Election_id');
+            $this->paginate['Candidate']['fields'] = array('Candidate.id',
+                'Candidate.name', 'Candidate.no', 'Candidate.stage',
+                'Candidate.party', 'Candidate.image', 'Candidate.election_id');
             $items = $this->paginate($this->Candidate, $scope);
             $electionStack = array();
             foreach ($items AS $k => $item) {
-                if (!isset($electionStack[$item['CandidatesElection']['Election_id']])) {
-                    $electionStack[$item['CandidatesElection']['Election_id']] = $this->Candidate->Election->getPath($item['CandidatesElection']['Election_id'], array('id', 'name'));
+                if (!isset($electionStack[$item['Candidate']['election_id']])) {
+                    $electionStack[$item['Candidate']['election_id']] = $this->Candidate->Election->getPath($item['Candidate']['election_id'], array('id', 'name'));
                 }
-                $items[$k]['Election'] = Set::extract('{n}.Election.name', $electionStack[$item['CandidatesElection']['Election_id']]);
+                $items[$k]['Election'] = Set::extract('{n}.Election.name', $electionStack[$item['Candidate']['election_id']]);
             }
 
             $this->set('title_for_layout', $tag['Tag']['name'] . ' 候選人');
@@ -225,34 +203,23 @@ class CandidatesController extends AppController {
             );
 
             if (!empty($electionId)) {
-                $scope['CandidatesElection.Election_id'] = $electionId;
+                $scope['Candidate.election_id'] = $electionId;
                 $this->paginate['Candidate']['order'] = array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC');
             } else {
                 $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
             }
-
-            $this->paginate['Candidate']['joins'] = array(
-                array(
-                    'table' => 'candidates_elections',
-                    'alias' => 'CandidatesElection',
-                    'type' => 'inner',
-                    'conditions' => array(
-                        'CandidatesElection.Candidate_id = Candidate.id',
-                    ),
-                ),
-            );
             $this->paginate['Candidate']['limit'] = 30;
             $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.party',
                 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image',
-                'CandidatesElection.Election_id');
+                'Candidate.election_id');
             $result['items'] = $this->paginate($this->Candidate, $scope);
             $result['paging'] = $this->request->params['paging'];
             $electionStack = array();
             foreach ($result['items'] AS $k => $item) {
-                if (!isset($electionStack[$item['CandidatesElection']['Election_id']])) {
-                    $electionStack[$item['CandidatesElection']['Election_id']] = $this->Candidate->Election->getPath($item['CandidatesElection']['Election_id'], array('id', 'name'));
+                if (!isset($electionStack[$item['Candidate']['election_id']])) {
+                    $electionStack[$item['Candidate']['election_id']] = $this->Candidate->Election->getPath($item['Candidate']['election_id'], array('id', 'name'));
                 }
-                $result['items'][$k]['Election'] = $electionStack[$item['CandidatesElection']['Election_id']];
+                $result['items'][$k]['Election'] = $electionStack[$item['Candidate']['election_id']];
             }
             $result['parents'] = $this->Candidate->Election->getPath($electionId);
             Cache::write($cacheKey, $result, 'long');
@@ -277,12 +244,9 @@ class CandidatesController extends AppController {
         if (!empty($electionId)) {
             if (!empty($this->data)) {
                 $dataToSave = Sanitize::clean($this->data, array('encode' => false));
+                $dataToSave['Candidate']['election_id'] = $electionId;
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
-                    $dataToSave['CandidatesElection']['Election_id'] = $electionId;
-                    $dataToSave['CandidatesElection']['Candidate_id'] = $this->Candidate->getInsertID();
-                    $this->Candidate->CandidatesElection->create();
-                    $this->Candidate->CandidatesElection->save($dataToSave);
                     $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $electionId));
                     $this->Session->setFlash('資料已經儲存');
                     $this->redirect(array('controller' => 'areas', 'action' => 'index', $areaId));
@@ -319,13 +283,10 @@ class CandidatesController extends AppController {
             if (!empty($this->data)) {
                 $dataToSave = Sanitize::clean($this->data, array('encode' => false));
                 $dataToSave['Candidate']['active_id'] = $candidateId;
+                $dataToSave['Candidate']['election_id'] = $candidate['Candidate']['election_id'];
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
-                    $dataToSave['CandidatesElection']['Election_id'] = $candidate['Election'][0]['id'];
-                    $dataToSave['CandidatesElection']['Candidate_id'] = $this->Candidate->getInsertID();
-                    $this->Candidate->CandidatesElection->create();
-                    $this->Candidate->CandidatesElection->save($dataToSave);
-                    $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $candidate['Election'][0]['id']));
+                    $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $candidate['Election']['id']));
                     $this->Session->setFlash('感謝您提供的資料，我們會盡快更新！');
                     $this->redirect(array('controller' => 'areas', 'action' => 'index', $areaId));
                 } else {
@@ -343,13 +304,13 @@ class CandidatesController extends AppController {
                 if (!empty($latestUnRevied)) {
                     $candidate = $latestUnRevied;
                 }
-                $candidate['CandidatesElection']['platform'] = str_replace('\\n', "\n", $candidate['Election'][0]['CandidatesElection']['platform']);
+                $candidate['Candidate']['platform'] = str_replace('\\n', "\n", $candidate['Candidate']['platform']);
                 $candidate['Candidate']['links'] = str_replace('\\n', "\n", $candidate['Candidate']['links']);
                 $candidate['Candidate']['education'] = str_replace('\\n', "\n", $candidate['Candidate']['education']);
                 $candidate['Candidate']['experience'] = str_replace('\\n', "\n", $candidate['Candidate']['experience']);
                 $this->data = $candidate;
             }
-            $parents = $this->Candidate->Election->getPath($candidate['Election'][0]['id']);
+            $parents = $this->Candidate->Election->getPath($candidate['Candidate']['election_id']);
             $c = array();
             foreach ($parents AS $parent) {
                 $c[] = $parent['Election']['name'];
@@ -391,7 +352,7 @@ class CandidatesController extends AppController {
                         ),
                     ),
                 ));
-                $result['parents'] = $this->Candidate->Election->getPath($result['candidate']['Election'][0]['id']);
+                $result['parents'] = $this->Candidate->Election->getPath($result['candidate']['Election']['id']);
                 Cache::write($cacheKey, $result, 'long');
             }
         }
@@ -423,18 +384,8 @@ class CandidatesController extends AppController {
             'Candidate.active_id IS NULL',
         );
         if (!empty($electionId)) {
-            $scope['CandidatesElection.Election_id'] = $electionId;
+            $scope['Candidate.election_id'] = $electionId;
         }
-        $this->paginate['Candidate']['joins'] = array(
-            array(
-                'table' => 'candidates_elections',
-                'alias' => 'CandidatesElection',
-                'type' => 'inner',
-                'conditions' => array(
-                    'CandidatesElection.Candidate_id = Candidate.id',
-                ),
-            ),
-        );
         $this->paginate['Candidate']['limit'] = 20;
         $this->paginate['Candidate']['order'] = array(
             'Candidate.modified' => 'DESC',
@@ -479,7 +430,7 @@ class CandidatesController extends AppController {
                 'order' => array('Candidate.created DESC'),
             ));
             $this->set('versions', $versions);
-            $this->set('parents', $this->Candidate->Election->getPath($this->data['Election'][0]['id']));
+            $this->set('parents', $this->Candidate->Election->getPath($this->data['Election']['id']));
         }
     }
 
@@ -487,12 +438,9 @@ class CandidatesController extends AppController {
         if (!empty($electionId)) {
             if (!empty($this->data)) {
                 $dataToSave = Sanitize::clean($this->data, array('encode' => false));
+                $dataToSave['Candidate']['election_id'] = $electionId;
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
-                    $dataToSave['CandidatesElection']['Election_id'] = $electionId;
-                    $dataToSave['CandidatesElection']['Candidate_id'] = $this->Candidate->getInsertID();
-                    $this->Candidate->CandidatesElection->create();
-                    $this->Candidate->CandidatesElection->save($dataToSave);
                     $this->Session->setFlash('資料已經儲存');
                     $this->redirect(array('action' => 'index', $electionId));
                 } else {
@@ -527,12 +475,6 @@ class CandidatesController extends AppController {
                     $dataToSave['Candidate']['image'] = $dataToSave['Candidate']['image_upload'];
                 }
                 if ($this->Candidate->save($dataToSave)) {
-                    if (!empty($candidate['Election'][0]['CandidatesElection']['id'])) {
-                        $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
-                                'id' => $candidate['Election'][0]['CandidatesElection']['id'],
-                                'platform' => $dataToSave['CandidatesElection']['platform'],
-                        )));
-                    }
                     $this->Session->setFlash('資料已經儲存');
                     if ($after !== 'submits') {
                         $this->redirect(array('action' => 'index'));
@@ -543,7 +485,7 @@ class CandidatesController extends AppController {
                     $this->Session->setFlash('資料儲存時發生錯誤，請重試');
                 }
             } else {
-                $candidate['CandidatesElection']['platform'] = str_replace('\\n', "\n", $candidate['Election'][0]['CandidatesElection']['platform']);
+                $candidate['Candidate']['platform'] = str_replace('\\n', "\n", $candidate['Candidate']['platform']);
                 $candidate['Candidate']['links'] = str_replace('\\n', "\n", $candidate['Candidate']['links']);
                 $candidate['Candidate']['education'] = str_replace('\\n', "\n", $candidate['Candidate']['education']);
                 $candidate['Candidate']['experience'] = str_replace('\\n', "\n", $candidate['Candidate']['experience']);
@@ -610,17 +552,11 @@ class CandidatesController extends AppController {
                 $dataToSave['image'] = $submitted['Candidate']['image'];
             }
 
-            //update platform
-            $this->Candidate->CandidatesElection->save(array('CandidatesElection' => array(
-                    'id' => $original['Election'][0]['CandidatesElection']['id'],
-                    'platform' => $submitted['Election'][0]['CandidatesElection']['platform'],
-            )));
-
             //update candidate
             $cFields = array('name', 'party', 'contacts_phone', 'contacts_fax',
                 'no', 'education_level', 'is_present', 'name_english', 'birth_place',
                 'contacts_email', 'contacts_address', 'links', 'gender', 'birth',
-                'education', 'experience');
+                'education', 'experience', 'platform');
 
             foreach ($cFields AS $cField) {
                 $dataToSave[$cField] = $submitted['Candidate'][$cField];
@@ -642,12 +578,8 @@ class CandidatesController extends AppController {
             unset($original['Candidate']['id']);
             unset($submitted['Candidate']['active_id']);
             unset($original['Candidate']['active_id']);
-            unset($submitted['Election'][0]['CandidatesElection']['id']);
-            unset($original['Election'][0]['CandidatesElection']['id']);
-            unset($submitted['Election'][0]['CandidatesElection']['Candidate_id']);
-            unset($original['Election'][0]['CandidatesElection']['Candidate_id']);
-            unset($submitted['Election'][0]['CandidatesElection']['Election_id']);
-            unset($original['Election'][0]['CandidatesElection']['Election_id']);
+            unset($submitted['Candidate']['election_id']);
+            unset($original['Candidate']['election_id']);
         }
         $this->set('submitted', $submitted);
         $this->set('original', $original);

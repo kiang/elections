@@ -99,18 +99,10 @@ class ElectionShell extends AppShell {
             if ($election['Election']['quota'] === $election[0]['n']) {
                 $path = implode(' > ', Set::extract('{n}.Election.name', $this->Election->getPath($election['Election']['id'], array('name'))));
                 $candidates = $this->Election->Candidate->find('all', array(
-                    'joins' => array(
-                        array(
-                            'table' => 'candidates_elections',
-                            'alias' => 'CandidatesElection',
-                            'type' => 'inner',
-                            'conditions' => array('CandidatesElection.Candidate_id = Candidate.id'),
-                        ),
-                    ),
                     'conditions' => array(
                         'Candidate.active_id IS NULL',
                         'Candidate.stage' => '1',
-                        'CandidatesElection.Election_id' => $election['Election']['id'],
+                        'Candidate.election_id' => $election['Election']['id'],
                     ),
                     'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party'),
                 ));
@@ -145,18 +137,10 @@ class ElectionShell extends AppShell {
                 $path = implode(' > ', Set::extract('{n}.Election.name', $this->Election->getPath($election['Election']['id'], array('name'))));
                 if (false === strpos($path, '村里')) {
                     $candidates = $this->Election->Candidate->find('all', array(
-                        'joins' => array(
-                            array(
-                                'table' => 'candidates_elections',
-                                'alias' => 'CandidatesElection',
-                                'type' => 'inner',
-                                'conditions' => array('CandidatesElection.Candidate_id = Candidate.id'),
-                            ),
-                        ),
                         'conditions' => array(
                             'Candidate.active_id IS NULL',
                             'Candidate.stage' => '1',
-                            'CandidatesElection.Election_id' => $election['Election']['id'],
+                            'Candidate.election_id' => $election['Election']['id'],
                         ),
                         'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party'),
                     ));

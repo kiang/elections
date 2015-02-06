@@ -26,23 +26,23 @@
                 if (false !== strpos($referer, $this->Html->url('/', true))) {
                     echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default'));
                 }
-                if (!empty($candidate['Election'][0]['bulletin_key'])) {
-                    echo $this->Html->link('選舉公報', '/bulletins/view/' . $candidate['Election'][0]['bulletin_key'], array('class' => 'btn btn-primary'));
+                if (!empty($candidate['Election']['bulletin_key'])) {
+                    echo $this->Html->link('選舉公報', '/bulletins/view/' . $candidate['Election']['bulletin_key'], array('class' => 'btn btn-primary'));
                 }
                 ?>
             </div>
             <?php
-            $quota = "名額： {$candidate['Election'][0]['quota']}";
-            if (!empty($candidate['Election'][0]['quota_women'])) {
-                $quota .= " / 婦女保障： {$candidate['Election'][0]['quota_women']}";
+            $quota = "名額： {$candidate['Election']['quota']}";
+            if (!empty($candidate['Election']['quota_women'])) {
+                $quota .= " / 婦女保障： {$candidate['Election']['quota_women']}";
             }
-            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$candidate['Election'][0]['population_electors']} / 人口： {$candidate['Election'][0]['population']} )";
+            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$candidate['Election']['population_electors']} / 人口： {$candidate['Election']['population']} )";
             ?>
         </div>
         <div class="col-md-6">
             行政區：
             <?php
-            foreach ($candidate['Election'][0]['Area'] AS $area) {
+            foreach ($candidate['Election']['Area'] AS $area) {
                 echo $this->Html->link($area['name'], '/areas/index/' . $area['id'], array('class' => 'btn btn-default'));
             }
             ?>
@@ -124,12 +124,12 @@
                     </div>
                 </div>
             </div>
-            <?php if (!empty($candidate['Election'][0]['CandidatesElection']['platform'])) { ?>
+            <?php if (!empty($candidate['Candidate']['platform'])) { ?>
                 <div class="col-md-12">
                     <div class="well well-lg"> 
                         <div class="row">
                             <strong>政見</strong> <hr />
-                            <?php echo str_replace('\\n', '<br />', $candidate['Election'][0]['CandidatesElection']['platform']); ?>
+                            <?php echo str_replace('\\n', '<br />', $candidate['Candidate']['platform']); ?>
                         </div>
                     </div>
                 </div>
