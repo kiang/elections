@@ -485,7 +485,7 @@ class CandidatesController extends AppController {
     function admin_add($electionId = '') {
         if (!empty($electionId)) {
             if (!empty($this->data)) {
-                $dataToSave = $this->data;
+                $dataToSave = Sanitize::clean($this->data, array('encode' => false));
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
                     $dataToSave['CandidatesElection']['Election_id'] = $electionId;
@@ -498,7 +498,9 @@ class CandidatesController extends AppController {
                     $this->Session->setFlash('資料儲存時發生錯誤，請重試');
                 }
             }
+            $parents = $this->Candidate->Election->getPath($electionId);
             $this->set('electionId', $electionId);
+            $this->set('parents', $parents);
         } else {
             $this->redirect(array('controller' => 'elections'));
         }
@@ -515,7 +517,7 @@ class CandidatesController extends AppController {
         }
         if (!empty($candidate)) {
             if (!empty($this->data)) {
-                $dataToSave = $this->data;
+                $dataToSave = Sanitize::clean($this->data, array('encode' => false));
                 $dataToSave['Candidate']['id'] = $id;
                 if (empty($dataToSave['Candidate']['active_id'])) {
                     unset($dataToSave['Candidate']['active_id']);

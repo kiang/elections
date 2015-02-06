@@ -1,4 +1,20 @@
 <div id="CandidatesAdminAdd">
+    <div class="row">
+        <h1><?php
+            if (!empty($parents)) {
+                $c = array();
+                foreach ($parents AS $parent) {
+                    if($parent['Election']['rght'] - $parent['Election']['lft'] != 1) {
+                        $c[] = $this->Html->link($parent['Election']['name'], '/admin/elections/index/' . $parent['Election']['id']);
+                    } else {
+                        $c[] = $this->Html->link($parent['Election']['name'], '/admin/candidates/index/' . $parent['Election']['id']);
+                    }
+                }
+                $c[] = '新增候選人';
+                echo implode(' > ', $c);
+            }
+            ?></h1><hr />
+    </div>
     <?php
     $url = array();
     echo $this->Form->create('Candidate', array('type' => 'file', 'url' => array($electionId)));
