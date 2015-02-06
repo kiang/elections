@@ -534,7 +534,7 @@ class CandidatesController extends AppController {
             'Candidate.birth', 'Candidate.education', 'Candidate.experience');
         $submitted = $this->Candidate->find('first', array(
             'fields' => $fields,
-            'conditions' => array('id' => $candidateId),
+            'conditions' => array('Candidate.id' => $candidateId),
             'contain' => array('Election' => array('fields' => array('Election.name'))),
         ));
         $original = $this->Candidate->find('first', array(
