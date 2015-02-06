@@ -26,6 +26,24 @@
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
+            echo $this->Form->input('Area.population', array(
+                'type' => 'text',
+                'label' => '選區人口',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
+            echo $this->Form->input('Area.population_electors', array(
+                'type' => 'text',
+                'label' => '選舉人數量',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
+            echo $this->Form->input('Area.polygons', array(
+                'type' => 'textarea',
+                'label' => 'GeoJSON polygons',
+                'div' => 'form-group',
+                'class' => 'form-control',
+            ));
             ?>
         </fieldset>
     </div>
