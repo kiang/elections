@@ -2,11 +2,152 @@
 
 class CecShell extends AppShell {
 
-    public $uses = array();
+    public $uses = array('Election');
+    public $electionList = array();
 
     public function main() {
-        $this->v20101101TxB2();
-        $this->v20091201TxC2();
+        $this->final2014();
+    }
+
+    public function final2014() {
+        $this->treeList($this->Election->find('threaded', array(
+                    'fields' => array('id', 'name', 'parent_id', 'lft', 'rght'),
+                    'conditions' => array('parent_id IS NOT NULL'),
+        )));
+        $eCandidates = array();
+        $candidates = $this->Election->Candidate->find('all', array(
+            'conditions' => array('Candidate.active_id IS NULL'),
+            'fields' => array('id', 'election_id', 'name'),
+        ));
+        foreach ($candidates AS $candidate) {
+            if (!isset($eCandidates[$candidate['Candidate']['election_id']])) {
+                $eCandidates[$candidate['Candidate']['election_id']] = array();
+            }
+            $eCandidates[$candidate['Candidate']['election_id']][$candidate['Candidate']['name']] = $candidate['Candidate']['id'];
+        }
+        $repoPath = '/home/kiang/public_html/db.cec.gov.tw';
+        $fh = fopen($repoPath . '/elections.csv', 'r');
+        $pairs = array(
+            $this->utf8(hexdec('E000')) => '𦰡',
+            $this->utf8(hexdec('E001')) => '𥕢',
+            $this->utf8(hexdec('E006')) => '塭',
+            $this->utf8(hexdec('E007')) => '壳',
+            $this->utf8(hexdec('E008')) => '磘',
+            $this->utf8(hexdec('E01A')) => '硘',
+            $this->utf8(hexdec('E01C')) => '嵵',
+            $this->utf8(hexdec('E01D')) => '廍',
+            $this->utf8(hexdec('E01F')) => '獇',
+            $this->utf8(hexdec('E02A')) => '欍',
+            $this->utf8(hexdec('E023')) => '爗',
+            $this->utf8(hexdec('E028')) => '鍀',
+            $this->utf8(hexdec('E411')) => '塗',
+            $this->utf8(hexdec('E00F')) => '䅿',
+            '槊榔里' => '槺榔里',
+            '双湖村' => '雙湖村',
+            '双潭村' => '雙潭村',
+            '台子村' => '臺子村',
+            '徦' => '厦',
+        );
+        $codeLoaded = array();
+        while ($line = fgetcsv($fh)) {
+            if (substr($line[0], 0, 4) === '2014') {
+                if (!isset($codeLoaded[$line[0]])) {
+                    $codeLoaded[$line[0]] = true;
+                } else {
+                    continue;
+                }
+                $parts = explode(' > ', $line[1]);
+                $parts[0] = str_replace(array('2014-103年', '選舉'), array('', ''), $parts[0]);
+                switch ($parts[0]) {
+                    case '直轄市市議員':
+                        $parts[0] = '直轄市議員';
+                        break;
+                    case '直轄市里長':
+                        $parts[0] = '村里長';
+                        break;
+                    case '直轄市區長':
+                        $parts[0] = '直轄市山地原住民區長';
+                        break;
+                    case '直轄市區民代表':
+                        $parts[0] = '直轄市山地原住民區民代表';
+                        break;
+                }
+                $eFh = fopen($repoPath . '/elections/' . $line[0] . '.csv', 'r');
+                /*
+                 * Array
+                  (
+                  [0] => 地區
+                  [1] => 姓名
+                  [2] => 號次
+                  [3] => 性別
+                  [4] => 出生年次
+                  [5] => 推薦政黨
+                  [6] => 得票數
+                  [7] => 得票率
+                  [8] => 當選註記
+                  [9] => 是否現任
+                  )
+                 */
+                fgets($eFh, 2048);
+                while ($eLine = fgetcsv($eFh, 2048)) {
+                    if (in_array($parts[0], array('鄉鎮市民代表', '直轄市山地原住民區民代表'))) {
+                        $eLine[0] = str_replace(array('選區'), array('選舉區'), $eLine[0]);
+                    }
+                    $eLine[0] = strtr($eLine[0], $pairs);
+                    $electionKey = "{$parts[0]}{$eLine[0]}";
+                    $electionId = '';
+                    if (isset($this->electionList[$electionKey])) {
+                        $electionId = $this->electionList[$electionKey];
+                    }
+                    $candidateId = '';
+                    if (isset($eCandidates[$electionId][$eLine[1]])) {
+                        $candidateId = $eCandidates[$electionId][$eLine[1]];
+                    }
+                    if (empty($candidateId) && !empty($electionId)) {
+                        $c = preg_split('/(?<!^)(?!$)/u', $eLine[1]);
+                        $maxCount = 0;
+                        $guessResult = "\n";
+                        foreach ($eCandidates[$electionId] AS $cName => $cId) {
+                            $cc = preg_split('/(?<!^)(?!$)/u', $cName);
+                            $r = array_intersect($c, $cc);
+                            $rCount = count($r);
+                            if ($rCount > 2 && $rCount > $maxCount) {
+                                $maxCount = $rCount;
+                                $candidateId = $cId;
+                            }
+                        }
+                    }
+                    if (!empty($candidateId)) {
+                        echo "saving {$eLine[0]}{$eLine[1]}\n";
+                        $this->Election->Candidate->id = $candidateId;
+                        $this->Election->Candidate->save(array('Candidate' => array(
+                                'name' => $eLine[1],
+                                'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
+                                'no' => $eLine[2],
+                                'gender' => ($eLine[3] === '男') ? 'm' : 'f',
+                                'vote_count' => $eLine[6],
+                                'is_present' => ($eLine[9] === '是') ? '1' : '0',
+                        )));
+                    } else {
+                        print_r($eCandidates[$electionId]);
+                        print_r($eLine);
+                        $candidateId = $this->in('ID?');
+                        if (!empty($candidateId)) {
+                            echo "saving {$eLine[0]}{$eLine[1]}\n";
+                            $this->Election->Candidate->id = $candidateId;
+                            $this->Election->Candidate->save(array('Candidate' => array(
+                                    'name' => $eLine[1],
+                                    'stage' => ($eLine[8] === '*') ? '2' : '1',
+                                    'no' => $eLine[2],
+                                    'gender' => ($eLine[3] === '男') ? 'm' : 'f',
+                                    'vote_count' => $eLine[6],
+                                    'is_present' => ($eLine[9] === '是') ? '1' : '0',
+                            )));
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /*
@@ -356,6 +497,38 @@ class CecShell extends AppShell {
             }
         }
         file_put_contents(__DIR__ . '/data/v20100601C1D2.json', json_encode($result));
+    }
+
+    public function treeList($elections, $prefix = '') {
+        foreach ($elections AS $election) {
+            $pos = strpos($election['Election']['name'], '[');
+            $election['Election']['name'] = str_replace(array('里'), array('里'), $election['Election']['name']);
+
+            if (false !== $pos) {
+                $election['Election']['name'] = substr($election['Election']['name'], 0, $pos);
+            }
+            if ($election['Election']['rght'] - $election['Election']['lft'] === 1) {
+                $this->electionList[$prefix . $election['Election']['name']] = $election['Election']['id'];
+            } else {
+                $this->treeList($election['children'], $prefix . $election['Election']['name']);
+            }
+        }
+    }
+
+    /*
+     * from http://stackoverflow.com/questions/1805802/php-convert-unicode-codepoint-to-utf-8
+     */
+
+    public function utf8($num) {
+        if ($num <= 0x7F)
+            return chr($num);
+        if ($num <= 0x7FF)
+            return chr(($num >> 6) + 192) . chr(($num & 63) + 128);
+        if ($num <= 0xFFFF)
+            return chr(($num >> 12) + 224) . chr((($num >> 6) & 63) + 128) . chr(($num & 63) + 128);
+        if ($num <= 0x1FFFFF)
+            return chr(($num >> 18) + 240) . chr((($num >> 12) & 63) + 128) . chr((($num >> 6) & 63) + 128) . chr(($num & 63) + 128);
+        return '';
     }
 
 }
