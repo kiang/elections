@@ -35,113 +35,187 @@ class CecShell extends AppShell {
         $fh = fopen($repoPath . '/elections.csv', 'r');
         fgets($fh, 512);
         while ($line = fgetcsv($fh, 2048)) {
-            $rootName = substr($line[0], 0, 6);
-            if ($rootName !== '201411') {
-                $line[1] = str_replace(' ', '', $line[1]);
+            $rootName = substr($line[0], 0, 4) . '-' . substr($line[0], 4, 2);
+            if ($rootName !== '2014-11') {
+                $typeName = substr($line[1], 5);
+                $typeName = str_replace(array(' ', '選舉'), array('', ''), $typeName);
                 $eFh = fopen($repoPath . '/elections/' . $line[0] . '.csv', 'r');
-                /*
-                 * Array
-                  (
-                  [0] => 地區
-                  [1] => 姓名
-                  [2] => 號次
-                  [3] => 性別
-                  [4] => 出生年次
-                  [5] => 推薦政黨
-                  [6] => 得票數
-                  [7] => 得票率
-                  [8] => 當選註記
-                  [9] => 是否現任
-                  )
-                 */
-                $header = fgetcsv($eFh, 2048);
-                if (count($header) === 10) {
-                    echo "processing {$line[1]}\n";
-                    if (!isset($rootNodes[$rootName])) {
-                        $this->Election->create();
-                        $this->Election->save(array('Election' => array(
-                                'name' => $rootName,
-                        )));
-                        $rootNodes[$rootName] = $this->Election->getInsertID();
-                    }
-                    $rootId = $rootNodes[$rootName];
-                    $typeName = substr($line[1], 5);
-                    if (!isset($typeNodes[$rootId][$typeName])) {
-                        $this->Election->create();
-                        $this->Election->save(array('Election' => array(
-                                'parent_id' => $rootId,
-                                'name' => $typeName,
-                        )));
-                        $typeNodes[$rootId][$typeName] = $this->Election->getInsertID();
-                    }
-                    $typeId = $typeNodes[$rootId][$typeName];
-                    $code = substr($line[0], -4);
-                    
-                    while ($eLine = fgetcsv($eFh, 2048)) {
-                        if ($eLine[0] === '全國') {
-                            $electionId = $typeId;
-                        } else {
-                            if (!isset($leafNodes[$typeId][$eLine[0]])) {
-                                $this->Election->create();
-                                $this->Election->save(array('Election' => array(
-                                        'parent_id' => $typeId,
-                                        'name' => $eLine[0],
-                                )));
-                                $leafNodes[$typeId][$eLine[0]] = $this->Election->getInsertID();
-                            }
-                            $electionId = $leafNodes[$typeId][$eLine[0]];
-                        }
 
-                        if ($this->Election->Candidate->find('count', array(
-                                    'conditions' => array(
-                                        'Candidate.election_id' => $electionId,
-                                        'Candidate.no' => $eLine[2],
-                                    ),
-                                )) === 0) {
-                            if ($code === 'P1A1') {
-                                $eLine[1] = explode('|', $eLine[1]);
-                                $eLine[3] = explode('|', $eLine[3]);
-                                $eLine[4] = explode('|', $eLine[4]);
-                                $this->Election->Candidate->create();
-                                $this->Election->Candidate->save(array('Candidate' => array(
-                                        'election_id' => $electionId,
-                                        'name' => $eLine[1][0],
-                                        'no' => $eLine[2],
-                                        'gender' => ($eLine[3][0] === '男') ? 'm' : 'f',
-                                        'yob' => $eLine[4][0],
-                                        'party' => $eLine[5],
-                                        'vote_count' => $eLine[6],
-                                        'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
-                                        'is_present' => ($eLine[9] === '是') ? '1' : '0',
-                                )));
-                                $this->Election->Candidate->create();
-                                $this->Election->Candidate->save(array('Candidate' => array(
-                                        'election_id' => $electionId,
-                                        'name' => $eLine[1][1],
-                                        'no' => $eLine[2],
-                                        'gender' => ($eLine[3][1] === '男') ? 'm' : 'f',
-                                        'yob' => $eLine[4][1],
-                                        'party' => $eLine[5],
-                                        'vote_count' => $eLine[6],
-                                        'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
-                                        'is_present' => ($eLine[9] === '是') ? '1' : '0',
-                                )));
+                $pos = strpos($typeName, '>');
+                $suffix = '';
+                if (false !== $pos) {
+                    $suffix = substr($typeName, $pos + 1);
+                    $typeName = substr($typeName, 0, $pos);
+                }
+                $pos = strpos($typeName, '年');
+                if (false !== $pos) {
+                    $typeName = substr($typeName, $pos + 3);
+                }
+                $pos = strpos($typeName, '屆');
+                if (false !== $pos) {
+                    $typeName = substr($typeName, $pos + 3);
+                }
+                $pos = strpos($typeName, '任');
+                if (false !== $pos) {
+                    $typeName = substr($typeName, $pos + 3);
+                }
+                echo "processing {$line[1]} > {$typeName}\n";
+                if (!isset($rootNodes[$rootName])) {
+                    $this->Election->create();
+                    $this->Election->save(array('Election' => array(
+                            'name' => $rootName,
+                    )));
+                    $rootNodes[$rootName] = $this->Election->getInsertID();
+                }
+                $rootId = $rootNodes[$rootName];
+                if (!isset($typeNodes[$rootId][$typeName])) {
+                    $this->Election->create();
+                    $this->Election->save(array('Election' => array(
+                            'parent_id' => $rootId,
+                            'name' => $typeName,
+                    )));
+                    $typeNodes[$rootId][$typeName] = $this->Election->getInsertID();
+                }
+                $typeId = $typeNodes[$rootId][$typeName];
+                $code = substr($line[0], -4);
+                $header = fgetcsv($eFh, 2048);
+                $fieldCount = count($header);
+                switch ($fieldCount) {
+                    case 10:
+                        /*
+                         * Array
+                          (
+                          [0] => 地區
+                          [1] => 姓名
+                          [2] => 號次
+                          [3] => 性別
+                          [4] => 出生年次
+                          [5] => 推薦政黨
+                          [6] => 得票數
+                          [7] => 得票率
+                          [8] => 當選註記
+                          [9] => 是否現任
+                          )
+                         */
+
+                        while ($eLine = fgetcsv($eFh, 2048)) {
+                            if (!empty($suffix)) {
+                                $eLine[0] = "{$eLine[0]}[{$suffix}]";
+                            }
+                            if ($eLine[0] === '全國') {
+                                $electionId = $typeId;
                             } else {
+                                if (!isset($leafNodes[$typeId][$eLine[0]])) {
+                                    $this->Election->create();
+                                    $this->Election->save(array('Election' => array(
+                                            'parent_id' => $typeId,
+                                            'name' => $eLine[0],
+                                    )));
+                                    $leafNodes[$typeId][$eLine[0]] = $this->Election->getInsertID();
+                                }
+                                $electionId = $leafNodes[$typeId][$eLine[0]];
+                            }
+
+                            if ($this->Election->Candidate->find('count', array(
+                                        'conditions' => array(
+                                            'Candidate.election_id' => $electionId,
+                                            'Candidate.no' => $eLine[2],
+                                        ),
+                                    )) === 0) {
+                                if ($code === 'P1A1') {
+                                    $eLine[1] = explode('|', $eLine[1]);
+                                    $eLine[3] = explode('|', $eLine[3]);
+                                    $eLine[4] = explode('|', $eLine[4]);
+                                    $this->Election->Candidate->create();
+                                    $this->Election->Candidate->save(array('Candidate' => array(
+                                            'election_id' => $electionId,
+                                            'name' => $eLine[1][0],
+                                            'no' => $eLine[2],
+                                            'gender' => ($eLine[3][0] === '男') ? 'm' : 'f',
+                                            'yob' => $eLine[4][0],
+                                            'party' => $eLine[5],
+                                            'vote_count' => $eLine[6],
+                                            'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
+                                            'is_present' => ($eLine[9] === '是') ? '1' : '0',
+                                    )));
+                                    $this->Election->Candidate->create();
+                                    $this->Election->Candidate->save(array('Candidate' => array(
+                                            'election_id' => $electionId,
+                                            'name' => $eLine[1][1],
+                                            'no' => $eLine[2],
+                                            'gender' => ($eLine[3][1] === '男') ? 'm' : 'f',
+                                            'yob' => $eLine[4][1],
+                                            'party' => $eLine[5],
+                                            'vote_count' => $eLine[6],
+                                            'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
+                                            'is_present' => ($eLine[9] === '是') ? '1' : '0',
+                                    )));
+                                } else {
+                                    $this->Election->Candidate->create();
+                                    $this->Election->Candidate->save(array('Candidate' => array(
+                                            'election_id' => $electionId,
+                                            'name' => $eLine[1],
+                                            'no' => $eLine[2],
+                                            'gender' => ($eLine[3] === '男') ? 'm' : 'f',
+                                            'yob' => $eLine[4],
+                                            'party' => $eLine[5],
+                                            'vote_count' => $eLine[6],
+                                            'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
+                                            'is_present' => ($eLine[9] === '是') ? '1' : '0',
+                                    )));
+                                }
+                            }
+                        }
+                        break;
+                    case 7:
+                        /*
+                         * Array
+                          (
+                          [0] => 地區
+                          [1] => 政黨
+                          [2] => 號次
+                          [3] => 得票數
+                          [4] => 第一階段得票率
+                          [5] => 第二階段得票率
+                          [6] => 分配席次
+                          )
+                         */
+                        while ($eLine = fgetcsv($eFh, 2048)) {
+                            if (!empty($suffix)) {
+                                $eLine[0] = "{$eLine[0]}[{$suffix}]";
+                            }
+                            if ($eLine[0] === '全國') {
+                                $electionId = $typeId;
+                            } else {
+                                if (!isset($leafNodes[$typeId][$eLine[0]])) {
+                                    $this->Election->create();
+                                    $this->Election->save(array('Election' => array(
+                                            'parent_id' => $typeId,
+                                            'name' => $eLine[0],
+                                    )));
+                                    $leafNodes[$typeId][$eLine[0]] = $this->Election->getInsertID();
+                                }
+                                $electionId = $leafNodes[$typeId][$eLine[0]];
+                            }
+
+                            if ($this->Election->Candidate->find('count', array(
+                                        'conditions' => array(
+                                            'Candidate.election_id' => $electionId,
+                                            'Candidate.no' => $eLine[2],
+                                        ),
+                                    )) === 0) {
                                 $this->Election->Candidate->create();
                                 $this->Election->Candidate->save(array('Candidate' => array(
                                         'election_id' => $electionId,
                                         'name' => $eLine[1],
                                         'no' => $eLine[2],
-                                        'gender' => ($eLine[3] === '男') ? 'm' : 'f',
-                                        'yob' => $eLine[4],
-                                        'party' => $eLine[5],
-                                        'vote_count' => $eLine[6],
-                                        'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
-                                        'is_present' => ($eLine[9] === '是') ? '1' : '0',
+                                        'party' => $eLine[1],
+                                        'vote_count' => $eLine[3],
+                                        'stage' => ($eLine[6] !== '0') ? '2' : '1',
                                 )));
                             }
                         }
-                    }
+                        break;
                 }
                 fclose($eFh);
             }

@@ -32,21 +32,35 @@
                 ?>
             </div>
             <?php
-            $quota = "名額： {$candidate['Election']['quota']}";
+            $meta = array();
+            if (!empty($candidate['Election']['quota'])) {
+                $meta[] = "名額： {$candidate['Election']['quota']}";
+            }
             if (!empty($candidate['Election']['quota_women'])) {
-                $quota .= " / 婦女保障： {$candidate['Election']['quota_women']}";
+                $meta[] = "婦女保障： {$candidate['Election']['quota_women']}";
             }
-            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$candidate['Election']['population_electors']} / 人口： {$candidate['Election']['population']} )";
+            if (!empty($candidate['Election']['population_electors'])) {
+                $meta[] = "選舉人： {$candidate['Election']['population_electors']}";
+            }
+            if (!empty($candidate['Election']['population'])) {
+                $meta[] = "人口： {$candidate['Election']['population']}";
+            }
+            if (!empty($meta)) {
+                $meta = implode(' / ', $meta);
+                echo " &nbsp; &nbsp; ( {$meta} )";
+            }
             ?>
         </div>
-        <div class="col-md-6">
-            行政區：
-            <?php
-            foreach ($candidate['Election']['Area'] AS $area) {
-                echo $this->Html->link($area['name'], '/areas/index/' . $area['id'], array('class' => 'btn btn-default'));
-            }
-            ?>
-        </div>
+        <?php if (!empty($candidate['Election']['Area'])) { ?>
+            <div class="col-md-6">
+                行政區：
+                <?php
+                foreach ($candidate['Election']['Area'] AS $area) {
+                    echo $this->Html->link($area['name'], '/areas/index/' . $area['id'], array('class' => 'btn btn-default'));
+                }
+                ?>
+            </div>
+        <?php } ?>
         <div class="col-md-6">
             <?php if (!empty($candidate['Tag'])) { ?>
                 分類：

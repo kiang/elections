@@ -62,9 +62,9 @@ class ElectionsController extends AppController {
     function index($parentId = '') {
         if (!empty($parentId)) {
             $parentId = $this->Election->field('id', array('id' => $parentId));
-        }
-        if (empty($parentId)) {
-            $parentId = $this->Election->field('id', array('parent_id IS NULL'));
+            $nameOrder = 'ASC';
+        } else {
+            $nameOrder = 'DESC';
         }
         $cacheKey = "ElectionsIndex{$parentId}";
         $result = Cache::read($cacheKey, 'long');
@@ -77,13 +77,17 @@ class ElectionsController extends AppController {
                 'conditions' => array(
                     'Election.parent_id' => empty($parentId) ? NULL : $parentId,
                 ),
+                'order' => array('Election.name' => $nameOrder),
             ));
 
             $result['parents'] = $this->Election->getPath($parentId);
             Cache::write($cacheKey, $result, 'long');
         }
-
-        $c = Set::extract('{n}.Election.name', $result['parents']);
+        if (!empty($result['parents'])) {
+            $c = Set::extract('{n}.Election.name', $result['parents']);
+        } else {
+            $c = array();
+        }
 
         $this->set('title_for_layout', implode(' > ', $c) . '選舉區 @ ');
         $this->set('items', $result['items']);
