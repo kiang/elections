@@ -6,7 +6,146 @@ class CecShell extends AppShell {
     public $electionList = array();
 
     public function main() {
-        $this->final2014();
+        $this->before2014();
+    }
+
+    public function before2014() {
+        $rootNodes = $this->Election->find('list', array(
+            'fields' => array('name', 'id'),
+            'conditions' => array('Election.parent_id IS NULL'),
+        ));
+        $typeNodes = array();
+        foreach ($rootNodes AS $rootNode => $id) {
+            $typeNodes[$id] = $this->Election->find('list', array(
+                'fields' => array('name', 'id'),
+                'conditions' => array('Election.parent_id' => $id),
+            ));
+        }
+        $leafNodes = array();
+        foreach ($typeNodes AS $typeNode => $nodes) {
+            foreach ($nodes AS $nodeId) {
+                $leafNodes[$nodeId] = $this->Election->find('list', array(
+                    'fields' => array('name', 'id'),
+                    'conditions' => array('Election.parent_id' => $nodeId),
+                ));
+            }
+        }
+
+        $repoPath = '/home/kiang/public_html/db.cec.gov.tw';
+        $fh = fopen($repoPath . '/elections.csv', 'r');
+        fgets($fh, 512);
+        while ($line = fgetcsv($fh, 2048)) {
+            $rootName = substr($line[0], 0, 6);
+            if ($rootName !== '201411') {
+                $line[1] = str_replace(' ', '', $line[1]);
+                $eFh = fopen($repoPath . '/elections/' . $line[0] . '.csv', 'r');
+                /*
+                 * Array
+                  (
+                  [0] => 地區
+                  [1] => 姓名
+                  [2] => 號次
+                  [3] => 性別
+                  [4] => 出生年次
+                  [5] => 推薦政黨
+                  [6] => 得票數
+                  [7] => 得票率
+                  [8] => 當選註記
+                  [9] => 是否現任
+                  )
+                 */
+                $header = fgetcsv($eFh, 2048);
+                if (count($header) === 10) {
+                    echo "processing {$line[1]}\n";
+                    if (!isset($rootNodes[$rootName])) {
+                        $this->Election->create();
+                        $this->Election->save(array('Election' => array(
+                                'name' => $rootName,
+                        )));
+                        $rootNodes[$rootName] = $this->Election->getInsertID();
+                    }
+                    $rootId = $rootNodes[$rootName];
+                    $typeName = substr($line[1], 5);
+                    if (!isset($typeNodes[$rootId][$typeName])) {
+                        $this->Election->create();
+                        $this->Election->save(array('Election' => array(
+                                'parent_id' => $rootId,
+                                'name' => $typeName,
+                        )));
+                        $typeNodes[$rootId][$typeName] = $this->Election->getInsertID();
+                    }
+                    $typeId = $typeNodes[$rootId][$typeName];
+                    $code = substr($line[0], -4);
+                    
+                    while ($eLine = fgetcsv($eFh, 2048)) {
+                        if ($eLine[0] === '全國') {
+                            $electionId = $typeId;
+                        } else {
+                            if (!isset($leafNodes[$typeId][$eLine[0]])) {
+                                $this->Election->create();
+                                $this->Election->save(array('Election' => array(
+                                        'parent_id' => $typeId,
+                                        'name' => $eLine[0],
+                                )));
+                                $leafNodes[$typeId][$eLine[0]] = $this->Election->getInsertID();
+                            }
+                            $electionId = $leafNodes[$typeId][$eLine[0]];
+                        }
+
+                        if ($this->Election->Candidate->find('count', array(
+                                    'conditions' => array(
+                                        'Candidate.election_id' => $electionId,
+                                        'Candidate.no' => $eLine[2],
+                                    ),
+                                )) === 0) {
+                            if ($code === 'P1A1') {
+                                $eLine[1] = explode('|', $eLine[1]);
+                                $eLine[3] = explode('|', $eLine[3]);
+                                $eLine[4] = explode('|', $eLine[4]);
+                                $this->Election->Candidate->create();
+                                $this->Election->Candidate->save(array('Candidate' => array(
+                                        'election_id' => $electionId,
+                                        'name' => $eLine[1][0],
+                                        'no' => $eLine[2],
+                                        'gender' => ($eLine[3][0] === '男') ? 'm' : 'f',
+                                        'yob' => $eLine[4][0],
+                                        'party' => $eLine[5],
+                                        'vote_count' => $eLine[6],
+                                        'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
+                                        'is_present' => ($eLine[9] === '是') ? '1' : '0',
+                                )));
+                                $this->Election->Candidate->create();
+                                $this->Election->Candidate->save(array('Candidate' => array(
+                                        'election_id' => $electionId,
+                                        'name' => $eLine[1][1],
+                                        'no' => $eLine[2],
+                                        'gender' => ($eLine[3][1] === '男') ? 'm' : 'f',
+                                        'yob' => $eLine[4][1],
+                                        'party' => $eLine[5],
+                                        'vote_count' => $eLine[6],
+                                        'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
+                                        'is_present' => ($eLine[9] === '是') ? '1' : '0',
+                                )));
+                            } else {
+                                $this->Election->Candidate->create();
+                                $this->Election->Candidate->save(array('Candidate' => array(
+                                        'election_id' => $electionId,
+                                        'name' => $eLine[1],
+                                        'no' => $eLine[2],
+                                        'gender' => ($eLine[3] === '男') ? 'm' : 'f',
+                                        'yob' => $eLine[4],
+                                        'party' => $eLine[5],
+                                        'vote_count' => $eLine[6],
+                                        'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
+                                        'is_present' => ($eLine[9] === '是') ? '1' : '0',
+                                )));
+                            }
+                        }
+                    }
+                }
+                fclose($eFh);
+            }
+        }
     }
 
     public function final2014() {
@@ -137,7 +276,7 @@ class CecShell extends AppShell {
                             $this->Election->Candidate->id = $candidateId;
                             $this->Election->Candidate->save(array('Candidate' => array(
                                     'name' => $eLine[1],
-                                    'stage' => ($eLine[8] === '*') ? '2' : '1',
+                                    'stage' => ($eLine[8] === '*' || $eLine[8] === '!') ? '2' : '1',
                                     'no' => $eLine[2],
                                     'gender' => ($eLine[3] === '男') ? 'm' : 'f',
                                     'vote_count' => $eLine[6],

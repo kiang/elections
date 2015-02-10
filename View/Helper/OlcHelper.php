@@ -11,6 +11,7 @@ class OlcHelper extends AppHelper {
     );
     public $party = array(
         '無' => '無',
+        '無黨籍及未經政黨推薦' => '無',
         '' => '無',
         '中國國民黨' => '國',
         '民主進步黨' => '民',
