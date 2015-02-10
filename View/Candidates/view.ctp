@@ -76,7 +76,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 candidateMainBlock">
-            <div class="col-md-12 candidate-<?php echo $candidate['Candidate']['stage']; ?>">
+            <div class="col-md-6 candidate-<?php echo $candidate['Candidate']['stage']; ?>">
                 <div class="col-md-6">
                     <?php
                     if (empty($candidate['Candidate']['image'])) {
@@ -101,8 +101,7 @@
                     ?>
                 </div>
             </div>
-            <div class="col-md-12">
-                <br />
+            <div class="col-md-6">
                 <div class="well well-lg"> 
                     <div class="row">
                         <div class="col-sm-4">
@@ -194,28 +193,20 @@
                 </div>
             <?php } ?>
         </div>
-        <div class="col-md-7 candidateNewsBlock" style="display: none;">
-        </div>
     </div>
-    <div id="vanilla-comments"></div>
-    <script type="text/javascript">
-        var vanilla_forum_url = '<?php echo $this->Html->url('/../talk'); ?>'; // Required: the full http url & path to your vanilla forum
-        var vanilla_identifier = '<?php echo $candidate['Candidate']['id']; ?>'; // Required: your unique identifier for the content being commented on
-        var vanilla_url = '<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id'], true); ?>'; // Current page's url
-        (function () {
-            var vanilla = document.createElement('script');
-            vanilla.type = 'text/javascript';
-            var timestamp = new Date().getTime();
-            vanilla.src = vanilla_forum_url + '/js/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(vanilla);
-        })();
-        $(function () {
-            $.get('<?php echo $this->Html->url('/candidates/links/' . $candidate['Candidate']['id']); ?>', {}, function (pageBlock) {
-                if (pageBlock !== '') {
-                    $('div.candidateNewsBlock').html(pageBlock).show();
-                    $('div.candidateMainBlock').removeClass('col-md-12').addClass('col-md-5');
-                }
-            });
-        })
-    </script>
+    <?php if (Configure::read('debug') === 0) { ?>
+        <div id="vanilla-comments"></div>
+        <script type="text/javascript">
+            var vanilla_forum_url = '<?php echo $this->Html->url('/../talk'); ?>'; // Required: the full http url & path to your vanilla forum
+            var vanilla_identifier = '<?php echo $candidate['Candidate']['id']; ?>'; // Required: your unique identifier for the content being commented on
+            var vanilla_url = '<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id'], true); ?>'; // Current page's url
+            (function () {
+                var vanilla = document.createElement('script');
+                vanilla.type = 'text/javascript';
+                var timestamp = new Date().getTime();
+                vanilla.src = vanilla_forum_url + '/js/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(vanilla);
+            })();
+        </script>
+    <?php } ?>
 </div><!--/container-->
