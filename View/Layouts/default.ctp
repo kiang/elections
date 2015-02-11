@@ -101,12 +101,12 @@
             </div>
             <div class="clearfix"></div>
             <div id="footer" class="container">
-                <?php if (Configure::read('debug') === 0) { ?>
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:728px;height:90px"
-                     data-ad-client="ca-pub-5571465503362954"
-                     data-ad-slot="3499306028"></ins>
-                <?php } ?>
+                <?php if (Configure::read('debug') === 0 && empty($groupId)) { ?>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:728px;height:90px"
+                         data-ad-client="ca-pub-5571465503362954"
+                         data-ad-slot="3499306028"></ins>
+                     <?php } ?>
                 <hr />
                 <?php echo $this->Html->link('江明宗 . 政 . 路過', 'http://k.olc.tw/', array('target' => '_blank')); ?>
                 / <?php echo $this->Html->link('關於選舉黃頁', '/pages/about'); ?>
@@ -166,6 +166,8 @@
                 ga('set', 'contentGroup1', 'elections');
 
             </script>
+        <?php } ?>
+        <?php if (Configure::read('debug') === 0 && empty($groupId)) { ?>
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
