@@ -128,6 +128,7 @@ class AreasController extends AppController {
                     'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.party', 'Candidate.stage', 'Candidate.image'),
                     'conditions' => array(
                         'Candidate.active_id IS NULL',
+                        'Candidate.is_reviewed' => '1',
                         'Candidate.election_id' => $election['AreasElection']['Election_id'],
                     ),
                     'order' => array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC'),

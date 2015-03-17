@@ -27,6 +27,7 @@ class CandidatesController extends AppController {
                     'conditions' => array(
                         'Candidate.id' => $candidateId,
                         'Candidate.active_id IS NULL',
+                        'Candidate.is_reviewed' => '1',
                     ),
                     'contain' => array(
                         'Keyword',
@@ -69,7 +70,6 @@ class CandidatesController extends AppController {
     public function submits() {
         $this->set('count', $this->Candidate->find('count', array(
                     'conditions' => array(
-                        'Candidate.active_id IS NOT NULL',
                         'Candidate.is_reviewed' => '0',
                     ),
         )));
@@ -89,6 +89,7 @@ class CandidatesController extends AppController {
                         'Candidate.party', 'Candidate.election_id'),
                     'conditions' => array(
                         'Candidate.active_id IS NULL',
+                        'Candidate.is_reviewed' => '1',
                         'Candidate.name LIKE' => "%{$keyword}%",
                     ),
                     'limit' => 20,
@@ -113,6 +114,7 @@ class CandidatesController extends AppController {
         if (!empty($tag)) {
             $scope = array(
                 'Candidate.active_id IS NULL',
+                'Candidate.is_reviewed' => '1',
                 'CandidatesTag.Tag_id' => $tagId,
             );
 
@@ -156,6 +158,7 @@ class CandidatesController extends AppController {
         if (!empty($tag)) {
             $scope = array(
                 'Candidate.active_id IS NULL',
+                'Candidate.is_reviewed' => '1',
                 'CandidatesTag.Tag_id' => $tagId,
             );
 
@@ -200,6 +203,7 @@ class CandidatesController extends AppController {
             $result = array();
             $scope = array(
                 'Candidate.active_id IS NULL',
+                'Candidate.is_reviewed' => '1',
             );
 
             if (!empty($electionId)) {
@@ -248,7 +252,7 @@ class CandidatesController extends AppController {
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
                     $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $electionId));
-                    $this->Session->setFlash('資料已經儲存');
+                    $this->Session->setFlash('感謝您提供的資料，資料確認後會盡快更新！');
                     $this->redirect(array('controller' => 'areas', 'action' => 'index', $areaId));
                 } else {
                     $this->Session->setFlash('資料儲存時發生錯誤，請重試');
@@ -275,6 +279,7 @@ class CandidatesController extends AppController {
                 'conditions' => array(
                     'Candidate.id' => $candidateId,
                     'Candidate.active_id IS NULL',
+                    'Candidate.is_reviewed' => '1',
                 ),
                 'contain' => array('Election'),
             ));
@@ -287,7 +292,7 @@ class CandidatesController extends AppController {
                 $this->Candidate->create();
                 if ($this->Candidate->save($dataToSave)) {
                     $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $candidate['Election']['id']));
-                    $this->Session->setFlash('感謝您提供的資料，我們會盡快更新！');
+                    $this->Session->setFlash('感謝您提供的資料，資料確認後會盡快更新！');
                     $this->redirect(array('controller' => 'areas', 'action' => 'index', $areaId));
                 } else {
                     $this->Session->setFlash('資料儲存時發生錯誤，請重試');
@@ -338,6 +343,7 @@ class CandidatesController extends AppController {
                     'conditions' => array(
                         'Candidate.id' => $id,
                         'Candidate.active_id IS NULL',
+                        'Candidate.is_reviewed' => '1',
                     ),
                     'contain' => array(
                         'Election' => array(
@@ -513,7 +519,6 @@ class CandidatesController extends AppController {
 
     public function admin_submits() {
         $scope = array(
-            'Candidate.active_id IS NOT NULL',
             'Candidate.is_reviewed' => '0',
         );
         $this->paginate['Candidate']['limit'] = 20;
@@ -565,7 +570,6 @@ class CandidatesController extends AppController {
             $this->Candidate->id = $candidateId;
             $this->Candidate->saveField('is_reviewed', '1');
             $unReviewId = $this->Candidate->field('id', array(
-                'Candidate.active_id IS NOT NULL',
                 'Candidate.is_reviewed' => '0',
                     ), array('Candidate.created' => 'DESC'));
             if (!empty($unReviewId)) {
