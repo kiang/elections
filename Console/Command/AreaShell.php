@@ -5,7 +5,43 @@ class AreaShell extends AppShell {
     public $uses = array('Area');
 
     public function main() {
-        $this->dump_2014_areas();
+        $this->duplicate_tree();
+    }
+
+    public function duplicate_tree() {
+        $baseRootNode = $this->Area->find('first', array(
+            'conditions' => array(
+                'Area.id' => '53c01bce-a960-420c-8efe-5460acb5b862',
+            ),
+        ));
+        $nodes = $this->Area->find('all', array(
+            'conditions' => array(
+                'Area.lft >=' => $baseRootNode['Area']['lft'],
+                'Area.rght <=' => $baseRootNode['Area']['rght'],
+            ),
+            'order' => array('Area.lft' => 'ASC'),
+        ));
+        $count = count($nodes);
+        $this->out("found {$count} nodes");
+        $nodeMap = array();
+        foreach ($nodes AS $node) {
+            $oldNodeId = $node['Area']['id'];
+            unset($node['Area']['id']);
+            unset($node['Area']['lft']);
+            unset($node['Area']['rght']);
+            if (empty($node['Area']['parent_id'])) {
+                unset($node['Area']['parent_id']);
+            } else {
+                $node['Area']['parent_id'] = $nodeMap[$node['Area']['parent_id']];
+            }
+            $this->Area->create();
+            if ($this->Area->save($node)) {
+                $nodeMap[$oldNodeId] = $this->Area->getInsertID();
+            }
+            if (--$count % 100 === 0) {
+                $this->out("{$count} records left");
+            }
+        }
     }
 
     public function elections_population() {
@@ -89,7 +125,7 @@ class AreaShell extends AppShell {
             'fields' => array('Area.id', 'Area.name', 'Area.ivid', 'Area.code', 'Area.population', 'Area.population_electors'),
         ));
         $areas = Set::combine($areas, '{n}.Area.id', '{n}.Area');
-        foreach($areas AS $k => $v) {
+        foreach ($areas AS $k => $v) {
             $areas[$k]['url'] = 'http://k.olc.tw/elections/areas/index/' . $v['id'];
         }
 
