@@ -38,7 +38,8 @@ class AreasController extends AppController {
             }
             if (empty($area)) {
                 $area = $this->Area->find('first', array(
-                    'conditions' => array('name' => '2014')
+                    'conditions' => array('Area.parent_id IS NULL'),
+                    'order' => array('Area.lft' => 'DESC'),
                 ));
             }
             if ($area['Area']['rght'] - $area['Area']['lft'] === 1) {
@@ -57,7 +58,7 @@ class AreasController extends AppController {
 
     public function map($parentId = '') {
         if (empty($parentId)) {
-            $parentId = $this->Area->field('id', array('name' => '2014'));
+            $parentId = $this->Area->field('id', array('Area.parent_id IS NULL'), array('Area.lft' => 'DESC'));
         }
         $cacheKey = "AreasMap{$parentId}";
         $result = Cache::read($cacheKey, 'long');
