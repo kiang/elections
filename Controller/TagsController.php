@@ -16,6 +16,9 @@ class TagsController extends AppController {
     }
 
     public function admin_index() {
+        $this->paginate['Tag']['order'] = array(
+            'Tag.created' => 'DESC',
+        );
         $tags = $this->paginate($this->Tag);
         $this->set('tags', $tags);
     }

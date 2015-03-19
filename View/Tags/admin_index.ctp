@@ -8,8 +8,8 @@
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
     <table class="table table-bordered" id="TagsAdminIndexTable">
         <tr>
-            <th><?php echo $this->Paginator->sort(__('Id', true), 'id'); ?></th>
-            <th><?php echo $this->Paginator->sort(__('Name', true), 'name'); ?></th>
+            <th><?php echo $this->Paginator->sort('name', '名稱'); ?></th>
+            <th><?php echo $this->Paginator->sort('created', '建立時間'); ?></th>
             <th class="actions"><?php __('Actions'); ?></th>
         </tr>
         <?php
@@ -22,10 +22,10 @@
             ?>
             <tr<?php echo $class; ?>>
                 <td>
-                    <?php echo $tag['Tag']['id']; ?>
+                    <?php echo $tag['Tag']['name']; ?>
                 </td>
                 <td>
-                    <?php echo $tag['Tag']['name']; ?>
+                    <?php echo $tag['Tag']['created']; ?>
                 </td>
                 <td class="actions">
                     <?php echo $this->Html->link('連結', array('action' => 'links', $tag['Tag']['id']), array('class' => 'btn btn-default')); ?>

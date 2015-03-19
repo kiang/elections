@@ -206,6 +206,11 @@ class AreasController extends AppController {
         }
         $this->set('scope', $scope);
         $this->paginate['Area']['limit'] = 20;
+        if (empty($parentId)) {
+            $this->paginate['Area']['order'] = array('Area.name' => 'DESC');
+        } else {
+            $this->paginate['Area']['order'] = array('Area.ivid' => 'ASC');
+        }
         $items = $this->paginate($this->Area, $scope);
 
         if ($op == 'set' && !empty($joins[$foreignModel]) && !empty($foreignModel) && !empty($foreignId) && !empty($items)) {

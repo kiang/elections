@@ -143,6 +143,12 @@ class ElectionsController extends AppController {
         }
         $this->set('scope', $scope);
         $this->paginate['Election']['limit'] = 20;
+        if(empty($parentId)) {
+            $this->paginate['Election']['order'] = array('Election.name' => 'DESC');
+        } else {
+            $this->paginate['Election']['order'] = array('Election.name' => 'ASC');
+        }
+        
         $items = $this->paginate($this->Election, $scope);
 
         if ($op == 'set' && !empty($joins[$foreignModel]) && !empty($foreignModel) && !empty($foreignId) && !empty($items)) {
