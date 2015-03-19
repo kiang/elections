@@ -66,6 +66,7 @@
                         <?php
                         if ($item['Election']['rght'] - $item['Election']['lft'] === 1) {
                             echo ' ' . $this->Html->link('行政區連結 (' . count($item['AreasElection']) . ')', array('action' => 'links', $item['Election']['id']), array('class' => 'btn btn-default'));
+                            echo ' ' . $this->Html->link('批次行政區連結', array('action' => 'mass_links', $item['Election']['id']), array('class' => 'btn btn-default'));
                             echo ' ' . $this->Html->link('候選人', array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']), array('class' => 'btn btn-default'));
                             echo ' ' . $this->Html->link('新增候選人', array('controller' => 'candidates', 'action' => 'add', $item['Election']['id']), array('class' => 'btn btn-default'));
                         }

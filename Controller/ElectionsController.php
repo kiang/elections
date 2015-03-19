@@ -256,6 +256,61 @@ class ElectionsController extends AppController {
         }
     }
 
+    public function admin_mass_links($electionId = '') {
+        if (!empty($electionId)) {
+            $election = $this->Election->find('first', array(
+                'conditions' => array(
+                    'Election.id' => $electionId,
+                ),
+            ));
+        }
+        if (!empty($election)) {
+            if (!empty($this->request->data['Election']['area_id'])) {
+                $area = $this->Election->Area->find('first', array(
+                    'conditions' => array('Area.id' => $this->request->data['Election']['area_id']),
+                    'fields' => array('lft', 'rght'),
+                ));
+                $this->request->data['Election']['areas'] = preg_split('/[ \n]/', $this->request->data['Election']['areas']);
+                $errors = array();
+                foreach ($this->request->data['Election']['areas'] AS $k => $v) {
+                    $v = trim($v);
+                    if (empty($v)) {
+                        unset($this->request->data['Election']['areas'][$k]);
+                    } else {
+                        $areaId = $this->Election->Area->field('id', array(
+                            'lft >' => $area['Area']['lft'],
+                            'rght <' => $area['Area']['rght'],
+                            'name' => $v,
+                        ));
+                        if (empty($areaId)) {
+                            $errors[] = "{$v} 找不到資料";
+                        } else {
+                            $linkId = $this->Election->AreasElection->field('id', array(
+                                'Area_id' => $areaId,
+                                'Election_id' => $electionId,
+                            ));
+                            if (empty($linkId)) {
+                                $this->Election->AreasElection->create();
+                                $this->Election->AreasElection->save(array('AreasElection' => array(
+                                        'Area_id' => $areaId,
+                                        'Election_id' => $electionId,
+                                )));
+                            }
+                        }
+                        $this->request->data['Election']['areas'][$k] = $v;
+                    }
+                }
+                $this->set($errors);
+                $this->request->data['Election']['areas'] = implode("\n", $this->request->data['Election']['areas']);
+            }
+            $this->set('election', $election);
+            $this->set('parents', $this->Election->getPath($electionId));
+        } else {
+            $this->Session->setFlash(__('Please select a election first!', true));
+            $this->redirect($this->referer());
+        }
+    }
+
     public function admin_links($electionId = '') {
         if (!empty($electionId)) {
             $election = $this->Election->find('first', array(
