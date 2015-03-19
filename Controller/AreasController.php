@@ -11,8 +11,41 @@ class AreasController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'map', 'json', 'breadcrumb');
+            $this->Auth->allow('index', 'map', 'json', 'breadcrumb', 's');
         }
+    }
+
+    public function s() {
+        $result = array();
+        if (isset($this->request->query['term'])) {
+            $keyword = Sanitize::clean($this->request->query['term']);
+        }
+        if (!empty($keyword)) {
+            $keywords = explode(' ', $keyword);
+            $countKeywords = 0;
+            $conditions = array();
+            foreach ($keywords AS $k => $keyword) {
+                $keyword = trim($keyword);
+                if (!empty($keyword) && ++$countKeywords < 4) {
+                    $conditions[] = array(
+                        "Area.name LIKE '%{$keyword}%'",
+                    );
+                }
+            }
+
+            $result = $this->Area->find('all', array(
+                'fields' => array('Area.id', 'Area.name', 'Area.lft', 'Area.rght'),
+                'conditions' => $conditions,
+                'order' => array('Area.ivid' => 'ASC'),
+                'limit' => 50,
+            ));
+
+            foreach ($result AS $k => $v) {
+                $parents = $this->Area->getPath($v['Area']['id'], array('name'));
+                $result[$k]['Area']['name'] = implode(' > ', Set::extract($parents, '{n}.Area.name'));
+            }
+        }
+        $this->set('result', $result);
     }
 
     public function breadcrumb($parentId = '') {
