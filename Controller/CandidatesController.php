@@ -393,10 +393,15 @@ class CandidatesController extends AppController {
             $scope['Candidate.election_id'] = $electionId;
         }
         $this->paginate['Candidate']['limit'] = 20;
+        $this->paginate['Candidate']['contain'] = array();
         $this->paginate['Candidate']['order'] = array(
             'Candidate.created' => 'DESC',
         );
         $items = $this->paginate($this->Candidate, $scope);
+        foreach ($items AS $k => $v) {
+            $items[$k]['Election'] = $this->Candidate->Election->getPath($v['Candidate']['election_id'], array('name'));
+            $items[$k]['Election'] = Set::extract('{n}.Election.name', $items[$k]['Election']);
+        }
 
         $this->set('items', $items);
         $this->set('electionId', $electionId);

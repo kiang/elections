@@ -31,6 +31,7 @@
     <table class="table table-bordered" id="CandidatesAdminIndexTable">
         <thead>
             <tr>
+                <th>選區</th>
                 <th><?php echo $this->Paginator->sort('Candidate.name', '姓名', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Candidate.created', '建立時間', array('url' => $url)); ?></th>
                 <th><?php echo $this->Paginator->sort('Candidate.modified', '更新時間', array('url' => $url)); ?></th>
@@ -47,6 +48,9 @@
                 }
                 ?>
                 <tr<?php echo $class; ?>>
+                    <td><?php
+                        echo implode(' > ', $item['Election']);
+                        ?></td>
                     <td><?php echo $item['Candidate']['name']; ?></td>
                     <td><?php echo $item['Candidate']['created']; ?></td>
                     <td><?php echo $item['Candidate']['modified']; ?></td>
