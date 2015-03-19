@@ -68,6 +68,7 @@
                     <td class="actions">
                         <?php echo $this->Html->link('檢視', array('action' => 'view', $item['Candidate']['id']), array('class' => 'btn btn-default')); ?>
                         <?php echo $this->Html->link('編輯', array('action' => 'edit', $item['Candidate']['id']), array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Html->link('複製', array('action' => 'duplicate', $item['Candidate']['id']), array('class' => 'btn btn-default')); ?>
                         <?php
                         if (Configure::read('loginMember.group_id') == 1) {
                             echo $this->Html->link('刪除', array('action' => 'delete', $item['Candidate']['id']), array('class' => 'btn btn-default'), '確定刪除？');

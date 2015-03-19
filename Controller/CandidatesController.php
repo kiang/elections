@@ -574,7 +574,9 @@ class CandidatesController extends AppController {
                 'education', 'experience', 'platform');
 
             foreach ($cFields AS $cField) {
-                $dataToSave[$cField] = $submitted['Candidate'][$cField];
+                if (isset($submitted['Candidate'][$cField])) {
+                    $dataToSave[$cField] = $submitted['Candidate'][$cField];
+                }
             }
             $this->Candidate->save($dataToSave);
             $this->Candidate->id = $candidateId;
@@ -651,6 +653,52 @@ class CandidatesController extends AppController {
         if (!empty($candidateId)) {
             $this->redirect(array('action' => 'view', $candidateId));
         } else {
+            $this->redirect(array('action' => 'index'));
+        }
+    }
+
+    function admin_duplicate($id = null) {
+        if (!empty($id)) {
+            $candidate = $this->Candidate->find('first', array(
+                'conditions' => array(
+                    'Candidate.id' => $id,
+                ),
+            ));
+        }
+
+        if (!empty($candidate)) {
+            if (!empty($this->request->data['Candidate']['election_id'])) {
+                unset($candidate['Candidate']['id']);
+                $candidate['Candidate']['election_id'] = $this->request->data['Candidate']['election_id'];
+                $candidate['Candidate']['is_reviewed'] = '1';
+                $candidate['Candidate']['stage'] = '0';
+                $candidate['Candidate']['vote_count'] = '0';
+                unset($candidate['Candidate']['active_id']);
+                unset($candidate['Candidate']['created']);
+                unset($candidate['Candidate']['modified']);
+                $path = WWW_ROOT . 'media';
+                if (!empty($candidate['Candidate']['image']) && file_exists($path . '/' . $candidate['Candidate']['image'])) {
+                    $fileName = str_replace('-', '/', String::uuid()) . '.jpg';
+                    if (!file_exists($path . '/' . dirname($fileName))) {
+                        mkdir($path . '/' . dirname($fileName), 0777, true);
+                    }
+                    copy($path . '/' . $candidate['Candidate']['image'], $path . '/' . $fileName);
+                    $candidate['Candidate']['image'] = $fileName;
+                } else {
+                    $candidate['Candidate']['image'] = '';
+                }
+                $this->Candidate->create();
+                if ($this->Candidate->save($candidate)) {
+                    $this->Session->setFlash('資料完成複製');
+                    $this->redirect(array('action' => 'view', $this->Candidate->getInsertID()));
+                } else {
+                    $this->Session->setFlash('資料複製失敗');
+                    $this->redirect(array('action' => 'duplicate', $id));
+                }
+            }
+            $this->set('candidate', $candidate);
+        } else {
+            $this->Session->setFlash('請依照網頁指示操作');
             $this->redirect(array('action' => 'index'));
         }
     }
