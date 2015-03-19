@@ -674,6 +674,7 @@ class CandidatesController extends AppController {
                 $candidate['Candidate']['stage'] = '0';
                 $candidate['Candidate']['vote_count'] = '0';
                 unset($candidate['Candidate']['active_id']);
+                unset($candidate['Candidate']['no']);
                 unset($candidate['Candidate']['created']);
                 unset($candidate['Candidate']['modified']);
                 $path = WWW_ROOT . 'media';
