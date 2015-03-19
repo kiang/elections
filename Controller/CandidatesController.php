@@ -385,11 +385,15 @@ class CandidatesController extends AppController {
         }
     }
 
-    function admin_index($electionId = '') {
+    function admin_index($electionId = '0', $keyword = '') {
         $scope = array(
             'Candidate.active_id IS NULL',
         );
-        if (!empty($electionId)) {
+        $keyword = trim($keyword);
+        if (!empty($keyword)) {
+            $scope['Candidate.name LIKE'] = "%{$keyword}%";
+        }
+        if (!empty($electionId) && $electionId !== '0') {
             $scope['Candidate.election_id'] = $electionId;
         }
         $this->paginate['Candidate']['limit'] = 20;
@@ -405,7 +409,8 @@ class CandidatesController extends AppController {
 
         $this->set('items', $items);
         $this->set('electionId', $electionId);
-        $this->set('url', array($electionId));
+        $this->set('url', array($electionId, $keyword));
+        $this->set('keyword', $keyword);
         $this->set('parents', $this->Candidate->Election->getPath($electionId));
     }
 

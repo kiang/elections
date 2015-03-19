@@ -8,6 +8,17 @@
         echo $this->Html->link('審核', array('action' => 'submits'), array('class' => 'btn btn-default'));
         ?>
     </div>
+    <div class="btn-group pull-right">
+        <?php
+        echo $this->Form->text('keyword', array(
+            'value' => $keyword,
+            'id' => 'textFind',
+        ));
+        echo $this->Html->link('查詢', '#', array('class' => 'btn btn-default pull-right', 'id' => 'btnFind'));
+        ?>
+    </div>
+    <?php
+    ?>
     <div class="clearfix"></div>
     <?php
     if (!empty($parents)) {
@@ -72,9 +83,9 @@
     <script type="text/javascript">
         //<![CDATA[
         $(function () {
-            $('#CandidatesAdminIndexTable th a, #CandidatesAdminIndex div.paging a').click(function () {
-                $('#CandidatesAdminIndex').parent().load(this.href);
-                return false;
+            $('a#btnFind').click(function(e) {
+                e.preventDefault();
+                location.href = '<?php echo $this->Html->url(array('action' => 'index', $electionId)); ?>/' + $('input#textFind').val();
             });
         });
         //]]>
