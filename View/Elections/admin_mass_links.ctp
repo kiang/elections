@@ -10,6 +10,13 @@ if (!empty($parents)) {
         }
     }
 }
+if (!empty($errors)) {
+    ?><div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        找不到資料： <?php echo implode(' ', $errors); ?>
+    </div><?php
+}
 ?>
 <h3><?php echo $election['Election']['name']; ?></h3>
 <div class="container">

@@ -283,7 +283,7 @@ class ElectionsController extends AppController {
                             'name' => $v,
                         ));
                         if (empty($areaId)) {
-                            $errors[] = "{$v} 找不到資料";
+                            $errors[] = $v;
                         } else {
                             $linkId = $this->Election->AreasElection->field('id', array(
                                 'Area_id' => $areaId,
@@ -300,7 +300,7 @@ class ElectionsController extends AppController {
                         $this->request->data['Election']['areas'][$k] = $v;
                     }
                 }
-                $this->set($errors);
+                $this->set('errors', $errors);
                 $this->request->data['Election']['areas'] = implode("\n", $this->request->data['Election']['areas']);
             }
             $this->set('election', $election);
