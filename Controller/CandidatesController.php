@@ -673,6 +673,7 @@ class CandidatesController extends AppController {
                 $candidate['Candidate']['is_reviewed'] = '1';
                 $candidate['Candidate']['stage'] = '0';
                 $candidate['Candidate']['vote_count'] = '0';
+                $candidate['Candidate']['is_present'] = '0';
                 unset($candidate['Candidate']['active_id']);
                 unset($candidate['Candidate']['no']);
                 unset($candidate['Candidate']['created']);
