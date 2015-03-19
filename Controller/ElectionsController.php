@@ -33,12 +33,7 @@ class ElectionsController extends AppController {
                 foreach ($keywords AS $k => $keyword) {
                     $keyword = trim($keyword);
                     if (!empty($keyword) && ++$countKeywords < 4) {
-                        $conditions[] = array(
-                            'OR' => array(
-                                "Election.name LIKE '%{$keyword}%'",
-                                "Election.keywords LIKE '%{$keyword}%'",
-                            )
-                        );
+                        $conditions[] = "Election.keywords LIKE '%{$keyword}%'";
                     }
                 }
 
@@ -143,12 +138,15 @@ class ElectionsController extends AppController {
         }
         $this->set('scope', $scope);
         $this->paginate['Election']['limit'] = 20;
-        if(empty($parentId)) {
+        $this->paginate['Election']['contain'] = array(
+            'AreasElection' => array('fields' => array('id')),
+        );
+        if (empty($parentId)) {
             $this->paginate['Election']['order'] = array('Election.name' => 'DESC');
         } else {
             $this->paginate['Election']['order'] = array('Election.name' => 'ASC');
         }
-        
+
         $items = $this->paginate($this->Election, $scope);
 
         if ($op == 'set' && !empty($joins[$foreignModel]) && !empty($foreignModel) && !empty($foreignId) && !empty($items)) {
@@ -256,6 +254,53 @@ class ElectionsController extends AppController {
                 }
             }
         }
+    }
+
+    public function admin_links($electionId = '') {
+        if (!empty($electionId)) {
+            $election = $this->Election->find('first', array(
+                'conditions' => array(
+                    'Election.id' => $electionId,
+                ),
+                'contain' => array('Area'),
+            ));
+        }
+        if (!empty($election)) {
+            $this->set('election', $election);
+            $this->set('parents', $this->Election->getPath($electionId));
+        } else {
+            $this->Session->setFlash(__('Please select a election first!', true));
+            $this->redirect($this->referer());
+        }
+    }
+
+    public function admin_link_add($electionId = '', $areaId = '') {
+        if (!empty($areaId) && !empty($electionId)) {
+            $linkId = $this->Election->AreasElection->field('id', array(
+                'Area_id' => $areaId,
+                'Election_id' => $electionId,
+            ));
+            if (empty($linkId)) {
+                $this->Election->AreasElection->create();
+                $this->Election->AreasElection->save(array('AreasElection' => array(
+                        'Area_id' => $areaId,
+                        'Election_id' => $electionId,
+                )));
+            }
+        }
+        echo 'ok';
+        exit();
+    }
+
+    public function admin_link_delete($linkId = '') {
+        $link = $this->Election->AreasElection->find('first', array(
+            'conditions' => array('id' => $linkId),
+        ));
+        if (!empty($link)) {
+            $this->Election->AreasElection->delete($linkId);
+        }
+        echo 'ok';
+        exit();
     }
 
 }

@@ -5,7 +5,20 @@ class AreaShell extends AppShell {
     public $uses = array('Area');
 
     public function main() {
-        $this->duplicate_tree();
+        $this->generateKeywords();
+    }
+
+    public function generateKeywords() {
+        $nodes = $this->Area->find('list', array(
+            'fields' => array('id', 'id'),
+        ));
+        foreach ($nodes AS $nodeId) {
+            $path = $this->Area->getPath($nodeId, array('id', 'name'));
+            $this->Area->save(array('Area' => array(
+                    'id' => $nodeId,
+                    'keywords' => implode(',', Set::extract('{n}.Area.name', $path)),
+            )));
+        }
     }
 
     public function duplicate_tree() {

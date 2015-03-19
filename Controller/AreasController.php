@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('Sanitize', 'Utility');
 
 class AreasController extends AppController {
 
@@ -27,9 +28,7 @@ class AreasController extends AppController {
             foreach ($keywords AS $k => $keyword) {
                 $keyword = trim($keyword);
                 if (!empty($keyword) && ++$countKeywords < 4) {
-                    $conditions[] = array(
-                        "Area.name LIKE '%{$keyword}%'",
-                    );
+                    $conditions[] = "Area.keywords LIKE '%{$keyword}%'";
                 }
             }
 

@@ -64,7 +64,8 @@
                         <?php echo $this->Html->link('刪除', array('action' => 'delete', $item['Election']['id']), array('class' => 'btn btn-default'), '確定刪除？'); ?>
                         <?php echo $this->Html->link('新增下一層', array('action' => 'add', $item['Election']['id']), array('class' => 'btn btn-default')); ?>
                         <?php
-                        if($item['Election']['rght'] - $item['Election']['lft'] === 1) {
+                        if ($item['Election']['rght'] - $item['Election']['lft'] === 1) {
+                            echo ' ' . $this->Html->link('行政區連結 (' . count($item['AreasElection']) . ')', array('action' => 'links', $item['Election']['id']), array('class' => 'btn btn-default'));
                             echo ' ' . $this->Html->link('候選人', array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']), array('class' => 'btn btn-default'));
                             echo ' ' . $this->Html->link('新增候選人', array('controller' => 'candidates', 'action' => 'add', $item['Election']['id']), array('class' => 'btn btn-default'));
                         }
@@ -78,8 +79,8 @@
     <div id="ElectionsAdminIndexPanel"></div>
     <script type="text/javascript">
         //<![CDATA[
-        $(function() {
-            $('#ElectionsAdminIndexTable th a, #ElectionsAdminIndex div.paging a').click(function() {
+        $(function () {
+            $('#ElectionsAdminIndexTable th a, #ElectionsAdminIndex div.paging a').click(function () {
                 $('#ElectionsAdminIndex').parent().load(this.href);
                 return false;
             });
@@ -87,7 +88,7 @@
 if (!empty($op)) {
     $remoteUrl = $this->Html->url(array('action' => 'habtmSet', $parentId, $foreignModel, $foreignId));
     ?>
-                $('#ElectionsAdminIndexTable input.habtmSet').click(function() {
+                $('#ElectionsAdminIndexTable input.habtmSet').click(function () {
                     var remoteUrl = '<?php echo $remoteUrl; ?>/' + this.value + '/';
                     if (this.checked == true) {
                         remoteUrl = remoteUrl + 'on';

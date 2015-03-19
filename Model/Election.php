@@ -41,6 +41,11 @@ class Election extends AppModel {
             'dependent' => false,
             'className' => 'Candidate',
         ),
+        'AreasElection' => array(
+            'foreignKey' => 'Election_id',
+            'dependent' => false,
+            'className' => 'AreasElection',
+        ),
     );
 
 }
