@@ -61,7 +61,115 @@ class ElectionShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->extractTree();
+        $this->duplicateCandidates();
+    }
+
+    public function duplicateCandidates() {
+        $rootSource = $this->Election->find('first', array(
+            'conditions' => array(
+                'Election.id' => '54d9c44b-80a4-4cbe-b677-6b30acb5b862',
+            ),
+        ));
+        $sourceTree = $this->Election->find('threaded', array(
+            'fields' => array('id', 'parent_id', 'name'),
+            'conditions' => array(
+                'Election.lft >' => $rootSource['Election']['lft'],
+                'Election.rght <' => $rootSource['Election']['rght'],
+            ),
+        ));
+        $unsetFields = array('id', 'active_id', 'created', 'modified', 'no');
+        $sourceNodes = array();
+        foreach ($sourceTree AS $node) {
+            if (!empty($node['children'])) {
+                foreach ($node['children'] AS $child) {
+                    $nodeKey = "{$node['Election']['name']}{$child['Election']['name']}";
+                    $nodeKey = str_replace('桃園縣', '桃園市', $nodeKey);
+                    $sourceNodes[$nodeKey] = $this->Election->Candidate->find('all', array(
+                        'conditions' => array(
+                            'Candidate.election_id' => $child['Election']['id'],
+                            'Candidate.stage' => '2',
+                            'Candidate.active_id IS NULL',
+                        ),
+                    ));
+                }
+            } else {
+                $nodeKey = "{$node['Election']['name']}";
+                $sourceNodes[$nodeKey] = $this->Election->Candidate->find('all', array(
+                    'conditions' => array(
+                        'Candidate.election_id' => $node['Election']['id'],
+                        'Candidate.stage' => '2',
+                        'Candidate.active_id IS NULL',
+                    ),
+                ));
+            }
+        }
+
+        $rootTarget = $this->Election->find('first', array(
+            'conditions' => array(
+                'Election.id' => '55085e1a-c494-40e0-ba31-2f916ab936af',
+            ),
+        ));
+        $targetTree = $this->Election->find('threaded', array(
+            'fields' => array('id', 'parent_id', 'name'),
+            'conditions' => array(
+                'Election.lft >' => $rootTarget['Election']['lft'],
+                'Election.rght <' => $rootTarget['Election']['rght'],
+            ),
+        ));
+        $path = WWW_ROOT . 'media';
+        foreach ($targetTree AS $node) {
+            if (!empty($node['children'])) {
+                foreach ($node['children'] AS $child) {
+                    $nodeKey = "{$node['Election']['name']}{$child['Election']['name']}";
+                    foreach ($sourceNodes[$nodeKey] AS $candidate) {
+                        foreach ($unsetFields AS $unsetField) {
+                            unset($candidate['Candidate'][$unsetField]);
+                        }
+                        $candidate['Candidate']['election_id'] = $child['Election']['id'];
+                        $candidate['Candidate']['stage'] = '0';
+                        $candidate['Candidate']['vote_count'] = '0';
+                        $candidate['Candidate']['is_present'] = '1';
+
+                        if (!empty($candidate['Candidate']['image']) && file_exists($path . '/' . $candidate['Candidate']['image'])) {
+                            $fileName = str_replace('-', '/', String::uuid()) . '.jpg';
+                            if (!file_exists($path . '/' . dirname($fileName))) {
+                                mkdir($path . '/' . dirname($fileName), 0777, true);
+                            }
+                            copy($path . '/' . $candidate['Candidate']['image'], $path . '/' . $fileName);
+                            $candidate['Candidate']['image'] = $fileName;
+                        } else {
+                            $candidate['Candidate']['image'] = '';
+                        }
+                        $this->Election->Candidate->create();
+                        $this->Election->Candidate->save($candidate);
+                    }
+                }
+            } else {
+                $nodeKey = "{$node['Election']['name']}";
+                foreach ($sourceNodes[$nodeKey] AS $candidate) {
+                    foreach ($unsetFields AS $unsetField) {
+                        unset($candidate['Candidate'][$unsetField]);
+                    }
+                    $candidate['Candidate']['election_id'] = $node['Election']['id'];
+                    $candidate['Candidate']['stage'] = '0';
+                    $candidate['Candidate']['vote_count'] = '0';
+                    $candidate['Candidate']['is_present'] = '1';
+
+                    if (!empty($candidate['Candidate']['image']) && file_exists($path . '/' . $candidate['Candidate']['image'])) {
+                        $fileName = str_replace('-', '/', String::uuid()) . '.jpg';
+                        if (!file_exists($path . '/' . dirname($fileName))) {
+                            mkdir($path . '/' . dirname($fileName), 0777, true);
+                        }
+                        copy($path . '/' . $candidate['Candidate']['image'], $path . '/' . $fileName);
+                        $candidate['Candidate']['image'] = $fileName;
+                    } else {
+                        $candidate['Candidate']['image'] = '';
+                    }
+                    $this->Election->Candidate->create();
+                    $this->Election->Candidate->save($candidate);
+                }
+            }
+        }
     }
 
     public function extractTree() {
