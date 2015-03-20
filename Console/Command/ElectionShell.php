@@ -61,7 +61,40 @@ class ElectionShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->dumpAreas();
+        $this->extractTree();
+    }
+
+    public function extractTree() {
+        $nodes = $this->Election->find('all', array(
+            'fields' => array('id', 'parent_id', 'name'),
+            'conditions' => array(
+                'Election.name LIKE' => '%第%',
+                'Election.name NOT LIKE' => '第%',
+            ),
+        ));
+        $newTree = array();
+        foreach ($nodes AS $node) {
+            $nameParts = explode('第', $node['Election']['name']);
+            if (!isset($newTree[$node['Election']['parent_id']])) {
+                $newTree[$node['Election']['parent_id']] = array();
+            }
+            if (!isset($newTree[$node['Election']['parent_id']][$nameParts[0]])) {
+                $this->Election->create();
+                if ($this->Election->save(array('Election' => array(
+                                'name' => $nameParts[0],
+                                'parent_id' => $node['Election']['parent_id'],
+                    )))) {
+                    $newTree[$node['Election']['parent_id']][$nameParts[0]] = $this->Election->getInsertID();
+                }
+            }
+            if (isset($newTree[$node['Election']['parent_id']][$nameParts[0]])) {
+                $this->Election->id = $node['Election']['id'];
+                $this->Election->save(array('Election' => array(
+                        'name' => '第' . $nameParts[1],
+                        'parent_id' => $newTree[$node['Election']['parent_id']][$nameParts[0]],
+                )));
+            }
+        }
     }
 
     public function dumpAreas() {
