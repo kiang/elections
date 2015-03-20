@@ -106,10 +106,10 @@ class AreasController extends AppController {
     }
 
     function index($parentId = '', $areaMethod = 'index') {
-        if (!empty($parentId)) {
-            $parentId = $this->Area->field('id', array('id' => $parentId));
+        if (empty($parentId)) {
+            $parentId = $this->Area->field('id', array('Area.parent_id IS NULL'), array('Area.lft' => 'DESC'));
         } else {
-            $parentId = $this->Area->field('id', array('parent_id IS NULL'));
+            $parentId = $this->Area->field('id', array('id' => $parentId));
         }
 
         $cacheKey = "AreasIndex{$parentId}";
