@@ -61,7 +61,41 @@ class ElectionShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->generateKeywords();
+        $this->dumpAreas();
+    }
+
+    public function dumpAreas() {
+        $rootNode = $this->Election->find('first', array(
+            'conditions' => array(
+                'Election.id' => '55085e1a-c494-40e0-ba31-2f916ab936af',
+            )
+        ));
+        $nodes = $this->Election->find('all', array(
+            'conditions' => array(
+                'Election.lft >' => $rootNode['Election']['lft'],
+                'Election.rght <' => $rootNode['Election']['rght'],
+                'Election.rght - Election.lft = 1'
+            ),
+            'contain' => array(
+                'Area' => array(
+                    'fields' => array('id'),
+                    'order' => array('Area.lft' => 'ASC')
+                ),
+            ),
+            'fields' => array('id'),
+        ));
+        $fh = fopen(__DIR__ . '/data/2016_election/elections_areas.csv', 'w');
+        fputcsv($fh, array('選區', '行政區'));
+        foreach ($nodes AS $node) {
+            $electionPath = $this->Election->getPath($node['Election']['id'], array('name'));
+            $election = implode(' > ', Set::extract('{n}.Election.name', $electionPath));
+            foreach ($node['Area'] AS $area) {
+                $areaPath = $this->Election->Area->getPath($area['id'], array('name'));
+                $area = implode(' > ', Set::extract('{n}.Area.name', $areaPath));
+                fputcsv($fh, array($election, $area));
+            }
+        }
+        fclose($fh);
     }
 
     public function generateKeywords() {
