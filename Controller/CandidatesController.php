@@ -552,33 +552,40 @@ class CandidatesController extends AppController {
             'conditions' => array('Candidate.id' => $candidateId),
             'contain' => array('Election' => array('fields' => array('Election.name'))),
         ));
-        $original = $this->Candidate->find('first', array(
-            'fields' => $fields,
-            'conditions' => array('Candidate.id' => $submitted['Candidate']['active_id']),
-            'contain' => array('Election' => array('fields' => array('Election.name'))),
-        ));
-        $originalId = $original['Candidate']['id'];
+        if (!empty($submitted['Candidate']['active_id'])) {
+            $original = $this->Candidate->find('first', array(
+                'fields' => $fields,
+                'conditions' => array('Candidate.id' => $submitted['Candidate']['active_id']),
+                'contain' => array('Election' => array('fields' => array('Election.name'))),
+            ));
+            $originalId = $original['Candidate']['id'];
+        }
+
         if ($approved === 'yes') {
-            $dataToSave = array(
-                'id' => $original['Candidate']['id'],
-            );
-            //update image
-            if (!empty($submitted['Candidate']['image'])) {
-                $dataToSave['image'] = $submitted['Candidate']['image'];
-            }
-
-            //update candidate
-            $cFields = array('name', 'party', 'contacts_phone', 'contacts_fax',
-                'no', 'education_level', 'is_present', 'name_english', 'birth_place',
-                'contacts_email', 'contacts_address', 'links', 'gender', 'birth',
-                'education', 'experience', 'platform');
-
-            foreach ($cFields AS $cField) {
-                if (isset($submitted['Candidate'][$cField])) {
-                    $dataToSave[$cField] = $submitted['Candidate'][$cField];
+            if (!empty($originalId)) {
+                $dataToSave = array(
+                    'id' => $original['Candidate']['id'],
+                );
+                //update image
+                if (!empty($submitted['Candidate']['image'])) {
+                    $dataToSave['image'] = $submitted['Candidate']['image'];
                 }
+
+                //update candidate
+                $cFields = array('name', 'party', 'contacts_phone', 'contacts_fax',
+                    'no', 'education_level', 'is_present', 'name_english', 'birth_place',
+                    'contacts_email', 'contacts_address', 'links', 'gender', 'birth',
+                    'education', 'experience', 'platform');
+
+                foreach ($cFields AS $cField) {
+                    if (isset($submitted['Candidate'][$cField])) {
+                        $dataToSave[$cField] = $submitted['Candidate'][$cField];
+                    }
+                }
+                $this->Candidate->id = $originalId;
+                $this->Candidate->save($dataToSave);
             }
-            $this->Candidate->save($dataToSave);
+
             $this->Candidate->id = $candidateId;
             $this->Candidate->saveField('is_reviewed', '1');
             $unReviewId = $this->Candidate->field('id', array(
