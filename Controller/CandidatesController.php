@@ -552,6 +552,8 @@ class CandidatesController extends AppController {
             'conditions' => array('Candidate.id' => $candidateId),
             'contain' => array('Election' => array('fields' => array('Election.name'))),
         ));
+        $originalId = '';
+        $original = array();
         if (!empty($submitted['Candidate']['active_id'])) {
             $original = $this->Candidate->find('first', array(
                 'fields' => $fields,
@@ -597,12 +599,14 @@ class CandidatesController extends AppController {
                 $this->redirect('/admin/candidates/submits');
             }
         } else {
+            if (!empty($originalId)) {
+                unset($original['Candidate']['id']);
+                unset($original['Candidate']['active_id']);
+                unset($original['Candidate']['election_id']);
+            }
             unset($submitted['Candidate']['id']);
-            unset($original['Candidate']['id']);
             unset($submitted['Candidate']['active_id']);
-            unset($original['Candidate']['active_id']);
             unset($submitted['Candidate']['election_id']);
-            unset($original['Candidate']['election_id']);
         }
         $this->set('submitted', $submitted);
         $this->set('original', $original);
