@@ -5,8 +5,8 @@
     <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
     <div class="pull-right btn-group">
         <?php echo $this->Html->link('照片', '/candidates/tag/' . $tag['Tag']['id'], array('class' => 'btn btn-default')); ?>
-        <?php echo $this->Html->link('清單', '/candidates/tag_list/' . $tag['Tag']['id'], array('class' => 'btn btn-primary')); ?>
-        <?php echo $this->Html->link('參選記錄', '/candidates/tag_name/' . $tag['Tag']['id'], array('class' => 'btn btn-default')); ?>
+        <?php echo $this->Html->link('清單', '/candidates/tag_list/' . $tag['Tag']['id'], array('class' => 'btn btn-default')); ?>
+        <?php echo $this->Html->link('參選記錄', '/candidates/tag_name/' . $tag['Tag']['id'], array('class' => 'btn btn-primary')); ?>
     </div>
     <div class="clearfix"></div>
     <?php
@@ -36,6 +36,18 @@
                             echo $candidate['Candidate']['party'];
                             ?></td>
                         <td><?php echo implode(' > ', $candidate['Election']); ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            同名同姓參選記錄：
+                            <ul><?php
+                                foreach ($candidate['list'] AS $subCandidate) {
+                                    ?><li><a href="<?php echo $this->Html->url('/candidates/view/' . $subCandidate['Candidate']['id']); ?>"><?php
+                                            echo implode(' > ', $subCandidate['Election']);
+                                            ?></a> / <?php echo $subCandidate['Candidate']['party']; ?> / <?php echo $this->Olc->stages[$subCandidate['Candidate']['stage']]; ?></li><?php
+                                }
+                                ?></ul>
+                        </td>
                     </tr>
                     <?php
                 }

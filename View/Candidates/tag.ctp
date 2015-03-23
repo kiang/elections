@@ -6,6 +6,7 @@
     <div class="pull-right btn-group">
         <?php echo $this->Html->link('照片', '/candidates/tag/' . $tag['Tag']['id'], array('class' => 'btn btn-primary')); ?>
         <?php echo $this->Html->link('清單', '/candidates/tag_list/' . $tag['Tag']['id'], array('class' => 'btn btn-default')); ?>
+        <?php echo $this->Html->link('參選記錄', '/candidates/tag_name/' . $tag['Tag']['id'], array('class' => 'btn btn-default')); ?>
     </div>
     <div class="clearfix"></div>
     <?php
