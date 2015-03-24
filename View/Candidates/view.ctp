@@ -17,6 +17,7 @@
             <div class="pull-right btn-group">
                 <?php
                 echo $this->Html->link('編輯', array('action' => 'edit', $candidate['Candidate']['id']), array('class' => 'btn btn-default'));
+                echo $this->Html->link('參選記錄', array('action' => 'name', $candidate['Candidate']['name']), array('class' => 'btn btn-default'));
                 echo $this->Html->link('本頁 API', '/api/candidates/view/' . $candidate['Candidate']['id'], array('class' => 'btn btn-default', 'target' => '_blank'));
                 echo $this->Html->link('相關公司', 'http://gcis.nat.g0v.tw/name/' . $candidate['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
                 echo $this->Html->link('相關法人', 'http://foundations.olc.tw/directors/index/' . $candidate['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));

@@ -12,7 +12,37 @@ class CandidatesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'add', 'view', 'edit', 's', 'tag', 'tag_list', 'tag_name', 'submits', 'links');
+            $this->Auth->allow('index', 'add', 'view', 'edit', 's', 'tag', 'tag_list', 'tag_name', 'submits', 'links', 'name');
+        }
+    }
+
+    public function name($name = '') {
+        $name = trim(Sanitize::clean($name));
+        if (!empty($name)) {
+            $items = $this->Candidate->find('all', array(
+                'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage',
+                'Candidate.party', 'Candidate.election_id'),
+                'conditions' => array(
+                    'Candidate.active_id IS NULL',
+                    'Candidate.is_reviewed' => '1',
+                    'Candidate.stage >' => '0',
+                    'Candidate.name' => $name,
+                ),
+            ));
+            foreach ($items AS $sk => $sv) {
+                if (!isset($electionStack[$sv['Candidate']['election_id']])) {
+                    $electionStack[$sv['Candidate']['election_id']] = $this->Candidate->Election->getPath($sv['Candidate']['election_id'], array('name'));
+                }
+                $items[$sk]['Election'] = Set::extract('{n}.Election.name', $electionStack[$sv['Candidate']['election_id']]);
+            }
+            usort($items, array('CandidatesController', 'electionSort'));
+
+            $this->set('title_for_layout', $name . ' 參選記錄 @ ');
+            $this->set('items', $items);
+            $this->set('name', $name);
+        } else {
+            $this->Session->setFlash('');
+            $this->redirect('/');
         }
     }
 
