@@ -15,6 +15,23 @@
     <li><a href="http://goo.gl/NUvnc1" target="_blank">選舉黃頁上線，邀請大家一起來參選！</a></li>
     <li><a href="http://goo.gl/gU5KYK" target="_blank">選舉黃頁進入了新的里程碑</a></li>
 </ul>
+媒體報導：
+<ul>
+    <li><a href="http://www.ithome.com.tw/news/92642" target="_blank"> 九合一大選倒數24小時，快速認識候選人的選前抱佛腳工具大整理</a> iThome 2014.11.28</li>
+    <li><a href="http://www.appledaily.com.tw/realtimenews/article/new/20141128/514598/" target="_blank"> 誤認候選人是殺人犯　選舉黃頁創辦人挨告</a> 蘋果日報 2014.11.28 </li>
+    <li><a href="http://technews.tw/2014/11/27/vote-website/" target="_blank"> 九合一選舉要選誰？5 個網站讓你不再只是憑感覺</a> TechNews 科技新報 2014.11.27</li>
+    <li><a href="http://www.nextmag.com.tw/breaking-news/news/20141125/11031341" target="_blank">牛肉在哪？全台選舉公報數位化看這裡！</a> 壹週刊 2014.11.25</li>
+    <li><a href="http://punnode.com/archives/25939" target="_blank">九合一選舉怎麼投？網路分析工具、政見指南整理</a> PunNode 科技新創榜 2014.11.24</li>
+</ul>
+相關演講：
+<ul>
+    <li><a href="https://www.youtube.com/watch?v=23JydRUB3kQ" target="_blank">g0v & open data @ NCKU-CSIE-自由軟體開發與社群發展 </a> 2014.10.24
+        <ul>
+            <li><a href="http://hankliu-world.blogspot.tw/2014/11/g0vgit1024.html" target="_blank">Hank與自由軟體的世界</a> 2014.11.16</li>
+            <li><a href="http://jackraken.github.io/2014/11/13/free_software-1/" target="_blank">自由軟體與社群發展心得<一></a> 2014.11.13</li>
+        </ul></li>
+    <li><a href="http://phpconf.tw/2014/#schedule-section" target="_blank">[PHPConf Taiwan 2014] 選舉黃頁開發經驗分享</a> 2014.10.18</li>
+</ul>
 <dl>
     <dt>CC0 1.0 公眾領域貢獻宣告</dt>
     <p></p><dd>作者在法律許可的範圍內，拋棄此著作依著作權法所享有之權利，包括所有相關與鄰接的法律權利，並宣告將該著作貢獻至公眾領域。<br>為避免斷章取義，片段使用本站資訊請附上本站連結，讓每個人都有機會以自己的觀點關心台灣。</dd><p></p>
