@@ -21,7 +21,7 @@ class CandidatesController extends AppController {
         if (!empty($name)) {
             $items = $this->Candidate->find('all', array(
                 'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.stage',
-                'Candidate.party', 'Candidate.election_id'),
+                    'Candidate.party', 'Candidate.election_id'),
                 'conditions' => array(
                     'Candidate.active_id IS NULL',
                     'Candidate.is_reviewed' => '1',
@@ -67,7 +67,10 @@ class CandidatesController extends AppController {
                     ),
                 ),
             );
-            $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
+            $this->paginate['Candidate']['order'] = array(
+                'Candidate.party' => 'desc',
+                'Candidate.modified' => 'desc',
+            );
             $this->paginate['Candidate']['limit'] = 30;
             $this->paginate['Candidate']['fields'] = array('Candidate.id',
                 'Candidate.name', 'Candidate.no', 'Candidate.stage',
@@ -227,7 +230,10 @@ class CandidatesController extends AppController {
                     ),
                 ),
             );
-            $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
+            $this->paginate['Candidate']['order'] = array(
+                'Candidate.party' => 'desc',
+                'Candidate.modified' => 'desc',
+            );
             $this->paginate['Candidate']['limit'] = 30;
             $this->paginate['Candidate']['fields'] = array('Candidate.id',
                 'Candidate.name', 'Candidate.no', 'Candidate.stage',
@@ -271,7 +277,10 @@ class CandidatesController extends AppController {
                     ),
                 ),
             );
-            $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
+            $this->paginate['Candidate']['order'] = array(
+                'Candidate.party' => 'desc',
+                'Candidate.modified' => 'desc'
+            );
             $this->paginate['Candidate']['limit'] = 30;
             $this->paginate['Candidate']['fields'] = array('Candidate.id',
                 'Candidate.name', 'Candidate.no', 'Candidate.stage',
