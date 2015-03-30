@@ -114,6 +114,22 @@
                 <?php if (!Configure::read('loginMember.id')): ?>
                     / <?php echo $this->Html->link('Login', '/members/login'); ?>
                 <?php endif; ?>
+                <div id="fb-root"></div>
+                <script>(function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id))
+                            return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=1393405437614114&version=v2.3";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="col-md-6">
+                    <div class="fb-page" data-href="https://www.facebook.com/k.olc.tw" data-width="500" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="fb-page" data-href="https://www.facebook.com/g0v.tw" data-width="500" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"></div>
+                </div>
             </div>
         </div>
         <?php
