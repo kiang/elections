@@ -2,10 +2,16 @@
     <h3>編輯</h3>
     <?php
     echo $this->Form->create('Candidate', array('type' => 'file', 'url' => array($id)));
+    echo $this->Form->input('Candidate.election_id', array(
+        'type' => 'text',
+        'label' => '選區代碼',
+        'div' => 'form-group col-md-6',
+        'class' => 'form-control',
+    ));
     echo $this->Form->input('Candidate.active_id', array(
         'type' => 'text',
         'label' => '上層編號',
-        'div' => 'form-group col-md-12',
+        'div' => 'form-group col-md-6',
         'class' => 'form-control',
     ));
     echo $this->Form->input('Candidate.name', array(
