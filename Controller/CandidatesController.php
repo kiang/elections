@@ -636,6 +636,17 @@ class CandidatesController extends AppController {
     }
 
     public function admin_submits() {
+        if (!empty($this->data['Candidate']['id'])) {
+            $deleteCounter = 0;
+            foreach ($this->data['Candidate']['id'] AS $candidateId) {
+                if ($this->Candidate->delete($candidateId)) {
+                    ++$deleteCounter;
+                }
+            }
+            if ($deleteCounter > 0) {
+                $this->Session->setFlash("刪除了 {$deleteCounter} 筆資料");
+            }
+        }
         $scope = array(
             'Candidate.is_reviewed' => '0',
         );

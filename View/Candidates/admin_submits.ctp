@@ -6,9 +6,11 @@
         ?>
     </div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
+    <?php echo $this->Form->create(); ?>
     <table class="table table-bordered" id="CandidatesAdminIndexTable">
         <thead>
             <tr>
+                <th>Check</th>
                 <th>Name</th>
                 <th>Created</th>
                 <th class="actions">操作</th>
@@ -24,6 +26,8 @@
                 }
                 ?>
                 <tr<?php echo $class; ?>>
+                    <td><input type="checkbox" name="data[Candidate][id][]" value="<?php echo $item['Candidate']['id']; ?>" />
+                    </td>
                     <td><?php
                         echo $item['Candidate']['name'];
                         ?></td>
@@ -43,5 +47,7 @@
             <?php } // End of foreach ($items as $item) {   ?>
         </tbody>
     </table>
+    <input type="submit" value="刪除選擇項目" class="btn btn-primary" />
+    <?php echo $this->Form->end(); ?>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
 </div>
