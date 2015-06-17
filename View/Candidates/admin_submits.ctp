@@ -10,7 +10,7 @@
     <table class="table table-bordered" id="CandidatesAdminIndexTable">
         <thead>
             <tr>
-                <th>Check</th>
+                <th><a href="#" id="candidateCheckAll">Check</a></th>
                 <th>Name</th>
                 <th>Created</th>
                 <th class="actions">操作</th>
@@ -26,7 +26,7 @@
                 }
                 ?>
                 <tr<?php echo $class; ?>>
-                    <td><input type="checkbox" name="data[Candidate][id][]" value="<?php echo $item['Candidate']['id']; ?>" />
+                    <td><input type="checkbox" class="candidateCheck" name="data[Candidate][id][]" value="<?php echo $item['Candidate']['id']; ?>" />
                     </td>
                     <td><?php
                         echo $item['Candidate']['name'];
@@ -50,4 +50,20 @@
     <input type="submit" value="刪除選擇項目" class="btn btn-primary" />
     <?php echo $this->Form->end(); ?>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
+    <script>
+        $(function () {
+            $('a#candidateCheckAll').click(function () {
+                var currentChecked = false;
+                var looped = false;
+                $('input.candidateCheck').each(function () {
+                    if (false === looped) {
+                        looped = true;
+                        currentChecked = $(this).prop('checked') ? false : true;
+                    }
+                    $(this).prop('checked', currentChecked);
+                });
+                return false;
+            });
+        })
+    </script>
 </div>
