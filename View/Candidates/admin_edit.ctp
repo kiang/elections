@@ -60,18 +60,23 @@
         'div' => 'form-group col-md-2',
         'class' => 'form-control',
     ));
-    echo $this->Form->input('Candidate.education_level', array(
-        'label' => '教育程度',
-        'div' => 'form-group col-md-4',
-        'class' => 'form-control',
-        'placeholder' => '例如： 專科 大學 碩士 博士',
-    ));
-    echo $this->Form->input('Candidate.birth_place', array(
-        'label' => '出生地',
-        'div' => 'form-group col-md-4',
-        'class' => 'form-control',
-        'placeholder' => '例如： 臺北市',
-    ));
+        echo $this->Form->input('Candidate.vote_count', array(
+            'label' => '得票數',
+            'div' => 'form-group col-md-2',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->input('Candidate.education_level', array(
+            'label' => '教育程度',
+            'div' => 'form-group col-md-3',
+            'class' => 'form-control',
+            'placeholder' => '例如： 專科 大學 碩士 博士',
+        ));
+        echo $this->Form->input('Candidate.birth_place', array(
+            'label' => '出生地',
+            'div' => 'form-group col-md-3',
+            'class' => 'form-control',
+            'placeholder' => '例如： 臺北市',
+        ));
     echo $this->Form->input('Candidate.is_present', array(
         'label' => '是否現任',
         'type' => 'select',
