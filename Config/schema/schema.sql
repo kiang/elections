@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.41, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.44, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: kiang_elections
 -- ------------------------------------------------------
--- Server version	5.5.41-0ubuntu0.14.04.1
+-- Server version	5.5.44-0ubuntu0.14.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +31,7 @@ CREATE TABLE `acos` (
   `lft` int(11) DEFAULT NULL,
   `rght` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,6 +53,7 @@ CREATE TABLE `areas` (
   `polygons` text CHARACTER SET latin1 COLLATE latin1_general_ci,
   `population` int(11) unsigned NOT NULL,
   `population_electors` int(11) unsigned NOT NULL,
+  `keywords` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `code` (`code`),
   KEY `ivid` (`ivid`),
@@ -183,7 +184,8 @@ CREATE TABLE `candidates` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `active_id` (`active_id`),
-  KEY `no` (`no`)
+  KEY `no` (`no`),
+  KEY `name` (`name`(191))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -234,8 +236,8 @@ CREATE TABLE `elections` (
   `rght` int(11) NOT NULL,
   `population` int(11) unsigned NOT NULL,
   `population_electors` int(11) unsigned NOT NULL,
-  `quota` int(10) NOT NULL DEFAULT '0',
-  `quota_women` int(10) NOT NULL DEFAULT '0',
+  `quota` int(11) unsigned NOT NULL,
+  `quota_women` int(11) unsigned NOT NULL,
   `bulletin_key` binary(36) DEFAULT NULL,
   `keywords` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -354,6 +356,7 @@ CREATE TABLE `tags` (
   `id` binary(36) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `count` int(11) NOT NULL,
+  `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -367,4 +370,4 @@ CREATE TABLE `tags` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-02-06 20:51:26
+-- Dump completed on 2015-09-30 23:57:27
