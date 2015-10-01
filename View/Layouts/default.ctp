@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-TW">
+<!DOCTYPE html>
+<html lang="zh-TW">
     <head>
         <?php echo $this->Html->charset(); ?>
         <title><?php echo $title_for_layout; ?>選舉黃頁</title><?php
@@ -19,7 +19,6 @@
         echo $this->Html->script('jquery-ui');
         echo $this->Html->script('bootstrap.min');
         echo $this->Html->script('olc');
-        echo $scripts_for_layout;
         ?>
     </head>
     <body>
@@ -133,22 +132,22 @@
             </div>
         </div>
         <?php
-        echo $this->element('sql_dump');
+        // echo $this->element('sql_dump');
+        echo $scripts_for_layout;
         ?>
-        <script type="text/javascript">
-            //<![CDATA[
+        <script>
             $(function () {
                 $('a.dialogControl').click(function () {
                     dialogFull(this);
                     return false;
                 });
-                $('input#CandidateKeyword').autocomplete({
+                $('#CandidateKeyword').autocomplete({
                     source: '<?php echo $this->Html->url('/candidates/s/'); ?>',
                     select: function (event, ui) {
                         location.href = '<?php echo $this->Html->url('/candidates/view/'); ?>' + ui.item.id;
                     }
                 });
-                $('input#ElectionKeyword').autocomplete({
+                $('#ElectionKeyword').autocomplete({
                     source: '<?php echo $this->Html->url('/elections/s/'); ?>',
                     select: function (event, ui) {
                         if (ui.item.rght - ui.item.lft === 1) {
@@ -161,7 +160,6 @@
                 });
                 $('div.submitCount').load('<?php echo $this->Html->url('/candidates/submits'); ?>');
             });
-            //]]>
         </script>
         <?php if (Configure::read('debug') === 0) { ?>
             <script>
