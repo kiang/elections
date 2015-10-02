@@ -9,31 +9,38 @@
         } else {
             $desc_for_layout .= $trailDesc;
         }
+
         echo $this->Html->meta('icon');
         echo $this->Html->meta('description', $desc_for_layout);
+        echo $this->Html->meta('viewport','width=device-width, initial-scale=1.0');
         echo $this->Html->css('jquery-ui');
-        echo $this->Html->css('bootstrap');
+        echo $this->Html->css('bootstrap.min');
         echo $this->Html->css('default');
         echo $this->Html->css('blocks');
-        echo $this->Html->script('jquery');
-        echo $this->Html->script('jquery-ui');
-        echo $this->Html->script('bootstrap.min');
-        echo $this->Html->script('olc');
         ?>
     </head>
     <body>
         <nav class="navbar navbar-static-top navbar-inverse">
             <div class="navbar-inner">
                 <div class="container">
-                    <?php echo $this->Html->link('選舉黃頁', '/', array('class' => 'navbar-brand')); ?>
-                    <ul class="nav navbar-nav">
-                        <li><?php echo $this->Html->link('行政區', '/areas', array('class' => '')); ?></li>
-                        <li><?php echo $this->Html->link('選舉區', '/elections', array('class' => '')); ?></li>
-                        <li><?php echo $this->Html->link('候選人', '/candidates', array('class' => '')); ?></li>
-                        <li><?php echo $this->Html->link('分類', '/tags', array('class' => '')); ?></li>
-                        <li><?php echo $this->Html->link('選舉公報', '/bulletins', array('class' => '')); ?></li>
-                    </ul>
-                    <div class="pull-right submitCount" style="color: #f2f2f2"></div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <?php echo $this->Html->link('選舉黃頁', '/', array('class' => 'navbar-brand')); ?>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><?php echo $this->Html->link('行政區', '/areas', array('class' => '')); ?></li>
+                            <li><?php echo $this->Html->link('選舉區', '/elections', array('class' => '')); ?></li>
+                            <li><?php echo $this->Html->link('候選人', '/candidates', array('class' => '')); ?></li>
+                            <li><?php echo $this->Html->link('分類', '/tags', array('class' => '')); ?></li>
+                            <li><?php echo $this->Html->link('選舉公報', '/bulletins', array('class' => '')); ?></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="pull-right submitCount" style="color: #f2f2f2"></div> -->
                 </div>
             </div>
         </nav>
@@ -107,12 +114,6 @@
                          data-ad-slot="3499306028"></ins>
                      <?php } ?>
                 <hr />
-                <?php echo $this->Html->link('江明宗 . 政 . 路過', 'http://k.olc.tw/', array('target' => '_blank')); ?>
-                / <?php echo $this->Html->link('關於選舉黃頁', '/pages/about'); ?>
-                / <?php echo $this->Html->link('免責聲明', '/pages/notice'); ?>
-                <?php if (!Configure::read('loginMember.id')): ?>
-                    / <?php echo $this->Html->link('Login', '/members/login'); ?>
-                <?php endif; ?>
                 <div id="fb-root"></div>
                 <script>(function (d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
@@ -124,16 +125,46 @@
                         fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));</script>
                 <div class="col-md-6">
-                    <div class="fb-page" data-href="https://www.facebook.com/k.olc.tw" data-width="500" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"></div>
+                    <div class="fb-page" data-href="https://www.facebook.com/k.olc.tw" data-width="500" data-hide-cover="true" data-show-facepile="true" data-show-posts="false" data-colorscheme="dark"></div>
                 </div>
                 <div class="col-md-6">
-                    <div class="fb-page" data-href="https://www.facebook.com/g0v.tw" data-width="500" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"></div>
+                    <div class="fb-page" data-href="https://www.facebook.com/g0v.tw" data-width="500" data-hide-cover="true" data-show-facepile="true" data-show-posts="false" data-colorscheme="dark"></div>
                 </div>
             </div>
         </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <ul>
+                        <li>
+                            <?php echo $this->Html->link('江明宗 . 政 . 路過', 'http://k.olc.tw/', array('target' => '_blank')); ?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('關於選舉黃頁', '/pages/about'); ?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('免責聲明', '/pages/notice'); ?>
+                        </li>
+                        <?php
+                            if (!Configure::read('loginMember.id')) {
+                                echo $this->Html->tag(
+                                    'li',
+                                    $this->Html->link('Login', '/members/login')
+                                );
+                            }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </footer>
         <?php
         // echo $this->element('sql_dump');
         echo $scripts_for_layout;
+        echo $this->Html->script('jquery');
+        echo $this->Html->script('jquery-ui');
+        echo $this->Html->script('bootstrap.min');
+        echo $this->Html->script('olc');
         ?>
         <script>
             $(function () {

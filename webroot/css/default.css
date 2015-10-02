@@ -205,7 +205,7 @@ div.code-coverage-results span.result-good {
 }
 
 .candidate-0 {
-    background-color: #ccf;
+    /*background-color: #ccf;*/
 }
 .candidate-1 {
     background-color: #cfc;
