@@ -49,21 +49,23 @@ if (!empty($parents)) {
 
                     echo '<hr />';
                     echo '<div class="col-md-8">';
+                    echo '<h3>';
                     echo $this->Html->link(implode(' > ', $c), '/candidates/index/' . $cLinkId);
-                    $quota = "名額： {$election['AreasElection']['quota']}";
+                    $quota = "名額：{$election['AreasElection']['quota']}";
                     if (!empty($election['AreasElection']['quota_women'])) {
-                        $quota .= " / 婦女保障： {$election['AreasElection']['quota_women']}";
+                        $quota .= " / 婦女保障：{$election['AreasElection']['quota_women']}";
                     }
-                    echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$election['AreasElection']['population_electors']} / 人口： {$election['AreasElection']['population']} )";
+                    echo "&nbsp;<br class=\"hidden-md hidden-lg\"><small>({$quota} / 選舉人：{$election['AreasElection']['population_electors']} / 人口：{$election['AreasElection']['population']})</small>";
                     echo '</div>';
                     if (!empty($election['AreasElection']['bulletin_key'])) {
                         echo $this->Html->link('選舉公報', '/bulletins/view/' . $election['AreasElection']['bulletin_key'], array('class' => 'btn btn-primary pull-right col-md-1'));
                     }
+                    echo '</h3>';
                     
                     echo '<div class="clearfix"></div>';
                     if (!empty($election['Candidate'])) {
                         foreach ($election['Candidate'] AS $candidate) {
-                            ?><div class="col-md-2 candidate-<?php echo $candidate['Candidate']['stage']; ?>" style="text-align: center;">
+                            ?><div class="col-md-2 col-xs-6 candidate-<?php echo $candidate['Candidate']['stage']; ?>" style="text-align: center;">
                                 <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
                                     <?php
                                     if (empty($candidate['Candidate']['image'])) {
