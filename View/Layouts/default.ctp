@@ -65,11 +65,10 @@
                 ));
                 ?>
             </div>
-            <div id="header">
-                <div class="breadcrumb">
-                    <?php echo $this->Html->getCrumbs() ?>
-                </div>
-            </div>
+
+            <?php
+                echo $this->Html->getCrumbList(array('class' => 'breadcrumb breadcrumb-title'));
+            ?>
 
             <div id="content">
                 <div class="btn-group">
