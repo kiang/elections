@@ -133,7 +133,7 @@
             </div>
         </div>
 
-        <footer class="footer">
+        <footer class="navbar-bottom navbar navbar-inverse footer">
             <div class="container">
                 <div class="row">
                     <ul>
@@ -150,7 +150,7 @@
                             if (!Configure::read('loginMember.id')) {
                                 echo $this->Html->tag(
                                     'li',
-                                    $this->Html->link('Login', '/members/login')
+                                    $this->Html->link('登入', '/members/login')
                                 );
                             }
                         ?>

@@ -213,3 +213,24 @@ div.code-coverage-results span.result-good {
 .candidate-2 {
     background-color: #fcc;
 }
+
+.navbar-bottom {
+	margin: 3em 0 0 0;
+	border-radius: 0;
+	height: 80px;
+}
+
+.navbar-bottom ul {
+	padding: 20px 52px;
+	
+}
+
+.navbar-bottom li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 20px;
+}
+
+.navbar-bottom li a {
+	color: #fff;
+}
