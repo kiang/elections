@@ -15,7 +15,6 @@ if (!empty($parents)) {
             ?>
         </div>
     </div>
-    <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-pills">
@@ -42,41 +41,64 @@ if (!empty($parents)) {
                         $c[] = $e['Election']['name'];
                     }
 
-                    echo '<hr />';
-                    echo '<div class="col-md-8">';
-                    echo '<h3>';
-                    echo $this->Html->link(implode(' > ', $c), '/candidates/index/' . $cLinkId);
+                    echo '<hr>';
+                    echo '<div class="col-md-12">';
+                    echo '<ol class="breadcrumb breadcrumb-title">';
+                    $i = 0;
+
+                    foreach ($c AS $key => $value) {
+                        ++$i;
+                        if ($i === count($c)) {
+                            echo $this->Html->tag(
+                                'li',
+                                $this->Html->link($value, '/candidates/index/' . $cLinkId),
+                                array('class' => 'active')
+                            );
+                        } else {
+                            echo $this->Html->tag(
+                                'li',
+                                $value,
+                                array('class' => 'text-muted')
+                            );
+                        }
+                    }
+                    echo '</ol>';
+                    echo '<blockquote>';
                     $quota = "名額：{$election['AreasElection']['quota']}";
                     if (!empty($election['AreasElection']['quota_women'])) {
                         $quota .= " / 婦女保障：{$election['AreasElection']['quota_women']}";
                     }
-                    echo "&nbsp;<br class=\"hidden-md hidden-lg\"><small>({$quota} / 選舉人：{$election['AreasElection']['population_electors']} / 人口：{$election['AreasElection']['population']})</small>";
+                    echo "{$quota} / 選舉人：{$election['AreasElection']['population_electors']} / 人口：{$election['AreasElection']['population']}";
+                    echo '</blockquote>';
                     echo '</div>';
                     if (!empty($election['AreasElection']['bulletin_key'])) {
                         echo $this->Html->link('選舉公報', '/bulletins/view/' . $election['AreasElection']['bulletin_key'], array('class' => 'btn btn-primary pull-right col-md-1'));
                     }
-                    echo '</h3>';
                     
                     echo '<div class="clearfix"></div>';
                     if (!empty($election['Candidate'])) {
                         foreach ($election['Candidate'] AS $candidate) {
                             ?><div class="col-md-2 col-xs-6 candidate-<?php echo $candidate['Candidate']['stage']; ?>" style="text-align: center;">
-                                <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
-                                    <?php
-                                    if (empty($candidate['Candidate']['image'])) {
-                                        echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));
-                                    } else {
-                                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; height: 100px; border: 0px;'));
-                                    }
-                                    ?>
-                                    <br /><?php
-                                    if(!empty($candidate['Candidate']['no'])) {
-                                        echo $candidate['Candidate']['no'] . '號 ';
-                                    }
-                                    echo $candidate['Candidate']['name'];
-                                    echo ' (' . $this->Olc->party[$candidate['Candidate']['party']] . ')';
-                                    ?>
-                                </a>
+                                <div class="thumbnail">
+                                    <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+                                        <?php
+                                        if (empty($candidate['Candidate']['image'])) {
+                                            echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px'));
+                                        } else {
+                                            echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; height: 100px'));
+                                        }
+                                        ?>
+                                    </a>
+                                    <div class="caption">
+                                        <?php
+                                            echo $this->Html->tag('h3', $candidate['Candidate']['name']);
+                                            echo $candidate['Candidate']['party'];
+                                            if(!empty($candidate['Candidate']['no'])) {
+                                                echo $candidate['Candidate']['no'] . '號';
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
                             </div><?php
                         }
                     } else {
@@ -87,8 +109,5 @@ if (!empty($parents)) {
             }
             ?>
         </div>
-
     </div>
-    <div class="clear"></div>
-
 </div>
