@@ -24,179 +24,179 @@
 
 /* Layout */
 #container {
-	text-align: left;
+    text-align: left;
 }
 
 .cake-sql-log table {
-	background: #f4f4f4;
+    background: #f4f4f4;
 }
 .cake-sql-log td {
-	padding: 4px 8px;
-	text-align: left;
+    padding: 4px 8px;
+    text-align: left;
 }
 
 /* Paging */
 div.paging {
-	background:#fff;
-	color: #ccc;
-	margin-bottom: 2em;
+    background:#fff;
+    color: #ccc;
+    margin-bottom: 2em;
 }
 div.paging div.disabled {
-	color: #ddd;
-	display: inline;
+    color: #ddd;
+    display: inline;
 }
 div.paging span {
 }
 div.paging span.current {
-	color: #000;
+    color: #000;
 }
 div.paging span a {
 }
 
 /* Notices and Errors */
 div.message {
-	clear: both;
-	color: #900;
-	font-size: 140%;
-	font-weight: bold;
-	margin: 1em 0;
+    clear: both;
+    color: #900;
+    font-size: 140%;
+    font-weight: bold;
+    margin: 1em 0;
 }
 div.error-message {
-	clear: both;
-	color: #900;
-	font-weight: bold;
+    clear: both;
+    color: #900;
+    font-weight: bold;
 }
 p.error {
-	background-color: #e32;
-	color: #fff;
-	font-family: Courier, monospace;
-	font-size: 120%;
-	line-height: 140%;
-	padding: 0.8em;
-	margin: 1em 0;
+    background-color: #e32;
+    color: #fff;
+    font-family: Courier, monospace;
+    font-size: 120%;
+    line-height: 140%;
+    padding: 0.8em;
+    margin: 1em 0;
 }
 p.error em {
-	color: #000;
-	font-weight: normal;
-	line-height: 140%;
+    color: #000;
+    font-weight: normal;
+    line-height: 140%;
 }
 .notice {
-	background: #ffcc00;
-	color: #000;
-	display: block;
-	font-family: Courier, monospace;
-	font-size: 120%;
-	line-height: 140%;
-	padding: 0.8em;
-	margin: 1em 0;
+    background: #ffcc00;
+    color: #000;
+    display: block;
+    font-family: Courier, monospace;
+    font-size: 120%;
+    line-height: 140%;
+    padding: 0.8em;
+    margin: 1em 0;
 }
 .success {
-	background: green;
-	color: #fff;
+    background: green;
+    color: #fff;
 }
 
 /* Debugging */
 pre {
-	color: #000;
-	background: #f0f0f0;
-	padding: 1em;
+    color: #000;
+    background: #f0f0f0;
+    padding: 1em;
 }
 pre.cake-debug {
-	background: #ffcc00;
-	font-size: 120%;
-	line-height: 140%;
-	margin-top: 1em;
-	overflow: auto;
-	position: relative;
+    background: #ffcc00;
+    font-size: 120%;
+    line-height: 140%;
+    margin-top: 1em;
+    overflow: auto;
+    position: relative;
 }
 div.cake-stack-trace {
-	background: #fff;
-	border: 4px dotted #ffcc00;
-	color: #333;
-	margin: 0px;
-	padding: 6px;
-	font-size: 120%;
-	line-height: 140%;
-	overflow: auto;
-	position: relative;
+    background: #fff;
+    border: 4px dotted #ffcc00;
+    color: #333;
+    margin: 0px;
+    padding: 6px;
+    font-size: 120%;
+    line-height: 140%;
+    overflow: auto;
+    position: relative;
 }
 div.cake-code-dump pre {
-	position: relative;
-	overflow: auto;
+    position: relative;
+    overflow: auto;
 }
 div.cake-stack-trace pre, div.cake-code-dump pre {
-	color: #000;
-	background-color: #F0F0F0;
-	margin: 0px;
-	padding: 1em;
-	overflow: auto;
+    color: #000;
+    background-color: #F0F0F0;
+    margin: 0px;
+    padding: 1em;
+    overflow: auto;
 }
 div.cake-code-dump pre, div.cake-code-dump pre code {
-	clear: both;
-	font-size: 12px;
-	line-height: 15px;
-	margin: 4px 2px;
-	padding: 4px;
-	overflow: auto;
+    clear: both;
+    font-size: 12px;
+    line-height: 15px;
+    margin: 4px 2px;
+    padding: 4px;
+    overflow: auto;
 }
 div.cake-code-dump span.code-highlight {
-	background-color: #ff0;
-	padding: 4px;
+    background-color: #ff0;
+    padding: 4px;
 }
 div.code-coverage-results div.code-line {
-	padding-left:5px;
-	display:block;
-	margin-left:10px;
+    padding-left:5px;
+    display:block;
+    margin-left:10px;
 }
 div.code-coverage-results div.uncovered span.content {
-	background:#ecc;
+    background:#ecc;
 }
 div.code-coverage-results div.covered span.content {
-	background:#cec;
+    background:#cec;
 }
 div.code-coverage-results div.ignored span.content {
-	color:#aaa;
+    color:#aaa;
 }
 div.code-coverage-results span.line-num {
-	color:#666;
-	display:block;
-	float:left;
-	width:20px;
-	text-align:right;
-	margin-right:5px;
+    color:#666;
+    display:block;
+    float:left;
+    width:20px;
+    text-align:right;
+    margin-right:5px;
 }
 div.code-coverage-results span.line-num strong {
-	color:#666;
+    color:#666;
 }
 div.code-coverage-results div.start {
-	border:1px solid #aaa;
-	border-width:1px 1px 0px 1px;
-	margin-top:30px;
-	padding-top:5px;
+    border:1px solid #aaa;
+    border-width:1px 1px 0px 1px;
+    margin-top:30px;
+    padding-top:5px;
 }
 div.code-coverage-results div.end {
-	border:1px solid #aaa;
-	border-width:0px 1px 1px 1px;
-	margin-bottom:30px;
-	padding-bottom:5px;
+    border:1px solid #aaa;
+    border-width:0px 1px 1px 1px;
+    margin-bottom:30px;
+    padding-bottom:5px;
 }
 div.code-coverage-results div.realstart {
-	margin-top:0px;
+    margin-top:0px;
 }
 div.code-coverage-results p.note {
-	color:#bbb;
-	padding:5px;
-	margin:5px 0 10px;
-	font-size:10px;
+    color:#bbb;
+    padding:5px;
+    margin:5px 0 10px;
+    font-size:10px;
 }
 div.code-coverage-results span.result-bad {
-	color: #a00;
+    color: #a00;
 }
 div.code-coverage-results span.result-ok {
-	color: #fa0;
+    color: #fa0;
 }
 div.code-coverage-results span.result-good {
-	color: #0a0;
+    color: #0a0;
 }
 
 .navActive {
@@ -215,22 +215,31 @@ div.code-coverage-results span.result-good {
 }
 
 .navbar-bottom {
-	margin: 3em 0 0 0;
-	border-radius: 0;
-	height: 80px;
+    margin: 3em 0 0 0;
+    border-radius: 0;
+    height: 80px;
 }
 
 .navbar-bottom ul {
-	padding: 20px 52px;
-	
+    padding: 20px 52px;
+
 }
 
 .navbar-bottom li {
-	display: inline;
-	list-style-type: none;
-	padding-right: 20px;
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
 }
 
 .navbar-bottom li a {
-	color: #fff;
+    color: #fff;
+}
+
+hr {
+    border-top: 1px dotted #8c8b8b;
+    border-bottom: 1px dotted #fff;
+}
+
+.breadcrumb-title li {
+    font-size: 18px;
 }
