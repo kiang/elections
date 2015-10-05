@@ -48,17 +48,16 @@ if (!isset($url)) {
         </div>
     </div>
     <div id="ElectionsAdminIndexPanel"></div>
-    <script type="text/javascript">
-        //<![CDATA[
+    <script>
         $(function () {
             $('#ElectionsAdminIndexTable th a, #ElectionsAdminIndex div.paging a').click(function () {
                 $('#ElectionsAdminIndex').parent().load(this.href);
                 return false;
             });
-<?php
-if (!empty($op)) {
-    $remoteUrl = $this->Html->url(array('action' => 'habtmSet', $parentId, $foreignModel, $foreignId));
-    ?>
+        <?php
+        if (!empty($op)) {
+            $remoteUrl = $this->Html->url(array('action' => 'habtmSet', $parentId, $foreignModel, $foreignId));
+        ?>
                 $('#ElectionsAdminIndexTable input.habtmSet').click(function () {
                     var remoteUrl = '<?php echo $remoteUrl; ?>/' + this.value + '/';
                     if (this.checked == true) {
@@ -68,10 +67,9 @@ if (!empty($op)) {
                     }
                     $('div#messageSet' + this.value).load(remoteUrl);
                 });
-    <?php
-}
-?>
+        <?php
+        }
+        ?>
         });
-        //]]>
     </script>
 </div>
