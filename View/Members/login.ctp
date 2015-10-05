@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <?php echo $this->Form->create('Member', array('action' => 'login')); ?>
@@ -8,7 +8,7 @@
         <p>&nbsp;</p>
         <?php echo $this->Form->input('密碼', array('type' => 'password', 'class' => 'form-control input-lg')); ?>
         <p>&nbsp;</p>
-        <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">登入</button>
+        <button type="submit" class="btn btn-lg btn-primary btn-block">登入</button>
         <?php echo $this->Form->end(); ?>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
