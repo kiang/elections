@@ -24,12 +24,12 @@
             <div class="navbar-inner">
                 <div class="container">
                     <div class="navbar-header">
+                        <?php echo $this->Html->link('選舉黃頁', '/', array('class' => 'navbar-brand')); ?>
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <?php echo $this->Html->link('選舉黃頁', '/', array('class' => 'navbar-brand')); ?>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse">
                         <ul class="nav navbar-nav">
@@ -39,38 +39,43 @@
                             <li><?php echo $this->Html->link('分類', '/tags', array('class' => '')); ?></li>
                             <li><?php echo $this->Html->link('選舉公報', '/bulletins', array('class' => '')); ?></li>
                         </ul>
+                        <form action="#" class="navbar-form navbar-right">
+                            <div class="input-group">
+                                <?php
+                                echo $this->Form->input('Candidate.keyword', array(
+                                    'div' => false,
+                                    'label' => false,
+                                    'placeholder' => '候選人姓名搜尋',
+                                    'class' => 'form-control'
+                                ));
+                                echo $this->Form->input('Election.keyword', array(
+                                    'div' => false,
+                                    'label' => false,
+                                    'placeholder' => '選舉區搜尋',
+                                    'class' => 'form-control',
+                                    'style' => 'display: none'
+                                ));
+                                ?>
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">候選人搜尋 <span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li data-type="Candidate" data-desp="候選人搜尋"><a href="#">候選人</a></li>
+                                        <li data-type="Election" data-desp="選舉區搜尋"><a href="#">選舉區</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <!-- <div class="pull-right submitCount" style="color: #f2f2f2"></div> -->
                 </div>
             </div>
         </nav>
         <div class="container">
-            <div class="pull-right">
-                <?php
-                echo $this->Form->input('Candidate.keyword', array(
-                    'div' => 'form-group',
-                    'label' => false,
-                    'placeholder' => '候選人姓名搜尋',
-                    'class' => 'form-control col-md-4'
-                ));
-                ?>
-            </div>
-            <div class="pull-right">
-                <?php
-                echo $this->Form->input('Election.keyword', array(
-                    'div' => 'form-group',
-                    'label' => false,
-                    'placeholder' => '選舉區搜尋',
-                    'class' => 'form-control col-md-4'
-                ));
-                ?>
+            <div class="row">
+                <?php echo $this->Html->getCrumbList(array('class' => 'breadcrumb breadcrumb-title')); ?>
             </div>
 
-            <?php
-                echo $this->Html->getCrumbList(array('class' => 'breadcrumb breadcrumb-title'));
-            ?>
-
-            <div id="content">
+            <div class="row">
                 <div class="btn-group">
                     <?php
                     $groupId = Configure::read('loginMember.group_id');
@@ -105,16 +110,17 @@
                 <div id="viewContent"><?php echo $content_for_layout; ?></div>
             </div>
             <div class="clearfix"></div>
-            <div id="footer" class="container">
+            <div class="row">
                 <?php if (Configure::read('debug') === 0 && empty($groupId)) { ?>
                     <ins class="adsbygoogle"
                          style="display:inline-block;width:728px;height:90px"
                          data-ad-client="ca-pub-5571465503362954"
                          data-ad-slot="3499306028"></ins>
-                     <?php } ?>
-                <hr />
+                <?php } ?>
+                <hr>
                 <div id="fb-root"></div>
-                <script>(function (d, s, id) {
+                <script>
+                    (function (d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id))
                             return;
@@ -122,7 +128,8 @@
                         js.id = id;
                         js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=1393405437614114&version=v2.3";
                         fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));</script>
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
                 <div class="col-md-6">
                     <div class="fb-page" data-href="https://www.facebook.com/k.olc.tw" data-width="500" data-hide-cover="true" data-show-facepile="true" data-show-posts="false" data-colorscheme="dark"></div>
                 </div>
@@ -132,7 +139,7 @@
             </div>
         </div>
 
-        <footer class="navbar-bottom navbar navbar-inverse footer">
+        <footer class="navbar-bottom navbar navbar-inverse">
             <div class="container">
                 <div class="row">
                     <ul>
@@ -167,6 +174,15 @@
         ?>
         <script>
             $(function () {
+                $('.navbar-form .dropdown-menu li').on('click', function (e) {
+                    $('.navbar-form .form-control').hide();
+                    var type = $(this).data('type'),
+                        desp = $(this).data('desp');
+
+                    $('#' + type + 'Keyword').show();
+                    $('.navbar-form .dropdown-toggle').html(desp + '&nbsp;<span class="caret"></span>');
+                });
+
                 $('a.dialogControl').click(function () {
                     dialogFull(this);
                     return false;
@@ -175,6 +191,10 @@
                     source: '<?php echo $this->Html->url('/candidates/s/'); ?>',
                     select: function (event, ui) {
                         location.href = '<?php echo $this->Html->url('/candidates/view/'); ?>' + ui.item.id;
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function() {}
                     }
                 });
                 $('#ElectionKeyword').autocomplete({
@@ -186,9 +206,12 @@
                             location.href = '<?php echo $this->Html->url('/elections/index/'); ?>' + ui.item.id;
                         }
 
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function() {}
                     }
                 });
-                $('div.submitCount').load('<?php echo $this->Html->url('/candidates/submits'); ?>');
             });
         </script>
         <?php if (Configure::read('debug') === 0) { ?>
