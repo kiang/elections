@@ -30,21 +30,20 @@ if (!isset($url)) {
     }
     ?>
     <div class="col-md-12">
-        <div class="panel panel-default">
-            <ul class="nav nav-pills">
+        <div class="row">
+            <div class="list-group col-md-8 col-md-offset-2">
                 <?php foreach ($items as $item): ?>
-                    <li>
-                        <?php
-                        if ($item['Election']['rght'] - $item['Election']['lft'] === 1) {
-                            echo $this->Html->link($item['Election']['name'], array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']));
-                        } else {
-                            echo $this->Html->link($item['Election']['name'], array('action' => 'index', $item['Election']['id']));
-                        }
-                        
-                        ?>
-                    </li>
+                    <?php
+                    $arrowRight = '<i class="glyphicon glyphicon-chevron-right pull-right"></i>';
+                    if ($item['Election']['rght'] - $item['Election']['lft'] === 1) {
+                        echo $this->Html->link($item['Election']['name'] . $arrowRight, array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']), array('class' => 'list-group-item', 'escape' => false));
+                    } else {
+                        echo $this->Html->link($item['Election']['name'] . $arrowRight, array('action' => 'index', $item['Election']['id']), array('class' => 'list-group-item', 'escape' => false));
+                    }
+                    
+                    ?>
                 <?php endforeach ?>
-            </ul>
+            </div>
         </div>
     </div>
     <div id="ElectionsAdminIndexPanel"></div>
