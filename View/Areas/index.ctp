@@ -41,7 +41,6 @@ if (!empty($parents)) {
                         $c[] = $e['Election']['name'];
                     }
 
-                    echo '<hr>';
                     echo '<div class="col-md-12">';
                     echo '<ol class="breadcrumb breadcrumb-title">';
                     $i = 0;
@@ -74,37 +73,48 @@ if (!empty($parents)) {
                     if (!empty($election['AreasElection']['bulletin_key'])) {
                         echo $this->Html->link('選舉公報', '/bulletins/view/' . $election['AreasElection']['bulletin_key'], array('class' => 'btn btn-primary pull-right col-md-1'));
                     }
-                    
-                    echo '<div class="clearfix"></div>';
+
                     if (!empty($election['Candidate'])) {
+                        $candidateCount = 0;
                         foreach ($election['Candidate'] AS $candidate) {
-                            ?><div class="col-md-2 col-xs-6 candidate-<?php echo $candidate['Candidate']['stage']; ?>" style="text-align: center;">
+                            ++$candidateCount;
+                        ?>
+                            <div class="col-md-2 col-xs-6 candidate-<?php echo $candidate['Candidate']['stage']; ?>">
                                 <div class="thumbnail">
                                     <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
                                         <?php
                                         if (empty($candidate['Candidate']['image'])) {
-                                            echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px'));
+                                            echo $this->Html->image('candidate-not-found.jpg', array('class' => 'candidate-image'));
                                         } else {
-                                            echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; height: 100px'));
+                                            echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('class' => 'candidate-image'));
                                         }
                                         ?>
                                     </a>
                                     <div class="caption">
                                         <?php
-                                            echo $this->Html->tag('h3', $candidate['Candidate']['name']);
+                                            echo $this->Html->link(
+                                                $this->Html->tag('h3', $candidate['Candidate']['name']),
+                                                '/candidates/view/' . $candidate['Candidate']['id'],
+                                                array('escape' => false)
+                                            );
                                             echo $candidate['Candidate']['party'];
                                             if(!empty($candidate['Candidate']['no'])) {
+                                                echo '<br>';
                                                 echo $candidate['Candidate']['no'] . '號';
                                             }
                                         ?>
                                     </div>
                                 </div>
-                            </div><?php
+                            </div>
+                           <?php
+                            if ($candidateCount === 6) {
+                                echo '<div class="clearfix"></div>';
+                                $candidateCount = 0;
+                            }
                         }
                     } else {
                         echo ' ~ 目前沒有候選人資料 ~ ';
                     }
-                    echo '<div class="clearfix"></div>';
                 }
             }
             ?>

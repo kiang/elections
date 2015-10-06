@@ -16,7 +16,6 @@
         echo $this->Html->css('jquery-ui');
         echo $this->Html->css('bootstrap.min');
         echo $this->Html->css('default');
-        echo $this->Html->css('blocks');
         ?>
     </head>
     <body>
