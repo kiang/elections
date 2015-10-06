@@ -38,19 +38,23 @@ if (!empty($parents)) {
         );
     }
     ?>
-    <div class="col-md-12"><?php echo $this->Html->getCrumbs(); ?></div>
-    <div class="col-md-8">
-        <?php
-        if (!empty($currentElection['population_electors'])) {
-            $quota = "名額： {$currentElection['quota']}";
-            if (!empty($currentElection['quota_women'])) {
-                $quota .= " / 婦女保障： {$currentElection['quota_women']}";
-            }
-            echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )";
-        }
-        ?>
+    <div class="col-md-12">
+        <?php echo $this->Html->getCrumbList(array('class' => 'breadcrumb breadcrumb-title')); ?>
     </div>
-    <div class="paging col-md-4"><?php echo $this->element('paginator'); ?></div>
+    <?php
+    if (!empty($currentElection['population_electors'])) {
+        echo '<div class="col-md-8">';
+        $quota = "名額： {$currentElection['quota']}";
+        if (!empty($currentElection['quota_women'])) {
+            $quota .= " / 婦女保障： {$currentElection['quota_women']}";
+        }
+        echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )";
+        echo '</div>';
+    }
+    ?>
+    <div class="paginator-wrapper">
+        <?php echo $this->element('paginator'); ?>
+    </div>
     <div class="clearfix"></div>
     <?php
     if (!empty($items)) {
@@ -59,9 +63,9 @@ if (!empty($parents)) {
                 <a class="thumbnail text-center candidate-<?php echo $candidate['Candidate']['stage']; ?>" href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
                     <?php
                     if (empty($candidate['Candidate']['image'])) {
-                        echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));
+                        echo $this->Html->image('candidate-not-found.jpg', array('class' => 'candidate-image'));
                     } else {
-                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; height: 100px; border: 0px;'));
+                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('class' => 'candidate-image'));
                     }
                     ?>
                     <br /><?php
