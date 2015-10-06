@@ -80,7 +80,9 @@ if (!empty($parents)) {
     }
     ?>
     <div class="clearfix"></div>
-    <div class="paging"><?php echo $this->element('paginator'); ?></div>
+    <div class="paginator-wrapper">
+        <?php echo $this->element('paginator'); ?>
+    </div>
     <?php if (!empty($electionId)) { ?>
         <div id="vanilla-comments"></div>
         <script type="text/javascript">

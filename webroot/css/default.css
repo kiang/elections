@@ -27,30 +27,9 @@
     text-align: left;
 }
 
-.cake-sql-log table {
-    background: #f4f4f4;
-}
-.cake-sql-log td {
-    padding: 4px 8px;
-    text-align: left;
-}
-
-/* Paging */
-div.paging {
-    background:#fff;
-    color: #ccc;
-    margin-bottom: 2em;
-}
-div.paging div.disabled {
-    color: #ddd;
-    display: inline;
-}
-div.paging span {
-}
-div.paging span.current {
-    color: #000;
-}
-div.paging span a {
+.paginator-wrapper {
+    margin: 0 auto;
+    text-align: center;
 }
 
 /* Notices and Errors */
