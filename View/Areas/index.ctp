@@ -96,10 +96,10 @@ if (!empty($parents)) {
                                         '/candidates/view/' . $candidate['Candidate']['id'],
                                         array('escape' => false)
                                         );
-                                    echo $candidate['Candidate']['party'];
+                                    echo $this->Html->para(null, $candidate['Candidate']['party']);
                                     if(!empty($candidate['Candidate']['no'])) {
                                         echo '<br>';
-                                        echo $candidate['Candidate']['no'] . '號';
+                                        echo $this->Html->para(null, $candidate['Candidate']['no'] . '號');
                                     }
                                     ?>
                                 </div>
