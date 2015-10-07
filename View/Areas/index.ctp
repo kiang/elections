@@ -78,15 +78,17 @@ if (!empty($parents)) {
                         ?>
                         <div class="col-md-2 col-xs-6 candidate-<?php echo $candidate['Candidate']['stage']; ?>">
                             <div class="thumbnail">
-                                <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
-                                    <?php
-                                    if (empty($candidate['Candidate']['image'])) {
-                                        echo $this->Html->image('candidate-not-found.jpg', array('class' => 'candidate-image'));
-                                    } else {
-                                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('class' => 'candidate-image'));
-                                    }
-                                    ?>
-                                </a>
+                                <div class="candidate-image-wrapper">
+                                    <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+                                        <?php
+                                        if (empty($candidate['Candidate']['image'])) {
+                                            echo $this->Html->image('candidate-not-found.jpg', array('class' => 'candidate-image'));
+                                        } else {
+                                            echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('class' => 'candidate-image'));
+                                        }
+                                        ?>
+                                    </a>
+                                </div>
                                 <div class="caption">
                                     <?php
                                     echo $this->Html->link(

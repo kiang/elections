@@ -168,9 +168,22 @@ div.code-coverage-results span.result-good {
     text-align: center;
 }
 
+.candidate-image-wrapper {
+    min-height: 100px;
+    min-width: 100px;
+    width: 100%;
+    display: table;
+}
+
+.candidate-image-wrapper a {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 .candidate-image {
-    width: 100px;
+    width: auto;
     height: 100px;
+    max-height: 100px;
 }
 
 .navbar-bottom {
