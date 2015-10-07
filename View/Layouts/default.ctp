@@ -65,7 +65,6 @@
                             </div>
                         </form>
                     </div>
-                    <!-- <div class="pull-right submitCount" style="color: #f2f2f2"></div> -->
                 </div>
             </div>
         </nav>
@@ -106,9 +105,8 @@
                 </div>
 
                 <?php echo $this->Session->flash(); ?>
-                <div id="viewContent"><?php echo $content_for_layout; ?></div>
             </div>
-            <div class="clearfix"></div>
+            <?php echo $content_for_layout; ?>
             <div class="row">
                 <?php if (Configure::read('debug') === 0 && empty($groupId)) { ?>
                     <ins class="adsbygoogle"
@@ -164,7 +162,6 @@
             </div>
         </footer>
         <?php
-        // echo $this->element('sql_dump');
         echo $scripts_for_layout;
         echo $this->Html->script('jquery');
         echo $this->Html->script('jquery-ui');
@@ -182,9 +179,9 @@
                     $('.navbar-form .dropdown-toggle').html(desp + '&nbsp;<span class="caret"></span>');
                 });
 
-                $('a.dialogControl').click(function () {
+                $('a.dialogControl').on('click', function (e) {
                     dialogFull(this);
-                    return false;
+                    e.preventDefault();
                 });
                 $('#CandidateKeyword').autocomplete({
                     source: '<?php echo $this->Html->url('/candidates/s/'); ?>',
