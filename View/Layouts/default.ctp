@@ -107,6 +107,7 @@
                 <?php echo $this->Session->flash(); ?>
             </div>
             <?php echo $content_for_layout; ?>
+            <div class="clearfix"></div>
             <div class="row">
                 <?php if (Configure::read('debug') === 0 && empty($groupId)) { ?>
                     <ins class="adsbygoogle"
