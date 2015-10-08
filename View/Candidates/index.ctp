@@ -1,29 +1,30 @@
-<?php
-$currentElection = array();
-if (!empty($parents)) {
-    foreach ($parents AS $parent) {
-        if ($parent['Election']['rght'] - $parent['Election']['lft'] !== 1) {
-            $this->Html->addCrumb($parent['Election']['name'], array(
-                'controller' => 'elections',
-                'action' => 'index', $parent['Election']['id'])
-            );
-        } else {
-            $currentElection = $parent['Election'];
-            $this->Html->addCrumb($parent['Election']['name'], array(
-                'action' => 'index', $parent['Election']['id'])
-            );
-        }
-    }
-}
-?>
 <div class="row" id="CandidatesAdminIndex">
     <div class="col-md-12">
-        <h1>候選人</h1>
+        <?php
+        $currentElection = array();
+        if (!empty($parents)) {
+            echo '<h1 class="text-info">';
+            foreach ($parents AS $parent) {
+                echo $parent['Election']['name'] . '&nbsp;';
+            }
+            echo '候選人</h1>';
+        } else {
+            echo $this->Html->tag('h1', '候選人');
+        }
+        ?>
+        <p>&nbsp;</p>
+        <?php
+        if (!empty($electionId)) {
+        ?>
+            <div class="alert alert-success">
+                漏了候選人嗎？立即
+                <?php echo $this->Html->link('新增候選人', array('action' => 'add', $electionId)); ?>。
+            </div>
+        <?php
+        }
+        ?>
         <div class="pull-right btn-group">
             <?php
-            if (!empty($electionId)) {
-                echo $this->Html->link('新增候選人', array('action' => 'add', $electionId), array('class' => 'btn btn-primary'));
-            }
             if (!empty($currentElection['bulletin_key'])) {
                 echo $this->Html->link('選舉公報', '/bulletins/view/' . $currentElection['bulletin_key'], array('class' => 'btn btn-primary'));
             }
@@ -34,12 +35,9 @@ if (!empty($parents)) {
         </div>
     </div>
     <p>&nbsp;</p>
-    <div class="col-md-12">
-        <!-- <?php echo $this->Html->getCrumbList(array('class' => 'breadcrumb breadcrumb-title')); ?> -->
-    </div>
     <?php
     if (!empty($currentElection['population_electors'])) {
-        echo '<div class="col-md-8">';
+        echo '<div class="col-md-12">';
         $quota = "名額： {$currentElection['quota']}";
         if (!empty($currentElection['quota_women'])) {
             $quota .= " / 婦女保障： {$currentElection['quota_women']}";
@@ -55,7 +53,7 @@ if (!empty($parents)) {
     <?php
     if (!empty($items)) {
         foreach ($items AS $candidate) {
-            ?><div class="col-md-2">
+            ?><div class="col-md-2 col-sm-6 col-xs-6">
                 <div class="thumbnail candidate-<?php echo $candidate['Candidate']['stage']; ?>">
                     <div class="candidate-image-wrapper">
                         <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
