@@ -76,8 +76,8 @@ if (!empty($parents)) {
                     foreach ($election['Candidate'] AS $candidate) {
                         ++$candidateCount;
                         ?>
-                        <div class="col-md-2 col-xs-6 candidate-<?php echo $candidate['Candidate']['stage']; ?>">
-                            <div class="thumbnail">
+                        <div class="col-md-2 col-xs-6">
+                            <div class="thumbnail candidate-<?php echo $candidate['Candidate']['stage']; ?>">
                                 <div class="candidate-image-wrapper">
                                     <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
                                         <?php
