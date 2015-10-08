@@ -98,7 +98,6 @@ if (!empty($parents)) {
                                         );
                                     echo $this->Html->para(null, $candidate['Candidate']['party']);
                                     if(!empty($candidate['Candidate']['no'])) {
-                                        echo '<br>';
                                         echo $this->Html->para(null, $candidate['Candidate']['no'] . '號');
                                     }
                                     ?>
