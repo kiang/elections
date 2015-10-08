@@ -1,23 +1,28 @@
 <div id="CandidatesAdd">
     <div class="row">
-        <h1><?php
+        <h2 class="text-info"><?php
             if (!empty($parents)) {
                 $c = array();
                 foreach ($parents AS $parent) {
                     if($parent['Election']['rght'] - $parent['Election']['lft'] != 1) {
-                        $c[] = $this->Html->link($parent['Election']['name'], '/elections/index/' . $parent['Election']['id']);
+                        $c[] = $parent['Election']['name'];
                     } else {
-                        $c[] = $this->Html->link($parent['Election']['name'], '/candidates/index/' . $parent['Election']['id']);
+                        $c[] = $parent['Election']['name'];
                     }
                 }
-                $c[] = '新增候選人';
-                echo implode(' > ', $c);
+                echo '新增' . implode(' ', $c) . '候選人';
             }
-            if (false !== strpos($referer, $this->Html->url('/', true))) {
-                echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default pull-right'));
-            }
-            ?></h1><hr />
-            <div class="pull-right"><?php echo $this->Html->link('(免責聲明)', '/pages/notice'); ?></div>
+            ?></h2>
+            <div class="pull-right btn-group">
+                <?php
+                    echo $this->Html->link('免責聲明', '/pages/notice', array('target' => '_blank', 'class' => 'btn btn-primary'));
+                    if (false !== strpos($referer, $this->Html->url('/', true))) {
+                        echo $this->Html->link('回上頁', $referer, array('class' => 'btn btn-default'));
+                    }
+                ?>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
     </div>
     <?php
     $url = array();
@@ -143,14 +148,16 @@
         'class' => 'form-control',
         'placeholder' => '一行一筆學歷資料，例如： 現任大台南市議會第1屆議員',
     ));
-    echo $this->Form->end(__('Submit', true));
+    echo $this->Html->tag(
+        'button',
+        '送出',
+        array(
+            'class' => 'btn btn-primary btn-block btn-lg',
+            'type' => 'submit'
+        )
+    );
+    echo $this->Form->end();
     ?>
-    <script>
-        $(function() {
-            $('input#CandidateBirth').datepicker({
-                dateFormat: 'yy-mm-dd',
-                changeYear: true
-            });
-        });
-    </script>
+    <p>&nbsp;</p>
 </div>
+<?php echo $this->Html->script('Candidates/add.js', array('inline' => false, 'block' => 'scriptBottom')); ?>
