@@ -56,7 +56,7 @@ if (!empty($parents)) {
     if (!empty($items)) {
         foreach ($items AS $candidate) {
             ?><div class="col-md-2">
-                <div class="thumbnail">
+                <div class="thumbnail candidate-<?php echo $candidate['Candidate']['stage']; ?>">
                     <div class="candidate-image-wrapper">
                         <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
                             <?php
