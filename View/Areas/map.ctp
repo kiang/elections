@@ -13,15 +13,14 @@ if (!empty($parents)) {
         var mapOptions = {
             center: new google.maps.LatLng(23.958388030344, 120.70910282983),
             zoom: 7
-        };
+        },
+        map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
 
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
         $.getJSON('<?php echo $this->Html->url('/areas/json/' . $areaId); ?>', function(data) {
             map.data.addGeoJson(data);
             zoom(map);
         });
-        $('div#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/' . $areaId); ?>/map');
+        $('#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/' . $areaId); ?>/map');
         map.data.setStyle({
             fillColor: '#ff99ff',
             strokeWeight: 1
@@ -38,16 +37,16 @@ if (!empty($parents)) {
                 });
                 zoom(map);
             });
-            $('div#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/'); ?>' + selectedId + '/map');
+            $('#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/'); ?>' + selectedId + '/map');
         });
         map.data.addListener('mouseover', function(event) {
-            $('a.code' + event.feature.getProperty('code')).addClass('navActive');
+            $('a.code' + event.feature.getProperty('code')).addClass('navActive animated bounce');
             map.data.overrideStyle(event.feature, {
                 fillColor: '#009900'
             });
         });
         map.data.addListener('mouseout', function(event) {
-            $('a.code' + event.feature.getProperty('code')).removeClass('navActive');
+            $('a.code' + event.feature.getProperty('code')).removeClass('navActive animated bounce');
             map.data.overrideStyle(event.feature, {
                 fillColor: '#ff99ff'
             });

@@ -15,6 +15,7 @@
         echo $this->Html->meta(array('name' => 'viewport', 'content' => 'width=device-width, initial-scale=1.0'));
         echo $this->Html->css('jquery-ui');
         echo $this->Html->css('bootstrap.min');
+        echo $this->Html->css('animate');
         echo $this->Html->css('default');
         ?>
     </head>
