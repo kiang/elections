@@ -8,14 +8,6 @@ if (!empty($parents)) {
 
 <div class="row">
     <div class="col-md-12">
-    <h3><?php echo $this->Html->link('行政區', '/areas/' . $areaMethod, array('class' => '')); ?></h3>
-        <div class="pull-right btn-group">
-            <?php
-            echo $this->Html->link('本頁 API', '/api/elections/index/' . $parentId, array('class' => 'btn btn-default', 'target' => '_blank'));
-            ?>
-        </div>
-    </div>
-    <div class="col-md-12">
         <ul class="nav nav-pills">
             <?php foreach ($items as $item): ?>
                 <li>
@@ -63,9 +55,9 @@ if (!empty($parents)) {
                 echo '<blockquote>';
                 $quota = "名額：{$election['AreasElection']['quota']}";
                 if (!empty($election['AreasElection']['quota_women'])) {
-                    $quota .= " / 婦女保障：{$election['AreasElection']['quota_women']}";
+                    $quota .= "<br>婦女保障：{$election['AreasElection']['quota_women']}";
                 }
-                echo "{$quota} / 選舉人：{$election['AreasElection']['population_electors']} / 人口：{$election['AreasElection']['population']}";
+                echo "{$quota}<br>選舉人：{$election['AreasElection']['population_electors']}<br>人口：{$election['AreasElection']['population']}";
                 echo '</blockquote>';
                 if (!empty($election['AreasElection']['bulletin_key'])) {
                     echo $this->Html->link('選舉公報', '/bulletins/view/' . $election['AreasElection']['bulletin_key'], array('class' => 'btn btn-primary pull-right col-md-1'));
@@ -115,6 +107,8 @@ if (!empty($parents)) {
                 }
             }
         }
+        echo '<div class="clearfix"></div>';
+        echo $this->Html->link('本頁 API', '/api/elections/index/' . $parentId, array('class' => 'btn btn-default pull-right', 'target' => '_blank'));
         ?>
     </div>
 </div>
