@@ -270,3 +270,8 @@ hr {
 .caption * {
     text-align: center;
 }
+
+.profile-list dd {
+    margin-left: 170px;
+    text-align: left;
+}
