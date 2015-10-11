@@ -57,7 +57,7 @@
                                 ));
                                 ?>
                                 <div class="input-group-btn">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">候選人搜尋 <span class="caret"></span></button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">候選人搜尋 <span class="caret"></span></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li data-type="Candidate" data-desp="候選人搜尋"><a href="#">候選人</a></li>
                                         <li data-type="Election" data-desp="選舉區搜尋"><a href="#">選舉區</a></li>

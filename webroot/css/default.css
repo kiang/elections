@@ -186,6 +186,12 @@ div.code-coverage-results span.result-good {
     max-height: 100px;
 }
 
+.candidate-image.large {
+    width: 200px;
+    height: 200px;
+    max-height: 200px;
+}
+
 .navbar-bottom {
     margin: 3em 0 0 0;
     border-radius: 0;
@@ -194,7 +200,6 @@ div.code-coverage-results span.result-good {
 
 .navbar-bottom ul {
     padding: 20px 52px;
-
 }
 
 .navbar-bottom li {
@@ -257,7 +262,8 @@ hr {
     white-space: nowrap;
 }
 
-.ui-autocomplete .ui-menu-item > a.ui-corner-all:hover, .ui-autocomplete .ui-menu-item > a.ui-corner-all .ui-state-active {
+.ui-autocomplete .ui-menu-item > a.ui-corner-all:hover,
+.ui-autocomplete .ui-menu-item > a.ui-corner-all .ui-state-active {
     color: #ffffff;
     text-decoration: none;
     background-color: #0088cc;
@@ -274,4 +280,22 @@ hr {
 .profile-list dd {
     margin-left: 170px;
     text-align: left;
+}
+
+.profile-text {
+    text-align: center;
+}
+
+.profile-text.jumbotron > .btn-group {
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.profile-desp-box img {
+    position: absolute;
+    top: 20%;
+    right: 3%;
+    width: auto;
+    height: 40px;
 }
