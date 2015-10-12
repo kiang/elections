@@ -38,11 +38,13 @@
     <?php
     if (!empty($currentElection['population_electors'])) {
         echo '<div class="col-md-12">';
+        echo '<blockquote>';
         $quota = "名額： {$currentElection['quota']}";
         if (!empty($currentElection['quota_women'])) {
-            $quota .= " / 婦女保障： {$currentElection['quota_women']}";
+            $quota .= "<br>婦女保障： {$currentElection['quota_women']}";
         }
-        echo " &nbsp; &nbsp; ( {$quota} / 選舉人： {$currentElection['population_electors']} / 人口： {$currentElection['population']} )";
+        echo "<br>{$quota}<br>選舉人： {$currentElection['population_electors']}<br>人口： {$currentElection['population']}";
+        echo '</blockquote>';
         echo '</div>';
     }
     ?>
@@ -52,7 +54,9 @@
     </div>
     <?php
     if (!empty($items)) {
+        $candidateCount = 0;
         foreach ($items AS $candidate) {
+            ++$candidateCount;
             ?><div class="col-md-2 col-sm-6 col-xs-6">
                 <div class="thumbnail candidate-<?php echo $candidate['Candidate']['stage']; ?>">
                     <div class="candidate-image-wrapper">
@@ -81,9 +85,13 @@
                     </div>
                 </div>
             </div><?php
+            if ($candidateCount >= 6) {
+                echo '<div class="clearfix"></div>';
+                $candidateCount = 0;
+            }
         }
     } else {
-        echo ' ~ 目前沒有候選人資料 ~ ';
+        echo '<span class="text-muted">目前沒有候選人資料</span>';
     }
     ?>
     <div class="clearfix"></div>
