@@ -8,12 +8,11 @@
                 echo $parent['Election']['name'] . '&nbsp;';
             }
             echo '候選人</h1>';
+            echo '<p>&nbsp;</p>';
         } else {
             echo $this->Html->tag('h1', '候選人');
         }
-        ?>
-        <p>&nbsp;</p>
-        <?php
+
         if (!empty($electionId)) {
         ?>
             <div class="alert alert-success">
