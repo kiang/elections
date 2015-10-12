@@ -61,6 +61,8 @@ if (!empty($parents)) {
                 echo '</blockquote>';
                 if (!empty($election['AreasElection']['bulletin_key'])) {
                     echo $this->Html->link('選舉公報', '/bulletins/view/' . $election['AreasElection']['bulletin_key'], array('class' => 'btn btn-primary pull-right col-md-1'));
+                    echo '<div class="clearfix"></div>';
+                    echo '<p>&nbsp;</p>';
                 }
 
                 if (!empty($election['Candidate'])) {
@@ -103,7 +105,7 @@ if (!empty($parents)) {
                         }
                     }
                 } else {
-                    echo ' ~ 目前沒有候選人資料 ~ ';
+                    echo '<span class="text-muted">目前沒有候選人資料</span>';
                 }
             }
         }
