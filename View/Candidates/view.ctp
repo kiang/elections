@@ -36,7 +36,7 @@
         ?>
     </div>
     <?php if (!empty($candidate['Election']['Area'])) { ?>
-    <div class="col-md-12">
+    <div class="col-md-12 label-list">
         行政區：
         <?php
         foreach ($candidate['Election']['Area'] AS $area) {
@@ -50,7 +50,7 @@
     </div>
     <?php } ?>
     <?php if (!empty($candidate['Tag'])) { ?>
-    <div class="col-md-12" style="margin-top: 1em">
+    <div class="col-md-12 label-list" style="margin-top: 1em">
         分類：
         <?php
         foreach ($candidate['Tag'] AS $tag) {

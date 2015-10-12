@@ -1,5 +1,5 @@
 <div id="CandidatesAdminIndex">
-    <h2><?php echo $name; ?> :: 參選記錄</h2>
+    <h2><?php echo $name; ?>的參選記錄</h2>
     <div class="clearfix"></div>
     <?php
     if (!empty($items)) {
@@ -37,7 +37,7 @@
         </table>
         <?php
     } else {
-        echo ' ~ 目前沒有候選人資料 ~ ';
+        echo '<span class="text-muted">目前沒有候選人資料</span>';
     }
     ?>
     <div class="clearfix"></div>

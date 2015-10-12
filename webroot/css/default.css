@@ -299,3 +299,8 @@ hr {
     width: auto;
     height: 40px;
 }
+
+.label-list {
+    width: 90%;
+    word-break: break-word;
+}
