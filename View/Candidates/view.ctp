@@ -58,9 +58,8 @@
 </div>
 <p>&nbsp;</p>
 <div class="row">
-    <div class="col-md-12 stage-<?php echo $candidate['Candidate']['stage']; ?> profile-text jumbotron">
-        <div class="clearfix"></div>
-        <div class="btn-group">
+    <div class="col-md-12 stage-<?php echo $candidate['Candidate']['stage']; ?> profile-text">
+        <div class="btn-group pull-right">
             <?php
             echo $this->Html->link('參選記錄', array('action' => 'name', $candidate['Candidate']['name']), array('class' => 'btn btn-default'));
             echo $this->Html->link('相關公司', 'http://gcis.nat.g0v.tw/name/' . $candidate['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
@@ -73,6 +72,8 @@
             }
             ?>
         </div>
+        <div class="clearfix"></div>
+        <p>&nbsp;</p>
         <?php
         if (empty($candidate['Candidate']['image'])) {
             echo $this->Html->image('candidate-not-found.jpg', array('class' => 'img-thumbnail img-rounded candidate-image'));
@@ -91,160 +92,184 @@
         ?>
     </div>
     <hr>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/gender.svg'); ?>
-        <div class="profile-desp-title col-md-4">性別</div>
-        <div class="col-md-8">
-            <?php
-            $gender = strtolower($candidate['Candidate']['gender']);
-            switch ($gender) {
-                case 'f':
-                echo '女';
-                break;
-                case 'm':
-                echo '男';
-                break;
-                default:
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/gender.svg'); ?>
+            <div class="profile-desp-title col-md-4">性別</div>
+            <div class="col-md-8">
+                <?php
+                $gender = strtolower($candidate['Candidate']['gender']);
+                switch ($gender) {
+                    case 'f':
+                    echo '女';
+                    break;
+                    case 'm':
+                    echo '男';
+                    break;
+                    default:
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/phone.svg'); ?>
-        <div class="profile-desp-title col-md-4">電話</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( $candidate['Candidate']['contacts_phone'])) {
-                echo $candidate['Candidate']['contacts_phone'];
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/phone.svg'); ?>
+            <div class="profile-desp-title col-md-4">電話</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( $candidate['Candidate']['contacts_phone'])) {
+                    echo $candidate['Candidate']['contacts_phone'];
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/fax.svg'); ?>
-        <div class="profile-desp-title col-md-4">傳真</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( $candidate['Candidate']['contacts_fax'])) {
-                echo $candidate['Candidate']['contacts_fax'];
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/fax.svg'); ?>
+            <div class="profile-desp-title col-md-4">傳真</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( $candidate['Candidate']['contacts_fax'])) {
+                    echo $candidate['Candidate']['contacts_fax'];
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/mail.svg'); ?>
-        <div class="profile-desp-title col-md-4">信箱</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( $candidate['Candidate']['contacts_email'])) {
-                echo $candidate['Candidate']['contacts_email'];
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/mail.svg'); ?>
+            <div class="profile-desp-title col-md-4">信箱</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( $candidate['Candidate']['contacts_email'])) {
+                    echo $candidate['Candidate']['contacts_email'];
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/location.svg'); ?>
-        <div class="profile-desp-title col-md-4">服務處</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( $candidate['Candidate']['contacts_address'])) {
-                echo $candidate['Candidate']['contacts_address'];
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/location.svg'); ?>
+            <div class="profile-desp-title col-md-4">服務處</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( $candidate['Candidate']['contacts_address'])) {
+                    echo $candidate['Candidate']['contacts_address'];
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/political.svg'); ?>
-        <div class="profile-desp-title col-md-4">政黨</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( $candidate['Candidate']['party'])) {
-                echo $candidate['Candidate']['party'];
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/political.svg'); ?>
+            <div class="profile-desp-title col-md-4">政黨</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( $candidate['Candidate']['party'])) {
+                    echo $candidate['Candidate']['party'];
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/birthday.svg'); ?>
-        <div class="profile-desp-title col-md-4">生日</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( $candidate['Candidate']['birth'])) {
-                echo $candidate['Candidate']['birth'];
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/birthday.svg'); ?>
+            <div class="profile-desp-title col-md-4">生日</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( $candidate['Candidate']['birth'])) {
+                    echo $candidate['Candidate']['birth'];
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/education.svg'); ?>
-        <div class="profile-desp-title col-md-4">教育程度</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( $candidate['Candidate']['education_level'])) {
-                echo $candidate['Candidate']['education_level'];
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/education.svg'); ?>
+            <div class="profile-desp-title col-md-4">教育程度</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( $candidate['Candidate']['education_level'])) {
+                    echo $candidate['Candidate']['education_level'];
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/birthday.svg'); ?>
-        <div class="profile-desp-title col-md-4">出生地</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( $candidate['Candidate']['birth_place'])) {
-                echo $candidate['Candidate']['birth_place'];
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/birthday.svg'); ?>
+            <div class="profile-desp-title col-md-4">出生地</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( $candidate['Candidate']['birth_place'])) {
+                    echo $candidate['Candidate']['birth_place'];
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/id.svg'); ?>
-        <div class="profile-desp-title col-md-4">英文姓名</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( $candidate['Candidate']['name_english'])) {
-                echo $candidate['Candidate']['name_english'];
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/id.svg'); ?>
+            <div class="profile-desp-title col-md-4">英文姓名</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( $candidate['Candidate']['name_english'])) {
+                    echo $candidate['Candidate']['name_english'];
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/vote.svg'); ?>
-        <div class="profile-desp-title col-md-4">參選狀態</div>
-        <div class="col-md-8">
-            <?php echo $this->Olc->stages[$candidate['Candidate']['stage']]; ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/vote.svg'); ?>
+            <div class="profile-desp-title col-md-4">參選狀態</div>
+            <div class="col-md-8">
+                <?php echo $this->Olc->stages[$candidate['Candidate']['stage']]; ?>
+            </div>
         </div>
     </div>
-    <div class="profile-desp-box col-md-6 col-md-offset-3 row well">
-        <?php echo $this->Html->image('profile-icon/ballot.svg'); ?>
-        <div class="profile-desp-title col-md-4">是否現任</div>
-        <div class="col-md-8">
-            <?php
-            if(!empty( ($candidate['Candidate']['is_present'] == 1) ? '是' : '否')) {
-                echo ($candidate['Candidate']['is_present'] == 1) ? '是' : '否';
-            } else {
-                echo '<span class="text-muted">無資料</span>';
-            }
-            ?>
+    <div class="profile-desp-box col-md-6 col-md-offset-3 well">
+        <div class="row">
+            <?php echo $this->Html->image('profile-icon/ballot.svg'); ?>
+            <div class="profile-desp-title col-md-4">是否現任</div>
+            <div class="col-md-8">
+                <?php
+                if(!empty( ($candidate['Candidate']['is_present'] == 1) ? '是' : '否')) {
+                    echo ($candidate['Candidate']['is_present'] == 1) ? '是' : '否';
+                } else {
+                    echo '<span class="text-muted">無資料</span>';
+                }
+                ?>
+            </div>
         </div>
     </div>
     <?php if (!empty($candidate['Candidate']['platform'])) { ?>
@@ -306,7 +331,7 @@
     </div>
     <div class="clearfix"></div>
     <p>&nbsp;</p>
-    <div class="pull-right text-muted">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>, <a href="http://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a>, <a href="http://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>, <a href="http://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a>, <a href="http://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a></div>
+    <div class="pull-right text-muted" style="text-align: right">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>, <a href="http://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a>, <a href="http://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>, <a href="http://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a>, <a href="http://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a></div>
     <?php if (Configure::read('debug') === 0) { ?>
         <div id="vanilla-comments"></div>
         <script type="text/javascript">
