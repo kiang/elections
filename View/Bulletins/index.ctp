@@ -23,6 +23,8 @@
     <p>&nbsp;</p>
     <div class="paginator-wrapper col-md-12"><?php echo $this->element('paginator'); ?></div>
     <div class="clearfix"></div>
+    <p class="pull-right"><span class="badge">&nbsp;</span>&nbsp;中的數字表示選區數量</p>
+    <div class="clearfix"></div>
     <div class="list-group">
         <?php
         foreach ($bulletins as $bulletin) {
