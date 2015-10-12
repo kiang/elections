@@ -18,20 +18,20 @@
         <?php
         $meta = array();
         if (!empty($candidate['Election']['quota'])) {
-            $meta[] = "名額： {$candidate['Election']['quota']}";
+            $meta[] = "名額： {$candidate['Election']['quota']}<br>";
         }
         if (!empty($candidate['Election']['quota_women'])) {
-            $meta[] = "婦女保障： {$candidate['Election']['quota_women']}";
+            $meta[] = "婦女保障： {$candidate['Election']['quota_women']}<br>";
         }
         if (!empty($candidate['Election']['population_electors'])) {
-            $meta[] = "選舉人： {$candidate['Election']['population_electors']}";
+            $meta[] = "選舉人： {$candidate['Election']['population_electors']}<br>";
         }
         if (!empty($candidate['Election']['population'])) {
-            $meta[] = "人口： {$candidate['Election']['population']}";
+            $meta[] = "人口： {$candidate['Election']['population']}<br>";
         }
         if (!empty($meta)) {
-            $meta = implode(' / ', $meta);
-            echo "<h3>{$meta}</h3>";
+            $meta = implode('', $meta);
+            echo "<blockquote>{$meta}</blockquote>";
         }
         ?>
     </div>
@@ -40,17 +40,25 @@
         行政區：
         <?php
         foreach ($candidate['Election']['Area'] AS $area) {
-            echo $this->Html->link($area['name'], '/areas/index/' . $area['id'], array('class' => 'btn btn-default btn-sm'));
+            echo $this->Html->link(
+                $this->Html->tag('span', $area['name'], array('class' => 'label label-default')) . '&nbsp;',
+                '/areas/index/' . $area['id'],
+                array('escape' => false)
+            );
         }
         ?>
     </div>
     <?php } ?>
     <?php if (!empty($candidate['Tag'])) { ?>
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-top: 1em">
         分類：
         <?php
         foreach ($candidate['Tag'] AS $tag) {
-            echo $this->Html->link($tag['name'], '/candidates/tag/' . $tag['id'], array('class' => 'btn btn-default'));
+            echo $this->Html->link(
+                $this->Html->tag('span', $tag['name'], array('class' => 'label label-default')) . '&nbsp;',
+                '/candidates/tag/' . $tag['id'],
+                array('escape' => false)
+            );
         }
         ?>
     </div>
