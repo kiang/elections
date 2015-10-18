@@ -5,6 +5,11 @@
             if (!empty($parents)) {
                 foreach ($parents AS $parent) {
                     echo $parent['Election']['name'] . '&nbsp;';
+                    if ($parent['Election']['rght'] - $parent['Election']['lft'] != 1) {
+                        $this->Html->addCrumb($parent['Election']['name'], '/elections/index/' . $parent['Election']['id']);
+                    } else {
+                        $this->Html->addCrumb($parent['Election']['name'], '/candidates/index/' . $parent['Election']['id']);
+                    }
                 }
                 echo '候選人';
             }
