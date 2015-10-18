@@ -143,6 +143,7 @@
         'class' => 'form-control',
         'placeholder' => '一行一筆學歷資料，例如： 現任大台南市議會第1屆議員',
     ));
+    echo '<div class="clearfix"></div>';
     echo $this->Html->tag(
         'button',
         '送出',
