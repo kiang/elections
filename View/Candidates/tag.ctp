@@ -15,21 +15,39 @@
         foreach ($items AS $candidate) {
             ++$candidateCount;
             ?><div class="col-md-2 col-sm-4 col-xs-6">
-                <a class="thumbnail text-center candidate-<?php echo $candidate['Candidate']['stage']; ?>" href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+                <div class="candidates-box">
                     <?php
-                    if (empty($candidate['Candidate']['image'])) {
-                        echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));
-                    } else {
-                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; height: 100px; border: 0px;'));
+                    if (intval($candidate['Candidate']['stage']) === 2) {
+                        echo '<span class="ribbon">當選</span>';
                     }
                     ?>
-                    <br><?php
-                    if(!empty($candidate['Candidate']['no'])) {
-                        echo $candidate['Candidate']['no'] . '號 ';
-                    }
-                    echo $candidate['Candidate']['name']; ?>
-                    <br><?php echo $candidate['Election'][1]['Election']['name']; ?>
-                </a>
+                    <div class="thumbnail text-center">
+                        <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+                            <?php
+                            if (empty($candidate['Candidate']['image'])) {
+                                echo $this->Html->image('candidate-not-found.jpg', array('style' => 'width: 100px; border: 0px;'));
+                            } else {
+                                echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('style' => 'width: 100px; height: 100px; border: 0px;'));
+                            }
+                            ?>
+                        </a>
+                        <?php
+                        echo $this->Html->link(
+                            $this->Html->tag('h3', $candidate['Candidate']['name']),
+                            '/candidates/view/' . $candidate['Candidate']['id'],
+                            array('escape' => false)
+                            );
+                        echo $candidate['Election'][1]['Election']['name'];
+                        echo '<br>';
+                        if(!empty($candidate['Candidate']['no'])) {
+                            echo $candidate['Candidate']['no'] . '號 ';
+                        }
+                        if (intval($candidate['Candidate']['stage']) === 0) {
+                            echo '<br>未登記';
+                        }
+                        ?>
+                    </div>
+                </div>
             </div><?php
             if ($candidateCount >= 6) {
                 echo '<div class="clearfix"></div>';

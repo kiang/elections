@@ -304,3 +304,31 @@ hr {
     width: 90%;
     word-break: break-word;
 }
+
+.ribbon {
+    position: absolute;
+    top: -30px;
+    left: -75px;
+    width: 150px;
+    height: 30px;
+    background-color: #e95b4c;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    line-height: 25px;
+            transform: rotate(-45deg);
+         -o-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+            transform-origin: 100% 0%;
+         -o-transform-origin: 100% 0%;
+        -ms-transform-origin: 100% 0%;
+       -moz-transform-origin: 100% 0%;
+    -webkit-transform-origin: 100% 0%;
+}
+
+.candidates-box {
+    position: relative;
+    overflow: hidden;
+}

@@ -63,30 +63,40 @@
         foreach ($items AS $candidate) {
             ++$candidateCount;
             ?><div class="col-md-2 col-sm-6 col-xs-6">
-                <div class="thumbnail candidate-<?php echo $candidate['Candidate']['stage']; ?>">
-                    <div class="candidate-image-wrapper">
-                        <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+                <div class="candidates-box">
+                    <?php
+                    if (intval($candidate['Candidate']['stage']) === 2) {
+                        echo '<span class="ribbon">當選</span>';
+                    }
+                    ?>
+                    <div class="thumbnail">
+                        <div class="candidate-image-wrapper">
+                            <a href="<?php echo $this->Html->url('/candidates/view/' . $candidate['Candidate']['id']); ?>">
+                                <?php
+                                if (empty($candidate['Candidate']['image'])) {
+                                    echo $this->Html->image('candidate-not-found.jpg', array('class' => 'candidate-image'));
+                                } else {
+                                    echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('class' => 'candidate-image'));
+                                }
+                                ?>
+                            </a>
+                        </div>
+                        <div class="caption">
                             <?php
-                            if (empty($candidate['Candidate']['image'])) {
-                                echo $this->Html->image('candidate-not-found.jpg', array('class' => 'candidate-image'));
-                            } else {
-                                echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('class' => 'candidate-image'));
+                            echo $this->Html->link(
+                                $this->Html->tag('h3', $candidate['Candidate']['name']),
+                                '/candidates/view/' . $candidate['Candidate']['id'],
+                                array('escape' => false)
+                                );
+                            echo $this->Html->para(null, $candidate['Candidate']['party']);
+                            if(!empty($candidate['Candidate']['no'])) {
+                                echo $this->Html->para(null, $candidate['Candidate']['no'] . '號');
+                            }
+                            if (intval($candidate['Candidate']['stage']) === 0) {
+                                echo '<p>未登記</p>';
                             }
                             ?>
-                        </a>
-                    </div>
-                    <div class="caption">
-                        <?php
-                        echo $this->Html->link(
-                            $this->Html->tag('h3', $candidate['Candidate']['name']),
-                            '/candidates/view/' . $candidate['Candidate']['id'],
-                            array('escape' => false)
-                            );
-                        echo $this->Html->para(null, $candidate['Candidate']['party']);
-                        if(!empty($candidate['Candidate']['no'])) {
-                            echo $this->Html->para(null, $candidate['Candidate']['no'] . '號');
-                        }
-                        ?>
+                        </div>
                     </div>
                 </div>
             </div><?php
