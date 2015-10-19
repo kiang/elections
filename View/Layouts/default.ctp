@@ -110,10 +110,10 @@
             <?php echo $content_for_layout; ?>
             <div class="clearfix"></div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" style="text-align:center">
                     <?php if (Configure::read('debug') === 0 && empty($groupId)) { ?>
                         <ins class="adsbygoogle"
-                             style="display:inline-block;width:728px;height:90px"
+                             style="display:inline-block;width:80%;height:90px;margin-top:1.5em;"
                              data-ad-client="ca-pub-5571465503362954"
                              data-ad-slot="3499306028"></ins>
                     <?php } ?>
@@ -131,10 +131,11 @@
                         }(document, 'script', 'facebook-jssdk'));
                     </script>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="text-align:center">
                     <div class="fb-page" data-href="https://www.facebook.com/k.olc.tw" data-width="500" data-hide-cover="true" data-show-facepile="true" data-show-posts="false" data-colorscheme="dark"></div>
                 </div>
-                <div class="col-md-6">
+                <p class="hidden-md hidden-lg">&nbsp;</p>
+                <div class="col-md-6" style="text-align:center">
                     <div class="fb-page" data-href="https://www.facebook.com/g0v.tw" data-width="500" data-hide-cover="true" data-show-facepile="true" data-show-posts="false" data-colorscheme="dark"></div>
                 </div>
             </div>
