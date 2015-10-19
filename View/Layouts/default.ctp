@@ -112,10 +112,11 @@
             <div class="row">
                 <div class="col-md-12" style="text-align:center">
                     <?php if (Configure::read('debug') === 0 && empty($groupId)) { ?>
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:80%;height:90px;margin-top:1.5em;"
-                             data-ad-client="ca-pub-5571465503362954"
-                             data-ad-slot="3499306028"></ins>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:80%;height:90px;margin-top:1.5em;"
+                         data-ad-client="ca-pub-5571465503362954"
+                         data-ad-slot="6710298420"
+                         data-ad-format="auto"></ins>
                     <?php } ?>
                     <hr>
                     <div id="fb-root"></div>
@@ -179,7 +180,7 @@
                 $('.navbar-form .dropdown-menu li').on('click', function (e) {
                     $('.navbar-form .form-control').hide();
                     var type = $(this).data('type'),
-                        desp = $(this).data('desp');
+                            desp = $(this).data('desp');
 
                     $('#' + type + 'Keyword').show();
                     $('.navbar-form .dropdown-toggle').html(desp + '&nbsp;<span class="caret"></span>');
@@ -196,7 +197,8 @@
                     },
                     messages: {
                         noResults: '',
-                        results: function() {}
+                        results: function () {
+                        }
                     }
                 });
                 $('#ElectionKeyword').autocomplete({
@@ -211,36 +213,37 @@
                     },
                     messages: {
                         noResults: '',
-                        results: function() {}
+                        results: function () {
+                        }
                     }
                 });
             });
         </script>
         <?php if (Configure::read('debug') === 0) { ?>
-            <script>
-                (function (i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r;
-                    i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                    a = s.createElement(o),
-                            m = s.getElementsByTagName(o)[0];
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-                ga('create', 'UA-51256613-1', 'auto');
-                ga('send', 'pageview');
-                ga('set', 'contentGroup1', 'elections');
+            ga('create', 'UA-51256613-1', 'auto');
+            ga('send', 'pageview');
+            ga('set', 'contentGroup1', 'elections');
 
-            </script>
+        </script>
         <?php } ?>
         <?php if (Configure::read('debug') === 0 && empty($groupId)) { ?>
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
         <?php } ?>
     </body>
 </html>
