@@ -2,7 +2,7 @@
     <h2><?php echo __('Candidates', true); ?></h2>
     <div class="btn-group">
         <?php
-        echo $this->Html->link('回清單', array('action' => 'index'), array('class' => 'btn'));
+        echo $this->Html->link('回清單', array('action' => 'index'), array('class' => 'btn btn-info'));
         ?>
     </div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>

@@ -5,19 +5,16 @@ function dialogFull(linkObject, title) {
             autoOpen : false,
             width : 950,
             close: function(event, ui) {
-                document.location.href = document.location.href;
+                location.reload();
             }
         });
     }
     if (typeof title == 'undefined') {
-        if (typeof linkObject.rel == 'undefined') {
-            title = '--';
-        } else {
-            title = linkObject.rel;
-        }
+        title = linkObject.innerHTML || linkObject.textContent;
     }
-    $('#dialogFull').load(linkObject.href, null, function() {
-        $(this).dialog('option', 'title', title).dialog('open');
+    $('.modal .modal-body').load(linkObject.href, null, function() {
+        $('.modal .modal-title').text(title);
+        $('.modal').modal('show');
     });
 }
 

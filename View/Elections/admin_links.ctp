@@ -25,10 +25,9 @@ if (!empty($parents)) {
     }
     ?>
 </div>
-<script type="text/javascript">
-    //<![CDATA[
+<script>
     $(function () {
-        $('input#electionArea').autocomplete({
+        $('#electionArea').autocomplete({
             source: '<?php echo $this->Html->url('/areas/s/'); ?>',
             select: function (event, ui) {
                 $.get('<?php echo $this->Html->url('/admin/elections/link_add/' . $election['Election']['id']); ?>/' + ui.item.id, {}, function (b) {
@@ -43,5 +42,4 @@ if (!empty($parents)) {
             return false;
         });
     });
-    //]]>
 </script>

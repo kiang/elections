@@ -49,10 +49,18 @@
                 'div' => 'form-group',
                 'class' => 'form-control',
             ));
+            echo $this->Html->tag(
+                'button',
+                'Submit',
+                array(
+                    'class' => 'btn btn-primary',
+                    'type' => 'submit'
+                )
+            );
             ?>
         </fieldset>
     </div>
     <?php
-    echo $this->Form->end(__('Submit', true));
+    echo $this->Form->end();
     ?>
 </div>

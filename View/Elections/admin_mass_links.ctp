@@ -38,17 +38,15 @@ if (!empty($errors)) {
     echo $this->Form->end('送出');
     ?>
 </div>
-<script type="text/javascript">
-    //<![CDATA[
+<script>
     $(function () {
-        $('input#ElectionScope').autocomplete({
+        $('#ElectionScope').autocomplete({
             source: '<?php echo $this->Html->url('/areas/s/'); ?>',
             select: function (e, ui) {
-                $('input#ElectionAreaId').val(ui.item.id);
+                $('#ElectionAreaId').val(ui.item.id);
             }
         }).click(function () {
             $(this).select();
         });
     });
-    //]]>
 </script>
