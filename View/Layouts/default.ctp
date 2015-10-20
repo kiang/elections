@@ -81,6 +81,7 @@
                 <div class="btn-group">
                     <?php
                     $groupId = Configure::read('loginMember.group_id');
+                    $addSpace = false;
                     switch ($groupId) {
                         case '1':
                             echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn btn-default'));
@@ -90,25 +91,33 @@
                             echo $this->Html->link('Bulletins', '/admin/bulletins', array('class' => 'btn btn-default'));
                             echo $this->Html->link('Members', '/admin/members', array('class' => 'btn btn-default'));
                             echo $this->Html->link('Groups', '/admin/groups', array('class' => 'btn btn-default'));
+                            $addSpace = true;
                             break;
                         case '2':
                             echo $this->Html->link('Candidates', '/admin/candidates', array('class' => 'btn btn-default'));
                             echo $this->Html->link('Tags', '/admin/tags', array('class' => 'btn btn-default'));
                             echo $this->Html->link('Bulletins', '/admin/bulletins', array('class' => 'btn btn-default'));
+                            $addSpace = true;
                             break;
                     }
                     if (!empty($groupId)) {
                         echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn btn-default'));
+                        $addSpace = true;
                     }
                     if (!empty($actions_for_layout)) {
                         foreach ($actions_for_layout as $title => $url) {
                             echo $this->Html->link($title, $url, array('class' => 'btn'));
                         }
+                        $addSpace = true;
                     }
                     ?>
                 </div>
-
-                <?php echo $this->Session->flash(); ?>
+                <?php
+                if ($addSpace === true) {
+                    echo '<p>&nbsp;</p>';
+                }
+                echo $this->Session->flash();
+                ?>
             </div>
             <?php echo $content_for_layout; ?>
             <div class="clearfix"></div>
