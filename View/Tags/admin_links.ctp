@@ -14,21 +14,7 @@
 </div>
 <script type="text/javascript">
     //<![CDATA[
-    $(function() {
-        $('input#tagCandidate').autocomplete({
-            source: '<?php echo $this->Html->url('/candidates/s/'); ?>',
-            select: function(event, ui) {
-                $.get('<?php echo $this->Html->url('/admin/tags/link_add/' . $tag['Tag']['id']); ?>/' + ui.item.id, {}, function() {
-                    $('div#viewContent').load('<?php echo $this->Html->url('/admin/tags/links/' . $tag['Tag']['id']); ?>');
-                });
-            }
-        });
-        $('a.btn-link-delete').click(function() {
-            $.get(this.href, {}, function() {
-                $('div#viewContent').load('<?php echo $this->Html->url('/admin/tags/links/' . $tag['Tag']['id']); ?>');
-            });
-            return false;
-        });
-    });
+    var currentTagId = '<?php echo $tag['Tag']['id']; ?>';
     //]]>
 </script>
+<?php echo $this->Html->script('Tags/admin_links.js', array('inline' => false, 'block' => 'scriptBottom')); ?>
