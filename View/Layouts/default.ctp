@@ -17,6 +17,7 @@
         echo $this->Html->css('bootstrap.min');
         echo $this->Html->css('animate');
         echo $this->Html->css('default');
+        echo $this->Html->script('jquery');
         ?>
         <script>
             var base_url = '<?php echo $this->Html->url('/'); ?>';
@@ -179,9 +180,19 @@
                 </div>
             </div>
         </footer>
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </div>
         <?php
         echo $scripts_for_layout;
-        echo $this->Html->script('jquery');
         echo $this->Html->script('jquery-ui');
         echo $this->Html->script('bootstrap.min');
         echo $this->Html->script('olc');
@@ -192,7 +203,7 @@
                 $('.navbar-form .dropdown-menu li').on('click', function (e) {
                     $('.navbar-form .form-control').hide();
                     var type = $(this).data('type'),
-                            desp = $(this).data('desp');
+                        desp = $(this).data('desp');
 
                     $('#' + type + 'Keyword').show();
                     $('.navbar-form .dropdown-toggle').html(desp + '&nbsp;<span class="caret"></span>');
