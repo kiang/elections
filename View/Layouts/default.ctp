@@ -18,6 +18,9 @@
         echo $this->Html->css('animate');
         echo $this->Html->css('default');
         ?>
+        <script>
+            var base_url = '<?php echo $this->Html->url('/'); ?>';
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-static-top navbar-inverse">
