@@ -87,12 +87,25 @@
         </div>
         <div class="clearfix"></div>
         <p>&nbsp;</p>
+        <div class="candidates-box" style="display: inline-block;">
+            <?php
+            if (intval($candidate['Candidate']['stage']) === 2) {
+                echo '<span class="ribbon">當選</span>';
+            }
+            ?>
+            <div class="thumbnail">
+                <div class="candidate-image-wrapper">
+                    <?php
+                    if (empty($candidate['Candidate']['image'])) {
+                        echo $this->Html->image('candidate-not-found.jpg', array('class' => 'candidate-image'));
+                    } else {
+                        echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('class' => 'candidate-image large'));
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
         <?php
-        if (empty($candidate['Candidate']['image'])) {
-            echo $this->Html->image('candidate-not-found.jpg', array('class' => 'img-thumbnail img-rounded candidate-image'));
-        } else {
-            echo $this->Html->image('../media/' . $candidate['Candidate']['image'], array('class' => 'img-thumbnail img-rounded candidate-image large'));
-        }
         echo $this->Html->tag('h2', $candidate['Candidate']['name']);
         if (!empty($candidate['Candidate']['no'])) {
             echo '<p>';
