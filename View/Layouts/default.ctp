@@ -17,6 +17,7 @@
         echo $this->Html->css('bootstrap.min');
         echo $this->Html->css('animate');
         echo $this->Html->css('default');
+        echo $this->Html->script('jquery');
         ?>
         <script>
             var base_url = '<?php echo $this->Html->url('/'); ?>';
@@ -81,6 +82,7 @@
                 <div class="btn-group">
                     <?php
                     $groupId = Configure::read('loginMember.group_id');
+                    $addSpace = false;
                     switch ($groupId) {
                         case '1':
                             echo $this->Html->link('Elections', '/admin/elections', array('class' => 'btn btn-default'));
@@ -90,25 +92,33 @@
                             echo $this->Html->link('Bulletins', '/admin/bulletins', array('class' => 'btn btn-default'));
                             echo $this->Html->link('Members', '/admin/members', array('class' => 'btn btn-default'));
                             echo $this->Html->link('Groups', '/admin/groups', array('class' => 'btn btn-default'));
+                            $addSpace = true;
                             break;
                         case '2':
                             echo $this->Html->link('Candidates', '/admin/candidates', array('class' => 'btn btn-default'));
                             echo $this->Html->link('Tags', '/admin/tags', array('class' => 'btn btn-default'));
                             echo $this->Html->link('Bulletins', '/admin/bulletins', array('class' => 'btn btn-default'));
+                            $addSpace = true;
                             break;
                     }
                     if (!empty($groupId)) {
                         echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn btn-default'));
+                        $addSpace = true;
                     }
                     if (!empty($actions_for_layout)) {
                         foreach ($actions_for_layout as $title => $url) {
                             echo $this->Html->link($title, $url, array('class' => 'btn'));
                         }
+                        $addSpace = true;
                     }
                     ?>
                 </div>
-
-                <?php echo $this->Session->flash(); ?>
+                <?php
+                if ($addSpace === true) {
+                    echo '<p>&nbsp;</p>';
+                }
+                echo $this->Session->flash();
+                ?>
             </div>
             <?php echo $content_for_layout; ?>
             <div class="clearfix"></div>
@@ -170,9 +180,19 @@
                 </div>
             </div>
         </footer>
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </div>
         <?php
         echo $scripts_for_layout;
-        echo $this->Html->script('jquery');
         echo $this->Html->script('jquery-ui');
         echo $this->Html->script('bootstrap.min');
         echo $this->Html->script('olc');
@@ -183,7 +203,7 @@
                 $('.navbar-form .dropdown-menu li').on('click', function (e) {
                     $('.navbar-form .form-control').hide();
                     var type = $(this).data('type'),
-                            desp = $(this).data('desp');
+                        desp = $(this).data('desp');
 
                     $('#' + type + 'Keyword').show();
                     $('.navbar-form .dropdown-toggle').html(desp + '&nbsp;<span class="caret"></span>');

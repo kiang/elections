@@ -101,7 +101,7 @@ if (!empty($parents)) {
                                             echo $this->Html->para(null, $candidate['Candidate']['no'] . '號');
                                         }
                                         if (intval($candidate['Candidate']['stage']) === 0) {
-                                            echo '<p>未登記</p>';
+                                            echo '<p class="text-muted">未登記</p>';
                                         }
                                         ?>
                                     </div>

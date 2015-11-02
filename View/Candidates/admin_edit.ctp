@@ -146,11 +146,19 @@
         'class' => 'form-control',
         'placeholder' => '一行一筆學歷資料，例如： 現任大台南市議會第1屆議員',
     ));
-    echo $this->Form->end(__('Submit', true));
+    echo $this->Html->tag(
+        'button',
+        'Submit',
+        array(
+            'class' => 'btn btn-primary form-control',
+            'type' => 'submit'
+        )
+    );
+    echo $this->Form->end();
     ?>
     <script>
         $(function () {
-            $('input#CandidateBirth').datepicker({
+            $('#CandidateBirth').datepicker({
                 dateFormat: 'yy-mm-dd',
                 changeYear: true
             });

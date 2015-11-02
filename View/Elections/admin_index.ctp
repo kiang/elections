@@ -78,8 +78,7 @@
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
     <div id="ElectionsAdminIndexPanel"></div>
-    <script type="text/javascript">
-        //<![CDATA[
+    <script>
         $(function () {
             $('#ElectionsAdminIndexTable th a, #ElectionsAdminIndex div.paging a').click(function () {
                 $('#ElectionsAdminIndex').parent().load(this.href);
@@ -96,12 +95,11 @@ if (!empty($op)) {
                     } else {
                         remoteUrl = remoteUrl + 'off';
                     }
-                    $('div#messageSet' + this.value).load(remoteUrl);
+                    $('#messageSet' + this.value).load(remoteUrl);
                 });
     <?php
 }
 ?>
         });
-        //]]>
     </script>
 </div>

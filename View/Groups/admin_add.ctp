@@ -3,10 +3,18 @@
     <fieldset>
         <legend><?php echo __('Add group', true); ?></legend>
         <?php
-        echo $this->Form->input('name', array('label' => __('Name', true)));
+        echo $this->Form->input('name', array('label' => __('Name', true), 'div' => 'form-group', 'class' => 'form-control'));
+        echo $this->Html->tag(
+            'button',
+            'Submit',
+            array(
+                'class' => 'btn btn-primary form-control',
+                'type' => 'submit'
+            )
+        );
         ?>
     </fieldset>
-    <?php echo $this->Form->end(__('Submit', true)); ?>
+    <?php echo $this->Form->end(); ?>
 </div>
 <div class="actions">
     <ul>

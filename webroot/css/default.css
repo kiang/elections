@@ -332,3 +332,8 @@ hr {
     position: relative;
     overflow: hidden;
 }
+
+.profile-desp-title {
+    font-weight: bold;
+    font-size: 16px;
+}
