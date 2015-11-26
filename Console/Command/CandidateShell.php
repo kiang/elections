@@ -6,7 +6,151 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->vote_2014_count();
+        $this->cec_2016();
+    }
+
+    public function cec_2016() {
+        $tmpPath = TMP . 'cec/2016';
+        if (!file_exists($tmpPath)) {
+            mkdir($tmpPath, 0777, true);
+        }
+        $candidates = array(
+            '不分區' => array(),
+            '區域' => array(),
+        );
+        /*
+         * sudo apt-get install libpdfbox-java libcommons-logging-java
+         */
+        foreach (glob(__DIR__ . '/data/2016_candidates/*.pdf') AS $pdfFile) {
+            $pdfFileInfo = pathinfo($pdfFile);
+            $txtFile = $tmpPath . '/' . $pdfFileInfo['filename'] . '.txt';
+            if (!file_exists($txtFile)) {
+                $pdfFile = escapeshellarg($pdfFile);
+                exec("java -cp /usr/share/java/commons-logging.jar:/usr/share/java/fontbox.jar:/usr/share/java/pdfbox.jar org.apache.pdfbox.PDFBox ExtractText {$pdfFile} tmp.txt");
+                copy('tmp.txt', $txtFile);
+                unlink('tmp.txt');
+            }
+            $isAboriginal = false;
+            if (false !== strpos($pdfFileInfo['filename'], '原住民')) {
+                $isAboriginal = true;
+            }
+            $txtContent = file_get_contents($txtFile);
+            $lines = explode("選舉委員會\n", $txtContent);
+            foreach ($lines AS $line) {
+                $cols = preg_split('/[' . PHP_EOL . '\\s]+/', $line);
+                if (substr($cols[0], 0, 6) !== '104/11') {
+                    $prefixFound = false;
+                    foreach ($cols AS $k => $v) {
+                        if (substr($cols[$k], 0, 6) === '104/11') {
+                            $prefixFound = $k;
+                        }
+                    }
+                    if (false !== $prefixFound) {
+                        foreach ($cols AS $k => $v) {
+                            if ($k < $prefixFound) {
+                                unset($cols[$k]);
+                            }
+                        }
+                        $cols = array_values($cols);
+                    } else {
+                        // skip as there's no candidate data in current line
+                        continue;
+                    }
+                }
+                if ($isAboriginal) {
+                    switch (count($cols)) {
+                        case 5:
+                            if (!isset($candidates['區域'][$cols[4]])) {
+                                $candidates['區域'][$cols[4]] = array();
+                            }
+                            if (!isset($candidates['區域'][$cols[4]][$cols[1]])) {
+                                $candidates['區域'][$cols[4]][$cols[1]] = array();
+                            }
+                            $candidates['區域'][$cols[4]][$cols[1]][] = array(
+                                'party' => $cols[3],
+                                'name' => $cols[2],
+                                'date' => $cols[0],
+                            );
+                            break;
+                        case 6:
+                            if (!isset($candidates['區域'][$cols[5]])) {
+                                $candidates['區域'][$cols[5]] = array();
+                            }
+                            if (!isset($candidates['區域'][$cols[5]][$cols[1]])) {
+                                $candidates['區域'][$cols[5]][$cols[1]] = array();
+                            }
+                            $candidates['區域'][$cols[5]][$cols[1]][] = array(
+                                'party' => $cols[4],
+                                'name' => $cols[2] . ' ' . $cols[3],
+                                'date' => $cols[0],
+                            );
+                            break;
+                    }
+                } else {
+                    switch (count($cols)) {
+                        case 5:
+                            /*
+                             * 區域
+                             */
+                            if (!isset($candidates['區域'][$cols[4]])) {
+                                $candidates['區域'][$cols[4]] = array();
+                            }
+                            if (!isset($candidates['區域'][$cols[4]][$cols[1]])) {
+                                $candidates['區域'][$cols[4]][$cols[1]] = array();
+                            }
+                            $candidates['區域'][$cols[4]][$cols[1]][] = array(
+                                'party' => $cols[3],
+                                'name' => $cols[2],
+                                'date' => $cols[0],
+                            );
+                            break;
+                        case 6:
+                            /*
+                             * 全國不分區
+                             */
+                            if (!isset($candidates['不分區'][$cols[1]])) {
+                                $candidates['不分區'][$cols[1]] = array();
+                            }
+                            $candidates['不分區'][$cols[1]][] = array(
+                                'sort' => $cols[2],
+                                'name' => $cols[3],
+                                'date' => $cols[0],
+                            );
+                            break;
+                        case 7:
+                            /*
+                             * 例外
+                             */
+                            if ($cols[6] === '中央') {
+                                if (!isset($candidates['不分區'][$cols[1]])) {
+                                    $candidates['不分區'][$cols[1]] = array();
+                                }
+                                $candidates['不分區'][$cols[1]][] = array(
+                                    'sort' => $cols[2],
+                                    'name' => $cols[3] . ' ' . $cols[4],
+                                    'date' => $cols[0],
+                                );
+                            } else {
+                                if (!isset($candidates['區域'][$cols[6]])) {
+                                    $candidates['區域'][$cols[6]] = array();
+                                }
+                                if (!isset($candidates['區域'][$cols[6]][$cols[1]])) {
+                                    $candidates['區域'][$cols[6]][$cols[1]] = array();
+                                }
+                                $candidates['區域'][$cols[6]][$cols[1]][] = array(
+                                    'party' => $cols[5],
+                                    'name' => $cols[2] . $cols[3] . $cols[4],
+                                    'date' => $cols[0],
+                                );
+                            }
+                            break;
+                        default:
+                            print_r($cols);
+                    }
+                }
+            }
+        }
+        file_put_contents(__DIR__ . '/data/2016_candidates.json', json_encode($candidates, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
     }
 
     public function vote_2014_count() {
