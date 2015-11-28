@@ -15,13 +15,16 @@ class CandidateShell extends AppShell {
             mkdir($tmpPath, 0777, true);
         }
         $candidates = array(
-            '不分區' => array(),
-            '區域' => array(),
+            '總統' => array(),
+            '立法委員' => array(
+                '不分區' => array(),
+                '區域' => array(),
+            ),
         );
         /*
          * sudo apt-get install libpdfbox-java libcommons-logging-java
          */
-        foreach (glob(__DIR__ . '/data/2016_candidates/*.pdf') AS $pdfFile) {
+        foreach (glob(__DIR__ . '/data/2016_candidates/final/*.pdf') AS $pdfFile) {
             $pdfFileInfo = pathinfo($pdfFile);
             $txtFile = $tmpPath . '/' . $pdfFileInfo['filename'] . '.txt';
             if (!file_exists($txtFile)) {
@@ -30,8 +33,10 @@ class CandidateShell extends AppShell {
                 copy('tmp.txt', $txtFile);
                 unlink('tmp.txt');
             }
-            $isAboriginal = false;
-            if (false !== strpos($pdfFileInfo['filename'], '原住民')) {
+            $isAboriginal = $isPresident = false;
+            if (false !== strpos($pdfFileInfo['filename'], '總統')) {
+                $isPresident = true;
+            } elseif (false !== strpos($pdfFileInfo['filename'], '原住民')) {
                 $isAboriginal = true;
             }
             $txtContent = file_get_contents($txtFile);
@@ -57,29 +62,39 @@ class CandidateShell extends AppShell {
                         continue;
                     }
                 }
-                if ($isAboriginal) {
+                if ($isPresident) {
+                    $cols[3] = substr($cols[3], 0, strpos($cols[3], '推'));
+                    $candidates['總統'][] = array(
+                        'party' => $cols[3],
+                        'name' => array(
+                            $cols[1],
+                            $cols[2],
+                        ),
+                        'date' => $cols[0],
+                    );
+                } elseif ($isAboriginal) {
                     switch (count($cols)) {
                         case 5:
-                            if (!isset($candidates['區域'][$cols[4]])) {
-                                $candidates['區域'][$cols[4]] = array();
+                            if (!isset($candidates['立法委員']['區域'][$cols[4]])) {
+                                $candidates['立法委員']['區域'][$cols[4]] = array();
                             }
-                            if (!isset($candidates['區域'][$cols[4]][$cols[1]])) {
-                                $candidates['區域'][$cols[4]][$cols[1]] = array();
+                            if (!isset($candidates['立法委員']['區域'][$cols[4]][$cols[1]])) {
+                                $candidates['立法委員']['區域'][$cols[4]][$cols[1]] = array();
                             }
-                            $candidates['區域'][$cols[4]][$cols[1]][] = array(
+                            $candidates['立法委員']['區域'][$cols[4]][$cols[1]][] = array(
                                 'party' => $cols[3],
                                 'name' => $cols[2],
                                 'date' => $cols[0],
                             );
                             break;
                         case 6:
-                            if (!isset($candidates['區域'][$cols[5]])) {
-                                $candidates['區域'][$cols[5]] = array();
+                            if (!isset($candidates['立法委員']['區域'][$cols[5]])) {
+                                $candidates['立法委員']['區域'][$cols[5]] = array();
                             }
-                            if (!isset($candidates['區域'][$cols[5]][$cols[1]])) {
-                                $candidates['區域'][$cols[5]][$cols[1]] = array();
+                            if (!isset($candidates['立法委員']['區域'][$cols[5]][$cols[1]])) {
+                                $candidates['立法委員']['區域'][$cols[5]][$cols[1]] = array();
                             }
-                            $candidates['區域'][$cols[5]][$cols[1]][] = array(
+                            $candidates['立法委員']['區域'][$cols[5]][$cols[1]][] = array(
                                 'party' => $cols[4],
                                 'name' => $cols[2] . ' ' . $cols[3],
                                 'date' => $cols[0],
@@ -88,17 +103,30 @@ class CandidateShell extends AppShell {
                     }
                 } else {
                     switch (count($cols)) {
+                        case 4:
+                            if (!isset($candidates['立法委員']['區域'][$cols[3]])) {
+                                $candidates['立法委員']['區域'][$cols[3]] = array();
+                            }
+                            if (!isset($candidates['立法委員']['區域'][$cols[3]][$cols[1]])) {
+                                $candidates['立法委員']['區域'][$cols[3]][$cols[1]] = array();
+                            }
+                            $candidates['立法委員']['區域'][$cols[3]][$cols[1]][] = array(
+                                'party' => $cols[2],
+                                'name' => '孫博萮',
+                                'date' => $cols[0],
+                            );
+                            break;
                         case 5:
                             /*
                              * 區域
                              */
-                            if (!isset($candidates['區域'][$cols[4]])) {
-                                $candidates['區域'][$cols[4]] = array();
+                            if (!isset($candidates['立法委員']['區域'][$cols[4]])) {
+                                $candidates['立法委員']['區域'][$cols[4]] = array();
                             }
-                            if (!isset($candidates['區域'][$cols[4]][$cols[1]])) {
-                                $candidates['區域'][$cols[4]][$cols[1]] = array();
+                            if (!isset($candidates['立法委員']['區域'][$cols[4]][$cols[1]])) {
+                                $candidates['立法委員']['區域'][$cols[4]][$cols[1]] = array();
                             }
-                            $candidates['區域'][$cols[4]][$cols[1]][] = array(
+                            $candidates['立法委員']['區域'][$cols[4]][$cols[1]][] = array(
                                 'party' => $cols[3],
                                 'name' => $cols[2],
                                 'date' => $cols[0],
@@ -108,10 +136,10 @@ class CandidateShell extends AppShell {
                             /*
                              * 全國不分區
                              */
-                            if (!isset($candidates['不分區'][$cols[1]])) {
-                                $candidates['不分區'][$cols[1]] = array();
+                            if (!isset($candidates['立法委員']['不分區'][$cols[1]])) {
+                                $candidates['立法委員']['不分區'][$cols[1]] = array();
                             }
-                            $candidates['不分區'][$cols[1]][] = array(
+                            $candidates['立法委員']['不分區'][$cols[1]][] = array(
                                 'sort' => $cols[2],
                                 'name' => $cols[3],
                                 'date' => $cols[0],
@@ -122,22 +150,22 @@ class CandidateShell extends AppShell {
                              * 例外
                              */
                             if ($cols[6] === '中央') {
-                                if (!isset($candidates['不分區'][$cols[1]])) {
-                                    $candidates['不分區'][$cols[1]] = array();
+                                if (!isset($candidates['立法委員']['不分區'][$cols[1]])) {
+                                    $candidates['立法委員']['不分區'][$cols[1]] = array();
                                 }
-                                $candidates['不分區'][$cols[1]][] = array(
+                                $candidates['立法委員']['不分區'][$cols[1]][] = array(
                                     'sort' => $cols[2],
                                     'name' => $cols[3] . ' ' . $cols[4],
                                     'date' => $cols[0],
                                 );
                             } else {
-                                if (!isset($candidates['區域'][$cols[6]])) {
-                                    $candidates['區域'][$cols[6]] = array();
+                                if (!isset($candidates['立法委員']['區域'][$cols[6]])) {
+                                    $candidates['立法委員']['區域'][$cols[6]] = array();
                                 }
-                                if (!isset($candidates['區域'][$cols[6]][$cols[1]])) {
-                                    $candidates['區域'][$cols[6]][$cols[1]] = array();
+                                if (!isset($candidates['立法委員']['區域'][$cols[6]][$cols[1]])) {
+                                    $candidates['立法委員']['區域'][$cols[6]][$cols[1]] = array();
                                 }
-                                $candidates['區域'][$cols[6]][$cols[1]][] = array(
+                                $candidates['立法委員']['區域'][$cols[6]][$cols[1]][] = array(
                                     'party' => $cols[5],
                                     'name' => $cols[2] . $cols[3] . $cols[4],
                                     'date' => $cols[0],
@@ -145,6 +173,7 @@ class CandidateShell extends AppShell {
                             }
                             break;
                         default:
+                            echo $pdfFile;
                             print_r($cols);
                     }
                 }
