@@ -24,8 +24,110 @@ class ImportShell extends AppShell {
          * 2016-01 立法委員 全國[平原] - 55086422-2e64-4827-9712-23d86ab936af
          * 2016-01 立法委員 - 55085e1a-c494-40e0-ba31-2f916ab936af
          */
-        foreach($json['總統'] AS $candidate) {
-            
+        $dbCandidates = $this->Election->Candidate->find('all', array(
+            'conditions' => array(
+                'Candidate.active_id IS NULL',
+                'Candidate.election_id' => '55085e00-a45c-4143-af8a-2f916ab936af',
+            ),
+            'fields' => array('id', 'stage', 'name'),
+        ));
+        foreach ($json['總統'] AS $candidate) {
+            foreach ($dbCandidates AS $dbCandidate) {
+                for ($i = 0; $i < 2; $i++) {
+                    if ($dbCandidate['Candidate']['name'] === $candidate['name'][$i] && $dbCandidate['Candidate']['stage'] != 1) {
+                        $this->Election->Candidate->id = $dbCandidate['Candidate']['id'];
+                        $this->Election->Candidate->save(array('Candidate' => array(
+                                'stage' => '1',
+                        )));
+                    }
+                }
+            }
+        }
+        $election = $this->Election->find('first', array(
+            'conditions' => array(
+                'id' => '55085e1a-c494-40e0-ba31-2f916ab936af',
+            ),
+        ));
+        $dbCandidates = $this->Election->Candidate->find('all', array(
+            'conditions' => array(
+                'Candidate.active_id IS NULL',
+                'Election.lft >' => $election['Election']['lft'],
+                'Election.rght <' => $election['Election']['rght'],
+            ),
+            'fields' => array('id', 'stage', 'name'),
+            'contain' => array('Election'),
+        ));
+        foreach (array_keys($json['立法委員']['不分區']) AS $candidate) {
+            $dbCandidateFound = false;
+            foreach ($dbCandidates AS $dbCandidate) {
+                if (false !== strpos($dbCandidate['Candidate']['name'], $candidate)) {
+                    $dbCandidateFound = true;
+                    if ($dbCandidate['Candidate']['stage'] != 1) {
+                        $this->Election->Candidate->id = $dbCandidate['Candidate']['id'];
+                        $this->Election->Candidate->save(array('Candidate' => array(
+                                'stage' => '1',
+                        )));
+                    }
+                }
+            }
+            if (false === $dbCandidateFound) {
+                echo $candidate;
+            }
+        }
+        foreach ($json['立法委員']['山地原住民'] AS $candidate) {
+            $dbCandidateFound = false;
+            foreach ($dbCandidates AS $dbCandidate) {
+                if (false !== strpos($dbCandidate['Candidate']['name'], $candidate['name'])) {
+                    $dbCandidateFound = true;
+                    if ($dbCandidate['Candidate']['stage'] != 1) {
+                        $this->Election->Candidate->id = $dbCandidate['Candidate']['id'];
+                        $this->Election->Candidate->save(array('Candidate' => array(
+                                'stage' => '1',
+                        )));
+                    }
+                }
+            }
+            if (false === $dbCandidateFound) {
+                echo $candidate['name'] . "\n";
+            }
+        }
+        foreach ($json['立法委員']['平地原住民'] AS $candidate) {
+            $dbCandidateFound = false;
+            foreach ($dbCandidates AS $dbCandidate) {
+                if (false !== strpos($dbCandidate['Candidate']['name'], $candidate['name'])) {
+                    $dbCandidateFound = true;
+                    if ($dbCandidate['Candidate']['stage'] != 1) {
+                        $this->Election->Candidate->id = $dbCandidate['Candidate']['id'];
+                        $this->Election->Candidate->save(array('Candidate' => array(
+                                'stage' => '1',
+                        )));
+                    }
+                }
+            }
+            if (false === $dbCandidateFound) {
+                echo $candidate['name'] . "\n";
+            }
+        }
+        foreach ($json['立法委員']['區域'] AS $area => $areaCandidates) {
+            foreach ($areaCandidates AS $eCandidates) {
+                foreach ($eCandidates AS $candidate) {
+                    $dbCandidateFound = false;
+                    foreach ($dbCandidates AS $dbCandidate) {
+                        if (false !== strpos($dbCandidate['Candidate']['name'], $candidate['name'])) {
+                            $dbCandidateFound = true;
+                            if ($dbCandidate['Candidate']['stage'] != 1) {
+                                $this->Election->Candidate->id = $dbCandidate['Candidate']['id'];
+                                $this->Election->Candidate->save(array('Candidate' => array(
+                                        'stage' => '1',
+                                )));
+                            }
+                        }
+                    }
+                    if (false === $dbCandidateFound) {
+                        echo $candidate['name'] . "\n";
+                    }
+                }
+            }
         }
     }
 
