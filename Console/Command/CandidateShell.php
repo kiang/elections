@@ -102,6 +102,11 @@ class CandidateShell extends AppShell {
                             break;
                     }
                 } else {
+                    if (false !== strpos($cols[3], '世界偉人')) {
+                        $cols[2] .= $cols[3];
+                        unset($cols[3]);
+                        $cols = array_values($cols);
+                    }
                     switch (count($cols)) {
                         case 4:
                             if (!isset($candidates['立法委員']['區域'][$cols[3]])) {
