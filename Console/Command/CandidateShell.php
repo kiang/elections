@@ -73,28 +73,19 @@ class CandidateShell extends AppShell {
                         'date' => $cols[0],
                     );
                 } elseif ($isAboriginal) {
+                    if (!isset($candidates['立法委員'][$cols[1]])) {
+                        $candidates['立法委員'][$cols[1]] = array();
+                    }
                     switch (count($cols)) {
                         case 5:
-                            if (!isset($candidates['立法委員']['區域'][$cols[4]])) {
-                                $candidates['立法委員']['區域'][$cols[4]] = array();
-                            }
-                            if (!isset($candidates['立法委員']['區域'][$cols[4]][$cols[1]])) {
-                                $candidates['立法委員']['區域'][$cols[4]][$cols[1]] = array();
-                            }
-                            $candidates['立法委員']['區域'][$cols[4]][$cols[1]][] = array(
+                            $candidates['立法委員'][$cols[1]][] = array(
                                 'party' => $cols[3],
                                 'name' => $cols[2],
                                 'date' => $cols[0],
                             );
                             break;
                         case 6:
-                            if (!isset($candidates['立法委員']['區域'][$cols[5]])) {
-                                $candidates['立法委員']['區域'][$cols[5]] = array();
-                            }
-                            if (!isset($candidates['立法委員']['區域'][$cols[5]][$cols[1]])) {
-                                $candidates['立法委員']['區域'][$cols[5]][$cols[1]] = array();
-                            }
-                            $candidates['立法委員']['區域'][$cols[5]][$cols[1]][] = array(
+                            $candidates['立法委員'][$cols[1]][] = array(
                                 'party' => $cols[4],
                                 'name' => $cols[2] . ' ' . $cols[3],
                                 'date' => $cols[0],

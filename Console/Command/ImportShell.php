@@ -12,7 +12,21 @@ class ImportShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->fb_links();
+        $this->candidate2016();
+    }
+
+    public function candidate2016() {
+        $json = json_decode(file_get_contents(__DIR__ . '/data/2016_candidates.json'), true);
+        /*
+         * 2016-01 總統(副總統) - 55085e00-a45c-4143-af8a-2f916ab936af
+         * 2016-01 立法委員 全國[不分區政黨] - 5508642a-7e4c-41bf-a0cd-23d86ab936af
+         * 2016-01 立法委員 全國[山原] - 5508641c-f4e0-4b63-8354-28956ab936af
+         * 2016-01 立法委員 全國[平原] - 55086422-2e64-4827-9712-23d86ab936af
+         * 2016-01 立法委員 - 55085e1a-c494-40e0-ba31-2f916ab936af
+         */
+        foreach($json['總統'] AS $candidate) {
+            
+        }
     }
 
     public function fb_links() {
