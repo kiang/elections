@@ -440,35 +440,7 @@ class CandidatesController extends AppController {
 
     function view($id = null) {
         if (!empty($id)) {
-            $cacheKey = "CandidatesView{$id}";
-            $result = Cache::read($cacheKey, 'long');
-            if (!$result) {
-                $result = array(
-                    'candidate' => array(),
-                    'parents' => array(),
-                );
-                $result['candidate'] = $this->Candidate->find('first', array(
-                    'conditions' => array(
-                        'Candidate.id' => $id,
-                        'Candidate.active_id IS NULL',
-                        'Candidate.is_reviewed' => '1',
-                    ),
-                    'contain' => array(
-                        'Election' => array(
-                            'fields' => array('id', 'population_electors', 'population',
-                                'quota', 'quota_women', 'bulletin_key'),
-                            'Area' => array(
-                                'fields' => array('Area.id', 'Area.name'),
-                            ),
-                        ),
-                        'Tag' => array(
-                            'fields' => array('Tag.id', 'Tag.name'),
-                        ),
-                    ),
-                ));
-                $result['parents'] = $this->Candidate->Election->getPath($result['candidate']['Election']['id']);
-                Cache::write($cacheKey, $result, 'long');
-            }
+            $result = $this->Candidate->getView($id);
         }
 
         if (!empty($result['candidate'])) {

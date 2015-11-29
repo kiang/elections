@@ -33,7 +33,7 @@ class Candidate extends AppModel {
             'className' => 'Keyword',
         ),
     );
-    
+
     public function beforeSave($options = array()) {
         if (isset($this->data['Candidate']['image']) && is_array($this->data['Candidate']['image'])) {
             if (!empty($this->data['Candidate']['image']['size'])) {
@@ -54,10 +54,43 @@ class Candidate extends AppModel {
                 unset($this->data['Candidate']['image']);
             }
         }
-        if(isset($this->data['Candidate']['name'])) {
+        if (isset($this->data['Candidate']['name'])) {
             $this->data['Candidate']['name'] = str_replace(array('&amp;bull;', '&bull;', '‧', '.', '•', '．．'), '．', $this->data['Candidate']['name']);
         }
         return parent::beforeSave($options);
+    }
+
+    public function getView($id) {
+        $cacheKey = "CandidatesView{$id}";
+        $result = Cache::read($cacheKey, 'long');
+        if (!$result) {
+            $result = array(
+                'candidate' => array(),
+                'parents' => array(),
+            );
+            $result['candidate'] = $this->find('first', array(
+                'conditions' => array(
+                    'Candidate.id' => $id,
+                    'Candidate.active_id IS NULL',
+                    'Candidate.is_reviewed' => '1',
+                ),
+                'contain' => array(
+                    'Election' => array(
+                        'fields' => array('id', 'population_electors', 'population',
+                            'quota', 'quota_women', 'bulletin_key'),
+                        'Area' => array(
+                            'fields' => array('Area.id', 'Area.name'),
+                        ),
+                    ),
+                    'Tag' => array(
+                        'fields' => array('Tag.id', 'Tag.name'),
+                    ),
+                ),
+            ));
+            $result['parents'] = $this->Election->getPath($result['candidate']['Election']['id']);
+            Cache::write($cacheKey, $result, 'long');
+        }
+        return $result;
     }
 
 }

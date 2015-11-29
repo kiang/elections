@@ -31,15 +31,9 @@ class CandidatesController extends ApiAppController {
 
     public function view($id = '') {
         if (!empty($id)) {
-            $this->jsonData = $this->Candidate->find('first', array(
-                'conditions' => array(
-                    'Candidate.id' => $id,
-                    'Candidate.active_id IS NULL',
-                ),
-                'fields' => array('Candidate.*'),
-            ));
-            if (!empty($this->jsonData['Candidate']['image'])) {
-                $this->jsonData['Candidate']['image'] = Router::url('/img/' . $this->jsonData['Candidate']['image'], true);
+            $this->jsonData = $this->Candidate->getView($id);
+            if (!empty($this->jsonData['candidate']['Candidate']['image'])) {
+                $this->jsonData['candidate']['Candidate']['image'] = Router::url('/media/' . $this->jsonData['candidate']['Candidate']['image'], true);
             }
         }
     }
