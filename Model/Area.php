@@ -48,4 +48,47 @@ class Area extends AppModel {
         }
     }
 
+    public function getView($id = '') {
+        if (!empty($id)) {
+            $cacheKey = "AreasView{$id}";
+        } else {
+            $cacheKey = "AreasViewRoot";
+        }
+        $result = Cache::read($cacheKey, 'long');
+        if (!$result) {
+            $result = array(
+                'area' => array(),
+                'parents' => array(),
+                'children' => array(),
+            );
+            if (!empty($id)) {
+                $result['area'] = $this->find('first', array(
+                    'conditions' => array(
+                        'Area.id' => $id,
+                    ),
+                    'contain' => array(
+                        'Election' => array(
+                            'fields' => array('id', 'population_electors', 'population',
+                                'quota', 'quota_women', 'bulletin_key'),
+                        ),
+                    ),
+                ));
+                $result['parents'] = $this->getPath($id);
+                $result['children'] = $this->find('all', array(
+                    'conditions' => array(
+                        'Area.parent_id' => $id,
+                    )
+                ));
+            } else {
+                $result['children'] = $this->find('all', array(
+                    'conditions' => array(
+                        'Area.parent_id IS NULL',
+                    )
+                ));
+            }
+            Cache::write($cacheKey, $result, 'long');
+        }
+        return $result;
+    }
+
 }
