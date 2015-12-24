@@ -7,7 +7,7 @@ class JsonShell extends AppShell {
     public function main() {
         $this->elections();
         $this->areas();
-        //$this->candidatesNew();
+        $this->candidatesNew();
     }
     
     /*
