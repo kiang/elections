@@ -6,7 +6,229 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->cec_2016();
+        $this->api_2016();
+    }
+
+    public function api_2016() {
+        $root = $this->Candidate->Election->find('first', array(
+            'conditions' => array(
+                'id' => '55085e1a-c494-40e0-ba31-2f916ab936af',
+            ),
+        ));
+        $elections = $this->Candidate->Election->find('list', array(
+            'conditions' => array(
+                'lft >' => $root['Election']['lft'],
+                'rght <' => $root['Election']['rght'],
+                'rght - lft = 1',
+            ),
+            'fields' => array('keywords', 'id'),
+        ));
+        $json = json_decode(file_get_contents(__DIR__ . '/data/2016_candidates/api/3.json'), true);
+        $candidates = array();
+        $itemKeys = array(
+            'candidatename' => 'name',
+            'candidatenameeng' => 'name_english',
+            'educationname' => 'education_level',
+            'recpartyname_1' => 'party',
+            'placename' => 'birth_place',
+            'rptedu' => 'education',
+            'rptexp' => 'experience',
+            'rptpolitics' => 'platform',
+            'drawno' => 'no',
+        );
+        foreach ($json['區域立委公報'] AS $item) {
+            //2016-01,立法委員,臺北市,第02選區[區域]
+            $electionKey = '2016-01,立法委員,' . $item['cityname'] . ',第';
+            $item['sessionname'] = str_pad(preg_replace('/[^0-9]/', '', $item['sessionname']), 2, '0', STR_PAD_LEFT);
+            if ($item['sessionname'] === '00') {
+                $item['sessionname'] = '01';
+            }
+            $electionKey .= $item['sessionname'] . '選區[區域]';
+            $electionId = $elections[$electionKey];
+            if (!isset($candidates[$electionId])) {
+                $candidates[$electionId] = $this->Candidate->find('list', array(
+                    'conditions' => array(
+                        'election_id' => $electionId,
+                        'stage' => '1',
+                        'active_id IS NULL',
+                    ),
+                    'fields' => array('name', 'id'),
+                ));
+            }
+            if (!isset($candidates[$electionId][$item['candidatename']])) {
+                switch ($item['candidatename']) {
+                    case '邵伯祥':
+                        $candidates[$electionId][$item['candidatename']] = '550d9fc4-22e8-42c6-af32-1b7f6ab936af';
+                        break;
+                    case '龎維良':
+                        $candidates[$electionId][$item['candidatename']] = '55afccb6-c4a8-4b52-b6b9-09286ab936af';
+                        break;
+                    case '黄玉芬':
+                        $candidates[$electionId][$item['candidatename']] = '56582546-67bc-48ef-bf81-197f6ab936af';
+                        break;
+                }
+            }
+            $this->Candidate->id = $candidates[$electionId][$item['candidatename']];
+            $dataToSave = array(
+                'name' => $item['candidatename'],
+                'party' => $item['recpartyname_1'],
+            );
+            foreach (array('rptedu', 'rptexp', 'rptpolitics') AS $itemKey) {
+                if (isset($item[$itemKey])) {
+                    $item[$itemKey] = str_replace(array('&nbsp;', '<BR>'), array('', "\n"), $item[$itemKey]);
+                }
+            }
+            if (isset($item['gender'])) {
+                $dataToSave['gender'] = strtolower($item['gender']);
+            }
+            if (isset($item['birthdate'])) {
+                $dataToSave['birth'] = date('Y-m-d', strtotime($item['birthdate']));
+            }
+            foreach ($itemKeys AS $itemKey => $dbKey) {
+                if (isset($item[$itemKey])) {
+                    $dataToSave[$dbKey] = $item[$itemKey];
+                }
+            }
+            $this->Candidate->save(array('Candidate' => $dataToSave));
+        }
+        $json = json_decode(file_get_contents(__DIR__ . '/data/2016_candidates/api/4.json'), true);
+        $electionKey = '2016-01,立法委員,全國[山原]';
+        $electionId = $elections[$electionKey];
+        $candidates[$electionId] = $this->Candidate->find('list', array(
+            'conditions' => array(
+                'election_id' => $electionId,
+                'stage' => '1',
+                'active_id IS NULL',
+            ),
+            'fields' => array('name', 'id'),
+        ));
+        foreach ($json['山地原住民立委'] AS $item) {
+            if (!isset($candidates[$electionId][$item['candidatename']])) {
+                switch ($item['candidatename']) {
+                    case '瓦歷斯‧貝林^Walis‧Perin':
+                        $candidates[$electionId][$item['candidatename']] = '55a737fa-e5fc-424d-aee2-26826ab936af';
+                        break;
+                    case '簡東明^Uliw．Qal jupayare':
+                        $candidates[$electionId][$item['candidatename']] = '550c640c-859c-434d-96e6-025cacb5b862';
+                        break;
+                    case '尤命‧蘇樣':
+                        $candidates[$electionId][$item['candidatename']] = '5654348d-594c-4be1-a3d4-197f6ab936af';
+                        break;
+                }
+            }
+            $this->Candidate->id = $candidates[$electionId][$item['candidatename']];
+            $dataToSave = array(
+                'name' => $item['candidatename'],
+                'party' => $item['recpartyname_1'],
+            );
+            foreach (array('rptedu', 'rptexp', 'rptpolitics') AS $itemKey) {
+                if (isset($item[$itemKey])) {
+                    $item[$itemKey] = str_replace(array('&nbsp;', '<BR>'), array('', "\n"), $item[$itemKey]);
+                }
+            }
+            if (isset($item['gender'])) {
+                $dataToSave['gender'] = strtolower($item['gender']);
+            }
+            if (isset($item['birthdate'])) {
+                $dataToSave['birth'] = date('Y-m-d', strtotime($item['birthdate']));
+            }
+            foreach ($itemKeys AS $itemKey => $dbKey) {
+                if (isset($item[$itemKey])) {
+                    $dataToSave[$dbKey] = $item[$itemKey];
+                }
+            }
+            $this->Candidate->save(array('Candidate' => $dataToSave));
+        }
+
+        $json = json_decode(file_get_contents(__DIR__ . '/data/2016_candidates/api/5.json'), true);
+        $electionKey = '2016-01,立法委員,全國[平原]';
+        $electionId = $elections[$electionKey];
+        $candidates[$electionId] = $this->Candidate->find('list', array(
+            'conditions' => array(
+                'election_id' => $electionId,
+                'stage' => '1',
+                'active_id IS NULL',
+            ),
+            'fields' => array('name', 'id'),
+        ));
+        foreach ($json['平地原住民立委'] AS $item) {
+            if (!isset($candidates[$electionId][$item['candidatename']])) {
+                switch ($item['candidatename']) {
+                    case '廖國棟^Sufin．Siluko':
+                        $candidates[$electionId][$item['candidatename']] = '550c640c-bb00-4f7e-be69-025cacb5b862';
+                        break;
+                    case '鄭天財^Sra‧Kacaw':
+                        $candidates[$electionId][$item['candidatename']] = '550c640c-9548-4cd8-8b20-025cacb5b862';
+                        break;
+                    case '馬躍‧比吼^Mayaw‧Biho':
+                        $candidates[$electionId][$item['candidatename']] = '551d4326-cbb0-4d2f-8b5e-3b446ab936af';
+                        break;
+                    case '達佶祐‧卡造^Takiyo‧Kacaw':
+                        $candidates[$electionId][$item['candidatename']] = '55d8198e-94d4-4bdb-8ae4-77346ab936af';
+                        break;
+                    case '吳國譽^Rahic Amind':
+                        $candidates[$electionId][$item['candidatename']] = '550c640c-41dc-4898-9397-025cacb5b862';
+                        break;
+                    case '嘎礌‧武拜‧哈雅萬^Galahe‧Wubai‧Hayawan':
+                        $candidates[$electionId][$item['candidatename']] = '56586a55-bed4-4918-9b74-094e6ab936af';
+                        break;
+                }
+            }
+            $this->Candidate->id = $candidates[$electionId][$item['candidatename']];
+            $dataToSave = array(
+                'name' => $item['candidatename'],
+                'party' => $item['recpartyname_1'],
+            );
+            foreach (array('rptedu', 'rptexp', 'rptpolitics') AS $itemKey) {
+                if (isset($item[$itemKey])) {
+                    $item[$itemKey] = str_replace(array('&nbsp;', '<BR>'), array('', "\n"), $item[$itemKey]);
+                }
+            }
+            if (isset($item['gender'])) {
+                $dataToSave['gender'] = strtolower($item['gender']);
+            }
+            if (isset($item['birthdate'])) {
+                $dataToSave['birth'] = date('Y-m-d', strtotime($item['birthdate']));
+            }
+            foreach ($itemKeys AS $itemKey => $dbKey) {
+                if (isset($item[$itemKey])) {
+                    $dataToSave[$dbKey] = $item[$itemKey];
+                }
+            }
+            $this->Candidate->save(array('Candidate' => $dataToSave));
+        }
+        $json = json_decode(file_get_contents(__DIR__ . '/data/2016_candidates/api/1.json'), true);
+        $candidates = $this->Candidate->find('list', array(
+            'conditions' => array(
+                'election_id' => '55085e00-a45c-4143-af8a-2f916ab936af',
+                'stage' => '1',
+                'active_id IS NULL',
+            ),
+            'fields' => array('name', 'id'),
+        ));
+        foreach ($json['總統副總統選舉公報'] AS $item) {
+            $this->Candidate->id = $candidates[$item['candidatename']];
+            $this->Candidate->save(array('Candidate' => array(
+                    'name_english' => $item['candidatenameeng'],
+                    'education_level' => $item['educationname'],
+                    'gender' => strtolower($item['gender']),
+                    'birth' => date('Y-m-d', strtotime($item['birthdate'])),
+                    'party' => $item['recpartyname_1'],
+                    'birth_place' => $item['placename'],
+                    'education' => $item['rptedu'],
+                    'experience' => $item['rptexp'],
+            )));
+            $this->Candidate->id = $candidates[$item['candidatename2']];
+            $this->Candidate->save(array('Candidate' => array(
+                    'education_level' => $item['educationname2'],
+                    'gender' => strtolower($item['gender2']),
+                    'birth' => date('Y-m-d', strtotime($item['birthdate2'])),
+                    'party' => $item['recpartyname_1'],
+                    'birth_place' => $item['placename2'],
+                    'education' => $item['rptedu2'],
+                    'experience' => $item['rptexp2'],
+            )));
+        }
     }
 
     public function cec_2016() {
