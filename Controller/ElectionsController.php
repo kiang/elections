@@ -61,6 +61,11 @@ class ElectionsController extends AppController {
         } else {
             $c = array();
         }
+        foreach ($result['children'] AS $k => $v) {
+            if ($v['Election']['rght'] - $v['Election']['lft'] === 1) {
+                $result['children'][$k]['Area'] = $this->Election->getAreas($v['Election']['id']);
+            }
+        }
 
         $this->set('title_for_layout', implode(' > ', $c) . '選舉區 @ ');
         $this->set('items', $result['children']);

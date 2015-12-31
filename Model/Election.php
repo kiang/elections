@@ -103,4 +103,54 @@ class Election extends AppModel {
         return $result;
     }
 
+    public function getAreas($electionId) {
+        $result = array();
+        $areas = $this->AreasElection->find('list', array(
+            'contain' => array('Area'),
+            'fields' => array('Area.id', 'Area.keywords'),
+            'conditions' => array(
+                'AreasElection.Election_id' => $electionId
+            ),
+        ));
+        if (count($areas) === 1) {
+            $result[0] = array_pop($areas);
+            $pos = strrpos($result[0], ',');
+            if (false !== $pos) {
+                $result[0] = substr($result[0], $pos + 1);
+            }
+        } else {
+            $maxElementCount = 0;
+            foreach ($areas AS $areaKey => $areaVal) {
+                $areas[$areaKey] = explode(',', $areaVal);
+                $count = count($areas[$areaKey]);
+                if ($count > $maxElementCount) {
+                    $maxElementCount = $count;
+                }
+            }
+            if ($maxElementCount === 4) {
+                $newAreas = array();
+                foreach ($areas AS $areaKey => $areaVal) {
+                    if (!isset($newAreas[$areaVal[2]])) {
+                        $newAreas[$areaVal[2]] = array();
+                    }
+                    if (isset($areaVal[3])) {
+                        $newAreas[$areaVal[2]][] = $areaVal[3];
+                    }
+                }
+                foreach ($newAreas AS $areaKey => $areaVal) {
+                    if (!empty($areaVal)) {
+                        $result[] = $areaKey . '(' . implode(',', $areaVal) . ')';
+                    } else {
+                        $result[] = $areaKey;
+                    }
+                }
+            } else {
+                foreach ($areas AS $areaKey => $areaVal) {
+                    $result[] = array_pop($areaVal);
+                }
+            }
+        }
+        return $result;
+    }
+
 }

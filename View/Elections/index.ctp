@@ -29,12 +29,14 @@ if (!isset($url)) {
                 <?php foreach ($items as $item): ?>
                     <?php
                     $arrowRight = '<i class="glyphicon glyphicon-chevron-right pull-right"></i>';
+                    if(!empty($item['Area'])) {
+                        $item['Election']['name'] .= '<br /><span class="text-muted">' . implode(', ', $item['Area']) . '</span>';
+                    }
                     if ($item['Election']['rght'] - $item['Election']['lft'] === 1) {
                         echo $this->Html->link($item['Election']['name'] . $arrowRight, array('controller' => 'candidates', 'action' => 'index', $item['Election']['id']), array('class' => 'list-group-item', 'escape' => false));
                     } else {
                         echo $this->Html->link($item['Election']['name'] . $arrowRight, array('action' => 'index', $item['Election']['id']), array('class' => 'list-group-item', 'escape' => false));
                     }
-                    
                     ?>
                 <?php endforeach ?>
             </div>

@@ -317,6 +317,7 @@ class CandidatesController extends AppController {
             if (!empty($electionId)) {
                 $scope['Candidate.election_id'] = $electionId;
                 $this->paginate['Candidate']['order'] = array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC');
+                $result['areas'] = $this->Candidate->Election->getAreas($electionId);
             } else {
                 $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
             }
@@ -338,7 +339,9 @@ class CandidatesController extends AppController {
         } else {
             $this->request->params['paging'] = $result['paging'];
         }
-
+        if(!isset($result['areas'])) {
+            $result['areas'] = array();
+        }
 
         $c = array();
         if (!empty($result['parents'])) {
@@ -350,6 +353,7 @@ class CandidatesController extends AppController {
         $this->set('electionId', $electionId);
         $this->set('url', array($electionId));
         $this->set('parents', $result['parents']);
+        $this->set('areas', $result['areas']);
     }
 
     function add($electionId = '') {

@@ -14,6 +14,9 @@
                 }
             }
             echo '候選人</h1>';
+            if(!empty($areas)) {
+                echo '<br /><span class="text-muted">' . implode(', ', $areas) . '</span>';
+            }
             echo '<p>&nbsp;</p>';
         } else {
             echo $this->Html->tag('h1', '候選人');
