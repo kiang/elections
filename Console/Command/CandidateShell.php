@@ -108,7 +108,7 @@ class CandidateShell extends AppShell {
                     case '瓦歷斯‧貝林^Walis‧Perin':
                         $candidates[$electionId][$item['candidatename']] = '55a737fa-e5fc-424d-aee2-26826ab936af';
                         break;
-                    case '簡東明^Uliw．Qal jupayare':
+                    case '簡東明^Uliw．Qaljupayare':
                         $candidates[$electionId][$item['candidatename']] = '550c640c-859c-434d-96e6-025cacb5b862';
                         break;
                     case '尤命‧蘇樣':
