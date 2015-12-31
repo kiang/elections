@@ -303,7 +303,7 @@
         <div class="well well-lg"> 
             <strong>政見</strong>
             <hr>
-            <?php echo str_replace('\\n', '<br />', $candidate['Candidate']['platform']); ?>
+            <?php echo nl2br(str_replace('\\n', '<br />', $candidate['Candidate']['platform'])); ?>
         </div>
     </div>
     <?php } ?>
