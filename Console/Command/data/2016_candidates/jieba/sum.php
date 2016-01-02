@@ -13,10 +13,6 @@ $apiPath = dirname(__DIR__) . '/api/';
 if (!file_exists($rawBase)) {
     mkdir($rawBase, 0777, true);
 }
-$items = array('　', '&nbsp;', '<BR>', '(', ')', '&lt;', '&gt;', '<', '>', '，',
-    '、', '。', '.', '：', '「', '」', '；', '（', '）', '！', ',', '～', "U+2029",
-    '●', '】', '【', '《', '》', '』', '『', '－', ':', '-', '—', '˙', '〝', '〞',
-    '‧', '＝', '!', '？', '~', '．', '▓', '〉', '%', '/', '／', '〈', '+', '…');
 for ($i = 3; $i <= 5; $i++) {
     $json = json_decode(file_get_contents($apiPath . '/' . $i . '.json'), true);
     $key = key($json);
@@ -47,7 +43,7 @@ for ($i = 3; $i <= 5; $i++) {
             $platform = $candidate['rptpolitics'];
         }
         if (!empty($platform)) {
-            $platform = str_replace($items, array(' '), $platform);
+            $platform = str_replace(array('　', '&nbsp;', '<BR>', '(', ')', '&lt;', '&gt;', '<', '>'), array(' '), $platform);
             $platform = preg_replace('/[\\s]+/i', ' ', $platform);
             $lines = array();
             exec('/usr/bin/python ' . __DIR__ . '/extract.py ' . $platform, $lines);
