@@ -6,7 +6,62 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->api_2016();
+        $this->tag_2016();
+    }
+
+    public function tag_2016() {
+        // 55085e1a-c494-40e0-ba31-2f916ab936af = 立法委員
+        // 5508642a-7e4c-41bf-a0cd-23d86ab936af = 不分區政黨
+        $root = $this->Candidate->Election->find('first', array(
+            'conditions' => array(
+                'id' => '55085e1a-c494-40e0-ba31-2f916ab936af',
+            ),
+        ));
+        $tags = $this->Candidate->Tag->find('list', array(
+            'conditions' => array(
+                'Tag.name LIKE' => '2016%',
+            ),
+            'fields' => array('name', 'id'),
+        ));
+        $candidates = $this->Candidate->find('all', array(
+            'contain' => array('Election'),
+            'conditions' => array(
+                'Election.lft >' => $root['Election']['lft'],
+                'Election.rght <' => $root['Election']['rght'],
+                'Election.id !=' => '5508642a-7e4c-41bf-a0cd-23d86ab936af',
+                'Candidate.active_id IS NULL',
+                'Candidate.stage' => '1',
+                'Candidate.party !=' => '無',
+            ),
+            'fields' => array('Candidate.id', 'Candidate.party'),
+        ));
+        foreach ($candidates AS $candidate) {
+            $tag = '2016' . $candidate['Candidate']['party'];
+            if (!isset($tags[$tag])) {
+                $this->Candidate->Tag->create();
+                $this->Candidate->Tag->save(array('Tag' => array(
+                        'name' => $tag,
+                )));
+                $tags[$tag] = $this->Candidate->Tag->getInsertID();
+                $this->Candidate->CandidatesTag->create();
+                $this->Candidate->CandidatesTag->save(array('CandidatesTag' => array(
+                        'Candidate_id' => $candidate['Candidate']['id'],
+                        'Tag_id' => $tags[$tag],
+                )));
+            } elseif ($this->Candidate->CandidatesTag->find('count', array(
+                        'conditions' => array(
+                            'Candidate_id' => $candidate['Candidate']['id'],
+                            'Tag_id' => $tags[$tag],
+                        ),
+                    )) == 0) {
+                $this->Candidate->CandidatesTag->create();
+                $this->Candidate->CandidatesTag->save(array('CandidatesTag' => array(
+                        'Candidate_id' => $candidate['Candidate']['id'],
+                        'Tag_id' => $tags[$tag],
+                )));
+            }
+        }
+        $this->Candidate->query('UPDATE tags SET count = (SELECT COUNT(*) FROM candidates_tags WHERE Tag_id = tags.id)');
     }
 
     public function api_2016() {
