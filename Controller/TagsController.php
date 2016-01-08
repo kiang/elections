@@ -110,6 +110,9 @@ class TagsController extends AppController {
 
     public function index() {
         $this->paginate['Tag']['limit'] = 100;
+        $this->paginate['Tag']['order'] = array(
+            'Tag.created' => 'DESC',
+        );
         $tags = $this->paginate($this->Tag);
         $this->set('tags', $tags);
     }
