@@ -6,7 +6,107 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->tag_2016();
+        $this->vote_2016_result();
+    }
+
+    public function vote_2016_result() {
+        $result = TMP . '/vote_2016_result.json';
+        if (!file_exists($result)) {
+            file_put_contents($result, file_get_contents('https://raw.githubusercontent.com/tommy87166/CECresult/master/lastest.json'));
+        }
+        $json = json_decode(file_get_contents($result), true);
+        $rows = $parties = array();
+        foreach ($json AS $cols) {
+            foreach ($cols[1] AS $col) {
+                switch (count($col)) {
+                    case 7:
+                        $col[4] = preg_replace('/[^0-9]/', '', $col[4]);
+                        $rows[$col[2]] = $col;
+                        break;
+                    case 4:
+                        $col[2] = preg_replace('/[^0-9]/', '', $col[2]);
+                        $parties[$col[1]] = $col;
+                        break;
+                }
+            }
+        }
+        $root = $this->Candidate->Election->find('first', array(
+            'conditions' => array(
+                'id' => '55085e1a-c494-40e0-ba31-2f916ab936af',
+            ),
+        ));
+        $candidates = $this->Candidate->find('all', array(
+            'contain' => array('Election'),
+            'conditions' => array(
+                'Election.lft >' => $root['Election']['lft'],
+                'Election.rght <' => $root['Election']['rght'],
+                'Candidate.active_id IS NULL',
+                'Candidate.stage' => '1',
+            ),
+            'fields' => array('Candidate.id', 'Candidate.name',),
+        ));
+        foreach ($candidates AS $candidate) {
+            $key = $candidate['Candidate']['name'];
+            if ($candidate['Election']['id'] !== '5508642a-7e4c-41bf-a0cd-23d86ab936af') {
+                if (!isset($rows[$key])) {
+                    switch ($key) {
+                        case '吳國譽^Rahic Amind':
+                            $key = '吳國譽Rahic Amind';
+                            break;
+                        case '簡東明^Uliw．Qaljupayare':
+                            $key = '簡東明Uliw．Qaljupayare';
+                            break;
+                        case '鄭天財^Sra．Kacaw':
+                            $key = '鄭天財Sra．Kacaw';
+                            break;
+                        case '廖國棟^Sufin．Siluko':
+                            $key = '廖國棟Sufin．Siluko';
+                            break;
+                        case '馬躍．比吼^Mayaw．Biho':
+                            $key = '馬躍‧比吼Mayaw‧Biho';
+                            break;
+                        case '瓦歷斯．貝林^Walis．Perin':
+                            $key = '瓦歷斯‧貝林Walis‧Perin';
+                            break;
+                        case '達佶祐．卡造^Takiyo．Kacaw':
+                            $key = '達佶祐‧卡造Takiyo‧Kacaw';
+                            break;
+                        case '尤命．蘇樣':
+                            $key = '尤命‧蘇樣';
+                            break;
+                        case '嘎礌．武拜．哈雅萬^Galahe．Wubai．Hayawan':
+                            $key = '嘎礌‧武拜‧哈雅萬Galahe‧Wubai‧Hayawan';
+                            break;
+                    }
+                }
+                if (isset($rows[$key])) {
+                    $data = array(
+                        'vote_count' => $rows[$key][4]
+                    );
+                    if ($rows[$key][0] === '◎') {
+                        $data['stage'] = '2';
+                    }
+                    $this->Candidate->id = $candidate['Candidate']['id'];
+                    $this->Candidate->save(array('Candidate' => $data));
+                }
+            } else {
+                if (!isset($parties[$key])) {
+                    switch ($key) {
+                        case '時代力量黨':
+                            $key = '時代力量';
+                            break;
+                    }
+                }
+                $data = array(
+                    'vote_count' => $parties[$key][2]
+                );
+                if ($parties[$key][3] > 5) {
+                    $data['stage'] = '2';
+                }
+                $this->Candidate->id = $candidate['Candidate']['id'];
+                $this->Candidate->save(array('Candidate' => $data));
+            }
+        }
     }
 
     public function tag_2016() {
