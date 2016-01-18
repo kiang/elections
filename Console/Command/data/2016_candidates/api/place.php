@@ -109,8 +109,8 @@ foreach ($json['投開票所'] AS $place) {
 ksort($places);
 $fh = fopen(__DIR__ . '/place.csv', 'w');
 fputcsv($fh, array(
-    '名稱', '所在村里', '住址', '座標住址', '座標緯度', '座標經度'
+    '代號', '名稱', '所在村里', '住址', '座標住址', '座標緯度', '座標經度'
 ));
-foreach ($places AS $place) {
-    fputcsv($fh, $place);
+foreach ($places AS $code => $place) {
+    fputcsv($fh, array_merge(array($code), $place));
 }
