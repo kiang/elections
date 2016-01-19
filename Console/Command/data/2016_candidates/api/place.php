@@ -6,7 +6,18 @@
  * 
  * 1月16日選舉投開票日，全國投開票所有1萬5582處，包含重要2583處、次要2620處、一般1萬379處，警政署已編排1萬5618名警力、協勤民力2萬2708名協助維護安全
  * http://www.cna.com.tw/news/asoc/201601150195-1.aspx
+ * 
+ * 10411_age.csv from https://github.com/kiang/tw_population/blob/master/cunli/2015/11.csv
  */
+
+$population = $codeMap = array();
+$fh = fopen(dirname(dirname(__DIR__)) . '/10411_age.csv', 'r');
+fgetcsv($fh, 4096);
+while ($line = fgetcsv($fh, 4096)) {
+    $population[$line[1]] = $line;
+    $codeMap[$line[2]] = substr($line[1], 0, 7);
+}
+
 $json = json_decode(file_get_contents(__DIR__ . '/7.json'), true);
 /*
  * Array
@@ -57,6 +68,9 @@ foreach ($json['投開票所'] AS $place) {
         if (!isset($places[$code])) {
             $name = "{$place['name']}";
             $village = "{$place['cityname']}{$place['areaname']}{$place['villagename']}";
+            $codeKey = "{$place['cityname']}{$place['areaname']}";
+            $codeKey = str_replace(array('頭份市', '臺北市', '臺中市', '臺南市'), array('頭份鎮', '台北市', '台中市', '台南市'), $codeKey);
+            $pCode = $codeMap[$codeKey] . '-' . $place['villageno'];
             $address = "{$place['addrcityname']}{$place['addrareaname']}{$place['addrvillagename']}{$place['addressroad']}";
             $targetAddress = $address;
             $pos = strpos($targetAddress, '號');
@@ -101,7 +115,7 @@ foreach ($json['投開票所'] AS $place) {
                 $formattedAddress = $jsonResult['AddressList'][0]['FULL_ADDR'];
             }
             $places[$code] = array(
-                $name, $village, $address, $formattedAddress, $lat, $lng
+                $code, $name, $pCode, $village, $population[$pCode][5], $population[$pCode][11],$address, $formattedAddress, $lat, $lng
             );
         }
     }
@@ -109,8 +123,8 @@ foreach ($json['投開票所'] AS $place) {
 ksort($places);
 $fh = fopen(__DIR__ . '/place.csv', 'w');
 fputcsv($fh, array(
-    '代號', '名稱', '所在村里', '住址', '座標住址', '座標緯度', '座標經度'
+    '投票所代號', '名稱', '村里代碼', '村里', '村里人口', '村里投票人數', '住址', '座標住址', '座標緯度', '座標經度'
 ));
 foreach ($places AS $code => $place) {
-    fputcsv($fh, array_merge(array($code), $place));
+    fputcsv($fh, $place);
 }
