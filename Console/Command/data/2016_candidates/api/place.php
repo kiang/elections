@@ -10,13 +10,21 @@
  * 10411_age.csv from https://github.com/kiang/tw_population/blob/master/cunli/2015/11.csv
  */
 
-$population = $codeMap = array();
+$population = $codeMap = $cunliResult = array();
+
+$fh = fopen(dirname(dirname(__DIR__)) . '/2014_candidates/cunli_result.csv', 'r');
+while ($line = fgetcsv($fh, 2048)) {
+    $cunliResult[$line[0]] = $line;
+}
+fclose($fh);
+
 $fh = fopen(dirname(dirname(__DIR__)) . '/10411_age.csv', 'r');
 fgetcsv($fh, 4096);
 while ($line = fgetcsv($fh, 4096)) {
     $population[$line[1]] = $line;
-    $codeMap[$line[2]] = substr($line[1], 0, 7);
+    $codeMap[$line[2]] = substr($line[1], 0, 8);
 }
+fclose($fh);
 
 $json = json_decode(file_get_contents(__DIR__ . '/7.json'), true);
 /*
@@ -69,7 +77,7 @@ foreach ($json['投開票所'] AS $place) {
             $name = "{$place['name']}";
             $village = "{$place['cityname']}{$place['areaname']}{$place['villagename']}";
             $codeKey = "{$place['cityname']}{$place['areaname']}";
-            $codeKey = str_replace(array('頭份市', '臺北市', '臺中市', '臺南市'), array('頭份鎮', '台北市', '台中市', '台南市'), $codeKey);
+            $codeKey = str_replace(array('頭份市'), array('頭份鎮'), $codeKey);
             $pCode = $codeMap[$codeKey] . '-' . $place['villageno'];
             $address = "{$place['addrcityname']}{$place['addrareaname']}{$place['addrvillagename']}{$place['addressroad']}";
             $targetAddress = $address;
@@ -115,7 +123,9 @@ foreach ($json['投開票所'] AS $place) {
                 $formattedAddress = $jsonResult['AddressList'][0]['FULL_ADDR'];
             }
             $places[$code] = array(
-                $code, $name, $pCode, $village, $population[$pCode][5], $population[$pCode][11],$address, $formattedAddress, $lat, $lng
+                $code, $name, $pCode, $village, $population[$pCode][5], $population[$pCode][11],
+                $cunliResult[$pCode][2], $cunliResult[$pCode][3],
+                $address, $formattedAddress, $lat, $lng
             );
         }
     }
@@ -123,7 +133,7 @@ foreach ($json['投開票所'] AS $place) {
 ksort($places);
 $fh = fopen(__DIR__ . '/place.csv', 'w');
 fputcsv($fh, array(
-    '投票所代號', '名稱', '村里代碼', '村里', '村里人口', '村里投票人數', '住址', '座標住址', '座標緯度', '座標經度'
+    '投票所代號', '名稱', '村里代碼', '村里', '村里人口', '村里選舉人', '村里長', '政黨', '住址', '座標住址', '座標緯度', '座標經度'
 ));
 foreach ($places AS $code => $place) {
     fputcsv($fh, $place);

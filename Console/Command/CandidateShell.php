@@ -6,7 +6,49 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->vote_2016_result();
+        $this->dump_2014_cunli();
+    }
+
+    public function dump_2014_cunli() {
+        $root = $this->Candidate->Election->find('first', array(
+            'conditions' => array(
+                'id' => '53c02030-eab8-4960-a0d6-5460acb5b862',
+            ),
+        ));
+        $candidates = $this->Candidate->find('all', array(
+            'contain' => array(
+                'Election' => array(
+                    'Area' => array(
+                        'fields' => array('Area.code', 'Area.keywords'),
+                    ),
+                ),
+            ),
+            'conditions' => array(
+                'Election.lft >' => $root['Election']['lft'],
+                'Election.rght <' => $root['Election']['rght'],
+                'Candidate.active_id IS NULL',
+                'Candidate.stage' => '2',
+            ),
+            'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party'),
+        ));
+        $lines = array();
+        foreach ($candidates AS $candidate) {
+            if(empty($candidate['Election']['Area'][0]['code'])) {
+                echo str_replace(',', '', $candidate['Election']['Area'][0]['keywords']) . "\n";
+            }
+            $lines[$candidate['Election']['Area'][0]['code']] = array(
+                $candidate['Election']['Area'][0]['code'],
+                str_replace(',', '', $candidate['Election']['Area'][0]['keywords']),
+                $candidate['Candidate']['name'],
+                $candidate['Candidate']['party'],
+            );
+        }
+        ksort($lines);
+        $fh = fopen(__DIR__ . '/data/2014_candidates/cunli_result.csv', 'w');
+        foreach ($lines AS $line) {
+            fputcsv($fh, $line);
+        }
+        fclose($fh);
     }
 
     public function vote_2016_result() {
