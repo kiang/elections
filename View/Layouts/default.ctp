@@ -22,6 +22,13 @@
         <script>
             var base_url = '<?php echo $this->Html->url('/'); ?>';
         </script>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-5571465503362954",
+        enable_page_level_ads: true
+        });
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-static-top navbar-inverse">
@@ -259,12 +266,6 @@
             ga('create', 'UA-51256613-1', 'auto');
             ga('send', 'pageview');
             ga('set', 'contentGroup1', 'elections');
-
-        </script>
-        <?php } ?>
-        <?php if (Configure::read('debug') === 0 && empty($groupId)) { ?>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
         <?php } ?>
