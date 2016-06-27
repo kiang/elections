@@ -124,6 +124,7 @@ class MembersController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         if (!empty($this->request->data)) {
+            $this->request->data['Member']['id'] = $id;
             $oldgroupid = $this->Member->field('group_id', array('Member.id' => $this->request->data['Member']['id']));
             if ($this->Member->save($this->request->data)) {
                 if ($oldgroupid !== $this->request->data['Member']['group_id']) {
