@@ -7,8 +7,8 @@ class Link extends AppModel {
     var $name = 'Link';
     var $validate = array(
         'title' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
+            'notBlank' => array(
+                'rule' => 'notBlank',
                 'message' => 'This field is required',
             ),
         ),

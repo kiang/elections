@@ -7,8 +7,8 @@ class Candidate extends AppModel {
     var $name = 'Candidate';
     var $validate = array(
         'name' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
+            'notBlank' => array(
+                'rule' => 'notBlank',
                 'message' => 'This field is required',
             ),
         ),

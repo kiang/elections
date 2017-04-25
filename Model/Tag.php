@@ -7,8 +7,8 @@ class Tag extends AppModel {
     var $name = 'Tag';
     var $validate = array(
         'name' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
+            'notBlank' => array(
+                'rule' => 'notBlank',
                 'message' => 'This field is required',
             ),
         ),

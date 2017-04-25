@@ -7,8 +7,8 @@ class Keyword extends AppModel {
     var $name = 'Keyword';
     var $validate = array(
         'keyword' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
+            'notBlank' => array(
+                'rule' => 'notBlank',
                 'message' => 'This field is required',
             ),
         ),
