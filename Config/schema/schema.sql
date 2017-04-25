@@ -161,7 +161,7 @@ CREATE TABLE `candidates` (
   `is_reviewed` tinyint(1) NOT NULL DEFAULT '0',
   `active_id` binary(36) DEFAULT NULL,
   `stage` int(2) NOT NULL DEFAULT '0',
-  `vote_count` int(10) NOT NULL,
+  `vote_count` int(10) NOT NULL DEFAULT '0',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `party` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
