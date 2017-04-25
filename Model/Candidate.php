@@ -40,7 +40,7 @@ class Candidate extends AppModel {
                 $im = new Imagick($this->data['Candidate']['image']['tmp_name']);
                 $im->resizeImage(512, 512, Imagick::FILTER_CATROM, 1, true);
                 $path = WWW_ROOT . 'media';
-                $fileName = str_replace('-', '/', String::uuid()) . '.jpg';
+                $fileName = str_replace('-', '/', CakeText::uuid()) . '.jpg';
                 if (!file_exists($path . '/' . dirname($fileName))) {
                     mkdir($path . '/' . dirname($fileName), 0777, true);
                 }

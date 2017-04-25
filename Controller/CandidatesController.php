@@ -787,7 +787,7 @@ $this->layout = 'ajax';
                 unset($candidate['Candidate']['modified']);
                 $path = WWW_ROOT . 'media';
                 if (!empty($candidate['Candidate']['image']) && file_exists($path . '/' . $candidate['Candidate']['image'])) {
-                    $fileName = str_replace('-', '/', String::uuid()) . '.jpg';
+                    $fileName = str_replace('-', '/', CakeText::uuid()) . '.jpg';
                     if (!file_exists($path . '/' . dirname($fileName))) {
                         mkdir($path . '/' . dirname($fileName), 0777, true);
                     }
