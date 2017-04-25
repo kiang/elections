@@ -14,7 +14,7 @@ class CandidatesController extends ApiAppController {
                 'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.no', 'Candidate.election_id'),
                 'conditions' => array(
                     'Candidate.active_id IS NULL',
-                    'Candidate.name LIKE' => "%{$term}%",
+                    'Candidate.name LIKE' => "{$term}",
                 ),
                 'limit' => 20,
             ));

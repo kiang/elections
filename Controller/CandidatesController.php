@@ -178,6 +178,7 @@ class CandidatesController extends AppController {
     }
 
     public function s() {
+$this->layout = 'ajax';
         $result = array();
         if (isset($this->request->query['term'])) {
             $keyword = Sanitize::clean($this->request->query['term']);

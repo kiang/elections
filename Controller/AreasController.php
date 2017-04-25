@@ -12,7 +12,7 @@ class AreasController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow('index', 'map', 'json', 'breadcrumb', 's');
+            $this->Auth->allow('index', 'map', 'json', 'breadcrumb', 's', 'election');
         }
     }
 
@@ -189,6 +189,22 @@ class AreasController extends AppController {
         $this->set('url', array($parentId));
         $this->set('parentId', $parentId);
         $this->set('areaMethod', $areaMethod);
+    }
+
+    function election($electionId = '') {
+        $result = array();
+        if (!empty($electionId)) {
+            $result = $this->Area->AreasElection->find('all', array(
+                'conditions' => array(
+                    'Election_id' => $electionId,
+                ),
+                'contain' => array(
+                    'Area',
+                ),
+            ));
+        }
+        echo json_encode($result);
+        exit();
     }
 
     function admin_index($parentId = '', $foreignModel = null, $foreignId = '', $op = null) {
