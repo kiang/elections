@@ -5,7 +5,7 @@ class AreaShell extends AppShell {
     public $uses = array('Area');
 
     public function main() {
-        $this->generateKeywords();
+        $this->duplicate_tree();
     }
 
     public function generateKeywords() {
@@ -33,23 +33,68 @@ class AreaShell extends AppShell {
                 'Area.rght <=' => $baseRootNode['Area']['rght'],
             ),
             'order' => array('Area.lft' => 'ASC'),
+            'contain' => array('Election'),
         ));
         $count = count($nodes);
         $this->out("found {$count} nodes");
-        $nodeMap = array();
+        $areaMap = $electionMap = array();
         foreach ($nodes AS $node) {
             $oldNodeId = $node['Area']['id'];
             unset($node['Area']['id']);
             unset($node['Area']['lft']);
             unset($node['Area']['rght']);
+
             if (empty($node['Area']['parent_id'])) {
                 unset($node['Area']['parent_id']);
             } else {
-                $node['Area']['parent_id'] = $nodeMap[$node['Area']['parent_id']];
+                $node['Area']['parent_id'] = $areaMap[$node['Area']['parent_id']];
             }
             $this->Area->create();
             if ($this->Area->save($node)) {
-                $nodeMap[$oldNodeId] = $this->Area->getInsertID();
+                $areaMap[$oldNodeId] = $this->Area->getInsertID();
+
+                //to create the election
+                foreach ($node['Election'] AS $election) {
+                    $oldElectionId = $election['id'];
+                    unset($election['id']);
+                    unset($election['lft']);
+                    unset($election['rght']);
+                    if (empty($election['parent_id'])) {
+                        unset($election['parent_id']);
+                    } else {
+                        if (!isset($electionMap[$election['parent_id']])) {
+                            $parents = $this->Area->Election->getPath($election['parent_id']);
+                            foreach ($parents AS $parent) {
+                                $oldParentId = $parent['Election']['id'];
+                                if (!isset($electionMap[$oldParentId])) {
+                                    unset($parent['Election']['id']);
+                                    unset($parent['Election']['lft']);
+                                    unset($parent['Election']['rght']);
+                                    if (empty($parent['Election']['parent_id'])) {
+                                        unset($parent['Election']['parent_id']);
+                                    } else {
+                                        $parent['Election']['parent_id'] = $electionMap[$parent['Election']['parent_id']];
+                                    }
+                                    $this->Area->Election->create();
+                                    $this->Area->Election->save($parent);
+                                    $electionMap[$oldParentId] = $this->Area->Election->getInsertID();
+                                }
+                            }
+                        }
+                        $election['parent_id'] = $electionMap[$election['parent_id']];
+                    }
+                    if (!isset($electionMap[$oldElectionId])) {
+                        $this->Area->Election->create();
+                        $this->Area->Election->save(array('Election' => $election));
+                        $electionMap[$oldElectionId] = $this->Area->Election->getInsertID();
+                    }
+
+                    $this->Area->AreasElection->create();
+                    $this->Area->AreasElection->save(array('AreasElection' => array(
+                            'Area_id' => $areaMap[$oldNodeId],
+                            'Election_id' => $electionMap[$oldElectionId],
+                    )));
+                }
             }
             if (--$count % 100 === 0) {
                 $this->out("{$count} records left");
