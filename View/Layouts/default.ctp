@@ -84,7 +84,6 @@
             <div class="row">
                 <?php echo $this->Html->getCrumbList(array('class' => 'breadcrumb breadcrumb-title')); ?>
             </div>
-
             <div class="row">
                 <div class="btn-group">
                     <?php

@@ -101,7 +101,10 @@ class AreasController extends AppController {
 
         $this->set('areaId', $parentId);
         $this->set('parents', $result);
-
+        $this->set('rootNodes', $this->Area->find('list', array(
+            'conditions' => array('Area.parent_id IS NULL'),
+            'fields' => array('Area.id', 'Area.name'),
+        )));
         $this->set('title_for_layout', implode(' > ', Set::extract('{n}.Area.name', $result)) . '行政區 @ ');
     }
 
