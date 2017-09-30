@@ -5,19 +5,25 @@ class AreaShell extends AppShell {
     public $uses = array('Area');
 
     public function main() {
-        $this->duplicate_tree();
+        $this->generateKeywords();
     }
 
     public function generateKeywords() {
         $nodes = $this->Area->find('list', array(
             'fields' => array('id', 'id'),
         ));
+        $count = count($nodes);
+        $this->out("found {$count} nodes");
+        $count = 0;
         foreach ($nodes AS $nodeId) {
             $path = $this->Area->getPath($nodeId, array('id', 'name'));
             $this->Area->save(array('Area' => array(
                     'id' => $nodeId,
                     'keywords' => implode(',', Set::extract('{n}.Area.name', $path)),
             )));
+            if(++$count % 1000 === 0) {
+                $this->out("{$count} done");
+            }
         }
     }
 
