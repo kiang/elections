@@ -50,7 +50,9 @@ class AreaShell extends AppShell {
                 $node['Area']['parent_id'] = $areaMap[$node['Area']['parent_id']];
             }
             $this->Area->create();
-            if ($this->Area->save($node)) {
+            if ($this->Area->save(array(
+                        'Area' => $node['Area']
+                    ))) {
                 $areaMap[$oldNodeId] = $this->Area->getInsertID();
 
                 //to create the election
@@ -75,6 +77,9 @@ class AreaShell extends AppShell {
                                     } else {
                                         $parent['Election']['parent_id'] = $electionMap[$parent['Election']['parent_id']];
                                     }
+                                    if (isset($parent['AreasElection'])) {
+                                        unset($parent['AreasElection']);
+                                    }
                                     $this->Area->Election->create();
                                     $this->Area->Election->save($parent);
                                     $electionMap[$oldParentId] = $this->Area->Election->getInsertID();
@@ -84,6 +89,9 @@ class AreaShell extends AppShell {
                         $election['parent_id'] = $electionMap[$election['parent_id']];
                     }
                     if (!isset($electionMap[$oldElectionId])) {
+                        if (isset($election['AreasElection'])) {
+                            unset($election['AreasElection']);
+                        }
                         $this->Area->Election->create();
                         $this->Area->Election->save(array('Election' => $election));
                         $electionMap[$oldElectionId] = $this->Area->Election->getInsertID();
