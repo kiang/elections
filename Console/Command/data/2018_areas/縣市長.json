@@ -1,0 +1,322 @@
+[
+    {
+        "id": "59cfc6a1-1380-4b1e-a672-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6a1-1380-4b1e-a672-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 連江縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "12481",
+        "population_electors": "10169",
+        "areas": [
+            {
+                "id": "59cfc6a1-caec-4f1b-aaea-1a2bacb5b862",
+                "name": "連江縣",
+                "ivid": "LJF",
+                "code": "09007",
+                "population": "12481",
+                "population_electors": "10169",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6a1-caec-4f1b-aaea-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6a4-c348-4564-b569-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6a4-c348-4564-b569-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 金門縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "126156",
+        "population_electors": "104516",
+        "areas": [
+            {
+                "id": "59cfc6a4-d024-46e4-bf23-1a2bacb5b862",
+                "name": "金門縣",
+                "ivid": "JME",
+                "code": "09020",
+                "population": "126156",
+                "population_electors": "104516",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6a4-d024-46e4-bf23-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6a9-cf20-4ae3-b76f-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6a9-cf20-4ae3-b76f-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 宜蘭縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "458784",
+        "population_electors": "366402",
+        "areas": [
+            {
+                "id": "59cfc6a9-251c-4917-9b36-1a2bacb5b862",
+                "name": "宜蘭縣",
+                "ivid": "ILA",
+                "code": "10002",
+                "population": "458784",
+                "population_electors": "366402",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6a9-251c-4917-9b36-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6ed-c4cc-4a46-89b1-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6ed-c4cc-4a46-89b1-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 新竹縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "536111",
+        "population_electors": "405557",
+        "areas": [
+            {
+                "id": "59cfc6ed-3e9c-4a7f-af1e-1a2bacb5b862",
+                "name": "新竹縣",
+                "ivid": "HSQ",
+                "code": "10004",
+                "population": "536111",
+                "population_electors": "405557",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6ed-3e9c-4a7f-af1e-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc704-7698-452a-8361-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc704-7698-452a-8361-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 苗栗縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "566918",
+        "population_electors": "447721",
+        "areas": [
+            {
+                "id": "59cfc703-b1c4-4db6-ad64-1a2bacb5b862",
+                "name": "苗栗縣",
+                "ivid": "MIA",
+                "code": "10005",
+                "population": "566918",
+                "population_electors": "447721",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc703-b1c4-4db6-ad64-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc724-b068-44b8-9a3d-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc724-b068-44b8-9a3d-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 彰化縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "1292126",
+        "population_electors": "1017597",
+        "areas": [
+            {
+                "id": "59cfc724-0b5c-4352-96f5-1a2bacb5b862",
+                "name": "彰化縣",
+                "ivid": "CHA",
+                "code": "10007",
+                "population": "1292126",
+                "population_electors": "1017597",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc724-0b5c-4352-96f5-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc765-3454-4f05-ad9b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc765-3454-4f05-ad9b-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 南投縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "515081",
+        "population_electors": "415478",
+        "areas": [
+            {
+                "id": "59cfc765-0f5c-48e5-8bab-1a2bacb5b862",
+                "name": "南投縣",
+                "ivid": "NAN",
+                "code": "10008",
+                "population": "515081",
+                "population_electors": "415478",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc765-0f5c-48e5-8bab-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc787-e5a4-4aaa-bb5d-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc787-e5a4-4aaa-bb5d-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 雲林縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "705022",
+        "population_electors": "566196",
+        "areas": [
+            {
+                "id": "59cfc786-2534-4549-899d-1a2bacb5b862",
+                "name": "雲林縣",
+                "ivid": "YUN",
+                "code": "10009",
+                "population": "705022",
+                "population_electors": "566196",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc786-2534-4549-899d-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc7ba-6a5c-4690-b3a5-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc7ba-6a5c-4690-b3a5-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 嘉義縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "526028",
+        "population_electors": "432211",
+        "areas": [
+            {
+                "id": "59cfc7ba-949c-4625-b60f-1a2bacb5b862",
+                "name": "嘉義縣",
+                "ivid": "CYQ",
+                "code": "10010",
+                "population": "526028",
+                "population_electors": "432211",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc7ba-949c-4625-b60f-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc7e7-e0c8-4bdb-b022-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc7e7-e0c8-4bdb-b022-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 屏東縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "849326",
+        "population_electors": "688845",
+        "areas": [
+            {
+                "id": "59cfc7e7-82f4-4951-b706-1a2bacb5b862",
+                "name": "屏東縣",
+                "ivid": "PIF",
+                "code": "10013",
+                "population": "849326",
+                "population_electors": "688845",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc7e7-82f4-4951-b706-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc82d-e4c4-4f25-ac69-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc82d-e4c4-4f25-ac69-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 臺東縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "224931",
+        "population_electors": "180084",
+        "areas": [
+            {
+                "id": "59cfc82d-e4dc-4d6b-90a7-1a2bacb5b862",
+                "name": "臺東縣",
+                "ivid": "TTT",
+                "code": "10014",
+                "population": "224931",
+                "population_electors": "180084",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc82d-e4dc-4d6b-90a7-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc84b-e0c4-4823-ad0c-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc84b-e0c4-4823-ad0c-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 花蓮縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "333531",
+        "population_electors": "266975",
+        "areas": [
+            {
+                "id": "59cfc84b-c3ac-48b2-9150-1a2bacb5b862",
+                "name": "花蓮縣",
+                "ivid": "HUA",
+                "code": "10015",
+                "population": "333531",
+                "population_electors": "266975",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc84b-c3ac-48b2-9150-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc868-062c-4249-9e7e-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc868-062c-4249-9e7e-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 澎湖縣",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "101482",
+        "population_electors": "82814",
+        "areas": [
+            {
+                "id": "59cfc868-c128-42b0-8137-1a2bacb5b862",
+                "name": "澎湖縣",
+                "ivid": "PEN",
+                "code": "10016",
+                "population": "101482",
+                "population_electors": "82814",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc868-c128-42b0-8137-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc878-e50c-41fc-8584-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc878-e50c-41fc-8584-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 基隆市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "373597",
+        "population_electors": "304786",
+        "areas": [
+            {
+                "id": "59cfc878-4288-4f2b-965b-1a2bacb5b862",
+                "name": "基隆市",
+                "ivid": "KEE",
+                "code": "10017",
+                "population": "373597",
+                "population_electors": "304786",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc878-4288-4f2b-965b-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc891-1a80-436c-873a-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc891-1a80-436c-873a-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 新竹市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "422760",
+        "population_electors": "318561",
+        "areas": [
+            {
+                "id": "59cfc891-7f4c-4a70-9bee-1a2bacb5b862",
+                "name": "新竹市",
+                "ivid": "HSZ",
+                "code": "10018",
+                "population": "422760",
+                "population_electors": "318561",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc891-7f4c-4a70-9bee-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8a2-dea8-4be8-acb3-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8a2-dea8-4be8-acb3-1a2bacb5b862",
+        "election": "2018-11 > 縣市長 > 嘉義市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "270826",
+        "population_electors": "209286",
+        "areas": [
+            {
+                "id": "59cfc8a2-f794-4614-a32e-1a2bacb5b862",
+                "name": "嘉義市",
+                "ivid": "CYI",
+                "code": "10020",
+                "population": "270826",
+                "population_electors": "209286",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8a2-f794-4614-a32e-1a2bacb5b862"
+            }
+        ]
+    }
+]

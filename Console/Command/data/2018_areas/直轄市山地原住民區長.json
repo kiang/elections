@@ -1,0 +1,122 @@
+[
+    {
+        "id": "59cfc6ec-a27c-4b41-9f47-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6ec-a27c-4b41-9f47-1a2bacb5b862",
+        "election": "2018-11 > 直轄市山地原住民區長 > 桃園市 > 復興區",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "10890",
+        "population_electors": "8404",
+        "areas": [
+            {
+                "id": "59cfc6ec-4010-42ed-811a-1a2bacb5b862",
+                "name": "復興區",
+                "ivid": "TAO-130",
+                "code": "10003130",
+                "population": "10890",
+                "population_electors": "8404",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6ec-4010-42ed-811a-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc95c-3580-491a-9429-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc95c-3580-491a-9429-1a2bacb5b862",
+        "election": "2018-11 > 直轄市山地原住民區長 > 高雄市 > 茂林區",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "1906",
+        "population_electors": "1454",
+        "areas": [
+            {
+                "id": "59cfc95c-322c-40d9-b8d2-1a2bacb5b862",
+                "name": "茂林區",
+                "ivid": "KHH-360",
+                "code": "64000360",
+                "population": "1906",
+                "population_electors": "1454",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95c-322c-40d9-b8d2-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc95c-8d50-4281-b26e-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc95c-8d50-4281-b26e-1a2bacb5b862",
+        "election": "2018-11 > 直轄市山地原住民區長 > 高雄市 > 桃源區",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "4289",
+        "population_electors": "3238",
+        "areas": [
+            {
+                "id": "59cfc95c-ad60-4bb7-9e44-1a2bacb5b862",
+                "name": "桃源區",
+                "ivid": "KHH-370",
+                "code": "64000370",
+                "population": "4289",
+                "population_electors": "3238",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95c-ad60-4bb7-9e44-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc95e-a5a4-4cf5-b908-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc95e-a5a4-4cf5-b908-1a2bacb5b862",
+        "election": "2018-11 > 直轄市山地原住民區長 > 高雄市 > 那瑪夏區",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "3210",
+        "population_electors": "2323",
+        "areas": [
+            {
+                "id": "59cfc95e-57fc-47ae-b5c3-1a2bacb5b862",
+                "name": "那瑪夏區",
+                "ivid": "KHH-380",
+                "code": "64000380",
+                "population": "3210",
+                "population_electors": "2323",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95e-57fc-47ae-b5c3-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9ef-a420-4a59-9863-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9ef-a420-4a59-9863-1a2bacb5b862",
+        "election": "2018-11 > 直轄市山地原住民區長 > 新北市 > 烏來區",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "6126",
+        "population_electors": "4771",
+        "areas": [
+            {
+                "id": "59cfc9ef-3bac-4940-b400-1a2bacb5b862",
+                "name": "烏來區",
+                "ivid": "TPQ-290",
+                "code": "65000290",
+                "population": "6126",
+                "population_electors": "4771",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9ef-3bac-4940-b400-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca4c-56d8-4b6a-9ab5-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca4c-56d8-4b6a-9ab5-1a2bacb5b862",
+        "election": "2018-11 > 直轄市山地原住民區長 > 臺中市 > 和平區",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "10810",
+        "population_electors": "8867",
+        "areas": [
+            {
+                "id": "59cfca4c-fef0-4753-8ed1-1a2bacb5b862",
+                "name": "和平區",
+                "ivid": "TXG-290",
+                "code": "66000290",
+                "population": "10810",
+                "population_electors": "8867",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca4c-fef0-4753-8ed1-1a2bacb5b862"
+            }
+        ]
+    }
+]

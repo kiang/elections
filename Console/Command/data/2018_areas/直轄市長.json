@@ -1,0 +1,122 @@
+[
+    {
+        "id": "59cfc6c2-1d60-400e-be3d-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6c2-1d60-400e-be3d-1a2bacb5b862",
+        "election": "2018-11 > 直轄市長 > 桃園市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2054260",
+        "population_electors": "1575900",
+        "areas": [
+            {
+                "id": "59cfc6c2-d6a0-4522-b43b-1a2bacb5b862",
+                "name": "桃園市",
+                "ivid": "TAO",
+                "code": "10003",
+                "population": "2054260",
+                "population_electors": "1575900",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6c2-d6a0-4522-b43b-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8ac-ed20-4522-bb0c-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8ac-ed20-4522-bb0c-1a2bacb5b862",
+        "election": "2018-11 > 直轄市長 > 臺北市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2695649",
+        "population_electors": "2162080",
+        "areas": [
+            {
+                "id": "59cfc8ac-e0dc-4f7e-8352-1a2bacb5b862",
+                "name": "臺北市",
+                "ivid": "TPE",
+                "code": "63000",
+                "population": "2695649",
+                "population_electors": "2162080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8ac-e0dc-4f7e-8352-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8e1-098c-48c3-817c-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8e1-098c-48c3-817c-1a2bacb5b862",
+        "election": "2018-11 > 直轄市長 > 高雄市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2776752",
+        "population_electors": "2235929",
+        "areas": [
+            {
+                "id": "59cfc8e1-32e0-47d9-9719-1a2bacb5b862",
+                "name": "高雄市",
+                "ivid": "KHH",
+                "code": "64000",
+                "population": "2776752",
+                "population_electors": "2235929",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8e1-32e0-47d9-9719-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc95f-3fcc-4faa-aa0c-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc95f-3fcc-4faa-aa0c-1a2bacb5b862",
+        "election": "2018-11 > 直轄市長 > 新北市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "3961374",
+        "population_electors": "3173136",
+        "areas": [
+            {
+                "id": "59cfc95f-085c-4eb5-972f-1a2bacb5b862",
+                "name": "新北市",
+                "ivid": "TPQ",
+                "code": "65000",
+                "population": "3961374",
+                "population_electors": "3173136",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95f-085c-4eb5-972f-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9f0-5fe8-4eab-8284-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9f0-5fe8-4eab-8284-1a2bacb5b862",
+        "election": "2018-11 > 直轄市長 > 臺中市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2712948",
+        "population_electors": "2099294",
+        "areas": [
+            {
+                "id": "59cfc9f0-ac3c-4078-9d0e-1a2bacb5b862",
+                "name": "臺中市",
+                "ivid": "TXG",
+                "code": "66000",
+                "population": "2712948",
+                "population_electors": "2099294",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f0-ac3c-4078-9d0e-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca4e-1598-45e8-bf85-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca4e-1598-45e8-bf85-1a2bacb5b862",
+        "election": "2018-11 > 直轄市長 > 臺南市",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "1883493",
+        "population_electors": "1516489",
+        "areas": [
+            {
+                "id": "59cfca4e-9f18-4f36-9b43-1a2bacb5b862",
+                "name": "臺南市",
+                "ivid": "TNN",
+                "code": "67000",
+                "population": "1883493",
+                "population_electors": "1516489",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca4e-9f18-4f36-9b43-1a2bacb5b862"
+            }
+        ]
+    }
+]

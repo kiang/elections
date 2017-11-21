@@ -181,7 +181,7 @@ class AreaShell extends AppShell {
         }
     }
 
-    public function dump_2014_areas() {
+    public function dump_areas() {
         $eLinks = array();
         $links = $this->Area->AreasElection->find('all', array(
             'fields' => array('Area_id', 'Election_id'),
@@ -203,7 +203,7 @@ class AreaShell extends AppShell {
 
 
         $root = $this->Area->Election->find('first', array(
-            'conditions' => array('Election.name' => '2014'),
+            'conditions' => array('Election.name' => '2018-11'),
         ));
         $electionTypes = $this->Area->Election->find('all', array(
             'conditions' => array('Election.parent_id' => $root['Election']['id']),
@@ -235,7 +235,7 @@ class AreaShell extends AppShell {
                     'areas' => $electionAreas,
                 );
             }
-            file_put_contents(__DIR__ . "/data/2014_areas/{$electionType['Election']['name']}.json", json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+            file_put_contents(__DIR__ . "/data/2018_areas/{$electionType['Election']['name']}.json", json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
         }
     }
 
