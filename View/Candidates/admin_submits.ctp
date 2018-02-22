@@ -10,9 +10,10 @@
     <table class="table table-bordered" id="CandidatesAdminIndexTable">
         <thead>
             <tr>
-                <th><a href="#" id="candidateCheckAll">Check</a></th>
-                <th>Name</th>
-                <th>Created</th>
+                <th><a href="#" id="candidateCheckAll">勾選</a></th>
+                <th>選區</th>
+                <th>姓名</th>
+                <th>建立時間</th>
                 <th class="actions">操作</th>
             </tr>
         </thead>
@@ -28,6 +29,9 @@
                 <tr<?php echo $class; ?>>
                     <td><input type="checkbox" class="candidateCheck" name="data[Candidate][id][]" value="<?php echo $item['Candidate']['id']; ?>" />
                     </td>
+                    <td><?php
+                        echo implode(' > ', $item['Election']);
+                        ?></td>
                     <td><?php
                         echo $item['Candidate']['name'];
                         ?></td>

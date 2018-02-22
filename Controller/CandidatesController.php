@@ -632,6 +632,11 @@ $this->layout = 'ajax';
             'Candidate.created' => 'ASC',
         );
         $items = $this->paginate($this->Candidate, $scope);
+        $items = $this->paginate($this->Candidate, $scope);
+        foreach ($items AS $k => $v) {
+            $items[$k]['Election'] = $this->Candidate->Election->getPath($v['Candidate']['election_id'], array('name'));
+            $items[$k]['Election'] = Set::extract('{n}.Election.name', $items[$k]['Election']);
+        }
         $this->set('items', $items);
     }
 
