@@ -5,7 +5,7 @@ class AreaShell extends AppShell {
     public $uses = array('Area');
 
     public function main() {
-        $this->generateKeywords();
+        $this->dump_areas();
     }
 
     public function generateKeywords() {
@@ -198,9 +198,10 @@ class AreaShell extends AppShell {
         ));
         $areas = Set::combine($areas, '{n}.Area.id', '{n}.Area');
         foreach ($areas AS $k => $v) {
+            $parents = Set::extract('{n}.Area.name', $this->Area->getPath($v['id'], array('name')));
+            $areas[$k]['name'] = implode(' > ', $parents);
             $areas[$k]['url'] = 'http://k.olc.tw/elections/areas/index/' . $v['id'];
         }
-
 
         $root = $this->Area->Election->find('first', array(
             'conditions' => array('Election.name' => '2018-11'),
