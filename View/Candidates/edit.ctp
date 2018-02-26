@@ -143,7 +143,11 @@
         'class' => 'form-control',
         'placeholder' => '一行一筆學歷資料，例如： 現任大台南市議會第1屆議員',
     ));
-    echo '<div class="clearfix"></div>';
+    ?>
+    <div class="col-md-12">
+    <div class="g-recaptcha" data-sitekey="6Lfc1PQSAAAAAKzbq1ArWgKkjuzMtuHcyT8DHi9q"></div>
+    </div>
+    <div class="clearfix"></div><?php
     echo $this->Html->tag(
         'button',
         '送出',
@@ -155,4 +159,6 @@
     echo $this->Form->end();
     ?>
 </div>
-<?php echo $this->Html->script('Candidates/add.js', array('inline' => false, 'block' => 'scriptBottom')); ?>
+<?php
+echo $this->Html->script('https://www.google.com/recaptcha/api.js', array('inline' => false));
+echo $this->Html->script('Candidates/add.js', array('inline' => false, 'block' => 'scriptBottom'));
