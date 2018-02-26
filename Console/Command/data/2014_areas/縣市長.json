@@ -2,7 +2,7 @@
     {
         "id": "53c0207f-2254-4fe5-b566-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0207f-2254-4fe5-b566-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 宜蘭縣",
+        "election": "2014-11 > 縣市長 > 宜蘭縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "458784",
@@ -10,7 +10,7 @@
         "areas": [
             {
                 "id": "53c01bd7-27c8-4328-bc85-5460acb5b862",
-                "name": "宜蘭縣",
+                "name": "2014 > 宜蘭縣",
                 "ivid": "ILA",
                 "code": "10002",
                 "population": "458784",
@@ -22,7 +22,7 @@
     {
         "id": "53c0207f-9300-45c4-ad71-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0207f-9300-45c4-ad71-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 金門縣",
+        "election": "2014-11 > 縣市長 > 金門縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "126156",
@@ -30,7 +30,7 @@
         "areas": [
             {
                 "id": "53c01bd1-909c-4af0-b76e-5460acb5b862",
-                "name": "金門縣",
+                "name": "2014 > 金門縣",
                 "ivid": "JME",
                 "code": "09020",
                 "population": "126156",
@@ -42,7 +42,7 @@
     {
         "id": "53c0207f-96c8-4268-9cd2-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0207f-96c8-4268-9cd2-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 連江縣",
+        "election": "2014-11 > 縣市長 > 連江縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "12481",
@@ -50,7 +50,7 @@
         "areas": [
             {
                 "id": "53c01bce-df94-4939-a456-5460acb5b862",
-                "name": "連江縣",
+                "name": "2014 > 連江縣",
                 "ivid": "LJF",
                 "code": "09007",
                 "population": "12481",
@@ -62,7 +62,7 @@
     {
         "id": "53c0207f-f2a4-4595-ba18-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c0207f-f2a4-4595-ba18-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 新竹縣",
+        "election": "2014-11 > 縣市長 > 新竹縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "536111",
@@ -70,7 +70,7 @@
         "areas": [
             {
                 "id": "53c01c37-10a0-42e3-bddf-5460acb5b862",
-                "name": "新竹縣",
+                "name": "2014 > 新竹縣",
                 "ivid": "HSQ",
                 "code": "10004",
                 "population": "536111",
@@ -82,7 +82,7 @@
     {
         "id": "53c02080-28ec-4fb4-a830-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02080-28ec-4fb4-a830-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 苗栗縣",
+        "election": "2014-11 > 縣市長 > 苗栗縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "566918",
@@ -90,7 +90,7 @@
         "areas": [
             {
                 "id": "53c01c52-a780-46b4-bc34-5460acb5b862",
-                "name": "苗栗縣",
+                "name": "2014 > 苗栗縣",
                 "ivid": "MIA",
                 "code": "10005",
                 "population": "566918",
@@ -102,7 +102,7 @@
     {
         "id": "53c02080-395c-4848-bc99-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02080-395c-4848-bc99-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 雲林縣",
+        "election": "2014-11 > 縣市長 > 雲林縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "705022",
@@ -110,7 +110,7 @@
         "areas": [
             {
                 "id": "53c01ce8-b6b8-42f2-8bf1-5460acb5b862",
-                "name": "雲林縣",
+                "name": "2014 > 雲林縣",
                 "ivid": "YUN",
                 "code": "10009",
                 "population": "705022",
@@ -122,7 +122,7 @@
     {
         "id": "53c02080-3ce8-4ff3-ae9d-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02080-3ce8-4ff3-ae9d-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 南投縣",
+        "election": "2014-11 > 縣市長 > 南投縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "515081",
@@ -130,7 +130,7 @@
         "areas": [
             {
                 "id": "53c01cc7-86d4-4896-96f9-5460acb5b862",
-                "name": "南投縣",
+                "name": "2014 > 南投縣",
                 "ivid": "NAN",
                 "code": "10008",
                 "population": "515081",
@@ -142,7 +142,7 @@
     {
         "id": "53c02080-9154-437f-8e6e-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02080-9154-437f-8e6e-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 嘉義縣",
+        "election": "2014-11 > 縣市長 > 嘉義縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "526028",
@@ -150,7 +150,7 @@
         "areas": [
             {
                 "id": "53c01d1b-0dbc-4862-b0d1-5460acb5b862",
-                "name": "嘉義縣",
+                "name": "2014 > 嘉義縣",
                 "ivid": "CYQ",
                 "code": "10010",
                 "population": "526028",
@@ -162,7 +162,7 @@
     {
         "id": "53c02080-c2a8-4903-b77a-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02080-c2a8-4903-b77a-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 彰化縣",
+        "election": "2014-11 > 縣市長 > 彰化縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "1292126",
@@ -170,7 +170,7 @@
         "areas": [
             {
                 "id": "53c01c79-c0e0-4b67-8b2d-5460acb5b862",
-                "name": "彰化縣",
+                "name": "2014 > 彰化縣",
                 "ivid": "CHA",
                 "code": "10007",
                 "population": "1292126",
@@ -182,7 +182,7 @@
     {
         "id": "53c02081-38e8-407f-b52a-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02081-38e8-407f-b52a-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 屏東縣",
+        "election": "2014-11 > 縣市長 > 屏東縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "849326",
@@ -190,7 +190,7 @@
         "areas": [
             {
                 "id": "53c01d4f-6ccc-4e38-bcc1-5460acb5b862",
-                "name": "屏東縣",
+                "name": "2014 > 屏東縣",
                 "ivid": "PIF",
                 "code": "10013",
                 "population": "849326",
@@ -202,7 +202,7 @@
     {
         "id": "53c02081-75f4-40df-9ee0-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02081-75f4-40df-9ee0-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 臺東縣",
+        "election": "2014-11 > 縣市長 > 臺東縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "224931",
@@ -210,7 +210,7 @@
         "areas": [
             {
                 "id": "53c01d95-09c8-40a8-85fe-5460acb5b862",
-                "name": "臺東縣",
+                "name": "2014 > 臺東縣",
                 "ivid": "TTT",
                 "code": "10014",
                 "population": "224931",
@@ -222,7 +222,7 @@
     {
         "id": "53c02081-7ed4-4c37-bd23-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02081-7ed4-4c37-bd23-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 澎湖縣",
+        "election": "2014-11 > 縣市長 > 澎湖縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "101482",
@@ -230,7 +230,7 @@
         "areas": [
             {
                 "id": "53c01dc1-b5a4-4663-883c-5460acb5b862",
-                "name": "澎湖縣",
+                "name": "2014 > 澎湖縣",
                 "ivid": "PEN",
                 "code": "10016",
                 "population": "101482",
@@ -242,7 +242,7 @@
     {
         "id": "53c02081-c578-4f7e-a589-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02081-c578-4f7e-a589-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 花蓮縣",
+        "election": "2014-11 > 縣市長 > 花蓮縣",
         "quota": "1",
         "quota_woman": "0",
         "population": "333531",
@@ -250,7 +250,7 @@
         "areas": [
             {
                 "id": "53c01daa-8a90-4b29-95b5-5460acb5b862",
-                "name": "花蓮縣",
+                "name": "2014 > 花蓮縣",
                 "ivid": "HUA",
                 "code": "10015",
                 "population": "333531",
@@ -262,7 +262,7 @@
     {
         "id": "53c02082-1144-4363-9b86-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02082-1144-4363-9b86-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 新竹市",
+        "election": "2014-11 > 縣市長 > 新竹市",
         "quota": "1",
         "quota_woman": "0",
         "population": "422760",
@@ -270,7 +270,7 @@
         "areas": [
             {
                 "id": "53c01de6-6074-4140-a4ee-5460acb5b862",
-                "name": "新竹市",
+                "name": "2014 > 新竹市",
                 "ivid": "HSZ",
                 "code": "10018",
                 "population": "422760",
@@ -282,7 +282,7 @@
     {
         "id": "53c02082-a760-435a-a3de-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02082-a760-435a-a3de-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 嘉義市",
+        "election": "2014-11 > 縣市長 > 嘉義市",
         "quota": "1",
         "quota_woman": "0",
         "population": "270826",
@@ -290,7 +290,7 @@
         "areas": [
             {
                 "id": "53c01df8-d340-4e31-aa6e-5460acb5b862",
-                "name": "嘉義市",
+                "name": "2014 > 嘉義市",
                 "ivid": "CYI",
                 "code": "10020",
                 "population": "270826",
@@ -302,7 +302,7 @@
     {
         "id": "53c02082-c6cc-47ff-9c94-5c5aacb5b862",
         "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/53c02082-c6cc-47ff-9c94-5c5aacb5b862",
-        "election": "2014 > 縣市長 > 基隆市",
+        "election": "2014-11 > 縣市長 > 基隆市",
         "quota": "1",
         "quota_woman": "0",
         "population": "373597",
@@ -310,7 +310,7 @@
         "areas": [
             {
                 "id": "53c01dcf-a8d8-47b0-984f-5460acb5b862",
-                "name": "基隆市",
+                "name": "2014 > 基隆市",
                 "ivid": "KEE",
                 "code": "10017",
                 "population": "373597",
