@@ -360,34 +360,45 @@ class CandidatesController extends AppController {
     function add($electionId = '') {
         if (!empty($electionId)) {
             if (!empty($this->data)) {
-                $url = 'https://www.google.com/recaptcha/api/siteverify';
-                $data = array(
-                    'secret' => '6Lfc1PQSAAAAAMQxsLfX0V0edNKFF00FAbsg2K2p',
-                    'response' => isset($_POST["g-recaptcha-response"]) ? $_POST["g-recaptcha-response"] : ''
-                );
-                $options = array(
-                    'http' => array(
-                        'header' => 'Content-Type: application/x-www-form-urlencoded',
-                        'method' => 'POST',
-                        'content' => http_build_query($data)
-                    )
-                );
-                $context = stream_context_create($options);
-                $verify = file_get_contents($url, false, $context);
-                $captcha_success = json_decode($verify);
-                if (true === $captcha_success->success) {
-                    $dataToSave = Sanitize::clean($this->data, array('encode' => false));
-                    $dataToSave['Candidate']['election_id'] = $electionId;
+                $dataToSave = Sanitize::clean($this->data, array('encode' => false));
+                $dataToSave['Candidate']['election_id'] = $electionId;
+                if (empty($this->loginMember['group_id'])) {
+                    $url = 'https://www.google.com/recaptcha/api/siteverify';
+                    $data = array(
+                        'secret' => '6Lfc1PQSAAAAAMQxsLfX0V0edNKFF00FAbsg2K2p',
+                        'response' => isset($_POST["g-recaptcha-response"]) ? $_POST["g-recaptcha-response"] : ''
+                    );
+                    $options = array(
+                        'http' => array(
+                            'header' => 'Content-Type: application/x-www-form-urlencoded',
+                            'method' => 'POST',
+                            'content' => http_build_query($data)
+                        )
+                    );
+                    $context = stream_context_create($options);
+                    $verify = file_get_contents($url, false, $context);
+                    $captcha_success = json_decode($verify);
+                    if (true === $captcha_success->success) {
+                        $this->Candidate->create();
+                        if ($this->Candidate->save($dataToSave)) {
+                            $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $electionId));
+                            $this->Session->setFlash('感謝您提供的資料，資料確認後會盡快更新！');
+                            $this->redirect(array('controller' => 'areas', 'action' => 'index', $areaId));
+                        } else {
+                            $this->Session->setFlash('資料儲存時發生錯誤，請重試');
+                        }
+                    } else {
+                        $this->Session->setFlash('驗證碼錯誤');
+                    }
+                } else {
+                    $dataToSave['Candidate']['is_reviewed'] = '1';
                     $this->Candidate->create();
                     if ($this->Candidate->save($dataToSave)) {
-                        $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $electionId));
-                        $this->Session->setFlash('感謝您提供的資料，資料確認後會盡快更新！');
-                        $this->redirect(array('controller' => 'areas', 'action' => 'index', $areaId));
+                        $this->Session->setFlash('管理員建立的資料已經發布');
+                        $this->redirect(array('action' => 'view', $this->Candidate->getInsertID()));
                     } else {
                         $this->Session->setFlash('資料儲存時發生錯誤，請重試');
                     }
-                } else {
-                    $this->Session->setFlash('驗證碼錯誤');
                 }
             }
             $parents = $this->Candidate->Election->getPath($electionId);
