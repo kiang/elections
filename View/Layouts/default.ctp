@@ -20,7 +20,7 @@
         echo $this->Html->script('jquery');
         ?>
         <script>
-            var base_url = '<?php echo $this->Html->url('/'); ?>';
+            var base_url = '<?php echo $this->Html->url('/', true); ?>';
         </script>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script>
