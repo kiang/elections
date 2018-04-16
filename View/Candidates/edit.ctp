@@ -160,5 +160,9 @@
     ?>
 </div>
 <?php
-echo $this->Html->script('https://www.google.com/recaptcha/api.js', array('inline' => false));
+$groupId = Configure::read('loginMember.group_id');
+if($groupId == 0) {
+    echo $this->Html->script('https://www.google.com/recaptcha/api.js', array('inline' => false));
+}
+
 echo $this->Html->script('Candidates/add.js', array('inline' => false, 'block' => 'scriptBottom'));

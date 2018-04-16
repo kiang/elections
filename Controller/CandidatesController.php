@@ -429,22 +429,38 @@ class CandidatesController extends AppController {
         }
         if (!empty($candidate)) {
             if (!empty($this->data)) {
-                $url = 'https://www.google.com/recaptcha/api/siteverify';
-                $data = array(
-                    'secret' => '6Lfc1PQSAAAAAMQxsLfX0V0edNKFF00FAbsg2K2p',
-                    'response' => isset($_POST["g-recaptcha-response"]) ? $_POST["g-recaptcha-response"] : ''
-                );
-                $options = array(
-                    'http' => array(
-                        'header' => 'Content-Type: application/x-www-form-urlencoded',
-                        'method' => 'POST',
-                        'content' => http_build_query($data)
-                    )
-                );
-                $context = stream_context_create($options);
-                $verify = file_get_contents($url, false, $context);
-                $captcha_success = json_decode($verify);
-                if (true === $captcha_success->success) {
+                if (empty($this->loginMember['group_id'])) {
+                    $url = 'https://www.google.com/recaptcha/api/siteverify';
+                    $data = array(
+                        'secret' => '6Lfc1PQSAAAAAMQxsLfX0V0edNKFF00FAbsg2K2p',
+                        'response' => isset($_POST["g-recaptcha-response"]) ? $_POST["g-recaptcha-response"] : ''
+                    );
+                    $options = array(
+                        'http' => array(
+                            'header' => 'Content-Type: application/x-www-form-urlencoded',
+                            'method' => 'POST',
+                            'content' => http_build_query($data)
+                        )
+                    );
+                    $context = stream_context_create($options);
+                    $verify = file_get_contents($url, false, $context);
+                    $captcha_success = json_decode($verify);
+                    if (true === $captcha_success->success) {
+                        $dataToSave = Sanitize::clean($this->data, array('encode' => false));
+                        $dataToSave['Candidate']['active_id'] = $candidateId;
+                        $dataToSave['Candidate']['election_id'] = $candidate['Candidate']['election_id'];
+                        $this->Candidate->create();
+                        if ($this->Candidate->save($dataToSave)) {
+                            $areaId = $this->Candidate->Election->AreasElection->field('Area_id', array('Election_id' => $candidate['Election']['id']));
+                            $this->Session->setFlash('感謝您提供的資料，資料確認後會盡快更新！');
+                            $this->redirect(array('controller' => 'areas', 'action' => 'index', $areaId));
+                        } else {
+                            $this->Session->setFlash('資料儲存時發生錯誤，請重試');
+                        }
+                    } else {
+                        $this->Session->setFlash('驗證碼錯誤');
+                    }
+                } else {
                     $dataToSave = Sanitize::clean($this->data, array('encode' => false));
                     $dataToSave['Candidate']['active_id'] = $candidateId;
                     $dataToSave['Candidate']['election_id'] = $candidate['Candidate']['election_id'];
@@ -456,8 +472,6 @@ class CandidatesController extends AppController {
                     } else {
                         $this->Session->setFlash('資料儲存時發生錯誤，請重試');
                     }
-                } else {
-                    $this->Session->setFlash('驗證碼錯誤');
                 }
             } else {
                 $latestUnRevied = $this->Candidate->find('first', array(
