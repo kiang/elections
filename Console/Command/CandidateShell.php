@@ -6,7 +6,50 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->dump_2014_cunli();
+        $this->dump_2014_age();
+    }
+
+    public function dump_2014_age() {
+        $root = $this->Candidate->Election->find('first', array(
+            'conditions' => array(
+                'id' => '53c0202e-79d4-44a1-99d3-5460acb5b862',
+            ),
+        ));
+        $candidates = $this->Candidate->find('all', array(
+            'contain' => array(
+                'Election' => array(
+                    'fields' => array('Election.keywords'),
+                ),
+            ),
+            'conditions' => array(
+                'Election.lft >' => $root['Election']['lft'],
+                'Election.rght <' => $root['Election']['rght'],
+                'Candidate.active_id IS NULL',
+                'Candidate.stage' => '2',
+            ),
+            'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party',
+                'Candidate.birth'),
+        ));
+        $fh = fopen(__DIR__ . '/data/2014_candidates/age_result.csv', 'w');
+        fputcsv($fh, array(
+            '選區',
+            '姓名',
+            '政黨',
+            '生日',
+            '年齡',
+            '網址',
+        ));
+        foreach ($candidates AS $candidate) {
+            fputcsv($fh, array(
+                implode('-', explode(',', $candidate['Election']['keywords'])),
+                $candidate['Candidate']['name'],
+                $candidate['Candidate']['party'],
+                $candidate['Candidate']['birth'],
+                date('Y') - date('Y', strtotime($candidate['Candidate']['birth'])),
+                'http://elections.olc.tw/candidates/view/' . $candidate['Candidate']['id']
+            ));
+        }
+        fclose($fh);
     }
 
     public function dump_2014_cunli() {
@@ -33,7 +76,7 @@ class CandidateShell extends AppShell {
         ));
         $lines = array();
         foreach ($candidates AS $candidate) {
-            if(empty($candidate['Election']['Area'][0]['code'])) {
+            if (empty($candidate['Election']['Area'][0]['code'])) {
                 echo str_replace(',', '', $candidate['Election']['Area'][0]['keywords']) . "\n";
             }
             $lines[$candidate['Election']['Area'][0]['code']] = array(
