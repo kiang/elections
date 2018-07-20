@@ -13,9 +13,17 @@ if (!empty($parents)) {
     ?>
 </div>
 <div id="map-canvas" style="width: 100%; height: 400px;"></div>
-<div class="clearfix"></div>
+<div class="clearfix"><br /><br /></div>
 <div id="mapAreaIndex"></div>
+<div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+</div>
 <script>
+    var areaJson = '<?php echo $this->Html->url('/areas/json/' . $areaId); ?>';
+    $(function () {
+        $('#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/' . $areaId); ?>/map');
+    });
     function initialize() {
         var mapOptions = {
             center: new google.maps.LatLng(23.958388030344, 120.70910282983),
@@ -27,7 +35,7 @@ if (!empty($parents)) {
             map.data.addGeoJson(data);
             zoom(map);
         });
-        $('#mapAreaIndex').load('<?php echo $this->Html->url('/areas/index/' . $areaId); ?>/map');
+
         map.data.setStyle({
             fillColor: '#ff99ff',
             strokeWeight: 1
@@ -89,5 +97,8 @@ if (!empty($parents)) {
         document.body.appendChild(script);
     }
 
-    window.onload = loadScript;
+    //window.onload = loadScript;
 </script>
+<?php
+echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.4/ol.js', array('inline' => false, 'block' => 'scriptBottom'));
+echo $this->Html->script('Areas/map.js', array('inline' => false, 'block' => 'scriptBottom'));

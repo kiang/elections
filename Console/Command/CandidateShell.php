@@ -12,7 +12,7 @@ class CandidateShell extends AppShell {
     public function dump_2014_age() {
         $root = $this->Candidate->Election->find('first', array(
             'conditions' => array(
-                'id' => '53c0202e-79d4-44a1-99d3-5460acb5b862',
+                'id' => '53c0202f-4f58-4419-8d07-5460acb5b862',
             ),
         ));
         $candidates = $this->Candidate->find('all', array(
@@ -30,7 +30,7 @@ class CandidateShell extends AppShell {
             'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party',
                 'Candidate.birth'),
         ));
-        $fh = fopen(__DIR__ . '/data/2014_candidates/age_result.csv', 'w');
+        $fh = fopen(__DIR__ . '/data/2014_candidates/age_縣市議員.csv', 'w');
         fputcsv($fh, array(
             '選區',
             '姓名',
@@ -38,6 +38,36 @@ class CandidateShell extends AppShell {
             '生日',
             '年齡',
             '網址',
+        ));
+        foreach ($candidates AS $candidate) {
+            fputcsv($fh, array(
+                implode('-', explode(',', $candidate['Election']['keywords'])),
+                $candidate['Candidate']['name'],
+                $candidate['Candidate']['party'],
+                $candidate['Candidate']['birth'],
+                date('Y') - date('Y', strtotime($candidate['Candidate']['birth'])),
+                'http://elections.olc.tw/candidates/view/' . $candidate['Candidate']['id']
+            ));
+        }
+        $root = $this->Candidate->Election->find('first', array(
+            'conditions' => array(
+                'id' => '53c0202f-da0c-4e3e-bbb4-5460acb5b862',
+            ),
+        ));
+        $candidates = $this->Candidate->find('all', array(
+            'contain' => array(
+                'Election' => array(
+                    'fields' => array('Election.keywords'),
+                ),
+            ),
+            'conditions' => array(
+                'Election.lft >' => $root['Election']['lft'],
+                'Election.rght <' => $root['Election']['rght'],
+                'Candidate.active_id IS NULL',
+                'Candidate.stage' => '2',
+            ),
+            'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party',
+                'Candidate.birth'),
         ));
         foreach ($candidates AS $candidate) {
             fputcsv($fh, array(

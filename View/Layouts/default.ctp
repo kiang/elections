@@ -16,6 +16,7 @@
         echo $this->Html->css('jquery-ui');
         echo $this->Html->css('bootstrap.min');
         echo $this->Html->css('animate');
+        ?><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.4/ol.css" type="text/css"><?php
         echo $this->Html->css('default');
         echo $this->Html->script('jquery');
         ?>
