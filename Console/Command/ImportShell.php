@@ -12,7 +12,208 @@ class ImportShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->candidate2016();
+        $this->candidate2018();
+    }
+
+    public function candidate2018() {
+        $mapFiles = array(
+            '直轄市長' => array(
+                '20182010001.json',
+                '59cfc6c2-0960-4e07-a20b-1a2bacb5b862',
+            ),
+            '直轄市議員' => array(
+                '20182020001.json',
+                '59cfc6c2-aee4-485e-9278-1a2bacb5b862',
+            ),
+            '直轄市山地原住民區長' => array(
+                '20184030001.json',
+                '59cfc6ec-b344-4988-a661-1a2bacb5b862',
+            ),
+            '直轄市山地原住民區代表' => array(
+                '20184040001.json',
+                '59cfc6ec-0cf8-4fde-b409-1a2bacb5b862',
+            ),
+            '縣(市)長' => array(
+                '20183010001.json',
+                '59cfc6a1-16f0-40d1-a96b-1a2bacb5b862',
+            ),
+            '縣(市)議員' => array(
+                '20183020001.json',
+                '59cfc6a1-5b9c-4cb1-b1d8-1a2bacb5b862',
+            ),
+            '鄉鎮市長' => array(
+                '20184010001.json',
+                '59cfc6a1-61a4-4fd9-af3e-1a2bacb5b862',
+            ),
+            '鄉鎮市民代表' => array(
+                '20184020001.json',
+                '59cfc6a1-db58-4537-8e5e-1a2bacb5b862',
+            ),
+            '村里長' => array(
+                '20185010001.json',
+                '59cfc6a1-4cac-40ad-b2d8-1a2bacb5b862',
+            ),
+        );
+        $mapPath = '/home/kiang/public_html/2018.cec.gov.tw';
+
+        $districtMap = array();
+        foreach ($mapFiles AS $eType => $eItem) {
+            $ref = $dbRef = array();
+            $json = json_decode(file_get_contents($mapPath . '/areas_map/' . $eItem[0]), true);
+            foreach ($json['data'] AS $item) {
+                if (!isset($ref[$item['DistrictId']])) {
+                    $ref[$item['DistrictId']] = $item;
+                }
+            }
+            $rootNode = $this->Election->find('first', array(
+                'conditions' => array(
+                    'Election.id' => $eItem[1],
+                ),
+            ));
+            $threaded = $this->Election->find('threaded', array(
+                'conditions' => array(
+                    'Election.lft >=' => $rootNode['Election']['lft'],
+                    'Election.rght <=' => $rootNode['Election']['rght'],
+                ),
+                'fields' => array('id', 'name', 'lft', 'rght', 'parent_id'),
+            ));
+            switch ($eType) {
+                case '直轄市長':
+                case '縣(市)長':
+                    foreach ($threaded[0]['children'] AS $city) {
+                        $dbRef[$city['Election']['name']] = $city['Election']['id'];
+                    }
+                    foreach ($ref AS $k => $item) {
+                        $districtMap[$item['DistrictId']] = $dbRef[$item['CityName']];
+                    }
+                    break;
+                case '直轄市議員':
+                case '縣(市)議員':
+                    foreach ($threaded[0]['children'] AS $city) {
+                        foreach ($city['children'] AS $area) {
+                            $key = mb_substr($city['Election']['name'] . $area['Election']['name'], 0, -4, 'utf-8');
+                            $dbRef[$key] = $area['Election']['id'];
+                        }
+                    }
+                    foreach ($ref AS $k => $item) {
+                        $key = $item['CountyCityName'] . '第' . str_pad($item['DistrictNo'], 2, '0', STR_PAD_LEFT) . '選區';
+                        $districtMap[$item['DistrictId']] = $dbRef[$key];
+                    }
+                    break;
+                case '鄉鎮市長':
+                case '直轄市山地原住民區長':
+                    foreach ($threaded[0]['children'] AS $city) {
+                        foreach ($city['children'] AS $area) {
+                            $key = $city['Election']['name'] . $area['Election']['name'];
+                            $dbRef[$key] = $area['Election']['id'];
+                        }
+                    }
+                    foreach ($ref AS $k => $item) {
+                        $key = $item['CountyCityName'] . $item['ScopeTownshipName'];
+                        $districtMap[$item['DistrictId']] = $dbRef[$key];
+                    }
+                    break;
+                case '直轄市山地原住民區代表':
+                    foreach ($threaded[0]['children'] AS $city) {
+                        foreach ($city['children'] AS $area) {
+                            foreach ($area['children'] AS $zone) {
+                                $key = $city['Election']['name'] . $area['Election']['name'] . $zone['Election']['name'];
+                                $dbRef[$key] = $zone['Election']['id'];
+                            }
+                        }
+                    }
+                    foreach ($ref AS $k => $item) {
+                        $key = $item['CountyCityName'] . $item['ScopeTownshipName'] . '第' . str_pad($item['DistrictNo'], 2, '0', STR_PAD_LEFT) . '選舉區';
+                        $districtMap[$item['DistrictId']] = $dbRef[$key];
+                    }
+                    break;
+                case '鄉鎮市民代表':
+                    foreach ($threaded[0]['children'] AS $city) {
+                        foreach ($city['children'] AS $area) {
+                            foreach ($area['children'] AS $zone) {
+                                $key = $city['Election']['name'] . $area['Election']['name'] . mb_substr($zone['Election']['name'], 0, -4, 'utf-8');
+                                $dbRef[$key] = $zone['Election']['id'];
+                            }
+                        }
+                    }
+                    foreach ($ref AS $k => $item) {
+                        if ($item['DistrictNo'] == 0) {
+                            $item['DistrictNo'] = 1;
+                        }
+                        $key = $item['CountyCityName'] . $item['ScopeTownshipName'] . '第' . str_pad($item['DistrictNo'], 2, '0', STR_PAD_LEFT) . '選舉區';
+                        if (isset($dbRef[$key])) {
+                            $districtMap[$item['DistrictId']] = $dbRef[$key];
+                        }
+                    }
+                    break;
+                case '村里長':
+                    foreach ($threaded[0]['children'] AS $city) {
+                        foreach ($city['children'] AS $area) {
+                            foreach ($area['children'] AS $zone) {
+                                $key = $city['Election']['name'] . $area['Election']['name'] . $zone['Election']['name'];
+                                $dbRef[$key] = $zone['Election']['id'];
+                            }
+                        }
+                    }
+                    foreach ($ref AS $k => $item) {
+                        $key = $item['CountyCityName'] . $item['ScopeTownshipName'] . $item['ScopeVillageName'];
+                        if (isset($dbRef[$key])) {
+                            $districtMap[$item['DistrictId']] = $dbRef[$key];
+                        }
+                    }
+                    break;
+            }
+        }
+        $candidates = array();
+        $counter = 0;
+        foreach (glob($mapPath . '/05_raw/*.json') AS $jsonFile) {
+            if (++$counter % 100 === 0) {
+                $this->out("processing {$counter}");
+            }
+            $jsonString = file_get_contents($jsonFile);
+            $json = json_decode(substr($jsonString, strpos($jsonString, '[')), true);
+            foreach ($json AS $p) {
+                if (isset($districtMap[$p['DistrictId']])) {
+                    $electionId = $districtMap[$p['DistrictId']];
+                    if (!isset($candidates[$electionId])) {
+                        $candidates[$electionId] = $this->Election->Candidate->find('list', array(
+                            'conditions' => array(
+                                'Candidate.active_id IS NULL',
+                                'Candidate.is_reviewed' => '1',
+                                'Candidate.election_id' => $electionId,
+                            ),
+                            'fields' => array('Candidate.name', 'Candidate.id'),
+                        ));
+                    }
+                    if (strlen($p['DateOfBirth']) === 8) {
+                        $p['DateOfBirth'] = implode('-', array(substr($p['DateOfBirth'], 0, 4), substr($p['DateOfBirth'], 4, 2), substr($p['DateOfBirth'], 6, 2)));
+                    } else {
+                        $p['DateOfBirth'] = '0000-00-00';
+                    }
+                    if (isset($candidates[$electionId][$p['CandidateName']])) {
+                        //update the record
+                        $this->Election->Candidate->id = $candidates[$electionId][$p['CandidateName']];
+                    } else {
+                        //create the record
+                        $this->Election->Candidate->create();
+                    }
+                    $this->Election->Candidate->save(array('Candidate' => array(
+                            'is_reviewed' => '1',
+                            'election_id' => $electionId,
+                            'stage' => '1',
+                            'name' => $p['CandidateName'],
+                            'no' => $p['DrawNo'],
+                            'gender' => ($p['Gender'] === '女') ? 'f' : 'm',
+                            'birth_place' => $p['BirthPlace'],
+                            'birth_place' => $p['DateOfBirth'],
+                            'party' => $p['EndorsementPartyName1'],
+                            'education' => $p['BulletinEducation'],
+                            'experience' => $p['BulletinExperience'],
+                            'platform' => $p['BulletinPlatform'],
+                    )));
+                }
+            }
+        }
     }
 
     public function candidate2016() {
