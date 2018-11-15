@@ -167,12 +167,15 @@ class ImportShell extends AppShell {
         $candidates = array();
         $counter = 0;
         foreach (glob($mapPath . '/05_raw/*.json') AS $jsonFile) {
-            if (++$counter % 100 === 0) {
-                $this->out("processing {$counter}");
-            }
             $jsonString = file_get_contents($jsonFile);
             $json = json_decode(substr($jsonString, strpos($jsonString, '[')), true);
             foreach ($json AS $p) {
+                if (substr($p['ElectionId'], -1, 1) !== '1') {
+                    continue;
+                }
+                if (++$counter % 100 === 0) {
+                    $this->out("processing {$counter}");
+                }
                 if (isset($districtMap[$p['DistrictId']])) {
                     $electionId = $districtMap[$p['DistrictId']];
                     if (!isset($candidates[$electionId])) {
@@ -205,7 +208,7 @@ class ImportShell extends AppShell {
                             'no' => $p['DrawNo'],
                             'gender' => ($p['Gender'] === '女') ? 'f' : 'm',
                             'birth_place' => $p['BirthPlace'],
-                            'birth_place' => $p['DateOfBirth'],
+                            'birth' => $p['DateOfBirth'],
                             'party' => $p['EndorsementPartyName1'],
                             'education' => $p['BulletinEducation'],
                             'experience' => $p['BulletinExperience'],
@@ -214,6 +217,7 @@ class ImportShell extends AppShell {
                 }
             }
         }
+        $this->out("Total {$counter}");
     }
 
     public function candidate2016() {
