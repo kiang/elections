@@ -167,7 +167,7 @@
                 <div class="row">
                     <ul>
                         <li>
-                            <?php echo $this->Html->link('江明宗 . 政 . 路過', 'http://k.olc.tw/', array('target' => '_blank')); ?>
+                            <?php echo $this->Html->link('江明宗', 'https://medium.com/%E6%B1%9F%E6%98%8E%E5%AE%97-kiang', array('target' => '_blank')); ?>
                         </li>
                         <li>
                             <?php echo $this->Html->link('關於選舉黃頁', '/pages/about'); ?>

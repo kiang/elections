@@ -132,7 +132,7 @@
         'label' => '網址或連結（像是個人部落格、臉書專頁、研究成果等等）',
         'div' => 'form-group col-md-12',
         'class' => 'form-control',
-        'placeholder' => '一行一個網址，網址只接受 http 或 https 開頭，如果希望自訂網址文字可以加在前面用空白隔開，例如： "http://k.olc.tw" 或 "江明宗 . 政 . 路過 http://k.olc.tw"',
+        'placeholder' => '一行一個網址，網址只接受 http 或 https 開頭，如果希望自訂網址文字可以加在前面用空白隔開，例如： "https://medium.com/%E6%B1%9F%E6%98%8E%E5%AE%97-kiang" 或 "江明宗 https://medium.com/%E6%B1%9F%E6%98%8E%E5%AE%97-kiang"',
     ));
     echo $this->Form->input('Candidate.education', array(
         'type' => 'textarea',
