@@ -6,7 +6,224 @@ class CandidateShell extends AppShell {
     public $cec2014Stack = array();
 
     public function main() {
-        $this->dump_2014_age();
+        $this->elections_2020();
+        $this->import_2020();
+    }
+
+    public function elections_2020() {
+        $children = $this->Candidate->Election->children('5cbf16f4-d818-447e-b916-5ee30a8c0003');
+        foreach ($children AS $election) {
+            $nodes = $this->Candidate->Election->getPath($election['Election']['id'], array('name'));
+            $this->Candidate->Election->id = $election['Election']['id'];
+            $this->Candidate->Election->save(array('Election' => array(
+                    'bulletin_key' => NULL,
+                    'keywords' => implode(',', Set::extract('{n}.Election.name', $nodes)),
+            )));
+        }
+    }
+
+    public function import_2020() {
+        $votePath = '/home/kiang/public_html/vote2020/data';
+        $parentId = '5cbf173d-f8d4-42d5-9918-5ee30a8c0003';
+        foreach (glob($votePath . '/區域立委/*.json') AS $jsonFile) {
+            $p = pathinfo($jsonFile);
+            $cityId = $this->Candidate->Election->field('id', array(
+                'parent_id' => $parentId,
+                'name' => $p['filename'],
+            ));
+            if (!empty($cityId)) {
+                if (filesize($jsonFile) == 0) {
+                    unlink($jsonFile);
+                    continue;
+                }
+                $json = json_decode(file_get_contents($jsonFile), true);
+                foreach ($json['L1'] AS $area) {
+                    if ($area['areaCode'] == 0) {
+                        $area['areaCode'] = 1;
+                    }
+                    $name = '第' . str_pad($area['areaCode'], 2, '0', STR_PAD_LEFT) . '選區[區域]';
+                    $electionId = $this->Candidate->Election->field('id', array(
+                        'parent_id' => $cityId,
+                        'name' => $name,
+                    ));
+                    if (empty($electionId)) {
+                        $this->Candidate->Election->create();
+                        $this->Candidate->Election->save(array('Election' => array(
+                                'parent_id' => $cityId,
+                                'name' => $name,
+                        )));
+                        $electionId = $this->Candidate->Election->getInsertID();
+                    }
+                    foreach ($area['cands'] AS $candidate) {
+                        $candidateId = $this->Candidate->field('id', array(
+                            'active_id IS NULL',
+                            'election_id' => $electionId,
+                            'name LIKE' => mb_substr($candidate['name'], 0, 2, 'utf-8') . '%',
+                        ));
+                        if (!empty($candidateId)) {
+                            $this->Candidate->id = $candidateId;
+                            $this->Candidate->save(array(
+                                'gender' => ($candidate['gender'] === '男') ? 'm' : 'f',
+                                'birth' => implode('-', array(intval(substr($candidate['birth'], 0, 3)) + 1911, substr($candidate['birth'], 3, 2), substr($candidate['birth'], 5, 2))),
+                                'no' => $candidate['candNo'],
+                                'name' => $candidate['name'],
+                                'birth_place' => $candidate['home'],
+                                'experience' => $candidate['exp'],
+                                'party' => $candidate['party'],
+                                'stage' => '1',
+                                'is_reviewed' => '1',
+                            ));
+                        } else {
+                            $this->Candidate->create();
+                            $this->Candidate->save(array(
+                                'election_id' => $electionId,
+                                'gender' => ($candidate['gender'] === '男') ? 'm' : 'f',
+                                'birth' => implode('-', array(intval(substr($candidate['birth'], 0, 3)) + 1911, substr($candidate['birth'], 3, 2), substr($candidate['birth'], 5, 2))),
+                                'no' => $candidate['candNo'],
+                                'name' => $candidate['name'],
+                                'name_english' => '',
+                                'birth_place' => $candidate['home'],
+                                'experience' => $candidate['exp'],
+                                'party' => $candidate['party'],
+                                'stage' => '1',
+                                'education_level' => '',
+                                'is_present' => 0,
+                                'platform' => '',
+                                'is_reviewed' => '1',
+                            ));
+                        }
+                    }
+                }
+            }
+        }
+
+        $candidates = json_decode(file_get_contents($votePath . '/總統副總統.json'), true);
+        foreach ($candidates['P1'] AS $candidate) {
+            if ($candidate['candType'] === 'P') {
+                //總統
+                $electionId = '5cbf175e-2c34-450f-9432-5ee30a8c0003';
+            } else {
+                //副總統
+                $electionId = '5cf8f18b-a83c-40c9-9e10-62300a8c0003';
+            }
+            $candidateId = $this->Candidate->field('id', array(
+                'active_id IS NULL',
+                'election_id' => $electionId,
+                'name' => $candidate['name'],
+            ));
+            if (!empty($candidateId)) {
+                $this->Candidate->id = $candidateId;
+                $this->Candidate->save(array(
+                    'gender' => ($candidate['gender'] === '男') ? 'm' : 'f',
+                    'birth' => implode('-', array(intval(substr($candidate['birth'], 0, 3)) + 1911, substr($candidate['birth'], 3, 2), substr($candidate['birth'], 5, 2))),
+                    'no' => $candidate['candNo'],
+                    'birth_place' => $candidate['home'],
+                    'experience' => $candidate['exp'],
+                    'party' => $candidate['party'],
+                    'stage' => '1',
+                ));
+            }
+        }
+
+        $candidates = json_decode(file_get_contents($votePath . '/山地原住民.json'), true);
+        $electionId = '5cc79b43-009c-40bf-9a4a-624e0a8c0003';
+        foreach ($candidates['L3'] AS $candidate) {
+            $candidateId = $this->Candidate->field('id', array(
+                'active_id IS NULL',
+                'election_id' => $electionId,
+                'name LIKE' => mb_substr($candidate['name'], 0, 3, 'utf-8') . '%',
+            ));
+            if (!empty($candidateId)) {
+                $this->Candidate->id = $candidateId;
+                $this->Candidate->save(array(
+                    'gender' => ($candidate['gender'] === '男') ? 'm' : 'f',
+                    'birth' => implode('-', array(intval(substr($candidate['birth'], 0, 3)) + 1911, substr($candidate['birth'], 3, 2), substr($candidate['birth'], 5, 2))),
+                    'no' => $candidate['candNo'],
+                    'name' => $candidate['name'],
+                    'birth_place' => $candidate['home'],
+                    'experience' => $candidate['exp'],
+                    'party' => $candidate['party'],
+                    'stage' => '1',
+                ));
+            }
+        }
+
+        $candidates = json_decode(file_get_contents($votePath . '/平地原住民.json'), true);
+        $electionId = '5cc79b4d-2f04-44c4-a99e-624e0a8c0003';
+        foreach ($candidates['L2'] AS $candidate) {
+            $candidateId = $this->Candidate->field('id', array(
+                'active_id IS NULL',
+                'election_id' => $electionId,
+                'name LIKE' => mb_substr($candidate['name'], 0, 2, 'utf-8') . '%',
+            ));
+            if (!empty($candidateId)) {
+                $this->Candidate->id = $candidateId;
+                $this->Candidate->save(array(
+                    'gender' => ($candidate['gender'] === '男') ? 'm' : 'f',
+                    'birth' => implode('-', array(intval(substr($candidate['birth'], 0, 3)) + 1911, substr($candidate['birth'], 3, 2), substr($candidate['birth'], 5, 2))),
+                    'no' => $candidate['candNo'],
+                    'name' => $candidate['name'],
+                    'birth_place' => $candidate['home'],
+                    'experience' => $candidate['exp'],
+                    'party' => $candidate['party'],
+                    'stage' => '1',
+                ));
+            }
+        }
+
+        $candidates = json_decode(file_get_contents($votePath . '/不分區候選人.json'), true);
+        $electionId = '5cc79b38-643c-4bbd-a499-624e0a8c0003';
+        foreach ($candidates['L4'] AS $party) {
+            $partyId = $this->Candidate->Election->field('id', array(
+                'parent_id' => $electionId,
+                'name LIKE' => "%{$party['partyName']}%",
+            ));
+            if (!empty($partyId)) {
+                $this->Candidate->Election->id = $partyId;
+                $this->Candidate->Election->save(array('Election' => array(
+                        'name' => str_pad($party['partyNo'], 2, '0', STR_PAD_LEFT) . $party['partyName'],
+                )));
+                foreach ($party['cands'] AS $candidate) {
+                    $candidateId = $this->Candidate->field('id', array(
+                        'active_id IS NULL',
+                        'election_id' => $partyId,
+                        'name LIKE' => mb_substr($candidate['name'], 0, 2, 'utf-8') . '%',
+                    ));
+                    if (!empty($candidateId)) {
+                        $this->Candidate->id = $candidateId;
+                        $this->Candidate->save(array(
+                            'gender' => ($candidate['gender'] === '男') ? 'm' : 'f',
+                            'birth' => implode('-', array(intval(substr($candidate['birth'], 0, 3)) + 1911, substr($candidate['birth'], 3, 2), substr($candidate['birth'], 5, 2))),
+                            'no' => $candidate['candNo'],
+                            'name' => $candidate['name'],
+                            'birth_place' => $candidate['home'],
+                            'experience' => $candidate['exp'],
+                            'party' => $party['partyName'],
+                            'stage' => '1',
+                            'is_reviewed' => '1',
+                        ));
+                    } else {
+                        $this->Candidate->create();
+                        $this->Candidate->save(array(
+                            'election_id' => $partyId,
+                            'gender' => ($candidate['gender'] === '男') ? 'm' : 'f',
+                            'birth' => implode('-', array(intval(substr($candidate['birth'], 0, 3)) + 1911, substr($candidate['birth'], 3, 2), substr($candidate['birth'], 5, 2))),
+                            'no' => $candidate['candNo'],
+                            'name' => $candidate['name'],
+                            'name_english' => '',
+                            'birth_place' => $candidate['home'],
+                            'experience' => $candidate['exp'],
+                            'party' => $party['partyName'],
+                            'stage' => '1',
+                            'education_level' => '',
+                            'is_present' => 0,
+                            'platform' => '',
+                            'is_reviewed' => '1',
+                        ));
+                    }
+                }
+            }
+        }
     }
 
     public function dump_2014_age() {
