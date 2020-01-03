@@ -60,6 +60,10 @@ class CandidateShell extends AppShell {
                             'election_id' => $electionId,
                             'name LIKE' => mb_substr($candidate['name'], 0, 2, 'utf-8') . '%',
                         ));
+                        $platform = $candidate['politics'];
+                        if (!empty($candidate['politicsUrl'])) {
+                            $platform = 'https://github.com/kiang/vote2020/blob/master' . $candidate['politicsUrl'];
+                        }
                         if (!empty($candidateId)) {
                             $this->Candidate->id = $candidateId;
                             $this->Candidate->save(array(
@@ -69,7 +73,7 @@ class CandidateShell extends AppShell {
                                 'name' => $candidate['name'],
                                 'birth_place' => $candidate['home'],
                                 'party' => $candidate['party'],
-                                'platform' => $candidate['politics'],
+                                'platform' => $platform,
                                 'education' => $candidate['educ'],
                                 'experience' => $candidate['exp'],
                                 'stage' => '1',
@@ -85,7 +89,7 @@ class CandidateShell extends AppShell {
                                 'name' => $candidate['name'],
                                 'name_english' => '',
                                 'birth_place' => $candidate['home'],
-                                'platform' => $candidate['politics'],
+                                'platform' => $platform,
                                 'education' => $candidate['educ'],
                                 'experience' => $candidate['exp'],
                                 'party' => $candidate['party'],
@@ -137,6 +141,10 @@ class CandidateShell extends AppShell {
                 'election_id' => $electionId,
                 'name LIKE' => mb_substr($candidate['name'], 0, 3, 'utf-8') . '%',
             ));
+            $platform = $candidate['politics'];
+            if (!empty($candidate['politicsUrl'])) {
+                $platform = 'https://github.com/kiang/vote2020/blob/master' . $candidate['politicsUrl'];
+            }
             if (!empty($candidateId)) {
                 $this->Candidate->id = $candidateId;
                 $this->Candidate->save(array(
@@ -145,7 +153,7 @@ class CandidateShell extends AppShell {
                     'no' => $candidate['candNo'],
                     'name' => $candidate['name'],
                     'birth_place' => $candidate['home'],
-                    'platform' => $candidate['politics'],
+                    'platform' => $platform,
                     'education' => $candidate['educ'],
                     'experience' => $candidate['exp'],
                     'party' => $candidate['party'],
@@ -162,6 +170,10 @@ class CandidateShell extends AppShell {
                 'election_id' => $electionId,
                 'name LIKE' => mb_substr($candidate['name'], 0, 2, 'utf-8') . '%',
             ));
+            $platform = $candidate['politics'];
+            if (!empty($candidate['politicsUrl'])) {
+                $platform = 'https://github.com/kiang/vote2020/blob/master' . $candidate['politicsUrl'];
+            }
             if (!empty($candidateId)) {
                 $this->Candidate->id = $candidateId;
                 $this->Candidate->save(array(
@@ -170,7 +182,7 @@ class CandidateShell extends AppShell {
                     'no' => $candidate['candNo'],
                     'name' => $candidate['name'],
                     'birth_place' => $candidate['home'],
-                    'platform' => $candidate['politics'],
+                    'platform' => $platform,
                     'education' => $candidate['educ'],
                     'experience' => $candidate['exp'],
                     'party' => $candidate['party'],
