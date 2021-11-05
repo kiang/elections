@@ -317,7 +317,11 @@ class CandidatesController extends AppController {
 
             if (!empty($electionId)) {
                 $scope['Candidate.election_id'] = $electionId;
-                $this->paginate['Candidate']['order'] = array('Candidate.stage' => 'DESC', 'Candidate.no' => 'ASC');
+                $this->paginate['Candidate']['order'] = array(
+                    'Candidate.vote_count' => 'DESC',
+                    'Candidate.stage' => 'DESC',
+                    'Candidate.no' => 'ASC',
+                );
                 $result['areas'] = $this->Candidate->Election->getAreas($electionId);
             } else {
                 $this->paginate['Candidate']['order'] = array('Candidate.modified' => 'desc');
@@ -325,7 +329,7 @@ class CandidatesController extends AppController {
             $this->paginate['Candidate']['limit'] = 30;
             $this->paginate['Candidate']['fields'] = array('Candidate.id', 'Candidate.party',
                 'Candidate.name', 'Candidate.no', 'Candidate.stage', 'Candidate.image',
-                'Candidate.election_id');
+                'Candidate.election_id', 'Candidate.vote_count');
             $result['items'] = $this->paginate($this->Candidate, $scope);
             $result['paging'] = $this->request->params['paging'];
             $electionStack = array();

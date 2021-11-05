@@ -95,6 +95,9 @@
                             if(!empty($candidate['Candidate']['no'])) {
                                 echo $this->Html->para(null, $candidate['Candidate']['no'] . '號');
                             }
+                            if(!empty($candidate['Candidate']['vote_count'])) {
+                                echo $this->Html->para(null, $candidate['Candidate']['vote_count']);
+                            }
                             if (intval($candidate['Candidate']['stage']) === 0) {
                                 echo '<p class="text-muted">未登記</p>';
                             }
