@@ -8,6 +8,7 @@ webroot/.htaccess
 webroot/css/cc_*
 webroot/js/cc_*
 webroot/js/c/*
+webroot/ads.txt
 
 error
 stats
