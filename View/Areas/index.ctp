@@ -1,3 +1,10 @@
+<div class="pull-right btn-group">
+    <?php
+    foreach ($rootNodes AS $rootNodeId => $rootNodeName) {
+        echo $this->Html->link($rootNodeName, '/areas/index/' . $rootNodeId, array('class' => 'btn btn-default'));
+    }
+    ?>
+</div>
 <?php
 if (!empty($parents)) {
     foreach ($parents AS $parent) {
@@ -5,7 +12,6 @@ if (!empty($parents)) {
     }
 }
 ?>
-
 <div class="row">
     <div class="col-md-12">
         <ul class="nav nav-pills">

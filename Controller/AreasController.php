@@ -188,6 +188,10 @@ class AreasController extends AppController {
         $this->set('items', $result['items']);
         $this->set('parents', $result['parents']);
         $this->set('elections', $result['elections']);
+        $this->set('rootNodes', $this->Area->find('list', array(
+            'conditions' => array('Area.parent_id IS NULL'),
+            'fields' => array('Area.id', 'Area.name'),
+        )));
 
         $this->set('url', array($parentId));
         $this->set('parentId', $parentId);
