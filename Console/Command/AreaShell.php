@@ -5,7 +5,7 @@ class AreaShell extends AppShell {
     public $uses = array('Area');
 
     public function main() {
-        $this->dump_areas();
+        $this->duplicate_tree();
     }
 
     public function generateKeywords() {
@@ -30,7 +30,7 @@ class AreaShell extends AppShell {
     public function duplicate_tree() {
         $baseRootNode = $this->Area->find('first', array(
             'conditions' => array(
-                'Area.id' => '53c01bce-a960-420c-8efe-5460acb5b862',
+                'Area.id' => '59cfc6a1-0eec-4ed1-abe0-1a2bacb5b862',
             ),
         ));
         $nodes = $this->Area->find('all', array(
@@ -55,6 +55,9 @@ class AreaShell extends AppShell {
             } else {
                 $node['Area']['parent_id'] = $areaMap[$node['Area']['parent_id']];
             }
+            if($node['Area']['name'] === '2018') {
+                $node['Area']['name'] = '2022';
+            }
             $this->Area->create();
             if ($this->Area->save(array(
                         'Area' => $node['Area']
@@ -78,6 +81,9 @@ class AreaShell extends AppShell {
                                     unset($parent['Election']['id']);
                                     unset($parent['Election']['lft']);
                                     unset($parent['Election']['rght']);
+                                    if($parent['Election']['name'] === '2018-11') {
+                                        $parent['Election']['name'] = '2022-11';
+                                    }
                                     if (empty($parent['Election']['parent_id'])) {
                                         unset($parent['Election']['parent_id']);
                                     } else {
