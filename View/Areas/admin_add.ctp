@@ -37,6 +37,12 @@
             'div' => 'form-group',
             'class' => 'form-control',
         ));
+        echo $this->Form->input('Area.keywords', array(
+            'type' => 'text',
+            'label' => '關鍵字',
+            'div' => 'form-group',
+            'class' => 'form-control',
+        ));
         echo $this->Form->input('Area.polygons', array(
             'type' => 'textarea',
             'label' => 'GeoJSON polygons',
