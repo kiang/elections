@@ -122,7 +122,11 @@ class ElectionsController extends AppController {
         $this->set('scope', $scope);
         $this->paginate['Election']['limit'] = 20;
         $this->paginate['Election']['contain'] = array(
-            'AreasElection' => array('fields' => array('id')),
+            'AreasElection' => array(
+                'Area' => array(
+                    'fields' => array('name')
+                ),
+            ),
         );
         if (empty($parentId)) {
             $this->paginate['Election']['order'] = array('Election.name' => 'DESC');
