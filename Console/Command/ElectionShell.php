@@ -140,6 +140,8 @@ class ElectionShell extends AppShell
                     'code' => $cunliNode['VILLCODE'],
                     'name' => $cunliNode['VILLNAME'],
                     'is_area' => 1,
+                    'population' => 0,
+                    'population_electors' => 0,
                     'keywords' => $cunliNode['VILLNAME'],
                 )));
                 $link['Area_id'] = $this->Election->Area->getInsertID();
