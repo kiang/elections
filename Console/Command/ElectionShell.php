@@ -130,6 +130,8 @@ class ElectionShell extends AppShell
                 $this->Election->save(array('Election' => array(
                     'parent_id' => $areaPool[$area]['election_parent'],
                     'name' => $cunliNode['VILLNAME'],
+                    'population' => 0,
+                    'population_electors' => 0,
                     'quota' => 1,
                     'keywords' => $cunliNode['VILLNAME'],
                 )));
