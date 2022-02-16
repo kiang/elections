@@ -35,7 +35,7 @@ class AreasController extends AppController {
             $result = $this->Area->find('all', array(
                 'fields' => array('Area.id', 'Area.name', 'Area.lft', 'Area.rght'),
                 'conditions' => $conditions,
-                'order' => array('Area.ivid' => 'ASC'),
+                'order' => array('Area.ivid' => 'ASC', 'Area.lft' => 'DESC'),
                 'limit' => 50,
             ));
 
