@@ -56,15 +56,101 @@
  * http://www.khec.gov.tw/files/15-1005-23446,c5310-1.php
  */
 
-class ElectionShell extends AppShell {
+class ElectionShell extends AppShell
+{
 
     public $uses = array('Election');
 
-    public function main() {
-        $this->duplicateCandidates();
+    public function main()
+    {
+        $this->cunliFix();
     }
 
-    public function duplicateCandidates() {
+    public function cunliFix()
+    {
+        $json = json_decode(file_get_contents('https://github.com/kiang/taiwan_basecode/raw/gh-pages/cunli/topo/20211214.json'), true);
+        $ref = array();
+        foreach ($json['objects']['20211214']['geometries'] as $obj) {
+            if (empty($obj['properties']['VILLNAME'])) {
+                continue;
+            }
+            switch ($obj['properties']['VILLNAME']) {
+                case '石[曹]里':
+                    $obj['properties']['VILLNAME'] = '石嘈里';
+                    break;
+                case '[那]拔里':
+                    $obj['properties']['VILLNAME'] = '𦰡拔里';
+                    break;
+            }
+            $area = $obj['properties']['COUNTYNAME'] . $obj['properties']['TOWNNAME'];
+            if (!isset($ref[$area])) {
+                $ref[$area] = array();
+            }
+            $ref[$area][$obj['properties']['VILLNAME']] = $obj['properties'];
+        }
+        $rootNode = $this->Election->find('first', array(
+            'conditions' => array('id' => '62053692-886c-4aa7-a03b-1619acb5b862'),
+        ));
+        $cunliNodes = $this->Election->find('all', array(
+            'conditions' => array(
+                'lft >' => $rootNode['Election']['lft'],
+                'rght <' => $rootNode['Election']['rght'],
+                'rght - lft = 1'
+            ),
+            'contain' => array(
+                'Area' => array('fields' => array('name', 'parent_id'))
+            )
+        ));
+        $areaPool = array();
+        foreach ($cunliNodes as $cunliNode) {
+            $pathNodes = $this->Election->getPath($cunliNode['Election']['id']);
+            $area = $pathNodes[2]['Election']['name'] . $pathNodes[3]['Election']['name'];
+            if (!isset($areaPool[$area])) {
+                $areaPool[$area] = array(
+                    'election_parent' => $pathNodes[3]['Election']['id'],
+                    'area_parent' => $cunliNode['Area'][0]['parent_id'],
+                );
+            }
+
+            if (isset($ref[$area][$pathNodes[4]['Election']['name']])) {
+                unset($ref[$area][$pathNodes[4]['Election']['name']]);
+            } else {
+                // to delete election/area node
+                $this->Election->delete($cunliNode['Area'][0]['AreasElection']['Election_id']);
+                $this->Election->Area->delete($cunliNode['Area'][0]['AreasElection']['Area_id']);
+                $this->Election->AreasElection->delete($cunliNode['Area'][0]['AreasElection']['id']);
+            }
+        }
+
+        foreach ($ref as $area => $cunlis) {
+            foreach ($cunlis as $cunliNode) {
+                $link = [];
+                // to create election/area node
+                $this->Election->create();
+                $this->Election->save(array('Election' => array(
+                    'parent_id' => $areaPool[$area]['election_parent'],
+                    'name' => $cunliNode['VILLNAME'],
+                    'quota' => 1,
+                    'keywords' => $cunliNode['VILLNAME'],
+                )));
+                $link['Election_id'] = $this->Election->getInsertID();
+                $this->Election->Area->create();
+                $this->Election->Area->save(array('Area' => array(
+                    'parent_id' => $areaPool[$area]['area_parent'],
+                    'code' => $cunliNode['VILLCODE'],
+                    'name' => $cunliNode['VILLNAME'],
+                    'is_area' => 1,
+                    'keywords' => $cunliNode['VILLNAME'],
+                )));
+                $link['Area_id'] = $this->Election->Area->getInsertID();
+                $this->Election->AreasElection->create();
+                $this->Election->AreasElection->save(array('AreasElection' => $link));
+            }
+        }
+    }
+
+    public function duplicateCandidates()
+    {
         $rootSource = $this->Election->find('first', array(
             'conditions' => array(
                 'Election.id' => '54d9c44b-80a4-4cbe-b677-6b30acb5b862',
@@ -79,9 +165,9 @@ class ElectionShell extends AppShell {
         ));
         $unsetFields = array('id', 'active_id', 'created', 'modified', 'no');
         $sourceNodes = array();
-        foreach ($sourceTree AS $node) {
+        foreach ($sourceTree as $node) {
             if (!empty($node['children'])) {
-                foreach ($node['children'] AS $child) {
+                foreach ($node['children'] as $child) {
                     $nodeKey = "{$node['Election']['name']}{$child['Election']['name']}";
                     $nodeKey = str_replace('桃園縣', '桃園市', $nodeKey);
                     $sourceNodes[$nodeKey] = $this->Election->Candidate->find('all', array(
@@ -117,12 +203,12 @@ class ElectionShell extends AppShell {
             ),
         ));
         $path = WWW_ROOT . 'media';
-        foreach ($targetTree AS $node) {
+        foreach ($targetTree as $node) {
             if (!empty($node['children'])) {
-                foreach ($node['children'] AS $child) {
+                foreach ($node['children'] as $child) {
                     $nodeKey = "{$node['Election']['name']}{$child['Election']['name']}";
-                    foreach ($sourceNodes[$nodeKey] AS $candidate) {
-                        foreach ($unsetFields AS $unsetField) {
+                    foreach ($sourceNodes[$nodeKey] as $candidate) {
+                        foreach ($unsetFields as $unsetField) {
                             unset($candidate['Candidate'][$unsetField]);
                         }
                         $candidate['Candidate']['election_id'] = $child['Election']['id'];
@@ -146,8 +232,8 @@ class ElectionShell extends AppShell {
                 }
             } else {
                 $nodeKey = "{$node['Election']['name']}";
-                foreach ($sourceNodes[$nodeKey] AS $candidate) {
-                    foreach ($unsetFields AS $unsetField) {
+                foreach ($sourceNodes[$nodeKey] as $candidate) {
+                    foreach ($unsetFields as $unsetField) {
                         unset($candidate['Candidate'][$unsetField]);
                     }
                     $candidate['Candidate']['election_id'] = $node['Election']['id'];
@@ -172,7 +258,8 @@ class ElectionShell extends AppShell {
         }
     }
 
-    public function extractTree() {
+    public function extractTree()
+    {
         $nodes = $this->Election->find('all', array(
             'fields' => array('id', 'parent_id', 'name'),
             'conditions' => array(
@@ -181,7 +268,7 @@ class ElectionShell extends AppShell {
             ),
         ));
         $newTree = array();
-        foreach ($nodes AS $node) {
+        foreach ($nodes as $node) {
             $nameParts = explode('第', $node['Election']['name']);
             if (!isset($newTree[$node['Election']['parent_id']])) {
                 $newTree[$node['Election']['parent_id']] = array();
@@ -189,23 +276,24 @@ class ElectionShell extends AppShell {
             if (!isset($newTree[$node['Election']['parent_id']][$nameParts[0]])) {
                 $this->Election->create();
                 if ($this->Election->save(array('Election' => array(
-                                'name' => $nameParts[0],
-                                'parent_id' => $node['Election']['parent_id'],
-                    )))) {
+                    'name' => $nameParts[0],
+                    'parent_id' => $node['Election']['parent_id'],
+                )))) {
                     $newTree[$node['Election']['parent_id']][$nameParts[0]] = $this->Election->getInsertID();
                 }
             }
             if (isset($newTree[$node['Election']['parent_id']][$nameParts[0]])) {
                 $this->Election->id = $node['Election']['id'];
                 $this->Election->save(array('Election' => array(
-                        'name' => '第' . $nameParts[1],
-                        'parent_id' => $newTree[$node['Election']['parent_id']][$nameParts[0]],
+                    'name' => '第' . $nameParts[1],
+                    'parent_id' => $newTree[$node['Election']['parent_id']][$nameParts[0]],
                 )));
             }
         }
     }
 
-    public function dumpAreas() {
+    public function dumpAreas()
+    {
         $rootNode = $this->Election->find('first', array(
             'conditions' => array(
                 'Election.id' => '55085e1a-c494-40e0-ba31-2f916ab936af',
@@ -227,10 +315,10 @@ class ElectionShell extends AppShell {
         ));
         $fh = fopen(__DIR__ . '/data/2016_election/elections_areas.csv', 'w');
         fputcsv($fh, array('選區', '行政區'));
-        foreach ($nodes AS $node) {
+        foreach ($nodes as $node) {
             $electionPath = $this->Election->getPath($node['Election']['id'], array('name'));
             $election = implode(' > ', Set::extract('{n}.Election.name', $electionPath));
-            foreach ($node['Area'] AS $area) {
+            foreach ($node['Area'] as $area) {
                 $areaPath = $this->Election->Area->getPath($area['id'], array('name'));
                 $area = implode(' > ', Set::extract('{n}.Area.name', $areaPath));
                 fputcsv($fh, array($election, $area));
@@ -239,16 +327,17 @@ class ElectionShell extends AppShell {
         fclose($fh);
     }
 
-    public function generateKeywords() {
+    public function generateKeywords()
+    {
         $nodes = $this->Election->find('list', array(
             'conditions' => array('rght - lft = 1'),
             'fields' => array('id', 'id'),
         ));
-        foreach ($nodes AS $nodeId) {
+        foreach ($nodes as $nodeId) {
             $path = $this->Election->getPath($nodeId, array('id', 'name'));
             $this->Election->save(array('Election' => array(
-                    'id' => $nodeId,
-                    'keywords' => implode(',', Set::extract('{n}.Election.name', $path)),
+                'id' => $nodeId,
+                'keywords' => implode(',', Set::extract('{n}.Election.name', $path)),
             )));
         }
     }
@@ -257,7 +346,8 @@ class ElectionShell extends AppShell {
      * 計算 同額競選 名單
      */
 
-    public function quota_match() {
+    public function quota_match()
+    {
         $elections = $this->Election->find('all', array(
             'fields' => array(
                 'Election.id', 'Election.quota',
@@ -270,7 +360,7 @@ class ElectionShell extends AppShell {
         ));
         $fh = fopen(__DIR__ . '/data/2014_quota_match.csv', 'w');
         fputcsv($fh, array('選區', '姓名', '政黨', '候選人網址', '選區網址'));
-        foreach ($elections AS $election) {
+        foreach ($elections as $election) {
             if ($election['Election']['quota'] === $election[0]['n']) {
                 $path = implode(' > ', Set::extract('{n}.Election.name', $this->Election->getPath($election['Election']['id'], array('name'))));
                 $candidates = $this->Election->Candidate->find('all', array(
@@ -281,7 +371,7 @@ class ElectionShell extends AppShell {
                     ),
                     'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party'),
                 ));
-                foreach ($candidates AS $candidate) {
+                foreach ($candidates as $candidate) {
                     fputcsv($fh, array(
                         $path,
                         $candidate['Candidate']['name'],
@@ -295,7 +385,8 @@ class ElectionShell extends AppShell {
         fclose($fh);
     }
 
-    public function quota_match_links() {
+    public function quota_match_links()
+    {
         $elections = $this->Election->find('all', array(
             'fields' => array(
                 'Election.id', 'Election.quota',
@@ -307,7 +398,7 @@ class ElectionShell extends AppShell {
             'order' => array('Election.lft' => 'ASC'),
         ));
         $fh = fopen(TMP . '2014_quota_match.txt', 'w');
-        foreach ($elections AS $election) {
+        foreach ($elections as $election) {
             if ($election['Election']['quota'] === $election[0]['n']) {
                 $path = implode(' > ', Set::extract('{n}.Election.name', $this->Election->getPath($election['Election']['id'], array('name'))));
                 if (false === strpos($path, '村里')) {
@@ -321,7 +412,7 @@ class ElectionShell extends AppShell {
                     ));
                     $line = "<li><a href=\"http://k.olc.tw/elections/candidates/index/{$election['Election']['id']}\" target=\"_blank\">{$path}</a>： ";
                     $cLinks = array();
-                    foreach ($candidates AS $candidate) {
+                    foreach ($candidates as $candidate) {
                         $cLinks[] = "<a href=\"'http://k.olc.tw/elections/candidates/view/{$candidate['Candidate']['id']}\" target=\"_blank\">{$candidate['Candidate']['name']}({$candidate['Candidate']['party']})</a>";
                     }
                     $line .= implode(', ', $cLinks) . "</li>\n";
@@ -332,7 +423,8 @@ class ElectionShell extends AppShell {
         fclose($fh);
     }
 
-    public function quota_export() {
+    public function quota_export()
+    {
         $root = $this->Election->find('first', array(
             'conditions' => array(
                 'name' => '2014',
@@ -349,7 +441,7 @@ class ElectionShell extends AppShell {
         if (!file_exists($exportPath)) {
             mkdir($exportPath, 0777, true);
         }
-        foreach ($elections AS $election) {
+        foreach ($elections as $election) {
             $exportFile = "{$exportPath}/{$election['Election']['name']}.csv";
             $nodes = $this->Election->find('all', array(
                 'conditions' => array(
@@ -363,7 +455,7 @@ class ElectionShell extends AppShell {
             ));
             $fh = fopen($exportFile, 'w');
             fputcsv($fh, array('選區', '名額', '婦女', 'id'));
-            foreach ($nodes AS $node) {
+            foreach ($nodes as $node) {
                 $parents = $this->Election->getPath($node['Election']['id'], array('name'));
                 unset($parents[0]);
                 unset($parents[1]);
@@ -379,13 +471,14 @@ class ElectionShell extends AppShell {
       ADD  `quota_women` INT( 10 ) NOT NULL DEFAULT  '0';
      */
 
-    public function quota_import() {
+    public function quota_import()
+    {
         $targets = array('縣市議員', '直轄市議員', '鄉鎮市民代表', '直轄市山地原住民區民代表');
         $importPath = __DIR__ . '/data/2014_quota';
         $sql = array(
             'UPDATE elections SET quota = 1;'
         );
-        foreach ($targets AS $target) {
+        foreach ($targets as $target) {
             $importFile = "{$importPath}/{$target}.csv";
             if (file_exists($importFile)) {
                 $fh = fopen($importFile, 'r');
@@ -400,5 +493,4 @@ class ElectionShell extends AppShell {
         }
         file_put_contents(TMP . 'quota.sql', implode("\n", $sql));
     }
-
 }
