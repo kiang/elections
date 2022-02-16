@@ -132,6 +132,7 @@ class ElectionShell extends AppShell
                     'name' => $cunliNode['VILLNAME'],
                     'population' => 0,
                     'population_electors' => 0,
+                    'quota_women' => 0,
                     'quota' => 1,
                     'keywords' => $cunliNode['VILLNAME'],
                 )));
