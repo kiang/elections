@@ -105,16 +105,43 @@ class ElectionShell extends AppShell
         foreach ($cunliNodes as $cunliNode) {
             $pathNodes = $this->Election->getPath($cunliNode['Election']['id']);
             $area = $pathNodes[2]['Election']['name'] . $pathNodes[3]['Election']['name'];
+
             if (!isset($areaPool[$area])) {
+                $areaLinks = $this->Election->AreasElection->find('list', array(
+                    'fields' => array(
+                        'AreasElection.Election_id', 'AreasElection.Election_id',
+                    ),
+                    'conditions' => array(
+                        'AreasElection.Area_id' => $cunliNode['Area'][0]['AreasElection']['Area_id'],
+                        'AreasElection.id !=' => $cunliNode['Area'][0]['AreasElection']['id'],
+                    ),
+                ));
                 $areaPool[$area] = array(
                     'election_parent' => $pathNodes[3]['Election']['id'],
                     'area_parent' => $cunliNode['Area'][0]['parent_id'],
+                    'links' => $areaLinks,
                 );
             }
 
             if (isset($ref[$area][$pathNodes[4]['Election']['name']])) {
                 unset($ref[$area][$pathNodes[4]['Election']['name']]);
             } else {
+                if (isset($areaPool[$area])) {
+                    $areaLinks = $this->Election->AreasElection->find('list', array(
+                        'fields' => array(
+                            'AreasElection.Election_id', 'AreasElection.Election_id',
+                        ),
+                        'conditions' => array(
+                            'AreasElection.Area_id' => $cunliNode['Area'][0]['AreasElection']['Area_id'],
+                            'AreasElection.id !=' => $cunliNode['Area'][0]['AreasElection']['id'],
+                        ),
+                    ));
+                    $areaPool[$area] = array(
+                        'election_parent' => $pathNodes[3]['Election']['id'],
+                        'area_parent' => $cunliNode['Area'][0]['parent_id'],
+                        'links' => $areaLinks,
+                    );
+                }
                 // to delete election/area node
                 $this->Election->delete($cunliNode['Area'][0]['AreasElection']['Election_id']);
                 $this->Election->Area->delete($cunliNode['Area'][0]['AreasElection']['Area_id']);
@@ -150,6 +177,13 @@ class ElectionShell extends AppShell
                 $link['Area_id'] = $this->Election->Area->getInsertID();
                 $this->Election->AreasElection->create();
                 $this->Election->AreasElection->save(array('AreasElection' => $link));
+                if(!empty($areaPool[$area]['links'])) {
+                    foreach($areaPool[$area]['links'] AS $linkId) {
+                        $link['Election_id'] = $linkId;
+                        $this->Election->AreasElection->create();
+                        $this->Election->AreasElection->save(array('AreasElection' => $link));
+                    }
+                }
             }
         }
     }
