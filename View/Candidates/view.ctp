@@ -76,7 +76,6 @@
             <?php
             echo $this->Html->link('參選記錄', array('action' => 'name', $candidate['Candidate']['name']), array('class' => 'btn btn-default'));
             echo $this->Html->link('相關公司', 'http://gcis.nat.g0v.tw/name/' . $candidate['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
-            echo $this->Html->link('相關法人', 'http://foundations.olc.tw/directors/index/' . $candidate['Candidate']['name'], array('class' => 'btn btn-default', 'target' => '_blank'));
             if (Configure::read('loginMember.group_id') === '1') {
                 echo $this->Html->link('管理', array('action' => 'edit', $candidate['Candidate']['id'], 'admin' => true), array('class' => 'btn btn-default'));
             }
