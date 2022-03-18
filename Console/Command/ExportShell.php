@@ -5,7 +5,7 @@ class ExportShell extends AppShell {
     public $uses = array('Election');
 
     public function main() {
-        $this->lawsuitCandidates();
+        $this->facebook();
     }
 
     public function lawsuitCandidates() {
