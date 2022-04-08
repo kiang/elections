@@ -1,0 +1,40 @@
+{
+    "repo": "kiang/elections",
+    "author": "kiang",
+    "status": "Beta",
+    "name": "Taiwan Election Yellow Page",
+    "name_zh": "選舉黃頁",
+    "description": "To collect all election data in Taiwan, like candidates, votes, ...",
+    "description_zh": "蒐集所有台灣的選舉資料，像是參選人、得票數等等",
+    "homepage": "https://elections.olc.tw/",
+    "thumbnail": "https://kiang.github.io/img/elections.png",
+    "document": "https://g0v.hackmd.io/2-Vpn5X0Ts6Kdj7tcXtkyQ",
+    "repository": "https://github.com/kiang/elections",
+    "licenses": [
+      "MIT - All source codes",
+      "CC0 - Reply content"
+    ],
+    "keywords": [
+      "election",
+      "vote",
+      "candidate"
+    ],
+    "audience": [
+      "想要了解參選人資訊的朋友"
+    ],
+    "products": [
+      "https://elections.olc.tw/"
+    ],
+    "partOf": "",
+    "contributors": [
+      "kiang",
+      "osk2",
+      "minipai",
+      "appleboy"
+    ],
+    "needs": [
+      "視覺設計",
+      "參選人資料建檔、維護",
+      "連結政治研究單位，接手維運工作"
+    ]
+  }
