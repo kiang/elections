@@ -177,8 +177,8 @@ class ElectionShell extends AppShell
                 $link['Area_id'] = $this->Election->Area->getInsertID();
                 $this->Election->AreasElection->create();
                 $this->Election->AreasElection->save(array('AreasElection' => $link));
-                if(!empty($areaPool[$area]['links'])) {
-                    foreach($areaPool[$area]['links'] AS $linkId) {
+                if (!empty($areaPool[$area]['links'])) {
+                    foreach ($areaPool[$area]['links'] as $linkId) {
                         $link['Election_id'] = $linkId;
                         $this->Election->AreasElection->create();
                         $this->Election->AreasElection->save(array('AreasElection' => $link));
@@ -357,10 +357,14 @@ class ElectionShell extends AppShell
         foreach ($nodes as $node) {
             $electionPath = $this->Election->getPath($node['Election']['id'], array('name'));
             $election = implode(' > ', Set::extract('{n}.Election.name', $electionPath));
-            foreach ($node['Area'] as $area) {
-                $areaPath = $this->Election->Area->getPath($area['id'], array('name'));
-                $area = implode(' > ', Set::extract('{n}.Area.name', $areaPath));
-                fputcsv($fh, array($node['Election']['id'], $election, $area));
+            if (!empty($node['Area'])) {
+                foreach ($node['Area'] as $area) {
+                    $areaPath = $this->Election->Area->getPath($area['id'], array('name'));
+                    $area = implode(' > ', Set::extract('{n}.Area.name', $areaPath));
+                    fputcsv($fh, array($node['Election']['id'], $election, $area));
+                }
+            } else {
+                fputcsv($fh, array($node['Election']['id'], $election, ''));
             }
         }
         fclose($fh);
