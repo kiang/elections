@@ -23,15 +23,25 @@ class CandidateShell extends AppShell
             ]);
             if (!empty($candidate)) {
                 $this->Candidate->id = $candidate['Candidate']['id'];
+                $this->Candidate->save(['Candidate' => [
+                    'election_id' => $line[4],
+                    'name' => $line[2],
+                    'party' => $line[3],
+                    'stage' => 1,
+                ]]);
             } else {
                 $this->Candidate->create();
+                $this->Candidate->save(['Candidate' => [
+                    'election_id' => $line[4],
+                    'name' => $line[2],
+                    'party' => $line[3],
+                    'stage' => 1,
+                    'education_level' => '',
+                    'is_present' => 0,
+                    'name_english' => '',
+                    'birth_place' => '',
+                ]]);
             }
-            $this->Candidate->save(['Candidate' => [
-                'election_id' => $line[4],
-                'name' => $line[2],
-                'party' => $line[3],
-                'stage' => 1,
-            ]]);
         }
     }
 
