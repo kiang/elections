@@ -1,31 +1,58 @@
 <?php
 
-class CandidateShell extends AppShell {
+class CandidateShell extends AppShell
+{
 
     public $uses = array('Candidate');
     public $cec2014Stack = array();
 
-    public function main() {
-        $this->elections_2020();
-        $this->import_2020();
+    public function main()
+    {
+        $this->import_2022();
     }
 
-    public function elections_2020() {
+    public function import_2022()
+    {
+        $fh = fopen('https://github.com/kiang/vote2022/raw/master/reports/links.csv', 'r');
+        while ($line = fgetcsv($fh, 2048)) {
+            $candidate = $this->Candidate->find('first', [
+                'conditions' => [
+                    'Candidate.election_id' => $line[4],
+                    'Candidate.name' => $line[2],
+                ],
+            ]);
+            if (!empty($candidate)) {
+                $this->Candidate->id = $candidate['Candidate']['id'];
+            } else {
+                $this->Candidate->create();
+            }
+            $this->Candidate->save(['Candidate' => [
+                'election_id' => $line[4],
+                'name' => $line[2],
+                'party' => $line[3],
+                'stage' => 1,
+            ]]);
+        }
+    }
+
+    public function elections_2020()
+    {
         $children = $this->Candidate->Election->children('5cbf16f4-d818-447e-b916-5ee30a8c0003');
-        foreach ($children AS $election) {
+        foreach ($children as $election) {
             $nodes = $this->Candidate->Election->getPath($election['Election']['id'], array('name'));
             $this->Candidate->Election->id = $election['Election']['id'];
             $this->Candidate->Election->save(array('Election' => array(
-                    'bulletin_key' => NULL,
-                    'keywords' => implode(',', Set::extract('{n}.Election.name', $nodes)),
+                'bulletin_key' => NULL,
+                'keywords' => implode(',', Set::extract('{n}.Election.name', $nodes)),
             )));
         }
     }
 
-    public function import_2020() {
+    public function import_2020()
+    {
         $votePath = '/home/kiang/public_html/vote2020/data';
         $parentId = '5cbf173d-f8d4-42d5-9918-5ee30a8c0003';
-        foreach (glob($votePath . '/區域立委/*.json') AS $jsonFile) {
+        foreach (glob($votePath . '/區域立委/*.json') as $jsonFile) {
             $p = pathinfo($jsonFile);
             $cityId = $this->Candidate->Election->field('id', array(
                 'parent_id' => $parentId,
@@ -37,7 +64,7 @@ class CandidateShell extends AppShell {
                     continue;
                 }
                 $json = json_decode(file_get_contents($jsonFile), true);
-                foreach ($json['L1'] AS $area) {
+                foreach ($json['L1'] as $area) {
                     if ($area['areaCode'] == 0) {
                         $area['areaCode'] = 1;
                     }
@@ -49,12 +76,12 @@ class CandidateShell extends AppShell {
                     if (empty($electionId)) {
                         $this->Candidate->Election->create();
                         $this->Candidate->Election->save(array('Election' => array(
-                                'parent_id' => $cityId,
-                                'name' => $name,
+                            'parent_id' => $cityId,
+                            'name' => $name,
                         )));
                         $electionId = $this->Candidate->Election->getInsertID();
                     }
-                    foreach ($area['cands'] AS $candidate) {
+                    foreach ($area['cands'] as $candidate) {
                         $candidateId = $this->Candidate->field('id', array(
                             'active_id IS NULL',
                             'election_id' => $electionId,
@@ -106,7 +133,7 @@ class CandidateShell extends AppShell {
         }
 
         $candidates = json_decode(file_get_contents($votePath . '/總統副總統.json'), true);
-        foreach ($candidates['P1'] AS $candidate) {
+        foreach ($candidates['P1'] as $candidate) {
             if ($candidate['candType'] === 'P') {
                 //總統
                 $electionId = '5cbf175e-2c34-450f-9432-5ee30a8c0003';
@@ -135,7 +162,7 @@ class CandidateShell extends AppShell {
 
         $candidates = json_decode(file_get_contents($votePath . '/山地原住民.json'), true);
         $electionId = '5cc79b43-009c-40bf-9a4a-624e0a8c0003';
-        foreach ($candidates['L3'] AS $candidate) {
+        foreach ($candidates['L3'] as $candidate) {
             $candidateId = $this->Candidate->field('id', array(
                 'active_id IS NULL',
                 'election_id' => $electionId,
@@ -164,7 +191,7 @@ class CandidateShell extends AppShell {
 
         $candidates = json_decode(file_get_contents($votePath . '/平地原住民.json'), true);
         $electionId = '5cc79b4d-2f04-44c4-a99e-624e0a8c0003';
-        foreach ($candidates['L2'] AS $candidate) {
+        foreach ($candidates['L2'] as $candidate) {
             $candidateId = $this->Candidate->field('id', array(
                 'active_id IS NULL',
                 'election_id' => $electionId,
@@ -193,7 +220,7 @@ class CandidateShell extends AppShell {
 
         $candidates = json_decode(file_get_contents($votePath . '/不分區候選人.json'), true);
         $electionId = '5cc79b38-643c-4bbd-a499-624e0a8c0003';
-        foreach ($candidates['L4'] AS $party) {
+        foreach ($candidates['L4'] as $party) {
             $partyId = $this->Candidate->Election->field('id', array(
                 'parent_id' => $electionId,
                 'name LIKE' => "%{$party['partyName']}%",
@@ -201,9 +228,9 @@ class CandidateShell extends AppShell {
             if (!empty($partyId)) {
                 $this->Candidate->Election->id = $partyId;
                 $this->Candidate->Election->save(array('Election' => array(
-                        'name' => str_pad($party['partyNo'], 2, '0', STR_PAD_LEFT) . $party['partyName'],
+                    'name' => str_pad($party['partyNo'], 2, '0', STR_PAD_LEFT) . $party['partyName'],
                 )));
-                foreach ($party['cands'] AS $candidate) {
+                foreach ($party['cands'] as $candidate) {
                     $candidateId = $this->Candidate->field('id', array(
                         'active_id IS NULL',
                         'election_id' => $partyId,
@@ -246,7 +273,8 @@ class CandidateShell extends AppShell {
         }
     }
 
-    public function dump_2014_age() {
+    public function dump_2014_age()
+    {
         $root = $this->Candidate->Election->find('first', array(
             'conditions' => array(
                 'id' => '53c0202f-4f58-4419-8d07-5460acb5b862',
@@ -264,8 +292,10 @@ class CandidateShell extends AppShell {
                 'Candidate.active_id IS NULL',
                 'Candidate.stage' => '2',
             ),
-            'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party',
-                'Candidate.birth'),
+            'fields' => array(
+                'Candidate.id', 'Candidate.name', 'Candidate.party',
+                'Candidate.birth'
+            ),
         ));
         $fh = fopen(__DIR__ . '/data/2014_candidates/age_縣市議員.csv', 'w');
         fputcsv($fh, array(
@@ -276,7 +306,7 @@ class CandidateShell extends AppShell {
             '年齡',
             '網址',
         ));
-        foreach ($candidates AS $candidate) {
+        foreach ($candidates as $candidate) {
             fputcsv($fh, array(
                 implode('-', explode(',', $candidate['Election']['keywords'])),
                 $candidate['Candidate']['name'],
@@ -303,10 +333,12 @@ class CandidateShell extends AppShell {
                 'Candidate.active_id IS NULL',
                 'Candidate.stage' => '2',
             ),
-            'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party',
-                'Candidate.birth'),
+            'fields' => array(
+                'Candidate.id', 'Candidate.name', 'Candidate.party',
+                'Candidate.birth'
+            ),
         ));
-        foreach ($candidates AS $candidate) {
+        foreach ($candidates as $candidate) {
             fputcsv($fh, array(
                 implode('-', explode(',', $candidate['Election']['keywords'])),
                 $candidate['Candidate']['name'],
@@ -319,7 +351,8 @@ class CandidateShell extends AppShell {
         fclose($fh);
     }
 
-    public function dump_2014_cunli() {
+    public function dump_2014_cunli()
+    {
         $root = $this->Candidate->Election->find('first', array(
             'conditions' => array(
                 'id' => '53c02030-eab8-4960-a0d6-5460acb5b862',
@@ -342,7 +375,7 @@ class CandidateShell extends AppShell {
             'fields' => array('Candidate.id', 'Candidate.name', 'Candidate.party'),
         ));
         $lines = array();
-        foreach ($candidates AS $candidate) {
+        foreach ($candidates as $candidate) {
             if (empty($candidate['Election']['Area'][0]['code'])) {
                 echo str_replace(',', '', $candidate['Election']['Area'][0]['keywords']) . "\n";
             }
@@ -355,21 +388,22 @@ class CandidateShell extends AppShell {
         }
         ksort($lines);
         $fh = fopen(__DIR__ . '/data/2014_candidates/cunli_result.csv', 'w');
-        foreach ($lines AS $line) {
+        foreach ($lines as $line) {
             fputcsv($fh, $line);
         }
         fclose($fh);
     }
 
-    public function vote_2016_result() {
+    public function vote_2016_result()
+    {
         $result = TMP . '/vote_2016_result.json';
         if (!file_exists($result)) {
             file_put_contents($result, file_get_contents('https://raw.githubusercontent.com/tommy87166/CECresult/master/lastest.json'));
         }
         $json = json_decode(file_get_contents($result), true);
         $rows = $parties = array();
-        foreach ($json AS $cols) {
-            foreach ($cols[1] AS $col) {
+        foreach ($json as $cols) {
+            foreach ($cols[1] as $col) {
                 switch (count($col)) {
                     case 7:
                         $col[4] = preg_replace('/[^0-9]/', '', $col[4]);
@@ -397,7 +431,7 @@ class CandidateShell extends AppShell {
             ),
             'fields' => array('Candidate.id', 'Candidate.name',),
         ));
-        foreach ($candidates AS $candidate) {
+        foreach ($candidates as $candidate) {
             $key = $candidate['Candidate']['name'];
             if ($candidate['Election']['id'] !== '5508642a-7e4c-41bf-a0cd-23d86ab936af') {
                 if (!isset($rows[$key])) {
@@ -461,7 +495,8 @@ class CandidateShell extends AppShell {
         }
     }
 
-    public function tag_2016() {
+    public function tag_2016()
+    {
         // 55085e1a-c494-40e0-ba31-2f916ab936af = 立法委員
         // 5508642a-7e4c-41bf-a0cd-23d86ab936af = 不分區政黨
         $root = $this->Candidate->Election->find('first', array(
@@ -487,36 +522,37 @@ class CandidateShell extends AppShell {
             ),
             'fields' => array('Candidate.id', 'Candidate.party'),
         ));
-        foreach ($candidates AS $candidate) {
+        foreach ($candidates as $candidate) {
             $tag = '2016' . $candidate['Candidate']['party'];
             if (!isset($tags[$tag])) {
                 $this->Candidate->Tag->create();
                 $this->Candidate->Tag->save(array('Tag' => array(
-                        'name' => $tag,
+                    'name' => $tag,
                 )));
                 $tags[$tag] = $this->Candidate->Tag->getInsertID();
                 $this->Candidate->CandidatesTag->create();
                 $this->Candidate->CandidatesTag->save(array('CandidatesTag' => array(
-                        'Candidate_id' => $candidate['Candidate']['id'],
-                        'Tag_id' => $tags[$tag],
+                    'Candidate_id' => $candidate['Candidate']['id'],
+                    'Tag_id' => $tags[$tag],
                 )));
             } elseif ($this->Candidate->CandidatesTag->find('count', array(
-                        'conditions' => array(
-                            'Candidate_id' => $candidate['Candidate']['id'],
-                            'Tag_id' => $tags[$tag],
-                        ),
-                    )) == 0) {
+                'conditions' => array(
+                    'Candidate_id' => $candidate['Candidate']['id'],
+                    'Tag_id' => $tags[$tag],
+                ),
+            )) == 0) {
                 $this->Candidate->CandidatesTag->create();
                 $this->Candidate->CandidatesTag->save(array('CandidatesTag' => array(
-                        'Candidate_id' => $candidate['Candidate']['id'],
-                        'Tag_id' => $tags[$tag],
+                    'Candidate_id' => $candidate['Candidate']['id'],
+                    'Tag_id' => $tags[$tag],
                 )));
             }
         }
         $this->Candidate->query('UPDATE tags SET count = (SELECT COUNT(*) FROM candidates_tags WHERE Tag_id = tags.id)');
     }
 
-    public function api_2016() {
+    public function api_2016()
+    {
         $root = $this->Candidate->Election->find('first', array(
             'conditions' => array(
                 'id' => '55085e1a-c494-40e0-ba31-2f916ab936af',
@@ -543,7 +579,7 @@ class CandidateShell extends AppShell {
             'rptpolitics' => 'platform',
             'drawno' => 'no',
         );
-        foreach ($json['區域立委公報'] AS $item) {
+        foreach ($json['區域立委公報'] as $item) {
             //2016-01,立法委員,臺北市,第02選區[區域]
             $electionKey = '2016-01,立法委員,' . $item['cityname'] . ',第';
             $item['sessionname'] = str_pad(preg_replace('/[^0-9]/', '', $item['sessionname']), 2, '0', STR_PAD_LEFT);
@@ -580,7 +616,7 @@ class CandidateShell extends AppShell {
                 'name' => $item['candidatename'],
                 'party' => $item['recpartyname_1'],
             );
-            foreach (array('rptedu', 'rptexp', 'rptpolitics') AS $itemKey) {
+            foreach (array('rptedu', 'rptexp', 'rptpolitics') as $itemKey) {
                 if (isset($item[$itemKey])) {
                     $item[$itemKey] = str_replace(array('&nbsp;', '<BR>'), array('', "\n"), $item[$itemKey]);
                 }
@@ -591,7 +627,7 @@ class CandidateShell extends AppShell {
             if (isset($item['birthdate'])) {
                 $dataToSave['birth'] = date('Y-m-d', strtotime($item['birthdate']));
             }
-            foreach ($itemKeys AS $itemKey => $dbKey) {
+            foreach ($itemKeys as $itemKey => $dbKey) {
                 if (isset($item[$itemKey])) {
                     $dataToSave[$dbKey] = $item[$itemKey];
                 }
@@ -609,7 +645,7 @@ class CandidateShell extends AppShell {
             ),
             'fields' => array('name', 'id'),
         ));
-        foreach ($json['山地原住民立委'] AS $item) {
+        foreach ($json['山地原住民立委'] as $item) {
             if (!isset($candidates[$electionId][$item['candidatename']])) {
                 switch ($item['candidatename']) {
                     case '瓦歷斯‧貝林^Walis‧Perin':
@@ -628,7 +664,7 @@ class CandidateShell extends AppShell {
                 'name' => $item['candidatename'],
                 'party' => $item['recpartyname_1'],
             );
-            foreach (array('rptedu', 'rptexp', 'rptpolitics') AS $itemKey) {
+            foreach (array('rptedu', 'rptexp', 'rptpolitics') as $itemKey) {
                 if (isset($item[$itemKey])) {
                     $item[$itemKey] = str_replace(array('&nbsp;', '<BR>'), array('', "\n"), $item[$itemKey]);
                 }
@@ -639,7 +675,7 @@ class CandidateShell extends AppShell {
             if (isset($item['birthdate'])) {
                 $dataToSave['birth'] = date('Y-m-d', strtotime($item['birthdate']));
             }
-            foreach ($itemKeys AS $itemKey => $dbKey) {
+            foreach ($itemKeys as $itemKey => $dbKey) {
                 if (isset($item[$itemKey])) {
                     $dataToSave[$dbKey] = $item[$itemKey];
                 }
@@ -658,7 +694,7 @@ class CandidateShell extends AppShell {
             ),
             'fields' => array('name', 'id'),
         ));
-        foreach ($json['平地原住民立委'] AS $item) {
+        foreach ($json['平地原住民立委'] as $item) {
             if (!isset($candidates[$electionId][$item['candidatename']])) {
                 switch ($item['candidatename']) {
                     case '廖國棟^Sufin．Siluko':
@@ -686,7 +722,7 @@ class CandidateShell extends AppShell {
                 'name' => $item['candidatename'],
                 'party' => $item['recpartyname_1'],
             );
-            foreach (array('rptedu', 'rptexp', 'rptpolitics') AS $itemKey) {
+            foreach (array('rptedu', 'rptexp', 'rptpolitics') as $itemKey) {
                 if (isset($item[$itemKey])) {
                     $item[$itemKey] = str_replace(array('&nbsp;', '<BR>'), array('', "\n"), $item[$itemKey]);
                 }
@@ -697,7 +733,7 @@ class CandidateShell extends AppShell {
             if (isset($item['birthdate'])) {
                 $dataToSave['birth'] = date('Y-m-d', strtotime($item['birthdate']));
             }
-            foreach ($itemKeys AS $itemKey => $dbKey) {
+            foreach ($itemKeys as $itemKey => $dbKey) {
                 if (isset($item[$itemKey])) {
                     $dataToSave[$dbKey] = $item[$itemKey];
                 }
@@ -713,32 +749,33 @@ class CandidateShell extends AppShell {
             ),
             'fields' => array('name', 'id'),
         ));
-        foreach ($json['總統副總統選舉公報'] AS $item) {
+        foreach ($json['總統副總統選舉公報'] as $item) {
             $this->Candidate->id = $candidates[$item['candidatename']];
             $this->Candidate->save(array('Candidate' => array(
-                    'name_english' => $item['candidatenameeng'],
-                    'education_level' => $item['educationname'],
-                    'gender' => strtolower($item['gender']),
-                    'birth' => date('Y-m-d', strtotime($item['birthdate'])),
-                    'party' => $item['recpartyname_1'],
-                    'birth_place' => $item['placename'],
-                    'education' => $item['rptedu'],
-                    'experience' => $item['rptexp'],
+                'name_english' => $item['candidatenameeng'],
+                'education_level' => $item['educationname'],
+                'gender' => strtolower($item['gender']),
+                'birth' => date('Y-m-d', strtotime($item['birthdate'])),
+                'party' => $item['recpartyname_1'],
+                'birth_place' => $item['placename'],
+                'education' => $item['rptedu'],
+                'experience' => $item['rptexp'],
             )));
             $this->Candidate->id = $candidates[$item['candidatename2']];
             $this->Candidate->save(array('Candidate' => array(
-                    'education_level' => $item['educationname2'],
-                    'gender' => strtolower($item['gender2']),
-                    'birth' => date('Y-m-d', strtotime($item['birthdate2'])),
-                    'party' => $item['recpartyname_1'],
-                    'birth_place' => $item['placename2'],
-                    'education' => $item['rptedu2'],
-                    'experience' => $item['rptexp2'],
+                'education_level' => $item['educationname2'],
+                'gender' => strtolower($item['gender2']),
+                'birth' => date('Y-m-d', strtotime($item['birthdate2'])),
+                'party' => $item['recpartyname_1'],
+                'birth_place' => $item['placename2'],
+                'education' => $item['rptedu2'],
+                'experience' => $item['rptexp2'],
             )));
         }
     }
 
-    public function cec_2016() {
+    public function cec_2016()
+    {
         $tmpPath = TMP . 'cec/2016';
         if (!file_exists($tmpPath)) {
             mkdir($tmpPath, 0777, true);
@@ -753,7 +790,7 @@ class CandidateShell extends AppShell {
         /*
          * sudo apt-get install libpdfbox-java libcommons-logging-java
          */
-        foreach (glob(__DIR__ . '/data/2016_candidates/final/*.pdf') AS $pdfFile) {
+        foreach (glob(__DIR__ . '/data/2016_candidates/final/*.pdf') as $pdfFile) {
             $pdfFileInfo = pathinfo($pdfFile);
             $txtFile = $tmpPath . '/' . $pdfFileInfo['filename'] . '.txt';
             if (!file_exists($txtFile)) {
@@ -770,17 +807,17 @@ class CandidateShell extends AppShell {
             }
             $txtContent = file_get_contents($txtFile);
             $lines = explode("選舉委員會\n", $txtContent);
-            foreach ($lines AS $line) {
+            foreach ($lines as $line) {
                 $cols = preg_split('/[' . PHP_EOL . '\\s]+/', $line);
                 if (substr($cols[0], 0, 6) !== '104/11') {
                     $prefixFound = false;
-                    foreach ($cols AS $k => $v) {
+                    foreach ($cols as $k => $v) {
                         if (substr($cols[$k], 0, 6) === '104/11') {
                             $prefixFound = $k;
                         }
                     }
                     if (false !== $prefixFound) {
-                        foreach ($cols AS $k => $v) {
+                        foreach ($cols as $k => $v) {
                             if ($k < $prefixFound) {
                                 unset($cols[$k]);
                             }
@@ -907,7 +944,8 @@ class CandidateShell extends AppShell {
         file_put_contents(__DIR__ . '/data/2016_candidates.json', json_encode($candidates, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
     }
 
-    public function vote_2014_count() {
+    public function vote_2014_count()
+    {
         //縣市議員 53c0202f-4f58-4419-8d07-5460acb5b862
         //直轄市議員 53c0202f-da0c-4e3e-bbb4-5460acb5b862
         $node1 = $this->Candidate->Election->find('first', array(
@@ -944,7 +982,7 @@ class CandidateShell extends AppShell {
         ));
         $partyCount = array();
         $cStack = array();
-        foreach ($nodes AS $node) {
+        foreach ($nodes as $node) {
             $keywords = explode(',', $node['Election']['keywords']);
             if (!isset($partyCount[$keywords[2]])) {
                 $partyCount[$keywords[2]] = array();
@@ -952,7 +990,7 @@ class CandidateShell extends AppShell {
             if (!isset($cStack[$keywords[2]])) {
                 $cStack[$keywords[2]] = array();
             }
-            foreach ($node['Candidate'] AS $c) {
+            foreach ($node['Candidate'] as $c) {
                 if (!isset($partyCount[$keywords[2]][$c['party']])) {
                     $partyCount[$keywords[2]][$c['party']] = 0;
                 }
@@ -966,25 +1004,25 @@ class CandidateShell extends AppShell {
                 $cStack[$keywords[2]][$keywords[3]]['c'][] = "{$c['party']} - {$c['no']}號 {$c['name']} - {$c['vote_count']}";
             }
 
-            foreach ($node['Area'] AS $a) {
+            foreach ($node['Area'] as $a) {
                 $cStack[$keywords[2]][$keywords[3]]['areas'][] = $a['name'];
             }
         }
 
-        foreach ($partyCount AS $city => $parties) {
+        foreach ($partyCount as $city => $parties) {
             echo "--- {$city} ---\n";
-            foreach ($parties AS $party => $count) {
+            foreach ($parties as $party => $count) {
                 echo "[{$party}] {$count}席\n";
             }
             echo "\n";
         }
 
-        foreach ($partyCount AS $city => $parties) {
+        foreach ($partyCount as $city => $parties) {
             echo "--- {$city}議員一覽 ---\n";
             echo "\n";
-            foreach ($cStack[$city] AS $eArea => $e) {
+            foreach ($cStack[$city] as $eArea => $e) {
                 echo "\n" . $eArea . ' (' . implode(', ', $e['areas']) . ")\n";
-                foreach ($e['c'] AS $c) {
+                foreach ($e['c'] as $c) {
                     echo "{$c}\n";
                 }
             }
@@ -992,7 +1030,8 @@ class CandidateShell extends AppShell {
         }
     }
 
-    public function vote_2014_import() {
+    public function vote_2014_import()
+    {
         $candidates = $this->Candidate->find('all', array(
             'conditions' => array(
                 'Candidate.active_id IS NULL',
@@ -1019,16 +1058,17 @@ class CandidateShell extends AppShell {
             if ($candidates[$line[0]]['stage'] != $stage || $candidates[$line[0]]['vote_count'] != $line[1]) {
                 echo "updating {$line[0]}\n";
                 $this->Candidate->save(array('Candidate' => array(
-                        'id' => $line[0],
-                        'stage' => $stage,
-                        'vote_count' => $line[1],
+                    'id' => $line[0],
+                    'stage' => $stage,
+                    'vote_count' => $line[1],
                 )));
             }
         }
         fclose($fh);
     }
 
-    public function vote_2014_result() {
+    public function vote_2014_result()
+    {
         $codes = array();
         $finalFh = fopen(__DIR__ . '/data/2014_vote_result.csv', 'w');
         fputcsv($finalFh, array(
@@ -1063,7 +1103,7 @@ class CandidateShell extends AppShell {
             'fields' => array('id', 'election_id'),
         ));
         $eCandidates = array();
-        foreach ($candidates AS $candidateId => $candidateNo) {
+        foreach ($candidates as $candidateId => $candidateNo) {
             if (!isset($ceLinks[$candidateId])) {
                 continue;
             }
@@ -1076,17 +1116,17 @@ class CandidateShell extends AppShell {
             'fields' => array('id', 'name', 'parent_id'),
         ));
         $electionNodes = array();
-        foreach ($elections[0]['children'] AS $eType) {
+        foreach ($elections[0]['children'] as $eType) {
             $electionNodes[$eType['Election']['name']] = array();
-            foreach ($eType['children'] AS $child) {
+            foreach ($eType['children'] as $child) {
                 $nodes = $this->parseChildren($child);
-                foreach ($nodes AS $nodeId => $nodeName) {
+                foreach ($nodes as $nodeId => $nodeName) {
                     $electionNodes[$eType['Election']['name']][$nodeName] = $nodeId;
                 }
             }
         }
 
-        foreach (glob(__DIR__ . '/data/2014_vote/result/T*.csv') AS $csvFile) {
+        foreach (glob(__DIR__ . '/data/2014_vote/result/T*.csv') as $csvFile) {
             $pathInfo = pathinfo($csvFile);
             switch ($pathInfo['filename']) {
                 case 'T1': //區域縣市議員
@@ -1113,7 +1153,7 @@ class CandidateShell extends AppShell {
                                         'rate' => $line[$lineKey++],
                                     );
                                 }
-                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                foreach ($eCandidates[$electionId] as $candidateNo => $candidateId) {
                                     if ($candidateNo > 0) {
                                         fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
                                     }
@@ -1147,7 +1187,7 @@ class CandidateShell extends AppShell {
                                         'rate' => $line[$lineKey++],
                                     );
                                 }
-                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                foreach ($eCandidates[$electionId] as $candidateNo => $candidateId) {
                                     if ($candidateNo > 0) {
                                         fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
                                     }
@@ -1181,7 +1221,7 @@ class CandidateShell extends AppShell {
                                         'rate' => $line[$lineKey++],
                                     );
                                 }
-                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                foreach ($eCandidates[$electionId] as $candidateNo => $candidateId) {
                                     if ($candidateNo > 0) {
                                         fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
                                     }
@@ -1215,7 +1255,7 @@ class CandidateShell extends AppShell {
                                         'rate' => $line[$lineKey++],
                                     );
                                 }
-                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                foreach ($eCandidates[$electionId] as $candidateNo => $candidateId) {
                                     if ($candidateNo > 0) {
                                         fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
                                     }
@@ -1249,7 +1289,7 @@ class CandidateShell extends AppShell {
                                         'rate' => $line[$lineKey++],
                                     );
                                 }
-                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                foreach ($eCandidates[$electionId] as $candidateNo => $candidateId) {
                                     if ($candidateNo > 0) {
                                         fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
                                     }
@@ -1283,7 +1323,7 @@ class CandidateShell extends AppShell {
                                         'rate' => $line[$lineKey++],
                                     );
                                 }
-                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                foreach ($eCandidates[$electionId] as $candidateNo => $candidateId) {
                                     if ($candidateNo > 0) {
                                         fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
                                     }
@@ -1317,7 +1357,7 @@ class CandidateShell extends AppShell {
                                         'rate' => $line[$lineKey++],
                                     );
                                 }
-                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                foreach ($eCandidates[$electionId] as $candidateNo => $candidateId) {
                                     if ($candidateNo > 0) {
                                         fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
                                     }
@@ -1351,7 +1391,7 @@ class CandidateShell extends AppShell {
                                         'rate' => $line[$lineKey++],
                                     );
                                 }
-                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                foreach ($eCandidates[$electionId] as $candidateNo => $candidateId) {
                                     if ($candidateNo > 0) {
                                         fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
                                     }
@@ -1421,7 +1461,7 @@ class CandidateShell extends AppShell {
                                         'rate' => $line[$lineKey++],
                                     );
                                 }
-                                foreach ($eCandidates[$electionId] AS $candidateNo => $candidateId) {
+                                foreach ($eCandidates[$electionId] as $candidateNo => $candidateId) {
                                     if ($candidateNo > 0) {
                                         fputcsv($finalFh, array_merge(array($candidateId), $votes[$candidateNo]));
                                     }
@@ -1440,7 +1480,8 @@ class CandidateShell extends AppShell {
      * import data from https://github.com/ronnywang/vote2014/tree/master/webdata/data
      */
 
-    public function vote_2014() {
+    public function vote_2014()
+    {
         $candidates = $this->Candidate->find('list', array(
             'conditions' => array('Candidate.active_id IS NULL'),
             'fields' => array('Candidate.id', 'Candidate.name'),
@@ -1449,7 +1490,7 @@ class CandidateShell extends AppShell {
             'fields' => array('id', 'election_id'),
         ));
         $eCandidates = array();
-        foreach ($candidates AS $candidateId => $candidateName) {
+        foreach ($candidates as $candidateId => $candidateName) {
             if (!isset($ceLinks[$candidateId])) {
                 continue;
             }
@@ -1462,11 +1503,11 @@ class CandidateShell extends AppShell {
             'fields' => array('id', 'name', 'parent_id'),
         ));
         $electionNodes = array();
-        foreach ($elections[0]['children'] AS $eType) {
+        foreach ($elections[0]['children'] as $eType) {
             $electionNodes[$eType['Election']['name']] = array();
-            foreach ($eType['children'] AS $child) {
+            foreach ($eType['children'] as $child) {
                 $nodes = $this->parseChildren($child);
-                foreach ($nodes AS $nodeId => $nodeName) {
+                foreach ($nodes as $nodeId => $nodeName) {
                     $electionNodes[$eType['Election']['name']][$nodeName] = $nodeId;
                 }
             }
@@ -1496,14 +1537,14 @@ class CandidateShell extends AppShell {
           [10] => 出生地
           )
          */
-        foreach ($csvFiles AS $csvFile => $electionTypes) {
+        foreach ($csvFiles as $csvFile => $electionTypes) {
             $csvFile = "{$csvPath}/{$csvFile}";
             $fh = fopen($csvFile, 'r');
             fgets($fh, 2048);
             while ($line = fgetcsv($fh, 2048)) {
                 $electionId = false;
                 $newKey = str_replace(array('第'), array('第0'), $line[0]);
-                foreach ($electionTypes AS $electionType) {
+                foreach ($electionTypes as $electionType) {
                     if (false === $electionId && isset($electionNodes[$electionType][$line[0]])) {
                         $electionId = $electionNodes[$electionType][$line[0]];
                     }
@@ -1556,9 +1597,9 @@ class CandidateShell extends AppShell {
                 if (!isset($eCandidates[$electionId][$line[2]])) {
                     $chars = preg_split('//u', $line[2], -1, PREG_SPLIT_NO_EMPTY);
                     $maxMatched = 0;
-                    foreach ($eCandidates[$electionId] AS $name => $id) {
+                    foreach ($eCandidates[$electionId] as $name => $id) {
                         $currentMatched = 0;
-                        foreach ($chars AS $char) {
+                        foreach ($chars as $char) {
                             if (false !== strpos($name, $char)) {
                                 $currentMatched++;
                             }
@@ -1580,23 +1621,24 @@ class CandidateShell extends AppShell {
                 $dob[0] = intval($dob[0]) + 1911;
                 echo "processing {$line[0]} {$line[2]}\n";
                 $this->Candidate->save(array('Candidate' => array(
-                        'id' => $candidateId,
-                        'no' => $line[1],
-                        'name' => $line[2],
-                        'gender' => ($line[3] === '男') ? 'm' : 'f',
-                        'birth' => implode('-', $dob),
-                        'party' => $line[6],
-                        'education_level' => $line[7],
-                        'is_present' => ($line[8] === '是') ? '1' : '0',
-                        'name_english' => $line[9],
-                        'birth_place' => $line[10],
+                    'id' => $candidateId,
+                    'no' => $line[1],
+                    'name' => $line[2],
+                    'gender' => ($line[3] === '男') ? 'm' : 'f',
+                    'birth' => implode('-', $dob),
+                    'party' => $line[6],
+                    'education_level' => $line[7],
+                    'is_present' => ($line[8] === '是') ? '1' : '0',
+                    'name_english' => $line[9],
+                    'birth_place' => $line[10],
                 )));
             }
             fclose($fh);
         }
     }
 
-    public function parseChildren($arr = array(), $namePrefix = '') {
+    public function parseChildren($arr = array(), $namePrefix = '')
+    {
         $result = array();
         $pos = strpos($arr['Election']['name'], '[');
         if (false !== $pos) {
@@ -1604,7 +1646,7 @@ class CandidateShell extends AppShell {
         }
         $arr['Election']['name'] = str_replace(array('選區'), array('選舉區'), $arr['Election']['name']);
         if (!empty($arr['children'])) {
-            foreach ($arr['children'] AS $child) {
+            foreach ($arr['children'] as $child) {
                 $result = array_merge($result, $this->parseChildren($child, $namePrefix . $arr['Election']['name']));
             }
         } else {
@@ -1613,7 +1655,8 @@ class CandidateShell extends AppShell {
         return $result;
     }
 
-    public function google_data() {
+    public function google_data()
+    {
         $dataTypes = array(
             'mayor1' => '直轄市長',
             'mayor2' => '縣市長',
@@ -1633,10 +1676,10 @@ class CandidateShell extends AppShell {
         $elections = Set::combine($elections, '{n}.Election.name', '{n}.Election');
         $oFh = fopen(__DIR__ . '/data/google_fb.csv', 'w');
         fputcsv($oFh, array('臉書連結', '候選人', '類型', '選區', '選舉黃頁連結'));
-        foreach ($dataTypes AS $key => $election) {
+        foreach ($dataTypes as $key => $election) {
             $dataTypes[$key] = $elections[$election];
         }
-        foreach (glob(TMP . 'data/*/*.csv') AS $csvFile) {
+        foreach (glob(TMP . 'data/*/*.csv') as $csvFile) {
             if (filesize($csvFile) > 0) {
                 $pathParts = explode('/data/', $csvFile);
                 $pos = strpos($pathParts[1], '/');
@@ -1672,7 +1715,7 @@ class CandidateShell extends AppShell {
                         unset($parents[1]);
                         $record[] = implode(' > ', Set::extract('{n}.Election.name', $parents));
                         $record[] = 'http://k.olc.tw/elections/candidates/view/' . $candidate['Candidate']['id'];
-                        foreach ($fbLinks AS $fbLink) {
+                        foreach ($fbLinks as $fbLink) {
                             fputcsv($oFh, array_merge(array($fbLink), $record));
                         }
                     }
@@ -1682,9 +1725,10 @@ class CandidateShell extends AppShell {
         fclose($oFh);
     }
 
-    public function cec_2014_fun() {
+    public function cec_2014_fun()
+    {
         $nameCount = array();
-        foreach (glob(__DIR__ . '/data/2014_candidates/*.csv') AS $csvFile) {
+        foreach (glob(__DIR__ . '/data/2014_candidates/*.csv') as $csvFile) {
             $csvInfo = pathinfo($csvFile);
             $candidates = array();
             $fh = fopen($csvFile, 'r');
@@ -1702,28 +1746,29 @@ class CandidateShell extends AppShell {
 
             $maxCount = 0;
 
-            foreach ($candidates AS $aCandidates) {
+            foreach ($candidates as $aCandidates) {
                 $cnt = count($aCandidates);
                 if ($cnt > $maxCount) {
                     $maxCount = $cnt;
                 }
             }
-            foreach ($candidates AS $area => $aCandidates) {
+            foreach ($candidates as $area => $aCandidates) {
                 $cnt = count($aCandidates);
                 if ($cnt === 1) {
                     echo "[{$csvInfo['filename']}]{$area} - " . implode(', ', $aCandidates) . "\n";
                 }
             }
         }
-        foreach ($nameCount AS $name => $areas) {
+        foreach ($nameCount as $name => $areas) {
             if (count($areas) > 1) {
                 //echo "{$name}: " . implode(', ', $areas) . "\n";
             }
         }
     }
 
-    public function cec_2014_import() {
-        foreach (glob(__DIR__ . '/data/2014_candidates/*.csv') AS $csvFile) {
+    public function cec_2014_import()
+    {
+        foreach (glob(__DIR__ . '/data/2014_candidates/*.csv') as $csvFile) {
             $csvInfo = pathinfo($csvFile);
             $parentNode = $this->Candidate->Election->find('first', array(
                 'conditions' => array(
@@ -1810,10 +1855,10 @@ class CandidateShell extends AppShell {
                     } else {
                         $this->Candidate->create();
                         $this->Candidate->save(array('Candidate' => array(
-                                'stage' => 1,
-                                'name' => $line[1],
-                                'party' => $line[2],
-                                'election_id' => $electionId,
+                            'stage' => 1,
+                            'name' => $line[1],
+                            'party' => $line[2],
+                            'election_id' => $electionId,
                         )));
                     }
                 } else {
@@ -1823,10 +1868,11 @@ class CandidateShell extends AppShell {
         }
     }
 
-    public function cec_2014_import_recursive($prefix = '', $data = array()) {
+    public function cec_2014_import_recursive($prefix = '', $data = array())
+    {
         $result = array();
         if (!empty($data)) {
-            foreach ($data AS $item) {
+            foreach ($data as $item) {
                 $pos = strpos($item['Election']['name'], '[');
                 if (false !== $pos) {
                     $item['Election']['name'] = substr($item['Election']['name'], 0, $pos);
@@ -1841,7 +1887,8 @@ class CandidateShell extends AppShell {
         return $result;
     }
 
-    public function cec_2014_pdf() {
+    public function cec_2014_pdf()
+    {
         $tmpPath = TMP . 'cec/2014';
         if (!file_exists($tmpPath)) {
             mkdir($tmpPath, 0777, true);
@@ -1856,7 +1903,7 @@ class CandidateShell extends AppShell {
         $posEnd = strpos($list, '<!-- Box Table End -->', $pos);
         $list = substr($list, $pos, $posEnd - $pos);
         $links = $this->extractLinks($list);
-        foreach ($links AS $link) {
+        foreach ($links as $link) {
             $linkFile = $tmpPath . '/' . md5($link['url']);
             if (!file_exists($linkFile)) {
                 file_put_contents($linkFile, file_get_contents($link['url']));
@@ -1865,7 +1912,7 @@ class CandidateShell extends AppShell {
             $pos = strpos($linkText, 'module-ptattach');
             $linkText = substr($linkText, $pos, strpos($linkText, 'md_bottom', $pos) - $pos);
             $fileLinks = $this->extractLinks($linkText);
-            foreach ($fileLinks AS $fileLink) {
+            foreach ($fileLinks as $fileLink) {
                 if (false !== strpos($fileLink['url'], '.pdf')) {
                     file_put_contents(__DIR__ . '/data/2014_candidates/' . $fileLink['title'], file_get_contents('http://web.cec.gov.tw' . $fileLink['url']));
                 }
@@ -1877,7 +1924,8 @@ class CandidateShell extends AppShell {
      * pdf source coming from http://web.cec.gov.tw/files/11-1000-5364.php
      */
 
-    public function cec_2014() {
+    public function cec_2014()
+    {
         $tmpPath = TMP . 'cec/2014';
         if (!file_exists($tmpPath)) {
             mkdir($tmpPath, 0777, true);
@@ -1885,7 +1933,7 @@ class CandidateShell extends AppShell {
         $result = array();
         $partyResult = array();
         $parties = array('中國國民黨' => 0, '新黨' => 0, '民主進步黨' => 0, '親民黨' => 0, '樹黨' => 0, '華聲黨' => 0, '綠黨' => 0, '人民最大黨' => 0, '臺灣建國黨' => 0, '台灣主義黨' => 0, '聯合黨' => 0, '勞動黨' => 0, '台灣民族黨' => 0, '大道人民黨' => 0, '台灣第一民族黨' => 0, '中華統一促進黨' => 0, '家庭黨' => 0, '三等國民公義人權自救黨' => 0, '無' => 0, '台灣團結聯盟' => 0, '人民民主陣線' => 0, '無黨團結聯盟' => 0, '中華民主向日葵憲政改革聯' => 0, '中華統一促進' => 0);
-        foreach (glob(__DIR__ . '/data/2014_candidates/*.pdf') AS $pdfFile) {
+        foreach (glob(__DIR__ . '/data/2014_candidates/*.pdf') as $pdfFile) {
             $pdfFileInfo = pathinfo($pdfFile);
             echo "processing {$pdfFileInfo['filename']}\n";
             $txtFile = $tmpPath . '/' . $pdfFileInfo['filename'] . '.txt';
@@ -1896,10 +1944,10 @@ class CandidateShell extends AppShell {
             }
             $txtContent = file_get_contents($txtFile);
             $lines = explode('103/09/', $txtContent);
-            foreach ($lines AS $line) {
+            foreach ($lines as $line) {
                 $fields = preg_split('/[\\n ]/', $line);
                 $partyFound = false;
-                foreach ($fields AS $k => $v) {
+                foreach ($fields as $k => $v) {
                     $v = trim($v);
                     if (isset($parties[$v])) {
                         $partyFound = $v;
@@ -2289,21 +2337,21 @@ class CandidateShell extends AppShell {
                 }
             }
         }
-        foreach ($result AS $key => $val) {
+        foreach ($result as $key => $val) {
             $fh = fopen(__DIR__ . "/data/2014_candidates/{$key}.csv", 'w');
-            foreach ($val AS $line) {
+            foreach ($val as $line) {
                 fputcsv($fh, $line);
             }
             fclose($fh);
         }
         return;
-        foreach ($partyResult AS $p => $d) {
+        foreach ($partyResult as $p => $d) {
             echo "{$p}: {$d['count']}\n";
         }
-        foreach ($partyResult AS $p => $d) {
+        foreach ($partyResult as $p => $d) {
             if ($d['count'] < 60) {
                 echo "{$p}:\n";
-                foreach ($d['data'] AS $c) {
+                foreach ($d['data'] as $c) {
                     echo "* {$c[0]}{$c[1]} - {$c[2]}\n";
                 }
                 echo "\n\n";
@@ -2311,13 +2359,14 @@ class CandidateShell extends AppShell {
         }
     }
 
-    public function town() {
+    public function town()
+    {
         $cec = json_decode(file_get_contents(__DIR__ . '/data/v20100601C1D2.json'), true);
         $areaStack = array();
-        foreach ($cec AS $county => $c1) {
-            foreach ($c1 AS $town => $c2) {
-                foreach ($c2 AS $area => $c3) {
-                    foreach ($c3['candidates'] AS $candidate) {
+        foreach ($cec as $county => $c1) {
+            foreach ($c1 as $town => $c2) {
+                foreach ($c2 as $area => $c3) {
+                    foreach ($c3['candidates'] as $candidate) {
                         if (!isset($areaStack[$county . $town])) {
                             $areaStack[$county . $town] = array();
                         }
@@ -2339,9 +2388,9 @@ class CandidateShell extends AppShell {
             ),
         ));
         $townElectionId = array();
-        foreach ($townElections AS $county) {
-            foreach ($county['children'] AS $city) {
-                foreach ($city['children'] AS $area) {
+        foreach ($townElections as $county) {
+            foreach ($county['children'] as $city) {
+                foreach ($city['children'] as $area) {
                     $key = $county['Election']['name'] . $city['Election']['name'] . substr($area['Election']['name'], 0, strpos($area['Election']['name'], '['));
                     $townElectionId[$key] = $area['Election']['id'];
                 }
@@ -2356,12 +2405,12 @@ class CandidateShell extends AppShell {
                 if (isset($townElectionId[$line[1] . $line[2] . $line[0]])) {
                     $this->Candidate->create();
                     $this->Candidate->save(array('Candidate' => array(
-                            'name' => $line[4],
-                            'party' => $line[7],
-                            'gender' => ($line[6] === '男') ? 'm' : 'f',
-                            'education' => $line[11],
-                            'experience' => $line[12],
-                            'election_id' => $townElectionId[$line[1] . $line[2] . $line[0]],
+                        'name' => $line[4],
+                        'party' => $line[7],
+                        'gender' => ($line[6] === '男') ? 'm' : 'f',
+                        'education' => $line[11],
+                        'experience' => $line[12],
+                        'election_id' => $townElectionId[$line[1] . $line[2] . $line[0]],
                     )));
                 }
             }
@@ -2380,8 +2429,8 @@ class CandidateShell extends AppShell {
             ),
         ));
         $townmastElectionId = array();
-        foreach ($townmastElections AS $county) {
-            foreach ($county['children'] AS $city) {
+        foreach ($townmastElections as $county) {
+            foreach ($county['children'] as $city) {
                 $key = $county['Election']['name'] . $city['Election']['name'];
                 $townmastElectionId[$key] = $city['Election']['id'];
             }
@@ -2393,19 +2442,20 @@ class CandidateShell extends AppShell {
             if (isset($townmastElectionId[$key])) {
                 $this->Candidate->create();
                 $this->Candidate->save(array('Candidate' => array(
-                        'name' => $line[4],
-                        'party' => $line[7],
-                        'gender' => ($line[6] === '男') ? 'm' : 'f',
-                        'education' => $line[11],
-                        'experience' => $line[12],
-                        'election_id' => $townmastElectionId[$key],
+                    'name' => $line[4],
+                    'party' => $line[7],
+                    'gender' => ($line[6] === '男') ? 'm' : 'f',
+                    'education' => $line[11],
+                    'experience' => $line[12],
+                    'election_id' => $townmastElectionId[$key],
                 )));
             }
         }
         fclose($fh);
     }
 
-    public function tsu() {
+    public function tsu()
+    {
         $cachePath = TMP . 'tsu';
         if (!file_exists($cachePath)) {
             mkdir($cachePath, 0777, true);
@@ -2417,9 +2467,9 @@ class CandidateShell extends AppShell {
         $listContent = substr($listContent, strpos($listContent, '<table width="634" border="0" cellspacing="0" cellpadding="0">'));
         $listContent = substr($listContent, 0, strpos($listContent, '</table>', strpos($listContent, '</table>') + 1));
         $lines = explode('</tr>', $listContent);
-        foreach ($lines AS $line) {
+        foreach ($lines as $line) {
             $fields = explode('</td>', $line);
-            foreach ($fields AS $k => $v) {
+            foreach ($fields as $k => $v) {
                 $fields[$k] = trim(strip_tags(str_replace(array('<br />', "\n\n"), array("\n", "\n"), $v)));
             }
             if (!isset($fields[2]) || false === strpos($fields[2], '現職')) {
@@ -2454,14 +2504,14 @@ class CandidateShell extends AppShell {
                         if (!empty($e2)) {
                             $fields[2] = explode('臉書：', $fields[2]);
                             if ($this->Candidate->find('count', array(
-                                        'conditions' => array(
-                                            'name' => $fields[0],
-                                            'OR' => array(
-                                                'active_id IS NULL',
-                                                'active_id' => 0,
-                                            ),
-                                        ),
-                                    )) > 1) {
+                                'conditions' => array(
+                                    'name' => $fields[0],
+                                    'OR' => array(
+                                        'active_id IS NULL',
+                                        'active_id' => 0,
+                                    ),
+                                ),
+                            )) > 1) {
                                 //print_r($fields);
                             } else {
                                 $candidateId = $this->Candidate->field('id', array(
@@ -2474,11 +2524,11 @@ class CandidateShell extends AppShell {
                                 if (empty($candidateId)) {
                                     $this->Candidate->create();
                                     $this->Candidate->save(array('Candidate' => array(
-                                            'election_id' => $e2['Election']['id'],
-                                            'name' => $fields[0],
-                                            'party' => '台灣團結聯盟',
-                                            'experience' => str_replace($fields[2][0], "\n", '\\n'),
-                                            'links' => isset($fields[2][1]) ? '臉書 ' . $fields[2][1] : '',
+                                        'election_id' => $e2['Election']['id'],
+                                        'name' => $fields[0],
+                                        'party' => '台灣團結聯盟',
+                                        'experience' => str_replace($fields[2][0], "\n", '\\n'),
+                                        'links' => isset($fields[2][1]) ? '臉書 ' . $fields[2][1] : '',
                                     )));
                                 }
                             }
@@ -2491,7 +2541,8 @@ class CandidateShell extends AppShell {
         }
     }
 
-    public function moi() {
+    public function moi()
+    {
         $srcFiles = array(
             '縣市議員' => 'http://cand.moi.gov.tw/of/ap/cand_json.jsp?electkind=0200000',
             '直轄市議員' => 'http://cand.moi.gov.tw/of/ap/cand_json.jsp?electkind=0100000'
@@ -2500,12 +2551,12 @@ class CandidateShell extends AppShell {
         if (!file_exists($cachePath)) {
             mkdir($cachePath, 0777, true);
         }
-        foreach ($srcFiles AS $eType => $srcFile) {
+        foreach ($srcFiles as $eType => $srcFile) {
             $eTypeDb[$eType] = $this->Candidate->Election->find('first', array(
                 'conditions' => array('name' => $eType),
             ));
         }
-        foreach ($srcFiles AS $eType => $srcFile) {
+        foreach ($srcFiles as $eType => $srcFile) {
             $cacheFile = $cachePath . '/' . md5($srcFile);
             if (!file_exists($cacheFile)) {
                 file_put_contents($cacheFile, file_get_contents($srcFile));
@@ -2513,7 +2564,7 @@ class CandidateShell extends AppShell {
             $jsonContent = json_decode(file_get_contents($cacheFile), true);
             $counties = array();
             $zones = array();
-            foreach ($jsonContent AS $c) {
+            foreach ($jsonContent as $c) {
                 $c['cityname'] = str_replace('台', '臺', $c['cityname']);
                 if ($c['cityname'] === '桃園縣') {
                     $ctype = '直轄市議員';
@@ -2555,21 +2606,22 @@ class CandidateShell extends AppShell {
                 if (!empty($zones[$c['cityname']][$eareaname])) {
                     $this->Candidate->create();
                     $this->Candidate->save(array('Candidate' => array(
-                            'election_id' => $zones[$c['cityname']][$eareaname]['Election']['id'],
-                            'name' => $c['idname'],
-                            'gender' => ($c['sex'] === '男') ? 'M' : 'F',
-                            'party' => $c['partymship'],
-                            'contacts_address' => $c['officeadress'],
-                            'contacts_phone' => $c['officetelphone'],
-                            'education' => $c['education'],
-                            'experience' => $c['profession'],
+                        'election_id' => $zones[$c['cityname']][$eareaname]['Election']['id'],
+                        'name' => $c['idname'],
+                        'gender' => ($c['sex'] === '男') ? 'M' : 'F',
+                        'party' => $c['partymship'],
+                        'contacts_address' => $c['officeadress'],
+                        'contacts_phone' => $c['officetelphone'],
+                        'education' => $c['education'],
+                        'experience' => $c['profession'],
                     )));
                 }
             }
         }
     }
 
-    public function villmast() {
+    public function villmast()
+    {
         $baseNode = $this->Candidate->Election->children(null, true);
         $cNode = $this->Candidate->Election->find('first', array(
             'conditions' => array(
@@ -2585,7 +2637,7 @@ class CandidateShell extends AppShell {
             'order' => array('Election.lft ASC'),
         ));
         $stack = array();
-        foreach ($nodes AS $node) {
+        foreach ($nodes as $node) {
             if ($node['Election']['parent_id'] === $cNode['Election']['id']) {
                 $county = $node['Election'];
                 if (!isset($stack[$county['name']])) {
@@ -2614,22 +2666,23 @@ class CandidateShell extends AppShell {
                 if (!isset($candidates[$line[4]])) {
                     $this->Candidate->create();
                     $this->Candidate->save(array('Candidate' => array(
-                            'name' => $line[4],
-                            'election_id' => $stack[$line[1]][$line[2]][$line[3]],
+                        'name' => $line[4],
+                        'election_id' => $stack[$line[1]][$line[2]][$line[3]],
                     )));
                 }
             }
         }
     }
 
-    public function suncy() {
+    public function suncy()
+    {
         $accTypes = $electionTree = array();
         $baseNode = $this->Candidate->Election->children(null, true);
         $nodes = $this->Candidate->Election->children($baseNode[0]['Election']['id'], true);
-        foreach ($nodes AS $node) {
+        foreach ($nodes as $node) {
             $electionTree[$node['Election']['name']] = array();
             $subNodes = $this->Candidate->Election->children($node['Election']['id'], true);
-            foreach ($subNodes AS $subNode) {
+            foreach ($subNodes as $subNode) {
                 $electionTree[$node['Election']['name']][$subNode['Election']['name']] = $subNode['Election'];
             }
         }
@@ -2666,7 +2719,7 @@ class CandidateShell extends AppShell {
             $electionId = $this->Candidate->Election->field('id', array('name' => $electionName));
             if (!empty($electionId)) {
                 $eCities = $this->Candidate->Election->children($electionId);
-                foreach ($eCities AS $eCity) {
+                foreach ($eCities as $eCity) {
                     if ($county === $eCity['Election']['name']) {
                         $candidates = $this->Candidate->find('list', array(
                             'fields' => array('name', 'name'),
@@ -2677,8 +2730,8 @@ class CandidateShell extends AppShell {
                         if (!isset($candidates[$line[0]])) {
                             $this->Candidate->create();
                             $this->Candidate->save(array('Candidate' => array(
-                                    'name' => $line[0],
-                                    'election_id' => $eCity['Election']['id'],
+                                'name' => $line[0],
+                                'election_id' => $eCity['Election']['id'],
                             )));
                         }
                     }
@@ -2687,7 +2740,8 @@ class CandidateShell extends AppShell {
         }
     }
 
-    public function extractLinks($text = '') {
+    public function extractLinks($text = '')
+    {
         $links = array();
         $pos = strpos($text, 'href="');
         while (false !== $pos) {
@@ -2703,5 +2757,4 @@ class CandidateShell extends AppShell {
         }
         return $links;
     }
-
 }
