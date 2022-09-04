@@ -40,6 +40,7 @@ class CandidateShell extends AppShell
                     'is_present' => 0,
                     'name_english' => '',
                     'birth_place' => '',
+                    'platform' => '',
                 ]]);
             }
         }
