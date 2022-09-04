@@ -63,7 +63,7 @@ class ElectionShell extends AppShell
 
     public function main()
     {
-        $this->cunliFix();
+        $this->dumpAreas();
     }
 
     public function cunliFix()
@@ -335,7 +335,7 @@ class ElectionShell extends AppShell
     {
         $rootNode = $this->Election->find('first', array(
             'conditions' => array(
-                'Election.id' => '55085e1a-c494-40e0-ba31-2f916ab936af',
+                'Election.id' => '62053691-0184-496f-8738-1619acb5b862',
             )
         ));
         $nodes = $this->Election->find('all', array(
@@ -352,15 +352,15 @@ class ElectionShell extends AppShell
             ),
             'fields' => array('id'),
         ));
-        $fh = fopen(__DIR__ . '/data/2016_election/elections_areas.csv', 'w');
-        fputcsv($fh, array('選區', '行政區'));
+        $fh = fopen(__DIR__ . '/data/2022_election/elections_areas.csv', 'w');
+        fputcsv($fh, array('election id', '選區', '行政區'));
         foreach ($nodes as $node) {
             $electionPath = $this->Election->getPath($node['Election']['id'], array('name'));
             $election = implode(' > ', Set::extract('{n}.Election.name', $electionPath));
             foreach ($node['Area'] as $area) {
                 $areaPath = $this->Election->Area->getPath($area['id'], array('name'));
                 $area = implode(' > ', Set::extract('{n}.Area.name', $areaPath));
-                fputcsv($fh, array($election, $area));
+                fputcsv($fh, array($node['Election']['id'], $election, $area));
             }
         }
         fclose($fh);
