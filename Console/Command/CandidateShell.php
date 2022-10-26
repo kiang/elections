@@ -8,7 +8,29 @@ class CandidateShell extends AppShell
 
     public function main()
     {
-        $this->import_2022();
+        $this->import_2022_number();
+    }
+
+    public function import_2022_number()
+    {
+        $fh = fopen('https://github.com/kiang/vote2022/raw/master/reports/candidate_number.csv', 'r');
+        fgetcsv($fh, 2048);
+        while ($line = fgetcsv($fh, 2048)) {
+            $candidate = $this->Candidate->find('first', [
+                'fields' => ['id', 'no'],
+                'conditions' => [
+                    'Candidate.election_id' => $line[0],
+                    'Candidate.name' => $line[1],
+                    'Candidate.active_id IS NULL',
+                ],
+            ]);
+            if (!empty($candidate) && $line[2] != $candidate['Candidate']['no']) {
+                $this->Candidate->id = $candidate['Candidate']['id'];
+                $this->Candidate->save(['Candidate' => [
+                    'no' => $line[2],
+                ]]);
+            }
+        }
     }
 
     public function import_2022()
