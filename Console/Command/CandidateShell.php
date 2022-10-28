@@ -13,22 +13,29 @@ class CandidateShell extends AppShell
 
     public function import_2022_number()
     {
-        $fh = fopen('https://github.com/kiang/vote2022/raw/master/reports/candidate_number.csv', 'r');
-        fgetcsv($fh, 2048);
-        while ($line = fgetcsv($fh, 2048)) {
+        $fh = fopen('https://github.com/kiang/vote2022/blob/master/reports/links_cec.jsonl?raw=true', 'r');
+        while ($line = fgets($fh)) {
+            $json = json_decode($line, true);
             $candidate = $this->Candidate->find('first', [
-                'fields' => ['id', 'no'],
+                'fields' => ['id'],
                 'conditions' => [
-                    'Candidate.election_id' => $line[0],
-                    'Candidate.name' => $line[1],
+                    'Candidate.election_id' => $json['election_id'],
+                    'Candidate.name' => $json['name'],
                     'Candidate.active_id IS NULL',
                 ],
             ]);
-            if (!empty($candidate) && $line[2] != $candidate['Candidate']['no']) {
+            if (!empty($candidate)) {
+                $y = intval(substr($json['birth'], 0, 3)) + 1911;
                 $this->Candidate->id = $candidate['Candidate']['id'];
                 $this->Candidate->save(['Candidate' => [
-                    'no' => $line[2],
+                    'party' => $json['party'],
+                    'gender' => ($json['gender'] === '男') ? 'm' : 'f',
+                    'no' => $json['candNo'],
+                    'birth_place' => $json['home'],
+                    'birth' => implode('-', [$y, substr($json['birth'], 3, 2), substr($json['birth'], 5, 2)]),
+                    'platform' => $json['politics'],
                 ]]);
+                echo "{$json['name']}/{$json['election']}\n";
             }
         }
     }
