@@ -7,19 +7,18 @@ class AreasController extends ApiAppController {
     var $uses = array('Area');
 
     function index($parentId = '') {
+        $conditions = [];
         if (!empty($parentId)) {
-            $parentId = $this->Area->field('id', array('id' => $parentId));
+            $conditions = ['Area.parent_id' => $parentId];
         } else {
-            $parentId = $this->Area->field('id', array('parent_id IS NULL'));
+            $conditions = ['Area.parent_id IS NULL'];
         }
 
         $this->jsonData = $this->Area->find('all', array(
             'fields' => array('Area.id', 'Area.name', 'Area.ivid', 'Area.code',
                 'Area.lft', 'Area.rght', 'Area.population',
                 'Area.population_electors'),
-            'conditions' => array(
-                'Area.parent_id' => $parentId,
-            ),
+            'conditions' => $conditions,
             'contain' => array(
                 'Election' => array(
                     'fields' => array('Election.id', 'Election.name',
