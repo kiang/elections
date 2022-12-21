@@ -8,7 +8,57 @@ class CandidateShell extends AppShell
 
     public function main()
     {
-        $this->import_2022_number();
+        $this->import_2022_result();
+    }
+
+    public function import_2022_result()
+    {
+        $fh = fopen('https://github.com/kiang/db.cec.gov.tw/raw/master/data/elections/2022.csv', 'r');
+        $head = fgetcsv($fh, 2048);
+        while ($line = fgetcsv($fh, 2048)) {
+            $data = array_combine($head, $line);
+            if ($data['party'] === '無黨籍及未經政黨推薦') {
+                $data['party'] = '無';
+            }
+            $candidate = $this->Candidate->find('first', [
+                'fields' => ['id'],
+                'conditions' => [
+                    'Candidate.election_id' => $data['election_id'],
+                    'Candidate.no' => $data['cand_no'],
+                    'Candidate.active_id IS NULL',
+                    'Candidate.is_reviewed' => 1,
+                ],
+            ]);
+            $y = intval(substr($data['cand_birthday'], 0, 3)) + 1911;
+            if (!empty($candidate)) {
+                $this->Candidate->id = $candidate['Candidate']['id'];
+                $this->Candidate->save(['Candidate' => [
+                    'name' => $data['cand_name'],
+                    'party' => $data['party'],
+                    'gender' => $data['cand_sex'],
+                    'birth_place' => $data['cand_bornplace'],
+                    'birth' => implode('-', [$y, substr($data['cand_birthday'], 3, 2), substr($data['cand_birthday'], 5, 2)]),
+                    'is_present' => ($data['is_current'] === 'Y') ? 1 : 0,
+                    'stage' => ($data['is_victor'] === 'Y') ? 2 : 1,
+                    'vote_count' => $data['ticket_num'],
+                ]]);
+            } else {
+                $this->Candidate->create();
+                $this->Candidate->save(['Candidate' => [
+                    'is_reviewed' => 1,
+                    'election_id' => $data['election_id'],
+                    'no' => $data['cand_no'],
+                    'name' => $data['cand_name'],
+                    'party' => $data['party'],
+                    'gender' => $data['cand_sex'],
+                    'birth_place' => $data['cand_bornplace'],
+                    'birth' => implode('-', [$y, substr($data['cand_birthday'], 3, 2), substr($data['cand_birthday'], 5, 2)]),
+                    'is_present' => ($data['is_current'] === 'Y') ? 1 : 0,
+                    'stage' => ($data['is_victor'] === 'Y') ? 2 : 1,
+                    'vote_count' => $data['ticket_num'],
+                ]]);
+            }
+        }
     }
 
     public function import_2022_number()
