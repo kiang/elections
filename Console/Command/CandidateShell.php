@@ -13,7 +13,11 @@ class CandidateShell extends AppShell
 
     public function import_2022_result()
     {
-        $fh = fopen('https://github.com/kiang/db.cec.gov.tw/raw/master/data/elections/2022.csv', 'r');
+        $tmpFile = TMP . '/2022.csv';
+        if(!file_exists($tmpFile)) {
+            file_put_contents($tmpFile, file_get_contents('https://github.com/kiang/db.cec.gov.tw/raw/master/data/elections/2022.csv'));
+        }
+        $fh = fopen($tmpFile, 'r');
         $head = fgetcsv($fh, 2048);
         while ($line = fgetcsv($fh, 2048)) {
             $data = array_combine($head, $line);
