@@ -14,38 +14,51 @@ class CandidateShell extends AppShell
     public function import_2022_result()
     {
         $tmpFile = TMP . '/2022.csv';
-        if(!file_exists($tmpFile)) {
+        if (!file_exists($tmpFile)) {
             file_put_contents($tmpFile, file_get_contents('https://github.com/kiang/db.cec.gov.tw/raw/master/data/elections/2022.csv'));
         }
         $fh = fopen($tmpFile, 'r');
+        $lineCount = 0;
+        $pool = [];
         $head = fgetcsv($fh, 2048);
         while ($line = fgetcsv($fh, 2048)) {
             $data = array_combine($head, $line);
+            ++$lineCount;
             if ($data['party'] === '無黨籍及未經政黨推薦') {
                 $data['party'] = '無';
             }
-            $candidate = $this->Candidate->find('first', [
-                'fields' => ['id'],
-                'conditions' => [
-                    'Candidate.election_id' => $data['election_id'],
-                    'Candidate.no' => $data['cand_no'],
-                    'Candidate.active_id IS NULL',
-                    'Candidate.is_reviewed' => 1,
-                ],
-            ]);
+            if (!isset($pool[$data['election_id']])) {
+                $candidates = $this->Candidate->find('all', [
+                    'fields' => ['id', 'no', 'vote_count'],
+                    'conditions' => [
+                        'Candidate.election_id' => $data['election_id'],
+                        'Candidate.active_id IS NULL',
+                        'Candidate.is_reviewed' => 1,
+                    ],
+                ]);
+                $pool[$data['election_id']] = [];
+                foreach($candidates AS $candidate) {
+                    $pool[$data['election_id']][$candidate['Candidate']['no']] = $candidate['Candidate'];
+                }
+            }
             $y = intval(substr($data['cand_birthday'], 0, 3)) + 1911;
-            if (!empty($candidate)) {
-                $this->Candidate->id = $candidate['Candidate']['id'];
-                $this->Candidate->save(['Candidate' => [
-                    'name' => $data['cand_name'],
-                    'party' => $data['party'],
-                    'gender' => $data['cand_sex'],
-                    'birth_place' => $data['cand_bornplace'],
-                    'birth' => implode('-', [$y, substr($data['cand_birthday'], 3, 2), substr($data['cand_birthday'], 5, 2)]),
-                    'is_present' => ($data['is_current'] === 'Y') ? 1 : 0,
-                    'stage' => ($data['is_victor'] === 'Y') ? 2 : 1,
-                    'vote_count' => $data['ticket_num'],
-                ]]);
+            $op = '';
+            if(isset($pool[$data['election_id']][$data['cand_no']])) {
+                $candidate = $pool[$data['election_id']][$data['cand_no']];
+                if ($data['ticket_num'] != $candidate['vote_count']) {
+                    $this->Candidate->id = $candidate['id'];
+                    $this->Candidate->save(['Candidate' => [
+                        'name' => $data['cand_name'],
+                        'party' => $data['party'],
+                        'gender' => $data['cand_sex'],
+                        'birth_place' => $data['cand_bornplace'],
+                        'birth' => implode('-', [$y, substr($data['cand_birthday'], 3, 2), substr($data['cand_birthday'], 5, 2)]),
+                        'is_present' => ($data['is_current'] === 'Y') ? 1 : 0,
+                        'stage' => ($data['is_victor'] === 'Y') ? 2 : 1,
+                        'vote_count' => $data['ticket_num'],
+                    ]]);
+                    $op = 'db update';
+                }
             } else {
                 $this->Candidate->create();
                 $this->Candidate->save(['Candidate' => [
@@ -61,7 +74,9 @@ class CandidateShell extends AppShell
                     'stage' => ($data['is_victor'] === 'Y') ? 2 : 1,
                     'vote_count' => $data['ticket_num'],
                 ]]);
+                $op = 'db insert';
             }
+            echo "{$data['cand_name']}[{$op}] - {$lineCount}\n";
         }
     }
 
