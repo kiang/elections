@@ -8,7 +8,46 @@ class CandidateShell extends AppShell
 
     public function main()
     {
-        $this->import_2022_result();
+        $this->import_2024();
+    }
+
+    public function import_2024()
+    {
+        $fh = fopen('https://github.com/kiang/vote2024/raw/master/data/candidates.csv', 'r');
+        $head = fgetcsv($fh, 2048);
+        while ($line = fgetcsv($fh, 2048)) {
+            $candidate = $this->Candidate->find('first', [
+                'conditions' => [
+                    'Candidate.election_id' => $line[7],
+                    'Candidate.name' => $line[2],
+                ],
+            ]);
+            $gender = ($line[3] === '男') ? 'm' : 'f';
+            if (!empty($candidate)) {
+                $this->Candidate->id = $candidate['Candidate']['id'];
+                $this->Candidate->save(['Candidate' => [
+                    'election_id' => $line[7],
+                    'name' => $line[2],
+                    'party' => $line[4],
+                    'gender' => $gender,
+                    'stage' => 1,
+                ]]);
+            } else {
+                $this->Candidate->create();
+                $this->Candidate->save(['Candidate' => [
+                    'election_id' => $line[7],
+                    'name' => $line[2],
+                    'party' => $line[4],
+                    'gender' => $gender,
+                    'stage' => 1,
+                    'education_level' => '',
+                    'is_present' => 0,
+                    'name_english' => '',
+                    'birth_place' => '',
+                    'platform' => '',
+                ]]);
+            }
+        }
     }
 
     public function import_2022_result()
@@ -105,41 +144,6 @@ class CandidateShell extends AppShell
                     'platform' => $json['politics'],
                 ]]);
                 echo "{$json['name']}/{$json['election']}\n";
-            }
-        }
-    }
-
-    public function import_2022()
-    {
-        $fh = fopen('https://github.com/kiang/vote2022/raw/master/reports/links.csv', 'r');
-        while ($line = fgetcsv($fh, 2048)) {
-            $candidate = $this->Candidate->find('first', [
-                'conditions' => [
-                    'Candidate.election_id' => $line[4],
-                    'Candidate.name' => $line[2],
-                ],
-            ]);
-            if (!empty($candidate)) {
-                $this->Candidate->id = $candidate['Candidate']['id'];
-                $this->Candidate->save(['Candidate' => [
-                    'election_id' => $line[4],
-                    'name' => $line[2],
-                    'party' => $line[3],
-                    'stage' => 1,
-                ]]);
-            } else {
-                $this->Candidate->create();
-                $this->Candidate->save(['Candidate' => [
-                    'election_id' => $line[4],
-                    'name' => $line[2],
-                    'party' => $line[3],
-                    'stage' => 1,
-                    'education_level' => '',
-                    'is_present' => 0,
-                    'name_english' => '',
-                    'birth_place' => '',
-                    'platform' => '',
-                ]]);
             }
         }
     }
