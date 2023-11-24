@@ -335,7 +335,7 @@ class ElectionShell extends AppShell
     {
         $rootNode = $this->Election->find('first', array(
             'conditions' => array(
-                'Election.id' => '62053691-0184-496f-8738-1619acb5b862',
+                'Election.id' => '6436cd74-71d0-45ae-ae38-4d560a8c0008',
             )
         ));
         $nodes = $this->Election->find('all', array(
@@ -352,7 +352,7 @@ class ElectionShell extends AppShell
             ),
             'fields' => array('id'),
         ));
-        $fh = fopen(__DIR__ . '/data/2022_election/elections_areas.csv', 'w');
+        $fh = fopen(__DIR__ . '/data/2024_election/elections_areas.csv', 'w');
         fputcsv($fh, array('election id', '選區', '行政區'));
         foreach ($nodes as $node) {
             $electionPath = $this->Election->getPath($node['Election']['id'], array('name'));
