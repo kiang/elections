@@ -1,5 +1,8 @@
 <div id="CandidatesAdminIndex">
     <h2><?php echo $name; ?>的參選記錄</h2>
+    <ul>
+        <li>注意： 這個功能只是依據姓名檢索，暫時無法區別同名同姓的情況，使用上敬請注意</li>
+    </ul>
     <div class="clearfix"></div>
     <?php
     if (!empty($items)) {
