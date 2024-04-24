@@ -251,13 +251,13 @@
         </script>
         <?php if (Configure::read('debug') === 0) { ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155368257-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W62L9V737K"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-155368257-1');
+  gtag('config', 'G-W62L9V737K');
 </script>
         <?php } ?>
     </body>
