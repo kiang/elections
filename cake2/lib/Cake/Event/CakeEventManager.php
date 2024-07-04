@@ -1,20 +1,21 @@
 <?php
 /**
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright	  Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link		  http://cakephp.org CakePHP(tm) Project
+ * @copyright	  Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link		  https://cakephp.org CakePHP(tm) Project
  * @package		  Cake.Event
  * @since		  CakePHP(tm) v 2.1
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
 App::uses('CakeEventListener', 'Event');
+App::uses('CakeEvent', 'Event');
 
 /**
  * The event manager is responsible for keeping track of event listeners, passing the correct
@@ -80,7 +81,7 @@ class CakeEventManager {
 /**
  * Adds a new listener to an event. Listeners
  *
- * @param callback|CakeEventListener $callable PHP valid callback type or instance of CakeEventListener to be called
+ * @param callable|CakeEventListener $callable PHP valid callback type or instance of CakeEventListener to be called
  * when the event named with $eventKey is triggered. If a CakeEventListener instance is passed, then the `implementedEvents`
  * method will be called on the object to register the declared events individually as methods to be managed by this class.
  * It is possible to define multiple event handlers per event name.
@@ -145,7 +146,7 @@ class CakeEventManager {
  *
  * @param array $function the array taken from a handler definition for an event
  * @param CakeEventListener $object The handler object
- * @return callback
+ * @return callable
  */
 	protected function _extractCallable($function, $object) {
 		$method = $function['callable'];
@@ -160,7 +161,7 @@ class CakeEventManager {
 /**
  * Removes a listener from the active listeners.
  *
- * @param callback|CakeEventListener $callable any valid PHP callback type or an instance of CakeEventListener
+ * @param callable|CakeEventListener $callable any valid PHP callback type or an instance of CakeEventListener
  * @param string $eventKey The event unique identifier name with which the callback has been associated
  * @return void
  */

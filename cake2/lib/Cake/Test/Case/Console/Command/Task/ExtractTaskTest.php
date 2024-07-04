@@ -4,18 +4,18 @@
  *
  * Test Case for i18n extraction shell task
  *
- * CakePHP :  Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * CakePHP :  Rapid Development Framework (https://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP Project
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link          https://cakephp.org CakePHP Project
  * @package       Cake.Test.Case.Console.Command.Task
  * @since         CakePHP v 1.2.0.7726
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
 App::uses('Folder', 'Utility');
@@ -102,11 +102,11 @@ class ExtractTaskTest extends CakeTestCase {
 		$this->assertRegExp($pattern, $result);
 
 		$pattern = '/msgid "The %s is being used for caching. To change the config edit ';
-		$pattern .= 'APP\/config\/core.php "\nmsgstr ""\n/';
+		$pattern .= '%s\/core.php "\nmsgstr ""\n/';
 		$this->assertRegExp($pattern, $result);
 
 		$pattern = '/msgid "Your cache is NOT working. Please check ';
-		$pattern .= 'the settings in APP\/config\/core.php"\nmsgstr ""\n/';
+		$pattern .= 'the settings in %s\/core.php"\nmsgstr ""\n/';
 		$this->assertRegExp($pattern, $result);
 
 		$pattern = '/msgid "Your database configuration file is present."\nmsgstr ""\n/';
@@ -380,25 +380,12 @@ class ExtractTaskTest extends CakeTestCase {
 
 		$this->Task->execute();
 		$result = file_get_contents($this->path . DS . 'default.pot');
-
-		$pattern = preg_quote('#Model/PersisterOne.php:validation for field title#', '\\');
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = preg_quote('#Model/PersisterOne.php:validation for field body#', '\\');
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "Post title is required"#';
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "You may enter up to %s chars \(minimum is %s chars\)"#';
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "Post body is required"#';
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "Post body is super required"#';
-		$this->assertRegExp($pattern, $result);
-
+		$this->assertContains('Model/PersisterOne.php:validation for field title', $result);
+		$this->assertContains('Model/PersisterOne.php:validation for field body', $result);
+		$this->assertContains('msgid "Post title is required"', $result);
+		$this->assertContains('msgid "You may enter up to %s chars (minimum is %s chars)"', $result);
+		$this->assertContains('msgid "Post body is required"', $result);
+		$this->assertContains('msgid "Post body is super required"', $result);
 		$this->assertContains('msgid "double \\"quoted\\" validation"', $result, 'Strings with quotes not handled correctly');
 		$this->assertContains("msgid \"single 'quoted' validation\"", $result, 'Strings with quotes not handled correctly');
 	}
@@ -429,21 +416,11 @@ class ExtractTaskTest extends CakeTestCase {
 
 		$this->Task->execute();
 		$result = file_get_contents($this->path . DS . 'test_plugin.pot');
-
-		$pattern = preg_quote('#Plugin/TestPlugin/Model/TestPluginPost.php:validation for field title#', '\\');
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = preg_quote('#Plugin/TestPlugin/Model/TestPluginPost.php:validation for field body#', '\\');
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "Post title is required"#';
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "Post body is required"#';
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "Post body is super required"#';
-		$this->assertRegExp($pattern, $result);
+		$this->assertContains('Plugin/TestPlugin/Model/TestPluginPost.php:validation for field title', $result);
+		$this->assertContains('Plugin/TestPlugin/Model/TestPluginPost.php:validation for field body', $result);
+		$this->assertContains('msgid "Post title is required"', $result);
+		$this->assertContains('msgid "Post body is required"', $result);
+		$this->assertContains('msgid "Post body is super required"', $result);
 	}
 
 /**
@@ -468,24 +445,12 @@ class ExtractTaskTest extends CakeTestCase {
 
 		$this->Task->execute();
 		$result = file_get_contents($this->path . DS . 'test_plugin.pot');
-
-		$pattern = preg_quote('#Model/TestPluginPost.php:validation for field title#', '\\');
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = preg_quote('#Model/TestPluginPost.php:validation for field body#', '\\');
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "Post title is required"#';
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "Post body is required"#';
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#msgid "Post body is super required"#';
-		$this->assertRegExp($pattern, $result);
-
-		$pattern = '#Plugin/TestPlugin/Model/TestPluginPost.php:validation for field title#';
-		$this->assertNotRegExp($pattern, $result);
+		$this->assertContains('Model/TestPluginPost.php:validation for field title', $result);
+		$this->assertContains('Model/TestPluginPost.php:validation for field body', $result);
+		$this->assertContains('msgid "Post title is required"', $result);
+		$this->assertContains('msgid "Post body is required"', $result);
+		$this->assertContains('msgid "Post body is super required"', $result);
+		$this->assertNotContains('Plugin/TestPlugin/Model/TestPluginPost.php:validation for field title', $result);
 	}
 
 /**

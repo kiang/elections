@@ -2,18 +2,18 @@
 /**
  * String handling methods.
  *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link          https://cakephp.org CakePHP(tm) Project
  * @package       Cake.Utility
  * @since         CakePHP(tm) v 1.2.0.5551
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
 /**
@@ -30,69 +30,24 @@ class CakeText {
  * @return string RFC 4122 UUID
  */
 	public static function uuid() {
-		$node = env('SERVER_ADDR');
-
-		if (strpos($node, ':') !== false) {
-			if (substr_count($node, '::')) {
-				$node = str_replace(
-					'::', str_repeat(':0000', 8 - substr_count($node, ':')) . ':', $node
-				);
-			}
-			$node = explode(':', $node);
-			$ipSix = '';
-
-			foreach ($node as $id) {
-				$ipSix .= str_pad(base_convert($id, 16, 2), 16, 0, STR_PAD_LEFT);
-			}
-			$node = base_convert($ipSix, 2, 10);
-
-			if (strlen($node) < 38) {
-				$node = null;
-			} else {
-				$node = crc32($node);
-			}
-		} elseif (empty($node)) {
-			$host = env('HOSTNAME');
-
-			if (empty($host)) {
-				$host = env('HOST');
-			}
-
-			if (!empty($host)) {
-				$ip = gethostbyname($host);
-
-				if ($ip === $host) {
-					$node = crc32($host);
-				} else {
-					$node = ip2long($ip);
-				}
-			}
-		} elseif ($node !== '127.0.0.1') {
-			$node = ip2long($node);
-		} else {
-			$node = null;
-		}
-
-		if (empty($node)) {
-			$node = crc32(Configure::read('Security.salt'));
-		}
-
-		if (function_exists('hphp_get_thread_id')) {
-			$pid = hphp_get_thread_id();
-		} elseif (function_exists('zend_thread_id')) {
-			$pid = zend_thread_id();
-		} else {
-			$pid = getmypid();
-		}
-
-		if (!$pid || $pid > 65535) {
-			$pid = mt_rand(0, 0xfff) | 0x4000;
-		}
-
-		list($timeMid, $timeLow) = explode(' ', microtime());
+		$random = function_exists('random_int') ? 'random_int' : 'mt_rand';
 		return sprintf(
-			"%08x-%04x-%04x-%02x%02x-%04x%08x", (int)$timeLow, (int)substr($timeMid, 2) & 0xffff,
-			mt_rand(0, 0xfff) | 0x4000, mt_rand(0, 0x3f) | 0x80, mt_rand(0, 0xff), $pid, $node
+			'%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+			// 32 bits for "time_low"
+			$random(0, 65535),
+			$random(0, 65535),
+			// 16 bits for "time_mid"
+			$random(0, 65535),
+			// 12 bits before the 0100 of (version) 4 for "time_hi_and_version"
+			$random(0, 4095) | 0x4000,
+			// 16 bits, 8 bits for "clk_seq_hi_res",
+			// 8 bits for "clk_seq_low",
+			// two most significant bits holds zero and one for variant DCE1.1
+			$random(0, 0x3fff) | 0x8000,
+			// 48 bits for "node"
+			$random(0, 65535),
+			$random(0, 65535),
+			$random(0, 65535)
 		);
 	}
 
@@ -426,7 +381,7 @@ class CakeText {
  * @param string|array $phrase The phrase or phrases that will be searched.
  * @param array $options An array of html attributes and options.
  * @return string The highlighted text
- * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::highlight
+ * @link https://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::highlight
  */
 	public static function highlight($text, $phrase, $options = array()) {
 		if (empty($phrase)) {
@@ -471,7 +426,7 @@ class CakeText {
  *
  * @param string $text Text
  * @return string The text without links
- * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::stripLinks
+ * @link https://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::stripLinks
  */
 	public static function stripLinks($text) {
 		return preg_replace('|<a\s+[^>]+>|im', '', preg_replace('|<\/a>|im', '', $text));
@@ -533,7 +488,7 @@ class CakeText {
  * @param int $length Length of returned string, including ellipsis.
  * @param array $options An array of html attributes and options.
  * @return string Trimmed string.
- * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::truncate
+ * @link https://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::truncate
  */
 	public static function truncate($text, $length = 100, $options = array()) {
 		$defaults = array(
@@ -653,7 +608,7 @@ class CakeText {
  * @param int $radius The amount of characters that will be returned on each side of the founded phrase
  * @param string $ellipsis Ending that will be appended
  * @return string Modified string
- * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::excerpt
+ * @link https://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::excerpt
  */
 	public static function excerpt($text, $phrase, $radius = 100, $ellipsis = '...') {
 		if (empty($text) || empty($phrase)) {
@@ -695,7 +650,7 @@ class CakeText {
  * @param string $and The word used to join the last and second last items together with. Defaults to 'and'.
  * @param string $separator The separator used to join all the other items together. Defaults to ', '.
  * @return string The glued together string.
- * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::toList
+ * @link https://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::toList
  */
 	public static function toList($list, $and = null, $separator = ', ') {
 		if ($and === null) {
