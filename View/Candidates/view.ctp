@@ -330,7 +330,7 @@
         </div>
     </div>
     <?php } ?>
-    <?php if (!empty($candidate['Candidate']['education'])) { ?>
+    <?php if (!empty($candidate['Candidate']['experience'])) { ?>
     <div class="col-md-12">
         <div class="well well-lg"> 
             <strong>經歷</strong>
