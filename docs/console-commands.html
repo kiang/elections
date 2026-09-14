@@ -1,0 +1,844 @@
+<title>Elections Console Commands</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --ground: #fafaf7;
+  --surface: #fff;
+  --text: #2e3d4a;
+  --text-muted: #6b7d8d;
+  --heading: #1a2744;
+  --accent: #2d7d9a;
+  --accent-hover: #236579;
+  --code-bg: #f0ece4;
+  --code-text: #3d4f5f;
+  --warn: #c75c3a;
+  --border: #d8d3c8;
+  --border-light: #e8e4db;
+  --sidebar-bg: #f5f0e8;
+  --tag-bg: #e6f0f4;
+  --tag-text: #1a5f78;
+  --shadow: rgba(26,39,68,0.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #141a22;
+    --surface: #1c2430;
+    --text: #c8d0d8;
+    --text-muted: #7e8e9e;
+    --heading: #dce4ec;
+    --accent: #4db8d8;
+    --accent-hover: #6dcaea;
+    --code-bg: #1e2838;
+    --code-text: #a8bcc8;
+    --warn: #e0794f;
+    --border: #2a3544;
+    --border-light: #232e3c;
+    --sidebar-bg: #181f28;
+    --tag-bg: #1a3040;
+    --tag-text: #6dcaea;
+    --shadow: rgba(0,0,0,0.2);
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #141a22;
+  --surface: #1c2430;
+  --text: #c8d0d8;
+  --text-muted: #7e8e9e;
+  --heading: #dce4ec;
+  --accent: #4db8d8;
+  --accent-hover: #6dcaea;
+  --code-bg: #1e2838;
+  --code-text: #a8bcc8;
+  --warn: #e0794f;
+  --border: #2a3544;
+  --border-light: #232e3c;
+  --sidebar-bg: #181f28;
+  --tag-bg: #1a3040;
+  --tag-text: #6dcaea;
+  --shadow: rgba(0,0,0,0.2);
+}
+
+body {
+  background: var(--ground);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  padding-inline: 20px;
+  padding-block: 0;
+  margin: 0;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 48px;
+  max-width: 1120px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 24px;
+  padding-block: 32px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.sidebar-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-block-end: 12px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 5px 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+
+.sidebar a:hover,
+.sidebar a:focus-visible {
+  background: var(--border-light);
+  color: var(--text);
+  outline: none;
+}
+
+.sidebar a.active {
+  color: var(--accent);
+  background: var(--tag-bg);
+}
+
+.sidebar .sep {
+  height: 1px;
+  background: var(--border-light);
+  margin-block: 8px;
+}
+
+.main {
+  padding-block: 32px 80px;
+  min-width: 0;
+}
+
+/* Header */
+.page-header {
+  margin-block-end: 48px;
+  padding-block-end: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-header h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--heading);
+  margin: 0 0 8px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.page-header .subtitle {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin: 0 0 20px;
+  max-width: 60ch;
+}
+
+.run-box {
+  background: var(--code-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 14px 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--code-text);
+  overflow-x: auto;
+  line-height: 1.7;
+}
+
+.run-box .prompt { color: var(--accent); user-select: none; }
+.run-box .comment { color: var(--text-muted); }
+
+/* Section */
+.shell-section {
+  margin-block-end: 48px;
+  scroll-margin-top: 20px;
+}
+
+.shell-section h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--heading);
+  margin: 0 0 4px;
+  text-wrap: balance;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.shell-section h2 .filename {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.shell-desc {
+  color: var(--text);
+  margin: 0 0 16px;
+  max-width: 65ch;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-end: 16px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  white-space: nowrap;
+}
+
+.tag.model { background: var(--code-bg); color: var(--code-text); }
+.tag.warn { background: color-mix(in srgb, var(--warn) 12%, transparent); color: var(--warn); }
+
+/* Tables */
+.methods-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-block-end: 16px;
+}
+
+.methods-table th {
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 6px 12px 6px 0;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+
+.methods-table td {
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+
+.methods-table td:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  white-space: nowrap;
+  width: 1%;
+}
+
+.methods-table tr:last-child td { border-bottom: none; }
+
+.methods-table .src {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+/* Deps */
+.deps {
+  margin-block: 12px 0;
+  padding: 12px 16px;
+  background: var(--code-bg);
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.deps-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-block-end: 6px;
+}
+
+.deps ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.deps li { color: var(--code-text); }
+
+.deps code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  background: none;
+  padding: 0;
+}
+
+code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9em;
+  background: var(--code-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--code-text);
+}
+
+/* Architecture note */
+.arch-section {
+  margin-block-end: 48px;
+  scroll-margin-top: 20px;
+}
+
+.arch-section h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--heading);
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+
+.arch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.arch-card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+
+.arch-card h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--heading);
+  margin: 0 0 6px;
+}
+
+.arch-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .layout {
+    display: block;
+  }
+  .sidebar {
+    position: static;
+    max-height: none;
+    padding-block: 20px 0;
+    border-bottom: 1px solid var(--border);
+    margin-block-end: 24px;
+  }
+  .sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .sidebar .sep { display: none; }
+  .main { padding-block: 16px 48px; }
+  .page-header h1 { font-size: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-label">Console Commands</div>
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#models">Key Models</a>
+      <div class="sep"></div>
+      <a href="#vote2026">Vote2026Shell</a>
+      <a href="#candidate">CandidateShell</a>
+      <a href="#cec">CecShell</a>
+      <a href="#import">ImportShell</a>
+      <a href="#election">ElectionShell</a>
+      <a href="#area">AreaShell</a>
+      <a href="#bulletin">BulletinShell</a>
+      <a href="#ae">AeShell</a>
+      <a href="#export">ExportShell</a>
+      <a href="#json">JsonShell</a>
+      <a href="#keyword">KeywordShell</a>
+      <a href="#polygon">PolygonShell</a>
+      <a href="#report">ReportShell</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="page-header" id="overview">
+      <h1>Console Command Reference</h1>
+      <p class="subtitle">Developer documentation for the CakePHP shell commands in the Taiwan Election Directory (選舉黃頁). These shells handle data import, tree management, and export for election, candidate, and area records.</p>
+      <div class="run-box">
+        <span class="comment"># All commands run via the CakePHP console:</span><br>
+        <span class="prompt">$</span> ./cake2/lib/Cake/Console/cake <em>&lt;shell&gt;</em> <em>[method]</em> -app /home/kiang/public_html/elections<br><br>
+        <span class="comment"># If no method is specified, the shell's main() is called.</span><br>
+        <span class="comment"># Available shells: ae, area, bulletin, candidate, cec, election,</span><br>
+        <span class="comment">#   export, import, json, keyword, polygon, report, vote2026</span>
+      </div>
+    </header>
+
+    <!-- Key Models -->
+    <section class="arch-section" id="models">
+      <h2>Key Models &amp; Relationships</h2>
+      <div class="arch-grid">
+        <div class="arch-card">
+          <h3>Election</h3>
+          <p>Tree behavior (parent_id / lft / rght). HABTM Area via <code>areas_elections</code>, HABTM Bulletin via <code>bulletins_elections</code>. hasMany Candidate (fk: election_id), hasMany AreasElection. Typical hierarchy: root year → election type → city → district → cunli.</p>
+        </div>
+        <div class="arch-card">
+          <h3>Area</h3>
+          <p>Tree behavior. HABTM Election via <code>areas_elections</code>. hasMany AreasElection. Fields include <code>ivid</code>, <code>code</code> (govt codes), <code>polygons</code> (GeoJSON). beforeSave propagates name changes to linked elections.</p>
+        </div>
+        <div class="arch-card">
+          <h3>Candidate</h3>
+          <p>belongsTo Election. HABTM Tag, Keyword. beforeSave auto-resizes uploaded images to 512×512 via Imagick and normalises dot separators in names. Cached views: <code>CandidatesView{id}</code>.</p>
+        </div>
+        <div class="arch-card">
+          <h3>AreasElection</h3>
+          <p>Join model for <code>areas_elections</code>. belongsTo Area (fk: Area_id), belongsTo Election (fk: Election_id). Used for explicit many-to-many lookups that HABTM alone can't filter on.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vote2026Shell -->
+    <section class="shell-section" id="vote2026">
+      <h2>Vote2026Shell <span class="filename">Vote2026Shell.php</span></h2>
+      <p class="shell-desc">Imports 2026 village/borough chief (村里長) candidate registrations from CEC data. Parses area strings like <code>臺北市松山區莊敬里</code> into city/district/cunli, builds missing election tree nodes, links cunli elections to area records, and creates candidate records.</p>
+      <div class="meta-row">
+        <span class="tag model">Election</span>
+        <span class="tag model">Area</span>
+        <span class="tag">self-contained</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>importCunliCandidates</td><td>Main entry point. Reads <code>data/vote2026_cunli_candidates.csv</code>, builds election + area tree indexes in memory, creates missing election nodes (district and cunli level) with default population/quota values, creates missing area records, links via <code>areas_elections</code>, inserts or updates candidates (name, party, stage=1, is_reviewed=1). Sanitises 4-byte UTF-8 (CJK Extension B/C) to <code>?</code>. Runs <code>Election→recover()</code> at the end if new tree nodes were added.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul>
+          <li><code>data/vote2026_cunli_candidates.csv</code> — CEC 村里長 registration CSV (included in repo)</li>
+        </ul>
+      </div>
+      <div class="deps" style="margin-top:8px">
+        <div class="deps-label">Hardcoded IDs</div>
+        <ul>
+          <li><code>8e52f4d0-f3cc-4c0d-bbaf-0ee754e4c8ed</code> — 村里長 election root</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CandidateShell -->
+    <section class="shell-section" id="candidate">
+      <h2>CandidateShell <span class="filename">CandidateShell.php</span></h2>
+      <p class="shell-desc">The largest shell — contains ~28 public methods spanning every election year from 2014 to 2024. Handles candidate data import from CEC APIs, GitHub CSVs, JSON data files, and vote result processing. Each method typically targets one election year and type.</p>
+      <div class="meta-row">
+        <span class="tag model">Candidate</span>
+        <span class="tag warn">external sources</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th><th>Data source</th></tr></thead>
+          <tbody>
+            <tr><td>import_2024</td><td>Imports 2024 candidates from GitHub-hosted CSV</td><td class="src">github.com/kiang/vote2024/…/candidates.csv</td></tr>
+            <tr><td>import_2022_result</td><td>Imports 2022 election results (vote counts, winners)</td><td class="src">github.com/kiang/db.cec.gov.tw/…/2022.csv</td></tr>
+            <tr><td>import_2022_number</td><td>Updates 2022 candidates with ballot numbers, platform, birth</td><td class="src">github.com/kiang/vote2022/…/links_cec.jsonl</td></tr>
+            <tr><td>import_2020</td><td>Imports 2020 legislative candidates from JSON</td><td class="src">/home/kiang/public_html/vote2020/data/</td></tr>
+            <tr><td>elections_2020</td><td>Generates keywords for 2020 election nodes</td><td class="src">DB only</td></tr>
+            <tr><td>api_2016</td><td>Imports 2016 candidates from CEC API JSON</td><td class="src">/home/kiang/public_html/2016.cec.gov.tw/</td></tr>
+            <tr><td>cec_2016</td><td>Another 2016 CEC data import path</td><td class="src">same external repo</td></tr>
+            <tr><td>vote_2016_result</td><td>Imports 2016 vote results from CEC JSON</td><td class="src">external JSON</td></tr>
+            <tr><td>tag_2016</td><td>Tags incumbent legislators from 2016</td><td class="src">DB only</td></tr>
+            <tr><td>vote_2014_count</td><td>Imports 2014 vote counts</td><td class="src">/home/kiang/public_html/vote2014/</td></tr>
+            <tr><td>vote_2014_result</td><td>Processes 2014 election results</td><td class="src">data/2014_vote/</td></tr>
+            <tr><td>vote_2014</td><td>Large 2014 import from vote result CSVs</td><td class="src">data/2014_vote_result.csv</td></tr>
+            <tr><td>dump_2014_age</td><td>Exports 2014 candidates with age calculations</td><td class="src">data/10304_age.csv</td></tr>
+            <tr><td>dump_2014_cunli</td><td>Exports 2014 village-level candidate data to CSV</td><td class="src">DB only</td></tr>
+            <tr><td>cec_2014 / cec_2014_import / cec_2014_fun</td><td>Various 2014 CEC data imports</td><td class="src">/home/kiang/public_html/db.cec.gov.tw/</td></tr>
+            <tr><td>cec_2014_pdf</td><td>Imports 2014 bulletin PDFs</td><td class="src">/home/kiang/public_html/bulletin.cec.gov.tw/</td></tr>
+            <tr><td>town</td><td>Imports 2014 town/village chief candidates</td><td class="src">data/2014_candidates/</td></tr>
+            <tr><td>google_data</td><td>Imports Google-sourced candidate data</td><td class="src">data/google_fb.csv</td></tr>
+            <tr><td>tsu</td><td>Imports TSU (台聯) candidate data</td><td class="src">data/list_new.csv</td></tr>
+            <tr><td>moi</td><td>Imports MOI representative data</td><td class="src">data/reps.txt</td></tr>
+            <tr><td>villmast</td><td>Imports village master code mappings</td><td class="src">data/villmast_excel.csv</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Hardcoded paths</div>
+        <ul>
+          <li><code>/home/kiang/public_html/vote2020/</code>, <code>/home/kiang/public_html/db.cec.gov.tw/</code></li>
+          <li><code>/home/kiang/public_html/2016.cec.gov.tw/</code>, <code>/home/kiang/public_html/bulletin.cec.gov.tw/</code></li>
+          <li>GitHub URLs fetched at runtime via <code>file_get_contents()</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CecShell -->
+    <section class="shell-section" id="cec">
+      <h2>CecShell <span class="filename">CecShell.php</span></h2>
+      <p class="shell-desc">Imports historical election data from the Central Election Commission. Handles pre-2014 elections from CSV files, 2014 final results with CJK encoding fixes, and scrapes 2009–2010 election results from the CEC website.</p>
+      <div class="meta-row">
+        <span class="tag model">Election</span>
+        <span class="tag warn">web scraping</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>before2014</td><td>Imports pre-2014 elections from <code>db.cec.gov.tw</code> repo CSVs. Creates election tree nodes and candidates. Handles 10-field (candidate) and 7-field (party) CSV formats, including president records with pipe-delimited pairs.</td></tr>
+            <tr><td>final2014</td><td>Updates 2014 results with final vote counts and winners. Repairs CJK Private Use Area characters → actual Unicode. Falls back to interactive prompting for unmatched candidates.</td></tr>
+            <tr><td>v20101101TxB2</td><td>Scrapes 2010 municipal council results from CEC website, caches HTML locally, outputs JSON.</td></tr>
+            <tr><td>v20091201TxC2</td><td>Same for 2009 county council elections.</td></tr>
+            <tr><td>v20100601C1D2</td><td>Scrapes 2010 township representative results.</td></tr>
+            <tr><td>treeList</td><td>Helper: flattens threaded election tree into flat key→id lookup.</td></tr>
+            <tr><td>utf8</td><td>Helper: converts Unicode codepoint to UTF-8 bytes.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul>
+          <li><code>/home/kiang/public_html/db.cec.gov.tw</code> — local clone of CEC CSV repo</li>
+          <li>CEC website for historical scraping methods (may be offline)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ImportShell -->
+    <section class="shell-section" id="import">
+      <h2>ImportShell <span class="filename">ImportShell.php</span></h2>
+      <p class="shell-desc">Handles structured imports for 2014, 2016, and 2018 election data. The 2018 import is the most complex — it maps CEC DistrictId codes to the internal election tree across all 9 election types, then imports candidate records with full biographical data.</p>
+      <div class="meta-row">
+        <span class="tag model">Election</span>
+        <span class="tag warn">external sources</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>candidate2018</td><td>Imports 2018 candidates from CEC JSON data. Maps DistrictId to election IDs across all 9 types (市長, 議員, 區長, 區代表, 縣市長, 縣市議員, 鄉鎮市長, 鄉鎮市民代表, 村里長). Creates/updates with name, party, gender, birth, education, experience, platform.</td></tr>
+            <tr><td>candidate2016</td><td>Updates 2016 candidate stages from <code>data/2016_candidates.json</code>. Marks presidential and legislative candidates as active (stage=1).</td></tr>
+            <tr><td>fb_links</td><td>Imports Facebook links for candidates from tab-delimited file.</td></tr>
+            <tr><td>reps / reps_fix</td><td>Imports and fixes town representative election structures.</td></tr>
+            <tr><td>elections</td><td>Creates the full 2014 election tree with all 9 types, linked to areas.</td></tr>
+            <tr><td>areas</td><td>Creates the 2014 area tree (municipalities → towns → cunli) from <code>data/town.csv</code> and <code>data/villages.csv</code>.</td></tr>
+            <tr><td>fix2014</td><td>Cleans up 2014 data issues (duplicate candidates, missing links).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul>
+          <li><code>/home/kiang/public_html/2018.cec.gov.tw</code> — CEC 2018 data repo</li>
+          <li><code>data/2016_candidates.json</code>, <code>data/town.csv</code>, <code>data/villages.csv</code>, <code>data/townmast.csv</code>, <code>data/reps.txt</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ElectionShell -->
+    <section class="shell-section" id="election">
+      <h2>ElectionShell <span class="filename">ElectionShell.php</span></h2>
+      <p class="shell-desc">Manages the election tree structure — rebuilding keywords, synchronising cunli nodes with official government codes, duplicating candidate data between election years, and exporting quota analysis.</p>
+      <div class="meta-row">
+        <span class="tag model">Election</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>cunliFix</td><td>Syncs cunli election/area nodes with official Taiwan basecode JSON from GitHub. Deletes obsolete cunli, creates new ones. Targets the 2022 tree.</td></tr>
+            <tr><td>duplicateCandidates</td><td>Clones elected (stage=2) candidates from 2014 legislature to 2016, copying images with new UUIDs.</td></tr>
+            <tr><td>extractTree</td><td>Restructures elections named "X第Y" by splitting into parent "X" → child "第Y".</td></tr>
+            <tr><td>generateKeywords</td><td>Rebuilds <code>keywords</code> field for all leaf elections from ancestor path.</td></tr>
+            <tr><td>dumpAreas</td><td>Exports election-area mappings to <code>data/2024_election/elections_areas.csv</code>.</td></tr>
+            <tr><td>quota_match</td><td>Finds uncontested races (candidates == quota) and exports to CSV.</td></tr>
+            <tr><td>quota_export / quota_import</td><td>Exports/imports quota data for multi-seat elections (議員, 代表).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul>
+          <li><code>github.com/kiang/taiwan_basecode</code> — official village code data (for cunliFix)</li>
+          <li><code>data/2014_quota/</code>, <code>data/2024_election/</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- AreaShell -->
+    <section class="shell-section" id="area">
+      <h2>AreaShell <span class="filename">AreaShell.php</span></h2>
+      <p class="shell-desc">Manages the area tree — keyword generation, population import, tree duplication for new election years, and data export.</p>
+      <div class="meta-row">
+        <span class="tag model">Area</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>generateKeywords</td><td>Rebuilds <code>keywords</code> field for every area by joining ancestor names with commas.</td></tr>
+            <tr><td>duplicate_tree</td><td>Clones the 2018 area+election tree to create a 2022 tree. Duplicates all areas, elections, and area-election links under a new root.</td></tr>
+            <tr><td>elections_population</td><td>Copies population/elector counts from areas to linked elections via <code>areas_elections</code>.</td></tr>
+            <tr><td>areas_population</td><td>Imports population data from <code>data/10309_age.csv</code>, matched by area <code>code</code>. Aggregates leaf populations up to parent areas.</td></tr>
+            <tr><td>dump_areas</td><td>Exports 2014 election leaf nodes and their linked areas to JSON under <code>data/2014_areas/</code>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul>
+          <li><code>data/10309_age.csv</code> — population data by area code</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BulletinShell -->
+    <section class="shell-section" id="bulletin">
+      <h2>BulletinShell <span class="filename">BulletinShell.php</span></h2>
+      <p class="shell-desc">Links official election bulletins (選舉公報) to election nodes. Handles import, matching, and fixing of bulletin-to-election relationships across the 2014 election tree.</p>
+      <div class="meta-row">
+        <span class="tag model">Election</span>
+        <span class="tag warn">external sources</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>bulletinMapImport</td><td>Reads <code>data/bulletin_map.csv</code>, links bulletins to elections via <code>bulletins_elections</code>.</td></tr>
+            <tr><td>import_ptec</td><td>Imports town/representative bulletins from external CSV, sets <code>bulletin_key</code> on elections.</td></tr>
+            <tr><td>matchBulletin</td><td>Complex matching: reads bulletin CSV, matches to election leaf nodes by name parsing, produces <code>data/bulletin_map.csv</code> and SQL.</td></tr>
+            <tr><td>import</td><td>Imports bulletin records (id, name, source) from external CSV.</td></tr>
+            <tr><td>dbFix</td><td>Fixes 雲林縣 village-level bulletin mappings with <code>count_elections=0</code>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul>
+          <li><code>/home/kiang/public_html/bulletin.cec.gov.tw/Console/Command/data/</code></li>
+          <li><code>data/bulletin_map.csv</code>, <code>data/bulletin_map_prefix.csv</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- AeShell -->
+    <section class="shell-section" id="ae">
+      <h2>AeShell <span class="filename">AeShell.php</span></h2>
+      <p class="shell-desc">Consolidates <code>areas_elections</code> links. When all children of a parent area are linked to the same election, replaces the child links with a single parent link. Cleans up redundant area-election mappings.</p>
+      <div class="meta-row">
+        <span class="tag model">Area</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>main</td><td>Finds elections linked to multiple areas, groups by parent area, replaces N child links with 1 parent link where all siblings match.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul><li>Database only — no external files</li></ul>
+      </div>
+    </section>
+
+    <!-- ExportShell -->
+    <section class="shell-section" id="export">
+      <h2>ExportShell <span class="filename">ExportShell.php</span></h2>
+      <p class="shell-desc">Exports candidate data to CSV files for analysis and external use.</p>
+      <div class="meta-row">
+        <span class="tag model">Election</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th><th>Output</th></tr></thead>
+          <tbody>
+            <tr><td>lawsuitCandidates</td><td>Exports candidates tagged with 當選無效之訴 (election invalidation lawsuits)</td><td class="src">data/2014_lawsuit_candidates.csv</td></tr>
+            <tr><td>facebook</td><td>Exports all candidates with Facebook links</td><td class="src">data/facebook_candidates.csv</td></tr>
+            <tr><td>candidates</td><td>Dumps all 2014 candidates with election path and URLs</td><td class="src">data/db_dump.csv</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- JsonShell -->
+    <section class="shell-section" id="json">
+      <h2>JsonShell <span class="filename">JsonShell.php</span></h2>
+      <p class="shell-desc">Generates static JSON files for the API/frontend. Dumps areas, elections, and candidate data to the configured <code>json_target</code> directory, using UUID-based paths that match the web routes.</p>
+      <div class="meta-row">
+        <span class="tag model">Election</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>areas</td><td>Dumps all area views as JSON to <code>{json_target}/areas/{uuid-path}.json</code></td></tr>
+            <tr><td>elections</td><td>Dumps all election views as JSON to <code>{json_target}/elections/{uuid-path}.json</code></td></tr>
+            <tr><td>candidatesFull</td><td>Dumps all reviewed candidates as JSON</td></tr>
+            <tr><td>candidatesNew</td><td>Dumps only candidates modified in the last 30 days</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul><li><code>Configure::read('json_target')</code> must be set in app config</li></ul>
+      </div>
+    </section>
+
+    <!-- KeywordShell -->
+    <section class="shell-section" id="keyword">
+      <h2>KeywordShell <span class="filename">KeywordShell.php</span></h2>
+      <p class="shell-desc">Manages the keyword/search index — imports news links, generates keyword records from candidate names, and links them via the <code>candidates_keywords</code> join table.</p>
+      <div class="meta-row">
+        <span class="tag model">Keyword</span>
+        <span class="tag warn">external sources</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>importKeywords</td><td>Imports news links and keywords from JSON files, generates SQL for <code>links</code> and <code>links_keywords</code>.</td></tr>
+            <tr><td>dumpKeywords</td><td>Exports keywords to numbered CSV files (100 per file).</td></tr>
+            <tr><td>generateKeywords</td><td>Creates a keyword record for each candidate name and links via <code>candidates_keywords</code>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul><li><code>/home/kiang/public_html/news/cache/output/*.json</code> — news keyword files</li></ul>
+      </div>
+    </section>
+
+    <!-- PolygonShell -->
+    <section class="shell-section" id="polygon">
+      <h2>PolygonShell <span class="filename">PolygonShell.php</span></h2>
+      <p class="shell-desc">Downloads Taiwan GeoJSON/TopoJSON boundary files from GitHub and stores polygon geometry in each area's <code>polygons</code> field, matched by government area codes (<code>v_id</code>, <code>town_id</code>, <code>county_id</code>).</p>
+      <div class="meta-row">
+        <span class="tag model">Area</span>
+        <span class="tag warn">GitHub download</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>main</td><td>Downloads TopoJSON from <code>ronnywang/twgeojson</code>, converts to GeoJSON via vendor libs (GeoTopoJSON, geoPHP), matches features to areas by code within the "2014" root tree, saves geometry as JSON to area <code>polygons</code> field.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul>
+          <li>Vendor: <code>GeoTopoJSON</code>, <code>geoPHP</code></li>
+          <li>GitHub: <code>ronnywang/twgeojson</code> (downloaded at runtime)</li>
+          <li>Requires area <code>code</code> field to be populated</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ReportShell -->
+    <section class="shell-section" id="report">
+      <h2>ReportShell <span class="filename">ReportShell.php</span></h2>
+      <p class="shell-desc">Fetches paginated report data from an external API and writes to CSV. The API endpoint may no longer be available.</p>
+      <div class="meta-row">
+        <span class="tag warn">external API</span>
+      </div>
+      <div class="table-wrap">
+        <table class="methods-table">
+          <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>getReports</td><td>Fetches from <code>catding.twbbs.org/report/api/search.php</code> (paginated), writes to <code>data/reports.csv</code>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="deps">
+        <div class="deps-label">Dependencies</div>
+        <ul><li>External HTTP API — may be offline</li></ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function() {
+  var links = document.querySelectorAll('.sidebar a');
+  var sections = [];
+  links.forEach(function(a) {
+    var id = a.getAttribute('href');
+    if (id && id.startsWith('#')) {
+      var el = document.getElementById(id.slice(1));
+      if (el) sections.push({ link: a, el: el });
+    }
+  });
+  function update() {
+    var y = window.scrollY + 60;
+    var active = sections[0];
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].el.offsetTop <= y) active = sections[i];
+    }
+    links.forEach(function(a) { a.classList.remove('active'); });
+    if (active) active.link.classList.add('active');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
